@@ -95,7 +95,7 @@ function MainPage({ placeCardCount }: MainPageProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {Array.from({ length: placeCardCount }, (_, index) => <PlaceCard key={index} message='//!тест' />)}
+                {Array.from({ length: placeCardCount }, (_, index) => <PlaceCard key={`place-${index.toString()}`} message='//!тест' />)}
               </div>
             </section>
             <div className="cities__right-section">

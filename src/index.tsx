@@ -24,5 +24,15 @@ root.render(
   offer.html + offer-not-logged.html может объеденить?
 Заметки:
   на домашнем ПК заново выпонить npm install
+  Добавить компонеты:
+    Header
+    LocationItem
+    LocationsList
+    Map
+    OffersList
+    SortingOffersList
+    HeaderOffersList?
+    Footer?
+    Favorite(s)Button / BookmarkButton на нескольких страницах
 
 */
