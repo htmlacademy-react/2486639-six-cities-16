@@ -35,4 +35,25 @@ root.render(
     Footer?
     Favorite(s)Button / BookmarkButton на нескольких страницах
 
+  Переданному id не найден оффер - добавить страницу оффер не найден и ссылку на возврат на главную
+--
+//Для этого создадим компонент ScrollToTop:
+import {useEffect} from 'react';
+import {useLocation} from 'react-router-dom';
+
+function ScrollToTop() {
+  const {pathname} = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
+export default ScrollToTop;
+--
+<ScrollToTop />
+--
+
 */

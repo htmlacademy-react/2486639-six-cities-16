@@ -1,4 +1,10 @@
+import { useParams } from 'react-router-dom';
+
 function OfferPage(): JSX.Element {
+
+  const params = useParams();
+  const offerId: string | undefined = params.id;
+
   return (
     <div className="page">
       <header className="header">
@@ -61,7 +67,7 @@ function OfferPage(): JSX.Element {
               </div>
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
-                  Beautiful &amp; luxurious studio at great location
+                  Beautiful &amp; luxurious studio at great location {offerId}
                 </h1>
                 <button className="offer__bookmark-button button" type="button">
                   <svg className="offer__bookmark-icon" width="31" height="33">
