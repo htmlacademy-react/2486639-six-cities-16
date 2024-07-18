@@ -37,7 +37,7 @@ function App({ placeCardCount }: AppProps): JSX.Element {
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage />}
+            element={<OfferPage authorizationStatus={AuthorizationStatus.Auth} />}
           />
           <Route
             path="*"
