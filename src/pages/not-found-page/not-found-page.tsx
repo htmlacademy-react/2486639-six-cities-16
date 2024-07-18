@@ -15,7 +15,7 @@ function NotFoundPage(): JSX.Element {
                 <b className="cities__status">404 Not Found</b>
                 <p className="cities__status-description">
                   <u>
-                    <Link to={AppRoute.Root}>Main page</Link>
+                    <Link to={AppRoute.Main}>Main page</Link>
                   </u>
                 </p>
               </div>

@@ -6,7 +6,7 @@ const Setting = { //! временно
 };
 
 enum AppRoute {
-  Root = '/',
+  Main = '/',
   Login = '/login',
   Favorites = '/favorites',
   Offer = 'offer/:id'
