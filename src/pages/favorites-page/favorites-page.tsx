@@ -1,9 +1,14 @@
+import { Helmet } from 'react-helmet-async';
 import HeaderAuth from '../../components/header/header-auth';
 import Footer from '../../components/footer/footer';
+import { APP_TITLE } from '../../const';
 
 function FavoritesPage(): JSX.Element {
   return (
     <div className="page">
+      <Helmet>
+        <title>{`${APP_TITLE}: favorites empty`}</title>
+      </Helmet>
       <HeaderAuth />
 
       <main className="page__main page__main--favorites">

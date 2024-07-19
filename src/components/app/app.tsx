@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
+import { AppRoute, AuthorizationStatus, APP_TITLE } from '../../const';
 import MainPage from '../../pages/main-page/main-page';
 import PublicRoute from '../public-route/public-route';
 import PrivateRoute from '../private-route/private-route';
@@ -20,6 +20,9 @@ const authorizationStatus = AuthorizationStatus.Auth;
 function App({ placeCardCount }: AppProps): JSX.Element {
   return (
     <HelmetProvider>
+      <Helmet>
+        <title>{APP_TITLE}</title>
+      </Helmet>
       <BrowserRouter>
         <Routes>
           <Route

@@ -25,6 +25,7 @@ root.render(
   параметров в app.tsx еще нет console.log('app', useParams()); получаю offerId в offer-page
   не отрабатывает route NotFound для /1.jpg /1.html  - на лого была ссылка /main.html
   /src/type.ts - расположение именование?
+  нужен ли route для все городов /paris ....
 Заметки:
   на домашнем ПК заново выпонить npm install
   в App <Route path={AppRoute.Main} сделать Layout и все переместить вовнутрь или нет или только для городов
@@ -40,7 +41,7 @@ root.render(
     HeaderOffersList?
     Footer?
     Favorite(s)Button / BookmarkButton на нескольких страницах
-  В страницы добавить HelmetProvider title
+  Оптимизировать Helmet <title>{`${APP_TITLE}: 404`}</title>....  что то придумать для сборки заголовка
   Переданному id не найден оффер - добавить страницу оффер не найден и ссылку на возврат на главную
 --
 //Для этого создадим компонент ScrollToTop:

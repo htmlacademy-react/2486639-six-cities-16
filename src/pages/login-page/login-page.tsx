@@ -1,8 +1,13 @@
+import { Helmet } from 'react-helmet-async';
 import HeaderLogin from '../../components/header/header-login';
+import { APP_TITLE } from '../../const';
 
 function LoginPage(): JSX.Element {
   return (
     <div className="page page--gray page--login">
+      <Helmet>
+        <title>{`${APP_TITLE}: authorization`}</title>
+      </Helmet>
       <HeaderLogin />
 
       <main className="page__main page__main--login">

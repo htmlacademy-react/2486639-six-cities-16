@@ -1,3 +1,5 @@
+const APP_TITLE = '6 cities';
+
 const Setting = { //! временно
   PLACE_CARD_COUNT: 5,
   CITIES: ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'],
@@ -18,4 +20,4 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN' //! нужен ли...
 }
 
-export { Setting, AppRoute, AuthorizationStatus };
+export { APP_TITLE, Setting, AppRoute, AuthorizationStatus };
