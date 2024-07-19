@@ -1,11 +1,9 @@
 const APP_TITLE = '6 cities';
 
-const Setting = { //! временно
-  PLACE_CARD_COUNT: 5,
-  CITIES: ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'],
-  //DEFAULT_CITY: CITIES[0] //! определить по другому
-  DEFAULT_CITY: 'Paris'
-};
+const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
+const DEFAULT_CITY: typeof CITIES[number] = CITIES[0];
+
+const PLACE_CARD_COUNT = 5; //! тест
 
 enum AppRoute {
   Main = '/',
@@ -20,4 +18,4 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN' //! нужен ли...
 }
 
-export { APP_TITLE, Setting, AppRoute, AuthorizationStatus };
+export { APP_TITLE, CITIES, DEFAULT_CITY, PLACE_CARD_COUNT, AppRoute, AuthorizationStatus };
