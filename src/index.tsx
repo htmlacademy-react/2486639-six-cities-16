@@ -27,6 +27,7 @@ root.render(
   /src/type.ts - расположение именование?
   нужен ли route для все городов /paris ....
 Заметки:
+  aaa@aaa.aaa / a1
   на домашнем ПК заново выпонить npm install
   в App <Route path={AppRoute.Main} сделать Layout и все переместить вовнутрь или нет или только для городов
   в городах NavLink + className ={({isActive})=>clsx({'qq','www':isActive, 'ccc'})}  to=city
