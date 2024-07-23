@@ -16,8 +16,7 @@ root.render(
 
 /*
 Вопросы:
-  {Array.from({ length: placeCardCount }, (_, index) => <PlaceCard key={index} message={message} />)}
-    key={index} ?
+  как типизировать enum PlacesSortingTypes[key]
   favorites.html + favorites-empty.html может объеденить?
     <footer class="footer container">?
     <footer class="footer">

@@ -16,4 +16,11 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN' //! нужен ли...
 }
 
-export { APP_TITLE, CITIES, DEFAULT_CITY, AppRoute, AuthorizationStatus };
+enum PlacesSortingTypes {
+  Popular = 'Popular',
+  PriceLowToHigh = 'Price: low to high',
+  PriceHighToLow = 'Price: high to low',
+  TopRatedFirst = 'Top rated first'
+}
+
+export { APP_TITLE, CITIES, DEFAULT_CITY, AppRoute, AuthorizationStatus, PlacesSortingTypes };
