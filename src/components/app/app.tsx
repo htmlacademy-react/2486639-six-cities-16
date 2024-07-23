@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
-import { AppRoute, AuthorizationStatus, APP_TITLE } from '../../const';
+import { Offer } from '../../types/offer';
+import { Review } from '../../types/review';
 import MainPage from '../../pages/main-page/main-page';
 import PublicRoute from '../public-route/public-route';
 import PrivateRoute from '../private-route/private-route';
@@ -8,16 +9,22 @@ import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
+import { AppRoute, AuthorizationStatus, APP_TITLE } from '../../const';
 
 type AppProps = {
   placeCardCount: number;
+  offers: Offer[];
+  reviews: Review[];
 }
 
 const authorizationStatus = AuthorizationStatus.Auth;
 //const authorizationStatus = AuthorizationStatus.NoAuth;
 //const authorizationStatus = AuthorizationStatus.Unknown;
 
-function App({ placeCardCount }: AppProps): JSX.Element {
+function App({ placeCardCount, offers, reviews }: AppProps): JSX.Element {
+  //console.log(offers);
+  //console.log(reviews);
+
   return (
     <HelmetProvider>
       <Helmet>
