@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import { PLACE_CARD_COUNT } from './const';
 import { offers } from './mocks/offers';
 import { reviews } from './mocks/reviews';
 
@@ -11,7 +10,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App placeCardCount={PLACE_CARD_COUNT} offers={offers} reviews={reviews} />
+    <App offers={offers} reviews={reviews} />
   </React.StrictMode>
 );
 
@@ -32,6 +31,7 @@ root.render(
   aaa@aaa.aaa / a1
   на домашнем ПК заново выпонить npm install
   в App <Route path={AppRoute.Main} сделать Layout и все переместить вовнутрь или нет или только для городов
+  clsx можно установить? несколько суловных классов использовал в src/pages/main-page/main-page.tsx
   в городах NavLink + className ={({isActive})=>clsx({'qq','www':isActive, 'ccc'})}  to=city
   Добавить компонеты:
     +Header  href="main.html" исправил на /  ! Переобъеденить HeaderAuth / HeaderNoAuth / HeaderLogin + class=header__logo-link--active

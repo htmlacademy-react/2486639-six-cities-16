@@ -12,7 +12,6 @@ import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import { AppRoute, AuthorizationStatus, APP_TITLE } from '../../const';
 
 type AppProps = {
-  placeCardCount: number;
   offers: Offer[];
   reviews: Review[];
 }
@@ -21,10 +20,7 @@ const authorizationStatus = AuthorizationStatus.Auth;
 //const authorizationStatus = AuthorizationStatus.NoAuth;
 //const authorizationStatus = AuthorizationStatus.Unknown;
 
-function App({ placeCardCount, offers, reviews }: AppProps): JSX.Element {
-  //console.log(offers);
-  //console.log(reviews);
-
+function App({ offers, reviews }: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <Helmet>
@@ -34,7 +30,7 @@ function App({ placeCardCount, offers, reviews }: AppProps): JSX.Element {
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage placeCardCount={placeCardCount} />}
+            element={<MainPage offers={offers} />}
           />
           <Route
             path={AppRoute.Login}

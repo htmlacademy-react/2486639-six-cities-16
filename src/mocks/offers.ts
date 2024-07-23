@@ -1,5 +1,8 @@
 import { Offer } from '../types/offer';
 
+//export const offers: Offer[] = [];
+
+/**/
 export const offers: Offer[] = [
   {
     id: 'e11c3fc7-e973-4446-b758-20e6e479378d',
@@ -94,3 +97,4 @@ export const offers: Offer[] = [
     rating: 4.4
   }
 ];
+/**/
