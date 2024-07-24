@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import HeaderAuth from '../../components/header/header-auth';
 import Footer from '../../components/footer/footer';
+import OfferMark from '../../components/offer-mark/offer-mark';
 import { APP_TITLE } from '../../const';
 
 function FavoritesPage(): JSX.Element {
@@ -26,9 +27,7 @@ function FavoritesPage(): JSX.Element {
                 </div>
                 <div className="favorites__places">
                   <article className="favorites__card place-card">
-                    <div className="place-card__mark">
-                      <span>Premium</span>
-                    </div>
+                    {true ? <OfferMark /> : null/* //! временно */}
                     <div className="favorites__image-wrapper place-card__image-wrapper">
                       <a href="#">
                         <img className="place-card__image" src="img/apartment-small-03.jpg" width="150" height="110" alt="Place image" />

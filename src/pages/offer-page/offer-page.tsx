@@ -6,6 +6,7 @@ import HeaderAuth from '../../components/header/header-auth';
 import OfferReviewsForm from '../../components/offer-reviews-form/offer-reviews-form';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferInside from '../../components/offer-inside/offer-inside';
+import OfferMark from '../../components/offer-mark/offer-mark';
 import { firstLetterToUppercase, getById } from '../../utils/util';
 import { AuthorizationStatus, ONE_STAR_WIDTH } from '../../const';
 
@@ -34,7 +35,7 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
     price,
     //city,
     //isFavorite,
-    //isPremium,
+    isPremium,
     //rating,
     //previewImage
   } = offer;
@@ -210,9 +211,7 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
               </article>
 
               <article className="near-places__card place-card">
-                <div className="place-card__mark">
-                  <span>Premium</span>
-                </div>
+                {isPremium ? <OfferMark /> : null}
                 <div className="near-places__image-wrapper place-card__image-wrapper">
                   <a href="#">
                     <img className="place-card__image" src="img/apartment-03.jpg" width="260" height="200" alt="Place image" />
