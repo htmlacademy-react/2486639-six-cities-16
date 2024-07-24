@@ -1,18 +1,36 @@
 import { useParams } from 'react-router-dom';
+import { Offer } from '../../types/offer';
+import { Review } from '../../types/review';
 import HeaderAuth from '../../components/header/header-auth';
 import OfferReviewsForm from '../../components/offer-reviews-form/offer-reviews-form';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferInside from '../../components/offer-inside/offer-inside';
-import { AuthorizationStatus } from '../../const';
+import { AuthorizationStatus, ONE_STAR_WIDTH } from '../../const';
 
 type OfferProps = {
   authorizationStatus: AuthorizationStatus;
+  offers: Offer[];
+  reviews: Review[];
 }
 
-function OfferPage({ authorizationStatus }: OfferProps): JSX.Element {
+function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.Element {
 
   const params = useParams();
-  const offerId: string | undefined = params.id;
+  const offerId: string | undefined = params.id; //! тест... а как получить в App и не передавать все предложения?
+  const offer: Offer = offers[0]; //! временно
+
+  const {
+    title,
+    //type,
+    price,
+    //city,
+    //isFavorite,
+    //isPremium,
+    //rating,
+    //previewImage
+  } = offer;
+
+  const ratingValue = reviews.reduce((ratingTotal, { rating }) => ratingTotal + rating, 0) / reviews.length;
 
   return (
     <div className="page">
@@ -28,7 +46,7 @@ function OfferPage({ authorizationStatus }: OfferProps): JSX.Element {
               </div>
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
-                  Beautiful &amp; luxurious studio at great location {offerId}
+                  {title} ({offerId})
                 </h1>
                 <button className="offer__bookmark-button button" type="button">
                   <svg className="offer__bookmark-icon" width="31" height="33">
@@ -39,10 +57,10 @@ function OfferPage({ authorizationStatus }: OfferProps): JSX.Element {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{ width: '80%' }}></span>
+                  <span style={{ width: `${Math.round(ratingValue) * ONE_STAR_WIDTH}%` }}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="offer__rating-value rating__value">4.8</span>
+                <span className="offer__rating-value rating__value">{ratingValue}</span>
               </div>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
@@ -56,7 +74,7 @@ function OfferPage({ authorizationStatus }: OfferProps): JSX.Element {
                 </li>
               </ul>
               <div className="offer__price">
-                <b className="offer__price-value">&euro;120</b>
+                <b className="offer__price-value">&euro;{price}</b>
                 <span className="offer__price-text">&nbsp;night</span>
               </div>
               <OfferInside />

@@ -16,7 +16,7 @@ root.render(
 
 /*
 Вопросы:
-  как типизировать enum PlacesSortingTypes[key]
+  как типизировать enum PlacesSortingTypes[key]? сделал {Object.values(PlacesSortingTypes).map(
   favorites.html + favorites-empty.html может объеденить?
     <footer class="footer container">?
     <footer class="footer">

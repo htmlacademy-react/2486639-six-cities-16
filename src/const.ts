@@ -23,4 +23,14 @@ enum PlacesSortingTypes {
   TopRatedFirst = 'Top rated first'
 }
 
-export { APP_TITLE, CITIES, DEFAULT_CITY, AppRoute, AuthorizationStatus, PlacesSortingTypes };
+const ONE_STAR_WIDTH = 20;
+
+export {
+  APP_TITLE,
+  CITIES,
+  DEFAULT_CITY,
+  AppRoute,
+  AuthorizationStatus,
+  PlacesSortingTypes,
+  ONE_STAR_WIDTH
+};

@@ -50,7 +50,13 @@ function App({ offers, reviews }: AppProps): JSX.Element {
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage authorizationStatus={authorizationStatus} />}
+            element={
+              <OfferPage
+                authorizationStatus={authorizationStatus}
+                offers={offers}
+                reviews={reviews}
+              />
+            }
           />
           <Route
             path="*"
