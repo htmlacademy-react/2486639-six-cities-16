@@ -1,21 +1,7 @@
 import { PlacesSortingTypes } from '../../const';
 
-type PlacesSortongType = typeof PlacesSortingTypes;
-
 function PlacesSorting(): JSX.Element {
-  const activeSortingType = PlacesSortingTypes.Popular;
-
-  /*
-  console.log(activeSortingType);
-  console.log(PlacesSortingTypes[activeSortingType]);
-  console.log(Object.entries(PlacesSortingTypes));
-
-  for (const t in PlacesSortingTypes) {
-    console.log(t)
-    const tt: PlacesSortongType = t as PlacesSortongType;
-    console.log(PlacesSortingTypes[tt])
-  }
-*/
+  const activeSortingType = PlacesSortingTypes.PriceLowToHigh;
 
   return (
     <form className="places__sorting" action="#" method="get">
@@ -27,15 +13,17 @@ function PlacesSorting(): JSX.Element {
         </svg>
       </span>
       <ul className="places__options places__options--custom places__options--opened">
-        {
-
-          Object.keys(PlacesSortingTypes).map(
-            (key) =>
-              <li
-                key={key}
-                className={`places__option ${(key === activeSortingType) ? 'places__option--active' : null}`}
-                tabIndex={0}>{PlacesSortingTypes[key]}</li>
-          )}
+        {Object.values(PlacesSortingTypes).map(
+          (sortingType: PlacesSortingTypes) => (
+            <li
+              key={sortingType}
+              className={`places__option ${(sortingType === activeSortingType) ? 'places__option--active' : null}`}
+              tabIndex={0}
+            >
+              {sortingType}
+            </li>
+          )
+        )}
       </ul>
     </form>
   );
