@@ -1,10 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { Offer } from '../../types/offer';
 import { Review } from '../../types/review';
+import NotFoundPage from '../not-found-page/not-found-page';
 import HeaderAuth from '../../components/header/header-auth';
 import OfferReviewsForm from '../../components/offer-reviews-form/offer-reviews-form';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferInside from '../../components/offer-inside/offer-inside';
+import { firstLetterToUppercase, getById } from '../../utils/util';
 import { AuthorizationStatus, ONE_STAR_WIDTH } from '../../const';
 
 type OfferProps = {
@@ -17,11 +19,18 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
 
   const params = useParams();
   const offerId: string | undefined = params.id; //! тест... а как получить в App и не передавать все предложения?
-  const offer: Offer = offers[0]; //! временно
+  if (!offerId) {
+    return <NotFoundPage />;
+  }
+
+  const offer: Offer | undefined = getById(offers, offerId);
+  if (!offer) {
+    return (<NotFoundPage />);
+  }
 
   const {
     title,
-    //type,
+    type,
     price,
     //city,
     //isFavorite,
@@ -46,7 +55,7 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
               </div>
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
-                  {title} ({offerId})
+                  {title}
                 </h1>
                 <button className="offer__bookmark-button button" type="button">
                   <svg className="offer__bookmark-icon" width="31" height="33">
@@ -64,7 +73,7 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
               </div>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
-                  Apartment
+                  {firstLetterToUppercase(type)}
                 </li>
                 <li className="offer__feature offer__feature--bedrooms">
                   3 Bedrooms

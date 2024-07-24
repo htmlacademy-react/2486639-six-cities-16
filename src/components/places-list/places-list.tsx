@@ -13,7 +13,7 @@ function PlacesList({ offers }: PlacesListProps): JSX.Element {
       <b className="places__found">{offers.length} places to stay in Amsterdam</b>
       <PlacesSorting />
       <div className="cities__places-list places__list tabs__content">
-        {offers.map((offer) => <PlaceCard key={offer.id} message='//!тест' />)}
+        {offers.map((offer) => <PlaceCard key={offer.id} offer={offer} />)}
       </div>
     </>
   );
