@@ -9,7 +9,7 @@ import OfferInside from '../../components/offer-inside/offer-inside';
 import OfferMark from '../../components/offer-mark/offer-mark';
 import OfferRating from '../../components/offer-rating/offer-rating';
 import { firstLetterToUppercase, getById } from '../../utils/util';
-import { AuthorizationStatus, ONE_STAR_WIDTH, ratingClassNamePrefix } from '../../const';
+import { AuthorizationStatus, ratingClassNamePrefix } from '../../const';
 
 type OfferProps = {
   authorizationStatus: AuthorizationStatus;

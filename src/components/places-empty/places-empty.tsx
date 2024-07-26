@@ -1,4 +1,4 @@
-function PlacesSorting(): JSX.Element {
+function PlacesEmpty(): JSX.Element {
   return (
     <div className="cities__status-wrapper tabs__content">
       <b className="cities__status">No places to stay available</b>
@@ -7,4 +7,4 @@ function PlacesSorting(): JSX.Element {
   );
 }
 
-export default PlacesSorting;
+export default PlacesEmpty;

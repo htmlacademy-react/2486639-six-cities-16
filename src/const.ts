@@ -1,5 +1,3 @@
-import { Offer } from "./types/offer";
-
 const APP_TITLE = '6 cities';
 
 const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;

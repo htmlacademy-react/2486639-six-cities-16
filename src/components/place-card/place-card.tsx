@@ -25,15 +25,13 @@ function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
     rating
   } = offer;
 
-
-
   const offerURL = `${OFFER_PATH}${id}`;
+  const isActive = activeOfferId === id; //! временно
 
   return (
     <article
       className="cities__card place-card"
       onMouseEnter={() => {
-        //! console.log(id);
         setActiveOfferId(id);
       }}
       onMouseOut={() => {
@@ -58,7 +56,7 @@ function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
         <OfferRating classNamePrefix={ratingClassNamePrefix.PlaceCard} rating={rating} />
         <h2 className="place-card__name">
           <Link to={offerURL}>
-            {title}
+            {title} ({`${isActive}`})
           </Link>
         </h2>
         <p className="place-card__type">{firstLetterToUppercase(type)}</p>
