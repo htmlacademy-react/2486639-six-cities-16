@@ -1,3 +1,5 @@
+import { Offer } from "./types/offer";
+
 const APP_TITLE = '6 cities';
 
 const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
@@ -32,6 +34,8 @@ enum ratingClassNamePrefix {
   Offer = 'offer'
 }
 
+const DEFAULT_ACTIVE_OFFER_ID: string = '';
+
 export {
   APP_TITLE,
   CITIES,
@@ -41,5 +45,6 @@ export {
   AuthorizationStatus,
   PlacesSortingTypes,
   ONE_STAR_WIDTH,
-  ratingClassNamePrefix
+  ratingClassNamePrefix,
+  DEFAULT_ACTIVE_OFFER_ID
 };
