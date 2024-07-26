@@ -3,7 +3,8 @@ import { Offer } from '../../types/offer';
 import { firstLetterToUppercase } from '../../utils/util';
 import OfferMark from '../offer-mark/offer-mark';
 import OfferBookmarkButton from '../offer-bookmark-button/offer-bookmark-button';
-import { OFFER_PATH } from '../../const';
+import OfferRating from '../offer-rating/offer-rating';
+import { OFFER_PATH, ratingClassNamePrefix } from '../../const';
 
 type PlaceCardProps = {
   offer: Offer;
@@ -15,11 +16,10 @@ function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
     title,
     type,
     price,
-    //city,
     previewImage,
     isFavorite,
     isPremium,
-    //rating
+    rating
   } = offer;
 
   return (
@@ -38,12 +38,7 @@ function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
           </div>
           <OfferBookmarkButton isActive={isFavorite} />
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{ width: '80%' }}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <OfferRating classNamePrefix={ratingClassNamePrefix.PlaceCard} rating={rating} />
         <h2 className="place-card__name">
           <a href="#">{title}</a>
         </h2>

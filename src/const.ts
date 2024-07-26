@@ -15,7 +15,7 @@ enum AppRoute {
 enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN' //! нужен ли...
+  Unknown = 'UNKNOWN'
 }
 
 enum PlacesSortingTypes {
@@ -27,6 +27,11 @@ enum PlacesSortingTypes {
 
 const ONE_STAR_WIDTH = 20;
 
+enum ratingClassNamePrefix {
+  PlaceCard = 'place-card',
+  Offer = 'offer'
+}
+
 export {
   APP_TITLE,
   CITIES,
@@ -35,5 +40,6 @@ export {
   AppRoute,
   AuthorizationStatus,
   PlacesSortingTypes,
-  ONE_STAR_WIDTH
+  ONE_STAR_WIDTH,
+  ratingClassNamePrefix
 };

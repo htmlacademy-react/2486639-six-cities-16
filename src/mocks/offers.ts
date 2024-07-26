@@ -25,7 +25,7 @@ export const offers: Offer[] = [
     },
     isFavorite: true,
     isPremium: false,
-    rating: 4
+    rating: 3.2
   },
   {
     id: 'b1c2c3a5-a80a-4e0a-910f-ea1bdd1257a8',
@@ -48,7 +48,7 @@ export const offers: Offer[] = [
     },
     isFavorite: false,
     isPremium: true,
-    rating: 3.3
+    rating: 3.5
   },
   {
     id: '0eec958b-fc99-4281-80ce-e4402fe9083e',
@@ -71,7 +71,7 @@ export const offers: Offer[] = [
     },
     isFavorite: true,
     isPremium: false,
-    rating: 3.8
+    rating: 4.1
   },
   {
     id: '993b5f0a-3e91-4007-aab0-1107fe23467a',
@@ -94,7 +94,7 @@ export const offers: Offer[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 4.4
+    rating: 4.8
   }
 ];
 /**/
