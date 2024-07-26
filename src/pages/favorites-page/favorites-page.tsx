@@ -27,7 +27,11 @@ function FavoritesPage(): JSX.Element {
                 </div>
                 <div className="favorites__places">
                   <article className="favorites__card place-card">
-                    {true ? <OfferMark /> : null/* //! временно */}
+                    {
+                      //! временно
+                      //true ? <OfferMark /> : null
+                      <OfferMark />
+                    }
                     <div className="favorites__image-wrapper place-card__image-wrapper">
                       <a href="#">
                         <img className="place-card__image" src="img/apartment-small-03.jpg" width="150" height="110" alt="Place image" />
