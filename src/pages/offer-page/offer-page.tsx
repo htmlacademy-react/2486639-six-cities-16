@@ -7,8 +7,9 @@ import OfferReviewsForm from '../../components/offer-reviews-form/offer-reviews-
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferInside from '../../components/offer-inside/offer-inside';
 import OfferMark from '../../components/offer-mark/offer-mark';
+import OfferRating from '../../components/offer-rating/offer-rating';
 import { firstLetterToUppercase, getById } from '../../utils/util';
-import { AuthorizationStatus, ONE_STAR_WIDTH } from '../../const';
+import { AuthorizationStatus, ONE_STAR_WIDTH, ratingClassNamePrefix } from '../../const';
 
 type OfferProps = {
   authorizationStatus: AuthorizationStatus;
@@ -34,13 +35,14 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
     type,
     price,
     //city,
+    //previewImage,
     //isFavorite,
     isPremium,
-    //rating,
-    //previewImage
+    rating
   } = offer;
 
-  const ratingValue = reviews.reduce((ratingTotal, { rating }) => ratingTotal + rating, 0) / reviews.length;
+  //! может понадобится...
+  //const ratingValue = reviews.reduce((ratingTotal, { rating }) => ratingTotal + rating, 0) / reviews.length;
 
   return (
     <div className="page">
@@ -65,13 +67,7 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
                   <span className="visually-hidden">To bookmarks</span>
                 </button>
               </div>
-              <div className="offer__rating rating">
-                <div className="offer__stars rating__stars">
-                  <span style={{ width: `${Math.round(ratingValue) * ONE_STAR_WIDTH}%` }}></span>
-                  <span className="visually-hidden">Rating</span>
-                </div>
-                <span className="offer__rating-value rating__value">{ratingValue}</span>
-              </div>
+              <OfferRating classNamePrefix={ratingClassNamePrefix.Offer} rating={rating} isShowText />
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
                   {firstLetterToUppercase(type)}
