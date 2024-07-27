@@ -11,6 +11,7 @@ type FavoritesPageProps = {
 
 function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
   const isOffersEmpty: boolean = offers.length === 0;
+  const favoriteOffers = offers.filter(({ isFavorite }) => isFavorite);
 
   return (
     <div className="page">
@@ -29,7 +30,7 @@ function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
                   <b className="favorites__status">Nothing yet saved.</b>
                   <p className="favorites__status-description">Save properties to narrow down search or plan your future trips.</p>
                 </div> :
-                <FavoritesList offers={offers} />
+                <FavoritesList offers={favoriteOffers} />
             }
           </section>
         </div>
