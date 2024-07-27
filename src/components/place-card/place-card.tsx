@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Offer } from '../../types/offer';
 import { firstLetterToUppercase } from '../../utils/util';
+import OfferLink from '../offer-link/offer-link';
 import OfferMark from '../offer-mark/offer-mark';
 import OfferBookmarkButton from '../offer-bookmark-button/offer-bookmark-button';
 import OfferRating from '../offer-rating/offer-rating';
-import { DEFAULT_ACTIVE_OFFER_ID, OFFER_PATH, ratingClassNamePrefix } from '../../const';
+import { DEFAULT_ACTIVE_OFFER_ID, ratingClassNamePrefix } from '../../const';
 
 type PlaceCardProps = {
   offer: Offer;
@@ -25,7 +25,6 @@ function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
     rating
   } = offer;
 
-  const offerURL = `${OFFER_PATH}${id}`;
   const isActive = activeOfferId === id; //! временно
 
   return (
@@ -41,9 +40,9 @@ function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
     >
       {isPremium ? <OfferMark /> : null}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={offerURL}>
+        <OfferLink offerId={id}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
-        </Link>
+        </OfferLink>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -55,9 +54,10 @@ function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
         </div>
         <OfferRating classNamePrefix={ratingClassNamePrefix.PlaceCard} rating={rating} />
         <h2 className="place-card__name">
-          <Link to={offerURL}>
-            {title} ({`${isActive}`})
-          </Link>
+          <OfferLink offerId={id}>
+            <>{title} ({`${isActive}` /* //! для тестирования */})</>
+          </OfferLink>
+
         </h2>
         <p className="place-card__type">{firstLetterToUppercase(type)}</p>
       </div>

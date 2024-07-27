@@ -1,6 +1,6 @@
 import { Offer } from '../../types/offer';
+import OfferLink from '../offer-link/offer-link';
 import OfferMark from '../offer-mark/offer-mark';
-import { OFFER_PATH } from '../../const';
 
 type FavoriteItemProps = {
   cityName: string;
@@ -34,17 +34,15 @@ function FavoriteItem({ cityName, offers }: FavoriteItemProps): JSX.Element {
               rating
             } = offer;
 
-            const offerURL = `${OFFER_PATH}${id}`; //! Дубль кода, сделать функцию для ссылки
-
             console.log(offer);
 
             return (
               <article className="favorites__card place-card">
                 {isPremium ? <OfferMark /> : null}
                 <div className="favorites__image-wrapper place-card__image-wrapper">
-                  <a href="#">
-                    <img className="place-card__image" src="img/apartment-small-03.jpg" width="150" height="110" alt="Place image" />
-                  </a>
+                  <OfferLink offerId={id}>
+                    <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place image" />
+                  </OfferLink>
                 </div>
                 <div className="favorites__card-info place-card__info">
                   <div className="place-card__price-wrapper">
@@ -67,6 +65,9 @@ function FavoriteItem({ cityName, offers }: FavoriteItemProps): JSX.Element {
                   </div>
                   <h2 className="place-card__name">
                     <a href="#">Nice, cozy, warm big bed apartment</a>
+                    <OfferLink offerId={id}>
+                      <>{title}</>
+                    </OfferLink>
                   </h2>
                   <p className="place-card__type">Apartment</p>
                 </div>
