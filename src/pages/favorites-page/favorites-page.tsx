@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { Offer } from '../../types/offer';
 import HeaderAuth from '../../components/header/header-auth';
 import Footer from '../../components/footer/footer';
-import FavoritesList from '../../components/favorites/favorites';
+import FavoritesList from '../../components/favorites-list/favorites-list';
 import { APP_TITLE } from '../../const';
 
 type FavoritesPageProps = {
