@@ -1,4 +1,5 @@
 import { Offer } from '../../types/offer';
+import OfferInfo from '../offer-info/offer-info';
 import OfferLink from '../offer-link/offer-link';
 import OfferMark from '../offer-mark/offer-mark';
 
@@ -20,7 +21,7 @@ function FavoriteItem({ cityName, offers }: FavoriteItemProps): JSX.Element {
       <div className="favorites__places">
         {
           //! часть функционла похожа на place-card.tsx
-          // попробовать раздробить еще на компонетны, ссылка с текстом и картинкой
+          // еще попробовать объеденить... ссылка с картинкой, премиум, там еще есть обработчики
 
           offers.map((offer) => {
             const {
@@ -29,48 +30,26 @@ function FavoriteItem({ cityName, offers }: FavoriteItemProps): JSX.Element {
               type,
               price,
               previewImage,
-              isFavorite,
               isPremium,
               rating
             } = offer;
 
-            console.log(offer);
-
             return (
-              <article className="favorites__card place-card">
+              <article key={id} className="favorites__card place-card">
                 {isPremium ? <OfferMark /> : null}
                 <div className="favorites__image-wrapper place-card__image-wrapper">
                   <OfferLink offerId={id}>
                     <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place image" />
                   </OfferLink>
                 </div>
-                <div className="favorites__card-info place-card__info">
-                  <div className="place-card__price-wrapper">
-                    <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;{price}</b>
-                      <span className="place-card__price-text">&#47;&nbsp;night</span>
-                    </div>
-                    <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                      <svg className="place-card__bookmark-icon" width="18" height="19">
-                        <use xlinkHref="#icon-bookmark"></use>
-                      </svg>
-                      <span className="visually-hidden">In bookmarks</span>
-                    </button>
-                  </div>
-                  <div className="place-card__rating rating">
-                    <div className="place-card__stars rating__stars">
-                      <span style={{ width: '100%' }}></span>
-                      <span className="visually-hidden">Rating</span>
-                    </div>
-                  </div>
-                  <h2 className="place-card__name">
-                    <a href="#">Nice, cozy, warm big bed apartment</a>
-                    <OfferLink offerId={id}>
-                      <>{title}</>
-                    </OfferLink>
-                  </h2>
-                  <p className="place-card__type">Apartment</p>
-                </div>
+                <OfferInfo
+                  id={id}
+                  title={title}
+                  type={type}
+                  price={price}
+                  rating={rating}
+                  isFromFavorite
+                />
               </article>
             );
           })

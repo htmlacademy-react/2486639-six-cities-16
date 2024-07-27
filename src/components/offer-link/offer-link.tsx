@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { OFFER_PATH } from "../../const";
+import { Link } from 'react-router-dom';
+import { OFFER_PATH } from '../../const';
 
 type OfferLinkProps = {
   offerId: string;
