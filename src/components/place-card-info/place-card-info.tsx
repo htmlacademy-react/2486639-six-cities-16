@@ -1,6 +1,6 @@
 import { Offer } from '../../types/offer';
 import OfferLink from '../offer-link/offer-link';
-import OfferBookmarkButton from '../offer-bookmark-button/offer-bookmark-button';
+import PlaceCardBookmarkButton from '../place-card-button/place-card-button';
 import PlaceCardRating from '../place-card-rating/place-card-rating';
 import { firstLetterToUppercase } from '../../utils/util';
 
@@ -33,7 +33,7 @@ function PlaceCardInfo(props: PlaceCardInfoProps): JSX.Element {
           <b className="place-card__price-value">&euro;{price}</b>
           <span className="place-card__price-text">&#47;&nbsp;night</span>
         </div>
-        <OfferBookmarkButton isActive={isFavorite} />
+        <PlaceCardBookmarkButton isActive={isFavorite} />
       </div>
       <PlaceCardRating rating={rating} />
       <h2 className="place-card__name">

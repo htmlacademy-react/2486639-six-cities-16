@@ -7,10 +7,11 @@ import OfferReviewsForm from '../../components/offer-reviews-form/offer-reviews-
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferInside from '../../components/offer-inside/offer-inside';
 import OfferMark from '../../components/offer-mark/offer-mark';
+import OfferBookmarkButton from '../../components/offer-bookmark-button/offer-bookmark-button';
 import OfferRating from '../../components/offer-rating/offer-rating';
+import PlaceCardMark from '../../components/place-card-mark/place-card-mark';
 import { firstLetterToUppercase, getById } from '../../utils/util';
 import { AuthorizationStatus } from '../../const';
-import PlaceCardMark from '../../components/place-card-mark/place-card-mark';
 
 type OfferProps = {
   authorizationStatus: AuthorizationStatus;
@@ -36,8 +37,8 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
     type,
     price,
     //city,
-    //previewImage,
-    //isFavorite,
+    previewImage,
+    isFavorite,
     isPremium,
     rating
   } = offer;
@@ -51,7 +52,7 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
 
       <main className="page__main page__main--offer">
         <section className="offer">
-          <OfferGallery />
+          <OfferGallery images={Array.from({ length: 6 }, () => previewImage)} />
           <div className="offer__container container">
             <div className="offer__wrapper">
               {isPremium ? <OfferMark /> : null}
@@ -59,12 +60,7 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <button className="offer__bookmark-button button" type="button">
-                  <svg className="offer__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <OfferBookmarkButton isActive={isFavorite} />
               </div>
               <OfferRating rating={rating} />
               <ul className="offer__features">

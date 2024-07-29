@@ -3,7 +3,7 @@ const APP_TITLE = '6 cities';
 const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
 const DEFAULT_CITY: typeof CITIES[number] = CITIES[0];
 
-const OFFER_PATH = 'offer/';
+const OFFER_PATH = '/offer/';
 
 enum AppRoute {
   Main = '/',
