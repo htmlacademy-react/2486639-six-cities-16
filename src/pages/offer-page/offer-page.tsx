@@ -9,10 +9,10 @@ import OfferMark from '../../components/offer-mark/offer-mark';
 import OfferBookmarkButton from '../../components/offer-bookmark-button/offer-bookmark-button';
 import OfferRating from '../../components/offer-rating/offer-rating';
 import OfferHost from '../../components/offer-host/offer-host';
-import { firstLetterToUppercase, getById } from '../../utils/util';
-import { AuthorizationStatus } from '../../const';
 import OfferReviews from '../../components/offer-reviews/offer-reviews';
 import NearPlaces from '../../components/near-places/near-places';
+import { firstLetterToUppercase, getById } from '../../utils/util';
+import { AuthorizationStatus } from '../../const';
 
 type OfferProps = {
   authorizationStatus: AuthorizationStatus;
@@ -23,11 +23,13 @@ type OfferProps = {
 function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.Element {
   const params = useParams();
   const offerId: string | undefined = params.id; //! тест... а как получить в App и не передавать все предложения?
+
   if (!offerId) {
     return <NotFoundPage />;
   }
 
   const offer: Offer | undefined = getById(offers, offerId);
+
   if (!offer) {
     return (<NotFoundPage />);
   }
@@ -49,7 +51,6 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
   return (
     <div className="page">
       <HeaderAuth />
-
       <main className="page__main page__main--offer">
         <section className="offer">
           <OfferGallery images={Array.from({ length: 6 }, () => previewImage)} />
@@ -86,7 +87,7 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
           <section className="offer__map map"></section>
         </section>
         <div className="container">
-          <NearPlaces offers={offers} />
+          <NearPlaces offers={offers.slice(0, 3)} /> {/*//! Может нужно только 3 то в константы? поискать в ТЗ*/}
         </div>
       </main>
     </div>
