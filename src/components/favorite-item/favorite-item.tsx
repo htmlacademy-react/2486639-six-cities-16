@@ -1,7 +1,7 @@
 import { Offer } from '../../types/offer';
-import OfferInfo from '../offer-info/offer-info';
-import OfferLink from '../offer-link/offer-link';
 import PlaceCardMark from '../place-card-mark/place-card-mark';
+import PlaceCardInfo from '../place-card-info/place-card-info';
+import OfferLink from '../offer-link/offer-link';
 
 type FavoriteItemProps = {
   cityName: string;
@@ -31,6 +31,7 @@ function FavoriteItem({ cityName, offers }: FavoriteItemProps): JSX.Element {
               price,
               previewImage,
               isPremium,
+              isFavorite,
               rating
             } = offer;
 
@@ -42,13 +43,14 @@ function FavoriteItem({ cityName, offers }: FavoriteItemProps): JSX.Element {
                     <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place image" />
                   </OfferLink>
                 </div>
-                <OfferInfo
+                <PlaceCardInfo
                   id={id}
                   title={title}
                   type={type}
                   price={price}
                   rating={rating}
-                  isFromFavorite
+                  isFavorite={isFavorite}
+                  additionalClassName="favorites__card-info"
                 />
               </article>
             );
