@@ -38,7 +38,7 @@ function PlaceCardInfo(props: PlaceCardInfoProps): JSX.Element {
       <PlaceCardRating rating={rating} />
       <h2 className="place-card__name">
         <OfferLink offerId={id}>
-          <>{title} ({`${activeOfferId === id}` /* //! для тестирования */})</>
+          <>{title} ({`${activeOfferId === id}` /* //! для тестирования*/})</>
         </OfferLink>
       </h2>
       <p className="place-card__type">{firstLetterToUppercase(type)}</p>

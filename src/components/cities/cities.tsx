@@ -7,7 +7,7 @@ type CitiesProps = {
 }
 
 function Cities({ offers }: CitiesProps): JSX.Element {
-  const isOffersEmpty: boolean = offers.length === 0;
+  const isOffersEmpty: boolean = !offers.length;
 
   return (
     <div className="cities">

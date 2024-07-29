@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Offer } from '../../types/offer';
-import OfferLink from '../offer-link/offer-link';
+import PlaceCardImageLink from '../place-card-image-link/place-card-image-link';
 import PlaceCardMark from '../place-card-mark/place-card-mark';
 import PlaceCardInfo from '../place-card-info/place-card-info';
 import { DEFAULT_ACTIVE_OFFER_ID } from '../../const';
@@ -30,11 +30,11 @@ function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
       }}
     >
       {isPremium ? <PlaceCardMark /> : null}
-      <div className="cities__image-wrapper place-card__image-wrapper">
-        <OfferLink offerId={id}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
-        </OfferLink>
-      </div>
+      <PlaceCardImageLink
+        additionalClassName="cities__image-wrapper"
+        id={id}
+        previewImage={previewImage}
+      />
       <PlaceCardInfo
         offer={offer}
         activeOfferId={activeOfferId}
