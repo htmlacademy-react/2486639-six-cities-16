@@ -1,20 +1,17 @@
-import { ONE_STAR_WIDTH } from '../../const';
+import Rating from '../rating/rating';
 
 type OfferRatingProps = {
-  classNamePrefix: string;
   rating: number;
-  isShowText?: boolean;
 }
 
-function OfferRating({ classNamePrefix, rating, isShowText = false }: OfferRatingProps): JSX.Element {
+function OfferRating({ rating }: OfferRatingProps): JSX.Element {
   return (
-    <div className={`${classNamePrefix}__rating rating`}>
-      <div className={`${classNamePrefix}__stars rating__stars`}>
-        <span style={{ width: `${Math.round(rating) * ONE_STAR_WIDTH}%` }}></span>
-        <span className="visually-hidden">Rating</span>
-      </div>
-      {isShowText ? <span className="offer__rating-value rating__value">{rating}</span> : null}
-    </div>
+    <Rating
+      ratingClassName="offer__rating"
+      starsClassName="offer__stars"
+      rating={rating}
+      isShowText
+    />
   );
 }
 

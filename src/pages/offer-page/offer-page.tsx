@@ -9,7 +9,7 @@ import OfferInside from '../../components/offer-inside/offer-inside';
 import OfferMark from '../../components/offer-mark/offer-mark';
 import OfferRating from '../../components/offer-rating/offer-rating';
 import { firstLetterToUppercase, getById } from '../../utils/util';
-import { AuthorizationStatus, ratingClassNamePrefix } from '../../const';
+import { AuthorizationStatus } from '../../const';
 import PlaceCardMark from '../../components/place-card-mark/place-card-mark';
 
 type OfferProps = {
@@ -66,7 +66,7 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
                   <span className="visually-hidden">To bookmarks</span>
                 </button>
               </div>
-              <OfferRating classNamePrefix={ratingClassNamePrefix.Offer} rating={rating} isShowText />
+              <OfferRating rating={rating} />
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
                   {firstLetterToUppercase(type)}

@@ -1,8 +1,7 @@
 import OfferLink from '../offer-link/offer-link';
 import OfferBookmarkButton from '../offer-bookmark-button/offer-bookmark-button';
-import OfferRating from '../offer-rating/offer-rating';
+import PlaceCardRating from '../place-card-rating/place-card-rating';
 import { firstLetterToUppercase } from '../../utils/util';
-import { ratingClassNamePrefix } from '../../const';
 
 type OfferInfoProps = {
   id: string;
@@ -36,7 +35,7 @@ function OfferInfo(props: OfferInfoProps): JSX.Element {
         </div>
         <OfferBookmarkButton isActive={isFromFavorite || isFavorite} />
       </div>
-      <OfferRating classNamePrefix={ratingClassNamePrefix.PlaceCard} rating={rating} />
+      <PlaceCardRating rating={rating} />
       <h2 className="place-card__name">
         <OfferLink offerId={id}>
           <>{title} ({`${activeOfferId === id}` /* //! для тестирования */})</>

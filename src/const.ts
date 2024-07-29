@@ -27,11 +27,6 @@ enum PlacesSortingTypes {
 
 const ONE_STAR_WIDTH = 20;
 
-enum ratingClassNamePrefix {
-  PlaceCard = 'place-card',
-  Offer = 'offer'
-}
-
 const DEFAULT_ACTIVE_OFFER_ID: string = '';
 
 export {
@@ -43,6 +38,5 @@ export {
   AuthorizationStatus,
   PlacesSortingTypes,
   ONE_STAR_WIDTH,
-  ratingClassNamePrefix,
   DEFAULT_ACTIVE_OFFER_ID
 };
