@@ -1,30 +1,29 @@
+import { Offer } from '../../types/offer';
 import OfferLink from '../offer-link/offer-link';
 import OfferBookmarkButton from '../offer-bookmark-button/offer-bookmark-button';
 import PlaceCardRating from '../place-card-rating/place-card-rating';
 import { firstLetterToUppercase } from '../../utils/util';
 
 type PlaceCardInfoProps = {
-  id: string;
-  type: string;
-  title: string;
-  price: number;
-  rating: number;
+  offer: Offer;
   additionalClassName?: string;
-  isFavorite: boolean;
   activeOfferId?: string; //!! временно
 }
 
 function PlaceCardInfo(props: PlaceCardInfoProps): JSX.Element {
+  const {
+    offer,
+    additionalClassName = '',
+    activeOfferId
+  } = props;
   const {
     id,
     type,
     title,
     price,
     rating,
-    isFavorite,
-    additionalClassName = '',
-    activeOfferId
-  } = props;
+    isFavorite
+  } = offer;
   const className = `${additionalClassName} place-card__info`;
 
   return (

@@ -26,13 +26,8 @@ function FavoriteItem({ cityName, offers }: FavoriteItemProps): JSX.Element {
           offers.map((offer) => {
             const {
               id,
-              title,
-              type,
-              price,
               previewImage,
-              isPremium,
-              isFavorite,
-              rating
+              isPremium
             } = offer;
 
             return (
@@ -44,12 +39,7 @@ function FavoriteItem({ cityName, offers }: FavoriteItemProps): JSX.Element {
                   </OfferLink>
                 </div>
                 <PlaceCardInfo
-                  id={id}
-                  title={title}
-                  type={type}
-                  price={price}
-                  rating={rating}
-                  isFavorite={isFavorite}
+                  offer={offer}
                   additionalClassName="favorites__card-info"
                 />
               </article>

@@ -14,13 +14,8 @@ function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
 
   const {
     id,
-    title,
-    type,
-    price,
     previewImage,
-    isFavorite,
-    isPremium,
-    rating
+    isPremium
   } = offer;
 
   return (
@@ -41,13 +36,7 @@ function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
         </OfferLink>
       </div>
       <PlaceCardInfo
-        key={id}
-        id={id}
-        title={title}
-        type={type}
-        price={price}
-        rating={rating}
-        isFavorite={isFavorite}
+        offer={offer}
         activeOfferId={activeOfferId}
       />
     </article>
