@@ -1,8 +1,9 @@
+import Mark from '../mark/mark';
+
 function OfferMark(): JSX.Element {
+
   return (
-    <div className="place-card__mark">
-      <span>Premium</span>
-    </div>
+    <Mark className="offer__mark" />
   );
 }
 

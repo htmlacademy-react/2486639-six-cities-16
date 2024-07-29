@@ -10,6 +10,7 @@ import OfferMark from '../../components/offer-mark/offer-mark';
 import OfferRating from '../../components/offer-rating/offer-rating';
 import { firstLetterToUppercase, getById } from '../../utils/util';
 import { AuthorizationStatus, ratingClassNamePrefix } from '../../const';
+import PlaceCardMark from '../../components/place-card-mark/place-card-mark';
 
 type OfferProps = {
   authorizationStatus: AuthorizationStatus;
@@ -53,9 +54,7 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
           <OfferGallery />
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <div className="offer__mark">
-                <span>Premium</span>
-              </div>
+              {isPremium ? <OfferMark /> : null}
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
                   {title}
@@ -207,7 +206,7 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
               </article>
 
               <article className="near-places__card place-card">
-                {isPremium ? <OfferMark /> : null}
+                {isPremium ? <PlaceCardMark /> : null}
                 <div className="near-places__image-wrapper place-card__image-wrapper">
                   <a href="#">
                     <img className="place-card__image" src="img/apartment-03.jpg" width="260" height="200" alt="Place image" />
