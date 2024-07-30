@@ -3,7 +3,7 @@ import { Offer } from '../../types/offer';
 import HeaderAuth from '../../components/header/header-auth';
 import Footer from '../../components/footer/footer';
 import FavoriteItem from '../../components/favorite-item/favorite-item';
-import { getFavoriteOffers, getSortingCityNames } from '../../utils/offer';
+import { getFavoriteOffers, getSortingCityNames, getOffersByCityName } from '../../utils/offer';
 import { APP_TITLE } from '../../const';
 
 type FavoritesPageProps = {
@@ -34,13 +34,15 @@ function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
                 </div>
                 :
                 <ul className="favorites__list">
-                  {
-                    getSortingCityNames(favoriteOffers).map((cityName) => {
-                      const cityOffers = favoriteOffers.filter(({ city }) => city.name === cityName);
-
-                      return <FavoriteItem key={cityName} cityName={cityName} offers={cityOffers} />;
-                    })
-                  }
+                  {getSortingCityNames(favoriteOffers).map(
+                    (cityName) => (
+                      <FavoriteItem
+                        key={cityName}
+                        cityName={cityName}
+                        offers={getOffersByCityName(favoriteOffers, cityName)}
+                      />
+                    )
+                  )}
                 </ul>
             }
           </section>

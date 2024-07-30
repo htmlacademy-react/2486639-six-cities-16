@@ -12,8 +12,8 @@ function getSortingCityNames(offers: Offer[]): string[] {
   return Array.from(sortingCityNames);
 }
 
-/*
-cityOffers = favoriteOffers.filter(({ city }) => city.name === cityName)
- */
+function getOffersByCityName(offers: Offer[], cityName: string): Offer[] {
+  return offers.filter(({ city }) => city.name === cityName);
+}
 
-export { getFavoriteOffers, getSortingCityNames };
+export { getFavoriteOffers, getSortingCityNames, getOffersByCityName };
