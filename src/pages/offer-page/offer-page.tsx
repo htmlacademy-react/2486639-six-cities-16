@@ -7,7 +7,7 @@ import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferInside from '../../components/offer-inside/offer-inside';
 import OfferMark from '../../components/offer-mark/offer-mark';
 import OfferBookmarkButton from '../../components/offer-bookmark-button/offer-bookmark-button';
-import OfferRating from '../../components/offer-rating/offer-rating';
+import Rating from '../../components/rating/rating';
 import OfferHost from '../../components/offer-host/offer-host';
 import OfferReviews from '../../components/offer-reviews/offer-reviews';
 import NearPlaces from '../../components/near-places/near-places';
@@ -63,7 +63,12 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
                 </h1>
                 <OfferBookmarkButton isActive={isFavorite} />
               </div>
-              <OfferRating rating={rating} />
+              <Rating
+                ratingClassName="offer__rating"
+                starsClassName="offer__stars"
+                rating={rating}
+                isShowText
+              />
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
                   {firstLetterToUppercase(type)}

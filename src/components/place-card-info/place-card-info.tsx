@@ -1,7 +1,7 @@
 import { Offer } from '../../types/offer';
 import OfferLink from '../offer-link/offer-link';
 import PlaceCardBookmarkButton from '../place-card-button/place-card-button';
-import PlaceCardRating from '../place-card-rating/place-card-rating';
+import Rating from '../rating/rating';
 import { firstLetterToUppercase } from '../../utils/util';
 
 type PlaceCardInfoProps = {
@@ -35,7 +35,11 @@ function PlaceCardInfo(props: PlaceCardInfoProps): JSX.Element {
         </div>
         <PlaceCardBookmarkButton isActive={isFavorite} />
       </div>
-      <PlaceCardRating rating={rating} />
+      <Rating
+        ratingClassName="place-card__rating"
+        starsClassName="place-card__stars"
+        rating={rating}
+      />
       <h2 className="place-card__name">
         <OfferLink offerId={id}>
           <>{title} ({`${activeOfferId === id}` /* //! для тестирования*/})</>
