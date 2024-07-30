@@ -2,7 +2,8 @@ import { Helmet } from 'react-helmet-async';
 import { Offer } from '../../types/offer';
 import HeaderAuth from '../../components/header/header-auth';
 import Footer from '../../components/footer/footer';
-import FavoritesList from '../../components/favorites-list/favorites-list';
+import FavoriteItem from '../../components/favorite-item/favorite-item';
+import { getFavoriteOffers, getSortingCityNames } from '../../utils/offer';
 import { APP_TITLE } from '../../const';
 
 type FavoritesPageProps = {
@@ -10,8 +11,8 @@ type FavoritesPageProps = {
 }
 
 function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
-  const favoriteOffers = offers.filter(({ isFavorite }) => isFavorite);
-  const isOffersEmpty: boolean = favoriteOffers.length === 0;
+  const favoriteOffers = getFavoriteOffers(offers);
+  const isOffersEmpty: boolean = !favoriteOffers.length;
 
   return (
     <div className="page">
@@ -25,18 +26,28 @@ function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
           <section className={`favorites ${isOffersEmpty ? 'favorites--empty' : ''}`} >
             <h1 className="visually-hidden">{isOffersEmpty ? 'Favorites (empty)' : 'Saved listing'} </h1>
             {
-              isOffersEmpty ?
+              isOffersEmpty
+                ?
                 <div className="favorites__status-wrapper">
                   <b className="favorites__status">Nothing yet saved.</b>
                   <p className="favorites__status-description">Save properties to narrow down search or plan your future trips.</p>
-                </div> :
-                <FavoritesList offers={favoriteOffers} />
+                </div>
+                :
+                <ul className="favorites__list">
+                  {
+                    getSortingCityNames(favoriteOffers).map((cityName) => {
+                      const cityOffers = favoriteOffers.filter(({ city }) => city.name === cityName);
+
+                      return <FavoriteItem key={cityName} cityName={cityName} offers={cityOffers} />;
+                    })
+                  }
+                </ul>
             }
           </section>
         </div>
-      </main>
+      </main >
       <Footer />
-    </div>
+    </div >
   );
 }
 
