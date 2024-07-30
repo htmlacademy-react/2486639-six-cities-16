@@ -1,33 +1,48 @@
 import { Review } from '../../types/review';
+import Rating from '../rating/rating';
 
 type OfferReviewItemProps = {
   review: Review;
 }
 
 function OfferReviewItem({ review }: OfferReviewItemProps): JSX.Element {
-  console.log(review);
+  const {
+    date,
+    user,
+    comment,
+    rating
+  } = review;
+  const {
+    name,
+    avatarUrl
+  } = user;
+
+  //! прообразовать дату из Review.date
+  //const dateTime = '2019-04-24';
+  //const dateString = 'April 2019';
+  const dateTime = date;
+  const dateString = date;
 
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar" />
+          <img className="reviews__avatar user__avatar" src={avatarUrl} width="54" height="54" alt="Reviews avatar" />
         </div>
         <span className="reviews__user-name">
-          Max
+          {name}
         </span>
       </div>
       <div className="reviews__info">
-        <div className="reviews__rating rating">
-          <div className="reviews__stars rating__stars">
-            <span style={{ width: '80%' }}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <Rating
+          ratingClassName="reviews__rating"
+          starsClassName="reviews__stars"
+          rating={rating}
+        />
         <p className="reviews__text">
-          A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+          {comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
+        <time className="reviews__time" dateTime={dateTime}>{dateString}</time>
       </div>
     </li>
   );
