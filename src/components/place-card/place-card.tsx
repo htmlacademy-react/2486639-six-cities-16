@@ -34,6 +34,8 @@ function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
         additionalClassName="cities__image-wrapper"
         id={activeOfferId /*дз 4-1 п.9 компонент Link и хуки из пакета, можно же просто id*/}
         previewImage={previewImage}
+        imageWidth="260"
+        imageHeight="200"
       />
       <PlaceCardInfo
         offer={offer}

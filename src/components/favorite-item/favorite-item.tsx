@@ -2,6 +2,7 @@ import { Offer } from '../../types/offer';
 import PlaceCardMark from '../place-card-mark/place-card-mark';
 import PlaceCardInfo from '../place-card-info/place-card-info';
 import OfferLink from '../offer-link/offer-link';
+import PlaceCardImageLink from '../place-card-image-link/place-card-image-link';
 
 type FavoriteItemProps = {
   cityName: string;
@@ -20,9 +21,6 @@ function FavoriteItem({ cityName, offers }: FavoriteItemProps): JSX.Element {
       </div>
       <div className="favorites__places">
         {
-          //! часть функционла похожа на place-card.tsx
-          // еще попробовать объеденить... ссылка с картинкой, премиум, там еще есть обработчики
-
           offers.map((offer) => {
             const {
               id,
@@ -33,11 +31,13 @@ function FavoriteItem({ cityName, offers }: FavoriteItemProps): JSX.Element {
             return (
               <article key={id} className="favorites__card place-card">
                 {isPremium ? <PlaceCardMark /> : null}
-                <div className="favorites__image-wrapper place-card__image-wrapper">
-                  <OfferLink offerId={id}>
-                    <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place image" />
-                  </OfferLink>
-                </div>
+                <PlaceCardImageLink
+                  additionalClassName="favorites__image-wrapper"
+                  id={id}
+                  previewImage={previewImage}
+                  imageWidth="150"
+                  imageHeight="110"
+                />
                 <PlaceCardInfo
                   offer={offer}
                   additionalClassName="favorites__card-info"

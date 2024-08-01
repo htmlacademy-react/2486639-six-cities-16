@@ -1,16 +1,25 @@
 import OfferLink from '../offer-link/offer-link';
 
 type PlaceCardImageLinkProps = {
-  additionalClassName: string; //cities__image-wrapper
+  additionalClassName: string;
   id: string;
   previewImage: string;
+  imageWidth: string;
+  imageHeight: string;
 }
 
-function PlaceCardImageLink({ additionalClassName, id, previewImage }: PlaceCardImageLinkProps): JSX.Element {
+function PlaceCardImageLink(prop: PlaceCardImageLinkProps): JSX.Element {
+  const {
+    additionalClassName,
+    id,
+    previewImage,
+    imageWidth,
+    imageHeight
+  } = prop;
   return (
     <div className={`${additionalClassName} place-card__image-wrapper`}>
       <OfferLink offerId={id}>
-        <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
+        <img className="place-card__image" src={previewImage} width={imageWidth} height={imageHeight} alt="Place image" />
       </OfferLink>
     </div>
   );

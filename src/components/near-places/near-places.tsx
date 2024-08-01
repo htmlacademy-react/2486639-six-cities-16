@@ -31,7 +31,13 @@ function NearPlaces({ offers }: NearPlacesProps): JSX.Element {
               return (
                 <article key={id} className="near-places__card place-card">
                   {isPremium ? <PlaceCardMark /> : null}
-                  <PlaceCardImageLink additionalClassName="near-places__image-wrapper" id={id} previewImage={previewImage} />
+                  <PlaceCardImageLink
+                    additionalClassName="near-places__image-wrapper"
+                    id={id}
+                    previewImage={previewImage}
+                    imageWidth="260"
+                    imageHeight="200"
+                  />
                   <PlaceCardInfo offer={offer} />
                 </article>
               );
