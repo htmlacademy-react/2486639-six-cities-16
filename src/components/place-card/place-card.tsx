@@ -32,7 +32,7 @@ function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
       {isPremium ? <PlaceCardMark /> : null}
       <PlaceCardImageLink
         additionalClassName="cities__image-wrapper"
-        id={id}
+        id={activeOfferId /*дз 4-1 п.9 компонент Link и хуки из пакета, можно же просто id*/}
         previewImage={previewImage}
       />
       <PlaceCardInfo

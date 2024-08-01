@@ -16,6 +16,7 @@ root.render(
 
 /*
 Вопросы:
+  activeOfferId дз 4-1 п.9 компонент Link и хуки из пакета, можно же просто id? (PlaceCardImageLink + PlaceCardInfo)
   как типизировать enum PlacesSortingTypes[key]? сделал {Object.values(PlacesSortingTypes).map(
   favorites.html + favorites-empty.html может объеденить?
     <footer class="footer container">?
