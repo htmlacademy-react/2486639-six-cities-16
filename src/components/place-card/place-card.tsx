@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Offer } from '../../types/offer';
-import PlaceCardDetails from '../place-card-details/place-card-details';
+import PlaceCardInfo from '../place-card-info/place-card-info';
 import { DEFAULT_ACTIVE_OFFER_ID } from '../../const';
 
 type PlaceCardProps = {
@@ -21,7 +21,7 @@ function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
         setActiveOfferId(DEFAULT_ACTIVE_OFFER_ID);
       }}
     >
-      <PlaceCardDetails
+      <PlaceCardInfo
         additionalImageClassName="cities__image-wrapper"
         imageWidth="260"
         imageHeight="200"

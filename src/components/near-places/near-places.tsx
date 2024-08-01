@@ -1,5 +1,5 @@
 import { Offer } from '../../types/offer';
-import PlaceCardDetails from '../place-card-details/place-card-details';
+import PlaceCardInfo from '../place-card-info/place-card-info';
 
 type NearPlacesProps = {
   offers: Offer[];
@@ -22,7 +22,7 @@ function NearPlaces({ offers }: NearPlacesProps): JSX.Element {
             {
               offers.map((offer) => (
                 <article key={offer.id} className="near-places__card place-card">
-                  <PlaceCardDetails
+                  <PlaceCardInfo
                     additionalImageClassName="near-places__image-wrapper"
                     imageWidth="260"
                     imageHeight="200"

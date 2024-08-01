@@ -5,7 +5,7 @@ import BookmarkButton from '../bookmark-button/bookmark-button';
 import Rating from '../rating/rating';
 import { firstLetterToUppercase } from '../../utils/util';
 
-type PlaceCardDetailsProps = {
+type PlaceCardInfoProps = {
   additionalImageClassName: string;
   imageWidth: string;
   imageHeight: string;
@@ -14,7 +14,7 @@ type PlaceCardDetailsProps = {
   additionalOfferId?: string;
 }
 
-function PlaceCardDetails(prop: PlaceCardDetailsProps): JSX.Element {
+function PlaceCardInfo(prop: PlaceCardInfoProps): JSX.Element {
   const {
     additionalImageClassName,
     imageWidth,
@@ -73,4 +73,4 @@ function PlaceCardDetails(prop: PlaceCardDetailsProps): JSX.Element {
   );
 }
 
-export default PlaceCardDetails;
+export default PlaceCardInfo;

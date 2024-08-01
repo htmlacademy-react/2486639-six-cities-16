@@ -1,5 +1,5 @@
 import { Offer } from '../../types/offer';
-import PlaceCardDetails from '../place-card-details/place-card-details';
+import PlaceCardInfo from '../place-card-info/place-card-info';
 
 type FavoriteItemProps = {
   cityName: string;
@@ -20,7 +20,7 @@ function FavoriteItem({ cityName, offers }: FavoriteItemProps): JSX.Element {
         {
           offers.map((offer) => (
             <article key={offer.id} className="favorites__card place-card">
-              <PlaceCardDetails
+              <PlaceCardInfo
                 additionalImageClassName="favorites__image-wrapper"
                 imageWidth="150"
                 imageHeight="110"
