@@ -38,15 +38,11 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
     title,
     type,
     price,
-    //city,
     previewImage,
     isFavorite,
     isPremium,
     rating
   } = offer;
-
-  //! может понадобится...
-  //const ratingValue = reviews.reduce((ratingTotal, { rating }) => ratingTotal + rating, 0) / reviews.length;
 
   return (
     <div className="page">

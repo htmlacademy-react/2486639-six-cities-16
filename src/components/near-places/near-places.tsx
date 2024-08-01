@@ -11,6 +11,8 @@ function NearPlaces({ offers }: NearPlacesProps): JSX.Element {
   const isOffersEmpty: boolean = !offers.length;
   const caption = isOffersEmpty ? 'There are no other places in the neighbourhood' : 'Other places in the neighbourhood';
 
+  //! нужна прокрутка, может попробовать ScrollToTop в src\index.tsx
+
   return (
     <section className="near-places places">
       <h2 className="near-places__title">{caption}</h2>

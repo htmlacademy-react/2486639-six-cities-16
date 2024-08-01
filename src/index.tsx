@@ -50,6 +50,8 @@ root.render(
   Оптимизировать Helmet <title>{`${APP_TITLE}: 404`}</title>....  что то придумать для сборки заголовка
   Переданному id не найден оффер - добавить страницу оффер не найден и ссылку на возврат на главную
 --
+  const ratingValue = reviews.reduce((ratingTotal, { rating }) => ratingTotal + rating, 0) / reviews.length;
+--
 //Для этого создадим компонент ScrollToTop:
 import {useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
