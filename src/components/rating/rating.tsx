@@ -1,8 +1,6 @@
 import { ONE_STAR_WIDTH } from '../../const';
 
 type RatingProps = {
-  //place-card__rating place-card__stars
-  //offer__rating offer__stars
   ratingClassName: string;
   starsClassName: string;
   rating: number;
