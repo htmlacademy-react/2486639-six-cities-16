@@ -1,6 +1,6 @@
 import { Offer } from '../../types/offer';
-import PlaceCardImageLink from '../place-card-image-link/place-card-image-link';
-import PlaceCardMark from '../place-card-mark/place-card-mark';
+import Mark from '../mark/mark';
+import OfferLink from '../offer-link/offer-link';
 import PlaceCardInfo from '../place-card-info/place-card-info';
 
 type PlaceCardDetailsProps = {
@@ -25,14 +25,12 @@ function PlaceCardDetails(prop: PlaceCardDetailsProps): JSX.Element {
 
   return (
     <>
-      {isPremium ? <PlaceCardMark /> : null}
-      <PlaceCardImageLink
-        additionalClassName={additionalImageClassName}
-        id={additionalOfferId || id}
-        previewImage={previewImage}
-        imageWidth={imageWidth}
-        imageHeight={imageHeight}
-      />
+      {isPremium ? <Mark className="place-card__mark" /> : null}
+      <div className={`${additionalImageClassName} place-card__image-wrapper`}>
+        <OfferLink offerId={additionalOfferId || id}>
+          <img className="place-card__image" src={previewImage} width={imageWidth} height={imageHeight} alt="Place image" />
+        </OfferLink>
+      </div>
       <PlaceCardInfo
         offer={offer}
         additionalClassName={additionalInfoClassName}
