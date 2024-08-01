@@ -1,7 +1,5 @@
 import { Offer } from '../../types/offer';
-import PlaceCardMark from '../place-card-mark/place-card-mark';
-import PlaceCardInfo from '../place-card-info/place-card-info';
-import PlaceCardImageLink from '../place-card-image-link/place-card-image-link';
+import PlaceCardDetails from '../place-card-details/place-card-details';
 
 type FavoriteItemProps = {
   cityName: string;
@@ -20,30 +18,17 @@ function FavoriteItem({ cityName, offers }: FavoriteItemProps): JSX.Element {
       </div>
       <div className="favorites__places">
         {
-          offers.map((offer) => {
-            const {
-              id,
-              previewImage,
-              isPremium
-            } = offer;
-
-            return (
-              <article key={id} className="favorites__card place-card">
-                {isPremium ? <PlaceCardMark /> : null}
-                <PlaceCardImageLink
-                  additionalClassName="favorites__image-wrapper"
-                  id={id}
-                  previewImage={previewImage}
-                  imageWidth="150"
-                  imageHeight="110"
-                />
-                <PlaceCardInfo
-                  offer={offer}
-                  additionalClassName="favorites__card-info"
-                />
-              </article>
-            );
-          })
+          offers.map((offer) => (
+            <article key={offer.id} className="favorites__card place-card">
+              <PlaceCardDetails
+                additionalImageClassName="favorites__image-wrapper"
+                imageWidth="150"
+                imageHeight="110"
+                additionalInfoClassName="favorites__card-info"
+                offer={offer}
+              />
+            </article>
+          ))
         }
       </div>
     </li>

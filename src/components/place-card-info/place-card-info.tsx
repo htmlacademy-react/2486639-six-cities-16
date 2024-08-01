@@ -7,14 +7,12 @@ import { firstLetterToUppercase } from '../../utils/util';
 type PlaceCardInfoProps = {
   offer: Offer;
   additionalClassName?: string;
-  activeOfferId?: string; //!! временно
 }
 
 function PlaceCardInfo(props: PlaceCardInfoProps): JSX.Element {
   const {
     offer,
-    additionalClassName = '',
-    activeOfferId
+    additionalClassName = ''
   } = props;
   const {
     id,
@@ -49,7 +47,7 @@ function PlaceCardInfo(props: PlaceCardInfoProps): JSX.Element {
       />
       <h2 className="place-card__name">
         <OfferLink offerId={id}>
-          <>{title} ({`${activeOfferId === id}` /* //! для тестирования*/})</>
+          {title}
         </OfferLink>
       </h2>
       <p className="place-card__type">{firstLetterToUppercase(type)}</p>

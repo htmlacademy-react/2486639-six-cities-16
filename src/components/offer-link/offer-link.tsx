@@ -3,7 +3,7 @@ import { OFFER_PATH } from '../../const';
 
 type OfferLinkProps = {
   offerId: string;
-  children: JSX.Element;
+  children: string | JSX.Element;
 }
 
 function OfferLink({ offerId, children }: OfferLinkProps): JSX.Element {

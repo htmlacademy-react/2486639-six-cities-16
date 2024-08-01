@@ -1,7 +1,5 @@
 import { Offer } from '../../types/offer';
-import PlaceCardImageLink from '../place-card-image-link/place-card-image-link';
-import PlaceCardInfo from '../place-card-info/place-card-info';
-import PlaceCardMark from '../place-card-mark/place-card-mark';
+import PlaceCardDetails from '../place-card-details/place-card-details';
 
 type NearPlacesProps = {
   offers: Offer[];
@@ -21,27 +19,18 @@ function NearPlaces({ offers }: NearPlacesProps): JSX.Element {
           ? null
           :
           <div className="near-places__list places__list">
-            {offers.map((offer) => {
-              const {
-                id,
-                previewImage,
-                isPremium
-              } = offer;
-
-              return (
-                <article key={id} className="near-places__card place-card">
-                  {isPremium ? <PlaceCardMark /> : null}
-                  <PlaceCardImageLink
-                    additionalClassName="near-places__image-wrapper"
-                    id={id}
-                    previewImage={previewImage}
+            {
+              offers.map((offer) => (
+                <article key={offer.id} className="near-places__card place-card">
+                  <PlaceCardDetails
+                    additionalImageClassName="near-places__image-wrapper"
                     imageWidth="260"
                     imageHeight="200"
+                    offer={offer}
                   />
-                  <PlaceCardInfo offer={offer} />
                 </article>
-              );
-            })}
+              ))
+            }
           </div>
       }
     </section>
