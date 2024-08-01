@@ -27,7 +27,7 @@ root.render(
   не отрабатывает route NotFound для /1.jpg /1.html  - на лого была ссылка /main.html
   /src/type.ts - расположение именование?
   нужен ли route для все городов /paris ....
-  imageWidth="260"  imageHeight="200" iconWidth="260"  iconHeight="200" строками и константами нормально? или выносить в константы и делать числа?
+  imageWidth imageHeight iconWidth iconHeight? строками и константами нормально? или выносить в константы и делать числа?
 Заметки:
   aaa@aaa.aaa / a1
   много похожих типов, выделить type Id = string, не всегда помнишь типы... MiniOffer = Offer без ...

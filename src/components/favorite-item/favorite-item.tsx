@@ -1,7 +1,6 @@
 import { Offer } from '../../types/offer';
 import PlaceCardMark from '../place-card-mark/place-card-mark';
 import PlaceCardInfo from '../place-card-info/place-card-info';
-import OfferLink from '../offer-link/offer-link';
 import PlaceCardImageLink from '../place-card-image-link/place-card-image-link';
 
 type FavoriteItemProps = {
