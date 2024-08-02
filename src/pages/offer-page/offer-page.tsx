@@ -5,8 +5,8 @@ import NotFoundPage from '../not-found-page/not-found-page';
 import HeaderAuth from '../../components/header/header-auth';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferInside from '../../components/offer-inside/offer-inside';
-import OfferMark from '../../components/offer-mark/offer-mark';
-import OfferBookmarkButton from '../../components/offer-bookmark-button/offer-bookmark-button';
+import Mark from '../../components/mark/mark';
+import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 import Rating from '../../components/rating/rating';
 import OfferHost from '../../components/offer-host/offer-host';
 import OfferReviews from '../../components/offer-reviews/offer-reviews';
@@ -52,12 +52,19 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
           <OfferGallery images={Array.from({ length: 6 }, () => previewImage)} />
           <div className="offer__container container">
             <div className="offer__wrapper">
-              {isPremium ? <OfferMark /> : null}
+              {isPremium ? <Mark className="offer__mark" /> : null}
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <OfferBookmarkButton isActive={isFavorite} />
+                <BookmarkButton
+                  buttonClassName="offer__bookmark-button"
+                  iconClassName="offer__bookmark-icon"
+                  iconWidth="31"
+                  iconHeight="33"
+                  activeClassName="offer__bookmark-button--active"
+                  isActive={isFavorite}
+                />
               </div>
               <Rating
                 ratingClassName="offer__rating"

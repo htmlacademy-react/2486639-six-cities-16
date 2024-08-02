@@ -1,4 +1,3 @@
-import Location from '../location/location';
 import { CITIES, DEFAULT_CITY } from '../../const';
 
 function Locations(): JSX.Element {
@@ -8,8 +7,22 @@ function Locations(): JSX.Element {
       <div className="tabs">
         <section className="locations container">
           <ul className="locations__list tabs__list">
-            {CITIES.map((city) => <Location key={city} city={city} isActive={city === DEFAULT_CITY} />
-            )}
+            {
+              CITIES.map((city) => {
+                let className: string = 'locations__item-link tabs__item';
+                if (city === DEFAULT_CITY) {
+                  className += ' tabs__item--active';
+                }
+
+                return (
+                  <li className="locations__item" key={city}>
+                    <a className={className} href="#">
+                      <span>{city}</span>
+                    </a>
+                  </li>
+                );
+              })
+            }
           </ul>
         </section>
       </div>

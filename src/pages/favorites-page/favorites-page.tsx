@@ -23,7 +23,7 @@ function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
 
       <main className={`page__main page__main--favorites ${isOffersEmpty ? 'page__main--favorites-empty' : ''}`}>
         <div className="page__favorites-container container">
-          <section className={`favorites ${isOffersEmpty ? 'favorites--empty' : ''}`} >
+          <section className={`favorites ${isOffersEmpty ? 'favorites--empty' : ''}`}>
             <h1 className="visually-hidden">{isOffersEmpty ? 'Favorites (empty)' : 'Saved listing'} </h1>
             {
               isOffersEmpty
@@ -47,9 +47,9 @@ function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
             }
           </section>
         </div>
-      </main >
+      </main>
       <Footer />
-    </div >
+    </div>
   );
 }
 
