@@ -30,8 +30,13 @@ enum PlacesSortingTypes {
 const ONE_STAR_WIDTH = 20;
 const DEFAULT_ACTIVE_OFFER_ID: OfferId = '';
 const REVIEWS_SHOW_COUNT = 10;
-const REVIEW_STARS_COUNT = 5;
-const REVIEW_STAR_VALUES = Array.from({ length: REVIEW_STARS_COUNT }, (_, index) => (index + 1)).reverse();
+const REVIEW_RATING_STARS_COUNT = 5;
+const Rating = {
+  STAR_VALUES: Array.from({ length: REVIEW_RATING_STARS_COUNT }, (_, index) => (REVIEW_RATING_STARS_COUNT - index)),
+  DEFAULT: 0,
+  MIN: 0
+};
+const REVIEW_TEXT_MIN_LENGTH = 50;
 
 export {
   APP_TITLE,
@@ -44,5 +49,6 @@ export {
   ONE_STAR_WIDTH,
   DEFAULT_ACTIVE_OFFER_ID,
   REVIEWS_SHOW_COUNT,
-  REVIEW_STAR_VALUES
+  Rating,
+  REVIEW_TEXT_MIN_LENGTH
 };
