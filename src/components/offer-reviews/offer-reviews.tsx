@@ -23,8 +23,7 @@ function OfferReviews({ reviews, isShowForm = false }: OfferHostProps): JSX.Elem
             {
               reviews
                 .slice(0, REVIEWS_SHOW_COUNT)
-                .map((review) =>
-                (
+                .map((review) => (
                   <OfferReviewItem
                     key={review.id}
                     review={review}
