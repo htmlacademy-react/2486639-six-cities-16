@@ -38,6 +38,10 @@ root.render(
   нужен ли route для все городов /paris ....
   imageWidth imageHeight iconWidth iconHeight? строками и константами нормально? или выносить в константы и делать числа?
   css классы в коде у новых компонентов, нужно выносить в константы?
+  <Helmet> <title>{`${APP_TITLE}: 404`}</title>....  что то придумать для сборки заголовка
+   и добавить константы
+   может какие то страницы упустил?
+
 Заметки:
   aaa@aaa.aaa / a1
   много похожих типов, выделить type Id = string, не всегда помнишь типы... MiniOffer = Offer без ...
@@ -50,7 +54,6 @@ root.render(
   FavoriteItem - часть функционла похожа на place-card.tsx, ссылка с картинкой, премиум, там еще есть обработчики
 
   Переобъеденить HeaderAuth / HeaderNoAuth / HeaderLogin + class=header__logo-link--active
-  Оптимизировать Helmet <title>{`${APP_TITLE}: 404`}</title>....  что то придумать для сборки заголовка
   Переданному id не найден оффер - добавить страницу оффер не найден и ссылку на возврат на главную
 --
   const ratingValue = reviews.reduce((ratingTotal, { rating }) => ratingTotal + rating, 0) / reviews.length;

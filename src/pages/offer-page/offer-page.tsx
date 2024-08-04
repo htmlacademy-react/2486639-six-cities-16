@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Offer } from '../../types/offer';
 import { Review } from '../../types/review';
 import NotFoundPage from '../not-found-page/not-found-page';
@@ -12,7 +13,7 @@ import OfferHost from '../../components/offer-host/offer-host';
 import OfferReviews from '../../components/offer-reviews/offer-reviews';
 import NearPlaces from '../../components/near-places/near-places';
 import { firstLetterToUppercase, getById } from '../../utils/util';
-import { AuthorizationStatus } from '../../const';
+import { APP_TITLE, AuthorizationStatus } from '../../const';
 
 type OfferProps = {
   authorizationStatus: AuthorizationStatus;
@@ -46,6 +47,9 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
 
   return (
     <div className="page">
+      <Helmet>
+        <title>{`${APP_TITLE}: offer`}</title>
+      </Helmet>
       <HeaderAuth />
       <main className="page__main page__main--offer">
         <section className="offer">
