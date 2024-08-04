@@ -1,8 +1,7 @@
 import { Offer } from '../../types/offer';
 import HeaderAuth from '../../components/header/header-auth';
 import Locations from '../../components/locations/locations';
-import PlacesSorting from '../../components/places-sorting/places-sorting';
-import PlaceCard from '../../components/place-card/place-card';
+import PlaceCardList from '../../components/place-card-list/place-card-list';
 
 type MainPageProps = {
   offers: Offer[];
@@ -15,7 +14,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
     <div className="page page--gray page--main">
       <HeaderAuth />
 
-      <main className={`page__main page__main--index ${(offers.length) ? '' : 'page__main--index-empty'}`}>
+      <main className={`page__main page__main--index ${(isOffersEmpty) ? 'page__main--index-empty' : ''}`}>
         <Locations />
         <div className="cities">
           <div className={`cities__places-container container ${(isOffersEmpty) ? 'cities__places-container--empty' : ''}`}>
@@ -28,26 +27,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
                     <p className="cities__status-description">We could not find any property available at the moment in Dusseldorf</p>
                   </div>
                   :
-                  <>
-                    <h2 className="visually-hidden">Places</h2>
-                    <b className="places__found">{offers.length} places to stay in Amsterdam</b>
-                    <PlacesSorting />
-                    <div className="cities__places-list places__list tabs__content">
-                      {
-                        offers.map((offer) => (
-                          <PlaceCard
-                            key={offer.id}
-                            offer={offer}
-                            handleActiveOfferChange={(activeOfferId) => {
-                              document.title = activeOfferId; //! для тестирования
-                              //! если сделать State у главной страницы, то при её перерисовке заново рисует все
-                              //! тогда наверное нужно не использовать state у карточки, а сразу передавать id в обработчик
-                            }}
-                          />
-                        ))
-                      }
-                    </div>
-                  </>
+                  <PlaceCardList offers={offers} />
               }
             </section>
             <div className="cities__right-section">
