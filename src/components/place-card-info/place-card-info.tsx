@@ -11,7 +11,6 @@ type PlaceCardInfoProps = {
   imageHeight: string;
   additionalInfoClassName?: string;
   offer: Offer;
-  additionalOfferId?: string;
 }
 
 function PlaceCardInfo(prop: PlaceCardInfoProps): JSX.Element {
@@ -20,8 +19,7 @@ function PlaceCardInfo(prop: PlaceCardInfoProps): JSX.Element {
     imageWidth,
     imageHeight,
     additionalInfoClassName,
-    offer,
-    additionalOfferId
+    offer
   } = prop;
   const {
     id,
@@ -38,7 +36,7 @@ function PlaceCardInfo(prop: PlaceCardInfoProps): JSX.Element {
     <>
       {isPremium ? <Mark className="place-card__mark" /> : null}
       <div className={`${additionalImageClassName} place-card__image-wrapper`}>
-        <OfferLink offerId={additionalOfferId || id}>
+        <OfferLink offerId={id}>
           <img className="place-card__image" src={previewImage} width={imageWidth} height={imageHeight} alt="Place image" />
         </OfferLink>
       </div>

@@ -32,7 +32,6 @@ root.render(
  ссылки на города в избранных похожи на ссылки на города на главной
  ссылку на офер слелать обычной, без наведенной
 
-  activeOfferId дз 4-1 п.9 компонент Link и хуки из пакета, можно же просто id? (PlaceCardImageLink + PlaceCardInfo еще в по близости и в избранном)
   как типизировать enum PlacesSortingTypes[key]? сделал {Object.values(PlacesSortingTypes).map(
   favorites.html + favorites-empty.html может объеденить?
     <footer class="footer container">?

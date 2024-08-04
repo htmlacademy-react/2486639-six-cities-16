@@ -1,3 +1,5 @@
+import { OfferId } from './types/offer';
+
 const APP_TITLE = '6 cities';
 
 const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
@@ -27,7 +29,7 @@ enum PlacesSortingTypes {
 
 const ONE_STAR_WIDTH = 20;
 
-const DEFAULT_ACTIVE_OFFER_ID: string = '';
+const DEFAULT_ACTIVE_OFFER_ID: OfferId = '';
 
 export {
   APP_TITLE,
