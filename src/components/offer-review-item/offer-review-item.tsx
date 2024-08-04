@@ -1,4 +1,5 @@
 import { Review } from '../../types/review';
+import { DateFormat, getStringDate } from '../../utils/date';
 import Rating from '../rating/rating';
 
 type OfferReviewItemProps = {
@@ -17,11 +18,8 @@ function OfferReviewItem({ review }: OfferReviewItemProps): JSX.Element {
     avatarUrl
   } = user;
 
-  //! прообразовать дату из Review.date
-  //const dateTime = '2019-04-24';
-  //const dateString = 'April 2019';
-  const dateTime = date;
-  const dateString = date;
+  const reviewDate = getStringDate(date, DateFormat.DATE);
+  const reviewDateString = getStringDate(date, DateFormat.MONTH_YEAR);
 
   return (
     <li className="reviews__item">
@@ -42,7 +40,7 @@ function OfferReviewItem({ review }: OfferReviewItemProps): JSX.Element {
         <p className="reviews__text">
           {comment}
         </p>
-        <time className="reviews__time" dateTime={dateTime}>{dateString}</time>
+        <time className="reviews__time" dateTime={reviewDate}>{reviewDateString}</time>
       </div>
     </li>
   );
