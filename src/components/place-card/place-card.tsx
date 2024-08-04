@@ -1,29 +1,23 @@
-import { useState } from 'react';
 import { Offer, OfferId } from '../../types/offer';
 import PlaceCardInfo from '../place-card-info/place-card-info';
-import { DEFAULT_ACTIVE_OFFER_ID } from '../../const';
 
 type PlaceCardProps = {
   offer: Offer;
-  handleActiveOfferChange: (activeOfferId: OfferId) => void;
+  onMouseEnter: (offerId: OfferId) => void;
+  onMouseLeave: (offerId: OfferId) => void;
+  //! два раза (offerId: OfferId) => void; сделать тип... но как его назвать? во втором случае можно и без параметров
 }
 
-function PlaceCard({ offer, handleActiveOfferChange }: PlaceCardProps): JSX.Element {
-  const [activeOfferId, setActiveOfferId] = useState(DEFAULT_ACTIVE_OFFER_ID);
-  //! а где вызвать при изменении и не использовать state? или можно забрать state у компоненета снаружи
-  handleActiveOfferChange(activeOfferId);
-
+function PlaceCard({ offer, onMouseEnter, onMouseLeave }: PlaceCardProps): JSX.Element {
   return (
     <article
       className="cities__card place-card"
       onMouseEnter={() => {
-        setActiveOfferId(offer.id);
-        //! handleActiveOfferChange(offer.id);
+        onMouseEnter(offer.id);
       }}
       onMouseLeave={() => {
         //! посмотреть по ТЗ при выходе нужно очистить
-        setActiveOfferId(DEFAULT_ACTIVE_OFFER_ID);
-        //! handleActiveOfferChange(DEFAULT_ACTIVE_OFFER_ID);
+        onMouseLeave(offer.id);
       }}
     >
       <PlaceCardInfo

@@ -1,15 +1,16 @@
-//import { useState } from 'react';
-import { Offer, /*OfferId*/ } from '../../types/offer';
+import { useState } from 'react';
+import { Offer, OfferId } from '../../types/offer';
 import PlacesSorting from '../places-sorting/places-sorting';
 import PlaceCard from '../place-card/place-card';
-//import { DEFAULT_ACTIVE_OFFER_ID } from '../../const';
+import { DEFAULT_ACTIVE_OFFER_ID } from '../../const';
 
 type PlaceCardListProps = {
   offers: Offer[];
 }
 
 function PlaceCardList({ offers }: PlaceCardListProps): JSX.Element {
-  //const [activeOfferId, setActiveOfferId] = useState(DEFAULT_ACTIVE_OFFER_ID);
+  const [activeOfferId, setActiveOfferId] = useState(DEFAULT_ACTIVE_OFFER_ID);
+  document.title = activeOfferId; //! для тестирования
 
   return (
     <>
@@ -22,10 +23,12 @@ function PlaceCardList({ offers }: PlaceCardListProps): JSX.Element {
             <PlaceCard
               key={offer.id}
               offer={offer}
-              handleActiveOfferChange={(activeOfferId) => {
-                document.title = activeOfferId; //! для тестирования
-                //! если сделать State у главной страницы, то при её перерисовке заново рисует все
-                //! тогда наверное нужно не использовать state у карточки, а сразу передавать id в обработчик
+              onMouseEnter={(offerId: OfferId) => {
+                setActiveOfferId(offerId);
+              }}
+              onMouseLeave={() => {
+                //! посмотреть по ТЗ при выходе нужно очистить
+                setActiveOfferId(DEFAULT_ACTIVE_OFFER_ID);
               }}
             />
           ))
