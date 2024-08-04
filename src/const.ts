@@ -28,8 +28,8 @@ enum PlacesSortingTypes {
 }
 
 const ONE_STAR_WIDTH = 20;
-
 const DEFAULT_ACTIVE_OFFER_ID: OfferId = '';
+const REVIEWS_SHOW_COUNT = 10;
 
 export {
   APP_TITLE,
@@ -40,5 +40,6 @@ export {
   AuthorizationStatus,
   PlacesSortingTypes,
   ONE_STAR_WIDTH,
-  DEFAULT_ACTIVE_OFFER_ID
+  DEFAULT_ACTIVE_OFFER_ID,
+  REVIEWS_SHOW_COUNT
 };

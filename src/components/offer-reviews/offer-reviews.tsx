@@ -1,3 +1,4 @@
+import { REVIEWS_SHOW_COUNT } from '../../const';
 import { Review } from '../../types/review';
 import OfferReviewItem from '../offer-review-item/offer-review-item';
 import OfferReviewsForm from '../offer-reviews-form/offer-reviews-form';
@@ -19,7 +20,17 @@ function OfferReviews({ reviews, isShowForm = false }: OfferHostProps): JSX.Elem
           null
           :
           <ul className="reviews__list">
-            {reviews.map((review) => <OfferReviewItem key={review.id} review={review} />)}
+            {
+              reviews
+                .slice(0, REVIEWS_SHOW_COUNT)
+                .map((review) =>
+                (
+                  <OfferReviewItem
+                    key={review.id}
+                    review={review}
+                  />
+                ))
+            }
           </ul>
       }
       {isShowForm ? <OfferReviewsForm /> : null}

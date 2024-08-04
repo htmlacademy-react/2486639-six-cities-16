@@ -33,14 +33,8 @@ root.render(
  ссылку на офер слелать обычной, без наведенной
 
   как типизировать enum PlacesSortingTypes[key]? сделал {Object.values(PlacesSortingTypes).map(
-  favorites.html + favorites-empty.html может объеденить?
-    <footer class="footer container">?
-    <footer class="footer">
-  main.html + main-empty.html может объеденить?
-  offer.html + offer-not-logged.html может объеденить?
   параметров в app.tsx еще нет console.log('app', useParams()); получаю offerId в offer-page
   не отрабатывает route NotFound для /1.jpg /1.html  - на лого была ссылка /main.html
-  /src/type.ts - расположение именование?
   нужен ли route для все городов /paris ....
   imageWidth imageHeight iconWidth iconHeight? строками и константами нормально? или выносить в константы и делать числа?
   css классы в коде у новых компонентов, нужно выносить в константы?
@@ -55,17 +49,7 @@ root.render(
   в городах NavLink + className ={({isActive})=>clsx({'qq','www':isActive, 'ccc'})}  to=city
   FavoriteItem - часть функционла похожа на place-card.tsx, ссылка с картинкой, премиум, там еще есть обработчики
 
-  Добавить компонеты:
-    +Header  href="main.html" исправил на /  ! Переобъеденить HeaderAuth / HeaderNoAuth / HeaderLogin + class=header__logo-link--active
-    +Footer - есть только на Favorites, добавить на другие?  ссылку  href="main.html" исправил на /
-    LocationItem
-    LocationsList
-    Map
-    OffersList
-    SortingOffersList
-    HeaderOffersList?
-    Footer?
-    Favorite(s)Button / BookmarkButton на нескольких страницах
+  Переобъеденить HeaderAuth / HeaderNoAuth / HeaderLogin + class=header__logo-link--active
   Оптимизировать Helmet <title>{`${APP_TITLE}: 404`}</title>....  что то придумать для сборки заголовка
   Переданному id не найден оффер - добавить страницу оффер не найден и ссылку на возврат на главную
 --
