@@ -13,7 +13,8 @@ import OfferHost from '../../components/offer-host/offer-host';
 import OfferReviews from '../../components/offer-reviews/offer-reviews';
 import NearPlaces from '../../components/near-places/near-places';
 import { firstLetterToUppercase, getById } from '../../utils/util';
-import { APP_TITLE, AuthorizationStatus } from '../../const';
+import { APP_TITLE, AuthorizationStatus, ClassNamePrefix } from '../../const';
+import Price from '../../components/price/price';
 
 type OfferProps = {
   authorizationStatus: AuthorizationStatus;
@@ -42,7 +43,8 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
     price,
     isFavorite,
     isPremium,
-    rating
+    rating,
+    //description
   } = detailOffer;
 
   const previewImage = 'https://16.design.htmlacademy.pro/static/hotel/10.jpg'; //! тест
@@ -89,10 +91,7 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
                   Max 4 adults
                 </li>
               </ul>
-              <div className="offer__price">
-                <b className="offer__price-value">&euro;{price}</b>
-                <span className="offer__price-text">&nbsp;night</span>
-              </div>
+              <Price classNamePrefix={ClassNamePrefix.OFFER} price={price} />
               <OfferInside />
               <OfferHost name="Meet the host" />
               <OfferReviews reviews={reviews} isShowForm={authorizationStatus === AuthorizationStatus.Auth} />

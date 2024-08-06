@@ -27,6 +27,11 @@ enum PlacesSortingTypes {
   TopRatedFirst = 'Top rated first'
 }
 
+const ClassNamePrefix = {
+  PLACE_CARD: 'place-card',
+  OFFER: 'offer'
+};
+
 const ONE_STAR_WIDTH = 20;
 const DEFAULT_ACTIVE_OFFER_ID: OfferId = '';
 const REVIEWS_SHOW_COUNT = 10;
@@ -46,6 +51,7 @@ export {
   AppRoute,
   AuthorizationStatus,
   PlacesSortingTypes,
+  ClassNamePrefix,
   ONE_STAR_WIDTH,
   DEFAULT_ACTIVE_OFFER_ID,
   REVIEWS_SHOW_COUNT,
