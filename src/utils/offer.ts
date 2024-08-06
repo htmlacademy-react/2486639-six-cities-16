@@ -4,16 +4,26 @@ function getFavoriteOffers(offers: Offer[]): Offer[] {
   return offers.filter(({ isFavorite }) => isFavorite);
 }
 
-function getSortingCityNames(offers: Offer[]): string[] {
-  const cityNames = offers.map(({ city }) => city.name);
-  cityNames.sort((firstCityName, secondCityName) => firstCityName.localeCompare(secondCityName));
-  const sortingCityNames = new Set(cityNames);
+type CityOffers = { cityName: string; offers: Offer[] };
 
-  return Array.from(sortingCityNames);
+function sortByCityName(citiesOffers: CityOffers[]): CityOffers[] {
+  return citiesOffers.sort(({ cityName: firstCityName }, { cityName: secondCityName }) => (firstCityName.localeCompare(secondCityName)));
 }
 
-function getOffersByCityName(offers: Offer[], cityName: string): Offer[] {
-  return offers.filter(({ city }) => city.name === cityName);
+function getOffersByCities(offers: Offer[]): CityOffers[] {
+  const offersByCities: CityOffers[] = [];
+
+  offers.forEach((offer) => {
+    const offersByCity = offersByCities.find(({ cityName }) => (cityName === offer.city.name));
+
+    if (!offersByCity) {
+      offersByCities.push({ cityName: offer.city.name, offers: [offer] });
+    } else {
+      offersByCity.offers.push(offer);
+    }
+  });
+
+  return sortByCityName(offersByCities);
 }
 
-export { getFavoriteOffers, getSortingCityNames, getOffersByCityName };
+export { getFavoriteOffers, getOffersByCities };
