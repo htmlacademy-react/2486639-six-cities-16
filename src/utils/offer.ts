@@ -1,3 +1,4 @@
+import { OfferTypeFeature, OfferTypeFeatureTemplate, templateNumberString } from '../const';
 import { Offer } from '../types/offer';
 
 function getFavoriteOffers(offers: Offer[]): Offer[] {
@@ -26,4 +27,15 @@ function getOffersByCities(offers: Offer[]): CityOffers[] {
   return sortByCityName(offersByCities);
 }
 
-export { getFavoriteOffers, getOffersByCities };
+function getFeatureText(key: OfferTypeFeature, value: number): string {
+  if (value < 1) {
+    return '';
+  }
+
+  const [templateOne, templateMany] = OfferTypeFeatureTemplate[key];
+  const template = (value === 1) ? templateOne : templateMany;
+
+  return template.replace(templateNumberString, value.toString());
+}
+
+export { getFavoriteOffers, getOffersByCities, getFeatureText };

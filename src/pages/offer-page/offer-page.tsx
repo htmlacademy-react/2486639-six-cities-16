@@ -12,18 +12,19 @@ import Rating from '../../components/rating/rating';
 import OfferHost from '../../components/offer-host/offer-host';
 import OfferReviews from '../../components/offer-reviews/offer-reviews';
 import NearPlaces from '../../components/near-places/near-places';
-import { firstLetterToUppercase, getById } from '../../utils/util';
-import { APP_TITLE, AuthorizationStatus, ClassNamePrefix } from '../../const';
+import { getById } from '../../utils/util';
+import { APP_TITLE, AuthorizationStatus, ClassNamePrefix, IMAGES_SHOW_COUNT } from '../../const';
 import Price from '../../components/price/price';
+import OfferFeatures from '../../components/offer-features/offer-features';
 
-type OfferProps = {
+type OfferPageProps = {
   authorizationStatus: AuthorizationStatus;
   detailOffers: DetailOffer[];
   nearOffers: Offer[];
   reviews: Review[];
 }
 
-function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: OfferProps): JSX.Element {
+function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: OfferPageProps): JSX.Element {
   const params = useParams();
   const offerId: OfferId | undefined = params.id; //! тест... а как получить в App и не передавать все предложения?
 
@@ -44,10 +45,13 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
     isFavorite,
     isPremium,
     rating,
-    //description
+    //description,
+    bedrooms,
+    //goods,
+    //host,
+    images,
+    maxAdults
   } = detailOffer;
-
-  const previewImage = 'https://16.design.htmlacademy.pro/static/hotel/10.jpg'; //! тест
 
   return (
     <div className="page">
@@ -57,7 +61,7 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
       <HeaderAuth />
       <main className="page__main page__main--offer">
         <section className="offer">
-          <OfferGallery images={Array.from({ length: 6 }, () => previewImage)} />
+          <OfferGallery images={images.slice(0, IMAGES_SHOW_COUNT)} />
           <div className="offer__container container">
             <div className="offer__wrapper">
               {isPremium ? <Mark className="offer__mark" /> : null}
@@ -80,17 +84,7 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
                 rating={rating}
                 isShowText
               />
-              <ul className="offer__features">
-                <li className="offer__feature offer__feature--entire">
-                  {firstLetterToUppercase(type)}
-                </li>
-                <li className="offer__feature offer__feature--bedrooms">
-                  3 Bedrooms
-                </li>
-                <li className="offer__feature offer__feature--adults">
-                  Max 4 adults
-                </li>
-              </ul>
+              <OfferFeatures offerType={type} bedrooms={bedrooms} maxAdults={maxAdults} />
               <Price classNamePrefix={ClassNamePrefix.OFFER} price={price} />
               <OfferInside />
               <OfferHost name="Meet the host" />

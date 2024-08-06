@@ -32,6 +32,19 @@ const ClassNamePrefix = {
   OFFER: 'offer'
 };
 
+enum OfferTypeFeature {
+  bedrooms = 'bedrooms',
+  adults = 'adults'
+}
+
+const templateNumberString = ':n';
+
+const OfferTypeFeatureTemplate = {
+  [OfferTypeFeature.bedrooms]: [':n Bedroom', ':n Bedrooms'],
+  [OfferTypeFeature.adults]: ['Max :n adult', 'Max :n adults']
+};
+
+const IMAGES_SHOW_COUNT = 6;
 const ONE_STAR_WIDTH = 20;
 const DEFAULT_ACTIVE_OFFER_ID: OfferId = '';
 const REVIEWS_SHOW_COUNT = 10;
@@ -52,6 +65,10 @@ export {
   AuthorizationStatus,
   PlacesSortingTypes,
   ClassNamePrefix,
+  OfferTypeFeature,
+  templateNumberString,
+  OfferTypeFeatureTemplate,
+  IMAGES_SHOW_COUNT,
   ONE_STAR_WIDTH,
   DEFAULT_ACTIVE_OFFER_ID,
   REVIEWS_SHOW_COUNT,

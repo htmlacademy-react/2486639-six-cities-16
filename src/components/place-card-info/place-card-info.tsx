@@ -4,7 +4,7 @@ import OfferLink from '../offer-link/offer-link';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import Price from '../price/price';
 import Rating from '../rating/rating';
-import { firstLetterToUppercase } from '../../utils/util';
+import { upFirstLetter } from '../../utils/util';
 import { ClassNamePrefix } from '../../const';
 
 type PlaceCardInfoProps = {
@@ -64,7 +64,7 @@ function PlaceCardInfo(prop: PlaceCardInfoProps): JSX.Element {
             {title}
           </OfferLink>
         </h2>
-        <p className="place-card__type">{firstLetterToUppercase(type)}</p>
+        <p className="place-card__type">{upFirstLetter(type)}</p>
       </div>
     </>
   );
