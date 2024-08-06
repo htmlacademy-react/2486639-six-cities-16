@@ -16,7 +16,7 @@ export type BaseOffer = {
   rating: number;
 };
 
-export type Offer = BaseOffer & { previewImage: string; };
+export type Offer = BaseOffer & { previewImage: string };
 
 export type OfferInfo = BaseOffer & {
   description: string;
