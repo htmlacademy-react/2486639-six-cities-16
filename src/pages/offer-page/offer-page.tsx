@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { Offer } from '../../types/offer';
+import { OfferId, Offer, DetailOffer } from '../../types/offer';
 import { Review } from '../../types/review';
 import NotFoundPage from '../not-found-page/not-found-page';
 import HeaderAuth from '../../components/header/header-auth';
@@ -17,21 +17,22 @@ import { APP_TITLE, AuthorizationStatus } from '../../const';
 
 type OfferProps = {
   authorizationStatus: AuthorizationStatus;
-  offers: Offer[];
+  detailOffers: DetailOffer[];
+  nearOffers: Offer[];
   reviews: Review[];
 }
 
-function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.Element {
+function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: OfferProps): JSX.Element {
   const params = useParams();
-  const offerId: string | undefined = params.id; //! тест... а как получить в App и не передавать все предложения?
+  const offerId: OfferId | undefined = params.id; //! тест... а как получить в App и не передавать все предложения?
 
   if (!offerId) {
     return <NotFoundPage />;
   }
 
-  const offer: Offer | undefined = getById(offers, offerId);
+  const detailOffer: DetailOffer | undefined = getById(detailOffers, offerId);
 
-  if (!offer) {
+  if (!detailOffer) {
     return (<NotFoundPage />);
   }
 
@@ -39,11 +40,12 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
     title,
     type,
     price,
-    previewImage,
     isFavorite,
     isPremium,
     rating
-  } = offer;
+  } = detailOffer;
+
+  const previewImage = 'https://16.design.htmlacademy.pro/static/hotel/10.jpg'; //! тест
 
   return (
     <div className="page">
@@ -99,7 +101,7 @@ function OfferPage({ authorizationStatus, offers, reviews }: OfferProps): JSX.El
           <section className="offer__map map"></section>
         </section>
         <div className="container">
-          <NearPlaces offers={offers.slice(0, 3)} /> {/*//! Может нужно только 3 то в константы? поискать в ТЗ*/}
+          <NearPlaces offers={nearOffers.slice(0, 3)} /> {/*//! Может нужно только 3 то в константы? поискать в ТЗ*/}
         </div>
       </main>
     </div>

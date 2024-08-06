@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
-import { Offer } from '../../types/offer';
+import { Offer, DetailOffer } from '../../types/offer';
 import { Review } from '../../types/review';
 import MainPage from '../../pages/main-page/main-page';
 import PublicRoute from '../public-route/public-route';
@@ -13,6 +13,8 @@ import { AppRoute, AuthorizationStatus, APP_TITLE } from '../../const';
 
 type AppProps = {
   offers: Offer[];
+  detailOffers: DetailOffer[];
+  nearOffers: Offer[];
   reviews: Review[];
 }
 
@@ -20,7 +22,7 @@ const authorizationStatus = AuthorizationStatus.Auth;
 //const authorizationStatus = AuthorizationStatus.NoAuth;
 //const authorizationStatus = AuthorizationStatus.Unknown;
 
-function App({ offers, reviews }: AppProps): JSX.Element {
+function App({ offers, detailOffers, nearOffers, reviews }: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <Helmet>
@@ -53,7 +55,8 @@ function App({ offers, reviews }: AppProps): JSX.Element {
             element={
               <OfferPage
                 authorizationStatus={authorizationStatus}
-                offers={offers}
+                detailOffers={detailOffers}
+                nearOffers={nearOffers}
                 reviews={reviews}
               />
             }
