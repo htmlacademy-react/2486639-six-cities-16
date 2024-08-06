@@ -18,7 +18,7 @@ export type BaseOffer = {
 
 export type Offer = BaseOffer & { previewImage: string };
 
-export type OfferInfo = BaseOffer & {
+export type DetailOffer = BaseOffer & {
   description: string;
   bedrooms: number;
   goods: string[];
