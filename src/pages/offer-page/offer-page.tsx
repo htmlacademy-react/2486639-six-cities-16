@@ -47,7 +47,7 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
     rating,
     //description,
     bedrooms,
-    //goods,
+    goods,
     //host,
     images,
     maxAdults
@@ -75,7 +75,7 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
               <Rating classNamePrefix={classNamePrefix} rating={rating} />
               <OfferFeatures offerType={type} bedrooms={bedrooms} maxAdults={maxAdults} />
               <Price classNamePrefix={classNamePrefix} price={price} />
-              <OfferInside />
+              <OfferInside goods={goods} />
               <OfferHost name="Meet the host" />
               <OfferReviews reviews={reviews} isShowForm={authorizationStatus === AuthorizationStatus.Auth} />
             </div>
@@ -83,7 +83,7 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
           <section className="offer__map map"></section>
         </section>
         <div className="container">
-          <NearPlaces offers={nearOffers.slice(0, 3)} /> {/*//! Может нужно только 3 то в константы? поискать в ТЗ*/}
+          <NearPlaces offers={nearOffers.slice(0, 3)} /> {/*//! Может нужно только 3, то в константы? поискать в ТЗ*/}
         </div>
       </main>
     </div>

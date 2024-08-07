@@ -1,17 +1,18 @@
-function OfferInside(): JSX.Element {
+type OfferInsideProps = {
+  goods: string[];
+}
+
+function OfferInside({ goods }: OfferInsideProps): JSX.Element {
   return (
     <div className="offer__inside">
       <h2 className="offer__inside-title">What&apos;s inside</h2>
       <ul className="offer__inside-list">
         {
-          Array.from(
-            { length: 7 },
-            (_, index) => (
-              <li key={`Wi-Fi-${index}`} className="offer__inside-item">
-                {'Wi-Fi'}
-              </li>
-            )
-          )
+          goods.map((good) => (
+            <li key={good} className="offer__inside-item">
+              {good}
+            </li>
+          ))
         }
       </ul>
     </div>
