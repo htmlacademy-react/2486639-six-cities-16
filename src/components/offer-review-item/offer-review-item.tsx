@@ -1,6 +1,7 @@
+import Rating from '../rating/rating';
 import { Review } from '../../types/review';
 import { DateFormat, getStringDate } from '../../utils/date';
-import Rating from '../rating/rating';
+import { ClassNamePrefix } from '../../const';
 
 type OfferReviewItemProps = {
   review: Review;
@@ -32,11 +33,7 @@ function OfferReviewItem({ review }: OfferReviewItemProps): JSX.Element {
         </span>
       </div>
       <div className="reviews__info">
-        <Rating
-          ratingClassName="reviews__rating"
-          starsClassName="reviews__stars"
-          rating={rating}
-        />
+        <Rating classNamePrefix={ClassNamePrefix.Reviews} rating={rating} />
         <p className="reviews__text">
           {comment}
         </p>

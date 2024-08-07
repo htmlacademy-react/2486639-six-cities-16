@@ -1,7 +1,7 @@
-import { Offer } from '../../types/offer';
 import HeaderAuth from '../../components/header/header-auth';
 import Locations from '../../components/locations/locations';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
+import { Offer } from '../../types/offer';
 
 type MainPageProps = {
   offers: Offer[];

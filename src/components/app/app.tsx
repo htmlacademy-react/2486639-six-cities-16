@@ -1,7 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
-import { Offer, DetailOffer } from '../../types/offer';
-import { Review } from '../../types/review';
 import MainPage from '../../pages/main-page/main-page';
 import PublicRoute from '../public-route/public-route';
 import PrivateRoute from '../private-route/private-route';
@@ -9,6 +7,8 @@ import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
+import { Offer, DetailOffer } from '../../types/offer';
+import { Review } from '../../types/review';
 import { AppRoute, AuthorizationStatus, APP_TITLE } from '../../const';
 
 type AppProps = {

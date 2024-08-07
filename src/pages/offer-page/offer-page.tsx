@@ -1,7 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { OfferId, Offer, DetailOffer } from '../../types/offer';
-import { Review } from '../../types/review';
 import NotFoundPage from '../not-found-page/not-found-page';
 import HeaderAuth from '../../components/header/header-auth';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
@@ -12,10 +10,12 @@ import Rating from '../../components/rating/rating';
 import OfferHost from '../../components/offer-host/offer-host';
 import OfferReviews from '../../components/offer-reviews/offer-reviews';
 import NearPlaces from '../../components/near-places/near-places';
-import { getById } from '../../utils/util';
-import { APP_TITLE, AuthorizationStatus, ClassNamePrefix, IMAGES_SHOW_COUNT } from '../../const';
 import Price from '../../components/price/price';
 import OfferFeatures from '../../components/offer-features/offer-features';
+import { OfferId, Offer, DetailOffer } from '../../types/offer';
+import { Review } from '../../types/review';
+import { getById } from '../../utils/util';
+import { APP_TITLE, AuthorizationStatus, ClassNamePrefix, IMAGES_SHOW_COUNT } from '../../const';
 
 type OfferPageProps = {
   authorizationStatus: AuthorizationStatus;
@@ -71,12 +71,7 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
                 </h1>
                 <BookmarkButton classNamePrefix={ClassNamePrefix.OFFER} isActive={isFavorite} />
               </div>
-              <Rating
-                ratingClassName="offer__rating"
-                starsClassName="offer__stars"
-                rating={rating}
-                isShowText
-              />
+              <Rating classNamePrefix={ClassNamePrefix.OFFER} rating={rating} />
               <OfferFeatures offerType={type} bedrooms={bedrooms} maxAdults={maxAdults} />
               <Price classNamePrefix={ClassNamePrefix.OFFER} price={price} />
               <OfferInside />

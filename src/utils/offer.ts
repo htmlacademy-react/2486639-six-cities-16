@@ -1,5 +1,5 @@
-import { OfferTypeFeature, OfferTypeFeatureTemplate, templateNumberString } from '../const';
 import { Offer } from '../types/offer';
+import { OfferTypeFeature, OfferTypeFeatureTemplate, templateNumberString } from '../const';
 
 function getFavoriteOffers(offers: Offer[]): Offer[] {
   return offers.filter(({ isFavorite }) => isFavorite);

@@ -1,9 +1,9 @@
-import { Offer } from '../../types/offer';
 import Mark from '../mark/mark';
 import OfferLink from '../offer-link/offer-link';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import Price from '../price/price';
 import Rating from '../rating/rating';
+import { Offer } from '../../types/offer';
 import { upFirstLetter } from '../../utils/util';
 import { ClassNamePrefix } from '../../const';
 
@@ -47,11 +47,7 @@ function PlaceCardInfo(prop: PlaceCardInfoProps): JSX.Element {
           <Price classNamePrefix={ClassNamePrefix.PLACE_CARD} price={price} />
           <BookmarkButton classNamePrefix={ClassNamePrefix.PLACE_CARD} isActive={isFavorite} />
         </div>
-        <Rating
-          ratingClassName="place-card__rating"
-          starsClassName="place-card__stars"
-          rating={rating}
-        />
+        <Rating classNamePrefix={ClassNamePrefix.PLACE_CARD} rating={rating} />
         <h2 className="place-card__name">
           <OfferLink offerId={id}>
             {title}

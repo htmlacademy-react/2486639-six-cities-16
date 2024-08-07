@@ -29,7 +29,8 @@ enum PlacesSortingTypes {
 
 enum ClassNamePrefix {
   PLACE_CARD = 'place-card',
-  OFFER = 'offer'
+  OFFER = 'offer',
+  Reviews = 'reviews'
 }
 
 const BookmarkButtonIconSize = {

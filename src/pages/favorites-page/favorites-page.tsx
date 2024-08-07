@@ -1,8 +1,8 @@
 import { Helmet } from 'react-helmet-async';
-import { Offer } from '../../types/offer';
 import HeaderAuth from '../../components/header/header-auth';
 import Footer from '../../components/footer/footer';
 import FavoriteItem from '../../components/favorite-item/favorite-item';
+import { Offer } from '../../types/offer';
 import { getFavoriteOffers, getOffersByCities } from '../../utils/offer';
 import { APP_TITLE } from '../../const';
 

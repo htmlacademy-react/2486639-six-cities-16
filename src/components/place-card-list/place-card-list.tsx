@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Offer, OfferId } from '../../types/offer';
 import PlacesSorting from '../places-sorting/places-sorting';
 import PlaceCard from '../place-card/place-card';
+import { Offer, OfferId } from '../../types/offer';
 import { DEFAULT_ACTIVE_OFFER_ID } from '../../const';
 
 type PlaceCardListProps = {

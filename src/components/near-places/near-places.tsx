@@ -1,5 +1,5 @@
-import { Offer } from '../../types/offer';
 import PlaceCardInfo from '../place-card-info/place-card-info';
+import { Offer } from '../../types/offer';
 
 type NearPlacesProps = {
   offers: Offer[];

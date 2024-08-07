@@ -1,7 +1,7 @@
-import { REVIEWS_SHOW_COUNT } from '../../const';
-import { Review } from '../../types/review';
 import OfferReviewItem from '../offer-review-item/offer-review-item';
 import OfferReviewsForm from '../offer-reviews-form/offer-reviews-form';
+import { Review } from '../../types/review';
+import { REVIEWS_SHOW_COUNT } from '../../const';
 
 type OfferHostProps = {
   reviews: Review[];
