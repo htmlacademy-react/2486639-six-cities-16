@@ -21,10 +21,8 @@ root.render(
 
 /*
 Вопросы:
-ДЗ 4
- расширенный массив моков
-  добавить вывод в компоненты, для спален и т.д. предуксмотреть множественное число не 's', а нормальный словарь
-
+  {isPro ? 'Pro' : ''} или весь span не показывать?
+  <p className="offer__text"> как то разбито по частям, глянуть как в ТЗ, перенос строки или '.' или длинна
   как типизировать enum PlacesSortingTypes[key]? сделал {Object.values(PlacesSortingTypes).map(
   параметров в app.tsx еще нет console.log('app', useParams()); получаю offerId в offer-page
   не отрабатывает route NotFound для /1.jpg /1.html  - на лого была ссылка /main.html

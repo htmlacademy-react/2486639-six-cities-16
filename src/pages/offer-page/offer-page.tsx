@@ -45,10 +45,10 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
     isFavorite,
     isPremium,
     rating,
-    //description,
+    description,
     bedrooms,
     goods,
-    //host,
+    host,
     images,
     maxAdults
   } = detailOffer;
@@ -76,7 +76,7 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
               <OfferFeatures offerType={type} bedrooms={bedrooms} maxAdults={maxAdults} />
               <Price classNamePrefix={classNamePrefix} price={price} />
               <OfferInside goods={goods} />
-              <OfferHost name="Meet the host" />
+              <OfferHost host={host} description={description} />
               <OfferReviews reviews={reviews} isShowForm={authorizationStatus === AuthorizationStatus.Auth} />
             </div>
           </div>
