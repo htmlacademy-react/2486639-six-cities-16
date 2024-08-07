@@ -10,9 +10,9 @@ type OfferFeaturesProps = {
 
 function OfferFeatures({ offerType, bedrooms, maxAdults }: OfferFeaturesProps): JSX.Element {
   const features = [
-    { type: OfferTypeFeature.entire, text: upFirstLetter(offerType) },
-    { type: OfferTypeFeature.bedrooms, text: getFeatureText(OfferTypeFeature.bedrooms, bedrooms) },
-    { type: OfferTypeFeature.adults, text: getFeatureText(OfferTypeFeature.adults, maxAdults) }
+    { type: OfferTypeFeature.Entire, text: upFirstLetter(offerType) },
+    { type: OfferTypeFeature.Bedrooms, text: getFeatureText(OfferTypeFeature.Bedrooms, bedrooms) },
+    { type: OfferTypeFeature.Adults, text: getFeatureText(OfferTypeFeature.Adults, maxAdults) }
   ];
 
   return (

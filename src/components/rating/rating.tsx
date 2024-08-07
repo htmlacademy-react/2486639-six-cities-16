@@ -15,7 +15,7 @@ function Rating({ classNamePrefix, rating }: RatingProps): JSX.Element {
         <span style={{ width: `${Math.round(rating) * ONE_STAR_WIDTH}%` }}></span>
         <span className="visually-hidden">Rating</span>
       </div>
-      {(classNamePrefix === ClassNamePrefix.OFFER) ? <span className="offer__rating-value rating__value">{rating}</span> : null}
+      {(classNamePrefix === ClassNamePrefix.Offer) ? <span className="offer__rating-value rating__value">{rating}</span> : null}
     </div>
   );
 }

@@ -52,6 +52,7 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
     images,
     maxAdults
   } = detailOffer;
+  const classNamePrefix: ClassNamePrefix = ClassNamePrefix.Offer;
 
   return (
     <div className="page">
@@ -69,11 +70,11 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <BookmarkButton classNamePrefix={ClassNamePrefix.OFFER} isActive={isFavorite} />
+                <BookmarkButton classNamePrefix={classNamePrefix} isActive={isFavorite} />
               </div>
-              <Rating classNamePrefix={ClassNamePrefix.OFFER} rating={rating} />
+              <Rating classNamePrefix={classNamePrefix} rating={rating} />
               <OfferFeatures offerType={type} bedrooms={bedrooms} maxAdults={maxAdults} />
-              <Price classNamePrefix={ClassNamePrefix.OFFER} price={price} />
+              <Price classNamePrefix={classNamePrefix} price={price} />
               <OfferInside />
               <OfferHost name="Meet the host" />
               <OfferReviews reviews={reviews} isShowForm={authorizationStatus === AuthorizationStatus.Auth} />

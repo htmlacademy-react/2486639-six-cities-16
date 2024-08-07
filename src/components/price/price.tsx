@@ -11,7 +11,7 @@ function Price({ price, classNamePrefix }: PriceProps): JSX.Element {
   return (
     <div className={divClassName}>
       <b className={`${divClassName}-value`}>&euro;{price}</b>
-      <span className={`${divClassName}-text`}>{classNamePrefix === ClassNamePrefix.PLACE_CARD ? '&#47;' : ''}&nbsp;night</span>
+      <span className={`${divClassName}-text`}>{classNamePrefix === ClassNamePrefix.PlaceCard ? '&#47;' : ''}&nbsp;night</span>
     </div >
   );
 }

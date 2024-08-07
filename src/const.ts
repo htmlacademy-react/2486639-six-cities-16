@@ -28,27 +28,28 @@ enum PlacesSortingTypes {
 }
 
 enum ClassNamePrefix {
-  PLACE_CARD = 'place-card',
-  OFFER = 'offer',
+  PlaceCard = 'place-card',
+  Offer = 'offer',
   Reviews = 'reviews'
 }
 
 const BookmarkButtonIconSize = {
-  [ClassNamePrefix.OFFER]: { width: 31, height: 33 },
-  [ClassNamePrefix.PLACE_CARD]: { width: 18, height: 19 }
+  [ClassNamePrefix.Offer]: { width: 31, height: 33 },
+  [ClassNamePrefix.PlaceCard]: { width: 18, height: 19 },
+  [ClassNamePrefix.Reviews]: { width: 0, height: 0 } //! как в низу [OfferTypeFeature.entire]: ['', '']... как обойти
 };
 
 enum OfferTypeFeature {
-  entire = 'entire',
-  bedrooms = 'bedrooms',
-  adults = 'adults'
+  Entire = 'entire',
+  Bedrooms = 'bedrooms',
+  Adults = 'adults'
 }
 const templateNumberString = ':n';
 
 const OfferTypeFeatureTemplate = {
-  [OfferTypeFeature.entire]: ['', ''], // не могу убрать ошибку TS OfferTypeFeatureTemplate[key] хотя выше проверка - (key in OfferTypeFeatureTemplate)
-  [OfferTypeFeature.bedrooms]: [':n Bedroom', ':n Bedrooms'],
-  [OfferTypeFeature.adults]: ['Max :n adult', 'Max :n adults']
+  [OfferTypeFeature.Entire]: ['', ''], //! не могу убрать ошибку TS OfferTypeFeatureTemplate[key] хотя выше проверка - (key in OfferTypeFeatureTemplate)
+  [OfferTypeFeature.Bedrooms]: [':n Bedroom', ':n Bedrooms'],
+  [OfferTypeFeature.Adults]: ['Max :n adult', 'Max :n adults']
 };
 
 const IMAGES_SHOW_COUNT = 6;

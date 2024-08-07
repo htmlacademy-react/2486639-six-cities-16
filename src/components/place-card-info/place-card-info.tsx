@@ -33,6 +33,7 @@ function PlaceCardInfo(prop: PlaceCardInfoProps): JSX.Element {
     isFavorite,
     previewImage
   } = offer;
+  const classNamePrefix: ClassNamePrefix = ClassNamePrefix.PlaceCard;
 
   return (
     <>
@@ -44,10 +45,10 @@ function PlaceCardInfo(prop: PlaceCardInfoProps): JSX.Element {
       </div>
       <div className={`${additionalInfoClassName} place-card__info`}>
         <div className="place-card__price-wrapper">
-          <Price classNamePrefix={ClassNamePrefix.PLACE_CARD} price={price} />
-          <BookmarkButton classNamePrefix={ClassNamePrefix.PLACE_CARD} isActive={isFavorite} />
+          <Price classNamePrefix={classNamePrefix} price={price} />
+          <BookmarkButton classNamePrefix={classNamePrefix} isActive={isFavorite} />
         </div>
-        <Rating classNamePrefix={ClassNamePrefix.PLACE_CARD} rating={rating} />
+        <Rating classNamePrefix={classNamePrefix} rating={rating} />
         <h2 className="place-card__name">
           <OfferLink offerId={id}>
             {title}
