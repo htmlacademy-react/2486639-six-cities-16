@@ -37,15 +37,15 @@ const BookmarkButtonIconSize = {
   [ClassNamePrefix.PLACE_CARD]: { width: 18, height: 19 }
 };
 
-//! есть третий тип
 enum OfferTypeFeature {
+  entire = 'entire',
   bedrooms = 'bedrooms',
   adults = 'adults'
 }
-
 const templateNumberString = ':n';
 
 const OfferTypeFeatureTemplate = {
+  [OfferTypeFeature.entire]: ['', ''], // не могу убрать ошибку TS OfferTypeFeatureTemplate[key] хотя выше проверка - (key in OfferTypeFeatureTemplate)
   [OfferTypeFeature.bedrooms]: [':n Bedroom', ':n Bedrooms'],
   [OfferTypeFeature.adults]: ['Max :n adult', 'Max :n adults']
 };

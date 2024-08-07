@@ -32,6 +32,10 @@ function getFeatureText(key: OfferTypeFeature, value: number): string {
     return '';
   }
 
+  if (!(key in OfferTypeFeatureTemplate)) {
+    return '';
+  }
+
   const [templateOne, templateMany] = OfferTypeFeatureTemplate[key];
   const template = (value === 1) ? templateOne : templateMany;
 
