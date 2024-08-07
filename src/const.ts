@@ -27,11 +27,17 @@ enum PlacesSortingTypes {
   TopRatedFirst = 'Top rated first'
 }
 
-const ClassNamePrefix = {
-  PLACE_CARD: 'place-card',
-  OFFER: 'offer'
+enum ClassNamePrefix {
+  PLACE_CARD = 'place-card',
+  OFFER = 'offer'
+}
+
+const BookmarkButtonIconSize = {
+  [ClassNamePrefix.OFFER]: { width: 31, height: 33 },
+  [ClassNamePrefix.PLACE_CARD]: { width: 18, height: 19 }
 };
 
+//! есть третий тип
 enum OfferTypeFeature {
   bedrooms = 'bedrooms',
   adults = 'adults'
@@ -65,6 +71,7 @@ export {
   AuthorizationStatus,
   PlacesSortingTypes,
   ClassNamePrefix,
+  BookmarkButtonIconSize,
   OfferTypeFeature,
   templateNumberString,
   OfferTypeFeatureTemplate,

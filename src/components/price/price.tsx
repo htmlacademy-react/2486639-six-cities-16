@@ -2,7 +2,7 @@ import { ClassNamePrefix } from '../../const';
 
 type PriceProps = {
   price: number;
-  classNamePrefix: string; // offer / place-card
+  classNamePrefix: ClassNamePrefix;
 }
 
 function Price({ price, classNamePrefix }: PriceProps): JSX.Element {

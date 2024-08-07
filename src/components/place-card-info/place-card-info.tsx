@@ -45,14 +45,7 @@ function PlaceCardInfo(prop: PlaceCardInfoProps): JSX.Element {
       <div className={`${additionalInfoClassName} place-card__info`}>
         <div className="place-card__price-wrapper">
           <Price classNamePrefix={ClassNamePrefix.PLACE_CARD} price={price} />
-          <BookmarkButton
-            buttonClassName="place-card__bookmark-button"
-            iconClassName="place-card__bookmark-icon"
-            iconWidth="18"
-            iconHeight="19"
-            activeClassName="place-card__bookmark-button--active"
-            isActive={isFavorite}
-          />
+          <BookmarkButton classNamePrefix={ClassNamePrefix.PLACE_CARD} isActive={isFavorite} />
         </div>
         <Rating
           ratingClassName="place-card__rating"

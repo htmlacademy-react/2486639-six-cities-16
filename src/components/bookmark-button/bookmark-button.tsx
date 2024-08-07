@@ -1,28 +1,23 @@
+import { BookmarkButtonIconSize, ClassNamePrefix } from '../../const';
+
 type BookmarkButtonProps = {
-  buttonClassName: string;
-  iconClassName: string;
-  iconWidth: string;
-  iconHeight: string;
-  activeClassName: string;
+  classNamePrefix: ClassNamePrefix;
   isActive: boolean;
 }
 
-function BookmarkButton(props: BookmarkButtonProps): JSX.Element {
-  const {
-    buttonClassName,
-    iconClassName,
-    iconWidth,
-    iconHeight,
-    activeClassName,
-    isActive
-  } = props;
+function BookmarkButton({ classNamePrefix, isActive }: BookmarkButtonProps): JSX.Element {
+  const className = `${classNamePrefix}__bookmark`;
+  const buttonClassName = `${className}-button`;
+  const iconClassName = `${className}-icon`;
+  const activeButtonClassName = `${buttonClassName}--active`;
+  const { width, height } = BookmarkButtonIconSize[classNamePrefix];
 
   return (
     <button
-      className={`${buttonClassName} button ${isActive ? activeClassName : ''}`}
+      className={`${buttonClassName} button ${isActive ? activeButtonClassName : ''}`}
       type="button"
     >
-      <svg className={iconClassName} width={iconWidth} height={iconHeight}>
+      <svg className={iconClassName} width={width} height={height}>
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
       <span className="visually-hidden">{isActive ? 'In bookmarks' : 'To bookmarks'}</span>

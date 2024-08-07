@@ -69,14 +69,7 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <BookmarkButton
-                  buttonClassName="offer__bookmark-button"
-                  iconClassName="offer__bookmark-icon"
-                  iconWidth="31"
-                  iconHeight="33"
-                  activeClassName="offer__bookmark-button--active"
-                  isActive={isFavorite}
-                />
+                <BookmarkButton classNamePrefix={ClassNamePrefix.OFFER} isActive={isFavorite} />
               </div>
               <Rating
                 ratingClassName="offer__rating"

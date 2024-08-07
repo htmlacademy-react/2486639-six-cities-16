@@ -24,7 +24,7 @@ export const offers: Offer[] = [
       longitude: 2.350499,
       zoom: 16
     },
-    isFavorite: true,
+    isFavorite: false,
     isPremium: false,
     rating: 3.2
   },
@@ -118,11 +118,11 @@ export const detailOffers: DetailOffer[] = [
       longitude: 2.350499,
       zoom: 16
     },
-    isFavorite: true,
+    isFavorite: false,
     isPremium: false,
     rating: 3.2,
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    bedrooms: 3,
+    bedrooms: 1,
     goods: [
       'Heating'
     ],
@@ -141,7 +141,7 @@ export const detailOffers: DetailOffer[] = [
       'https://16.design.htmlacademy.pro/static/hotel/18.jpg',
       'https://16.design.htmlacademy.pro/static/hotel/18.jpg'
     ],
-    maxAdults: 4
+    maxAdults: 2
   },
   {
     id: 'b1c2c3a5-a80a-4e0a-910f-ea1bdd1257a8',
@@ -165,7 +165,7 @@ export const detailOffers: DetailOffer[] = [
     isPremium: true,
     rating: 3.5,
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    bedrooms: 3,
+    bedrooms: 2,
     goods: [
       'Heating',
       'Wi-Fi',
@@ -228,7 +228,7 @@ export const detailOffers: DetailOffer[] = [
       'https://16.design.htmlacademy.pro/static/hotel/18.jpg'
 
     ],
-    maxAdults: 4
+    maxAdults: 6
   },
   {
     id: '993b5f0a-3e91-4007-aab0-1107fe23467a',
@@ -252,7 +252,7 @@ export const detailOffers: DetailOffer[] = [
     isPremium: false,
     rating: 4.8,
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    bedrooms: 3,
+    bedrooms: 4,
     goods: [
       'Heating',
       'Wi-Fi'
@@ -272,7 +272,7 @@ export const detailOffers: DetailOffer[] = [
       'https://16.design.htmlacademy.pro/static/hotel/2.jpg',
       'https://16.design.htmlacademy.pro/static/hotel/18.jpg'
     ],
-    maxAdults: 4
+    maxAdults: 8
   }
 ];
 /**/
