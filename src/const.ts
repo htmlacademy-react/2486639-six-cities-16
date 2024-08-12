@@ -1,9 +1,10 @@
+import { CityName } from './types/city';
 import { OfferId } from './types/offer';
 
 const APP_TITLE = '6 cities';
 
-const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
-const DEFAULT_CITY: typeof CITIES[number] = CITIES[0];
+const CITIES_NAMES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
+const DEFAULT_CITY: CityName = CITIES_NAMES[3]; //! CITIES_NAMES[0] что в ТЗ по умолчанию
 
 const OFFER_PATH = '/offer/';
 
@@ -30,13 +31,15 @@ enum PlacesSortingTypes {
 enum ClassNamePrefix {
   PlaceCard = 'place-card',
   Offer = 'offer',
-  Reviews = 'reviews'
+  Reviews = 'reviews',
+  Cities = 'cities'
 }
 
 const BookmarkButtonIconSize = {
-  [ClassNamePrefix.Offer]: { width: 31, height: 33 },
   [ClassNamePrefix.PlaceCard]: { width: 18, height: 19 },
-  [ClassNamePrefix.Reviews]: { width: 0, height: 0 } //! как в низу [OfferTypeFeature.entire]: ['', '']... как обойти
+  [ClassNamePrefix.Offer]: { width: 31, height: 33 },
+  [ClassNamePrefix.Reviews]: { width: 0, height: 0 }, //! как в низу [OfferTypeFeature.entire]: ['', '']... как обойти
+  [ClassNamePrefix.Cities]: { width: 0, height: 0 } //! тоже
 };
 
 enum OfferTypeFeature {
@@ -66,7 +69,7 @@ const REVIEW_TEXT_MIN_LENGTH = 50;
 
 export {
   APP_TITLE,
-  CITIES,
+  CITIES_NAMES,
   DEFAULT_CITY,
   OFFER_PATH,
   AppRoute,

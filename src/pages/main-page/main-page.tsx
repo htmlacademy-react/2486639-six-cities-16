@@ -1,14 +1,20 @@
 import HeaderAuth from '../../components/header/header-auth';
 import Locations from '../../components/locations/locations';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
+import PlacesMap from '../../components/places-map/places-map';
+import { CityName } from '../../types/city';
 import { Offer } from '../../types/offer';
+import { getCityOffers } from '../../utils/offer';
+import { ClassNamePrefix, DEFAULT_CITY } from '../../const';
 
 type MainPageProps = {
   offers: Offer[];
 }
 
 function MainPage({ offers }: MainPageProps): JSX.Element {
-  const isOffersEmpty: boolean = !offers.length;
+  const currentCity: CityName = DEFAULT_CITY;
+  const cityOffers = getCityOffers(currentCity, offers);
+  const isOffersEmpty: boolean = !cityOffers.length;
 
   return (
     <div className="page page--gray page--main">
@@ -27,11 +33,11 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
                     <p className="cities__status-description">We could not find any property available at the moment in Dusseldorf</p>
                   </div>
                   :
-                  <PlaceCardList offers={offers} />
+                  <PlaceCardList offers={cityOffers} />
               }
             </section>
             <div className="cities__right-section">
-              {isOffersEmpty ? null : <section className="cities__map map"></section>}
+              {isOffersEmpty ? null : <PlacesMap classNamePrefix={ClassNamePrefix.Cities} offers={cityOffers} />}
             </div>
           </div>
         </div>
