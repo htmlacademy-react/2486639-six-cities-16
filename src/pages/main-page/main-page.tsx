@@ -13,8 +13,8 @@ type MainPageProps = {
 }
 
 function MainPage({ offers }: MainPageProps): JSX.Element {
-  const currentCity: CityName = DEFAULT_CITY;
-  const cityOffers = getCityOffers(currentCity, offers);
+  const cityName: CityName = DEFAULT_CITY;
+  const cityOffers = getCityOffers(cityName, offers);
   const isOffersEmpty: boolean = !cityOffers.length;
   const mainClassName = classNames(
     'page__main',
@@ -48,7 +48,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
                     <p className="cities__status-description">We could not find any property available at the moment in Dusseldorf</p>
                   </div>
                   :
-                  <PlaceCardList offers={cityOffers} />
+                  <PlaceCardList cityName={cityName} offers={cityOffers} />
               }
             </section>
             <div className="cities__right-section">
