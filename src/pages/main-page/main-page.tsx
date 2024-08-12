@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import HeaderAuth from '../../components/header/header-auth';
 import Locations from '../../components/locations/locations';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
@@ -15,16 +16,30 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
   const currentCity: CityName = DEFAULT_CITY;
   const cityOffers = getCityOffers(currentCity, offers);
   const isOffersEmpty: boolean = !cityOffers.length;
+  const mainClassName = classNames(
+    'page__main',
+    'page__main--index',
+    { 'page__main--index-empty': isOffersEmpty }
+  );
+  const divClassName = classNames(
+    'cities__places-container',
+    'container',
+    { 'cities__places-container--empty': isOffersEmpty }
+  );
+  const sectionClassName = classNames(
+    { 'cities__no-places': isOffersEmpty },
+    { 'cities__places places': !isOffersEmpty }
+  );
 
   return (
     <div className="page page--gray page--main">
       <HeaderAuth />
 
-      <main className={`page__main page__main--index ${(isOffersEmpty) ? 'page__main--index-empty' : ''}`}>
+      <main className={mainClassName}>
         <Locations />
         <div className="cities">
-          <div className={`cities__places-container container ${(isOffersEmpty) ? 'cities__places-container--empty' : ''}`}>
-            <section className={(isOffersEmpty) ? 'cities__no-places' : 'cities__places places'}>
+          <div className={divClassName}>
+            <section className={sectionClassName}>
               {
                 isOffersEmpty
                   ?
@@ -37,12 +52,20 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
               }
             </section>
             <div className="cities__right-section">
-              {isOffersEmpty ? null : <PlacesMap classNamePrefix={ClassNamePrefix.Cities} offers={cityOffers} />}
+              {isOffersEmpty
+                ?
+                null
+                :
+                <PlacesMap
+                  classNamePrefix={ClassNamePrefix.Cities}
+                  offers={cityOffers}
+                  selectedOfferId={'' /* //! временно*/}
+                />}
             </div>
           </div>
         </div>
       </main>
-    </div>
+    </div >
   );
 }
 

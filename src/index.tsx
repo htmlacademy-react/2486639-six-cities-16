@@ -28,6 +28,7 @@ root.render(
   не отрабатывает route NotFound для /1.jpg /1.html  - на лого была ссылка /main.html
   нужен ли route для все городов /paris ....
   imageWidth imageHeight iconWidth iconHeight? строками и константами нормально? или выносить в константы и делать числа?
+  classNames
   css классы в коде у новых компонентов, нужно выносить в константы?
   <Helmet> <title>{`${APP_TITLE}: 404`}</title>....  что то придумать для сборки заголовка
    и добавить константы
