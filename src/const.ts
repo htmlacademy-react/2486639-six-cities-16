@@ -1,9 +1,10 @@
+import { CityName } from './types/city';
 import { OfferId } from './types/offer';
 
 const APP_TITLE = '6 cities';
 
-const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
-const DEFAULT_CITY: typeof CITIES[number] = CITIES[0];
+const CITIES_NAMES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
+const DEFAULT_CITY: CityName = CITIES_NAMES[3]; //! CITIES_NAMES[0] что в ТЗ по умолчанию
 
 const OFFER_PATH = '/offer/';
 
@@ -30,13 +31,15 @@ enum PlacesSortingTypes {
 enum ClassNamePrefix {
   PlaceCard = 'place-card',
   Offer = 'offer',
-  Reviews = 'reviews'
+  Reviews = 'reviews',
+  Cities = 'cities'
 }
 
 const BookmarkButtonIconSize = {
-  [ClassNamePrefix.Offer]: { width: 31, height: 33 },
   [ClassNamePrefix.PlaceCard]: { width: 18, height: 19 },
-  [ClassNamePrefix.Reviews]: { width: 0, height: 0 } //! как в низу [OfferTypeFeature.entire]: ['', '']... как обойти
+  [ClassNamePrefix.Offer]: { width: 31, height: 33 },
+  [ClassNamePrefix.Reviews]: { width: 0, height: 0 }, //! как в низу [OfferTypeFeature.entire]: ['', '']... как обойти
+  [ClassNamePrefix.Cities]: { width: 0, height: 0 } //! тоже
 };
 
 enum OfferTypeFeature {
@@ -64,9 +67,33 @@ const Rating = {
 };
 const REVIEW_TEXT_MIN_LENGTH = 50;
 
+const Leaflet = {
+  URL_TEMPLATE: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+  OPTIONS:
+  {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+  }
+};
+
+const UrlMarker = {
+  DEFAULT: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg',
+  CURRENT: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg'
+};
+
+const IconMarkerSize = {
+  WIDTH: 40,
+  HEIGHT: 40
+};
+
+const IconAnchorSize = {
+  WIDTH: IconMarkerSize.WIDTH / 2,
+  HEIGHT: IconMarkerSize.HEIGHT
+};
+
 export {
   APP_TITLE,
-  CITIES,
+  CITIES_NAMES,
   DEFAULT_CITY,
   OFFER_PATH,
   AppRoute,
@@ -82,5 +109,9 @@ export {
   DEFAULT_ACTIVE_OFFER_ID,
   REVIEWS_SHOW_COUNT,
   Rating,
-  REVIEW_TEXT_MIN_LENGTH
+  REVIEW_TEXT_MIN_LENGTH,
+  Leaflet,
+  UrlMarker,
+  IconMarkerSize,
+  IconAnchorSize
 };

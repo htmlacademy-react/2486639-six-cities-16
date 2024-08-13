@@ -1,11 +1,14 @@
-import { Offer } from '../types/offer';
+import { CityOffers, Offer } from '../types/offer';
+import { CityName } from '../types/city';
 import { OfferTypeFeature, OfferTypeFeatureTemplate, templateNumberString } from '../const';
+
+function getCityOffers(cityName: CityName, offers: Offer[]): Offer[] {
+  return offers.filter(({ city }) => (cityName === city.name));
+}
 
 function getFavoriteOffers(offers: Offer[]): Offer[] {
   return offers.filter(({ isFavorite }) => isFavorite);
 }
-
-type CityOffers = { cityName: string; offers: Offer[] };
 
 function sortByCityName(citiesOffers: CityOffers[]): CityOffers[] {
   return citiesOffers.sort(({ cityName: firstCityName }, { cityName: secondCityName }) => (firstCityName.localeCompare(secondCityName)));
@@ -42,4 +45,4 @@ function getFeatureText(key: OfferTypeFeature, value: number): string {
   return template.replace(templateNumberString, value.toString());
 }
 
-export { getFavoriteOffers, getOffersByCities, getFeatureText };
+export { getCityOffers, getFavoriteOffers, getOffersByCities, getFeatureText };

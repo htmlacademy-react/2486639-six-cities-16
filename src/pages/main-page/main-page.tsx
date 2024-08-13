@@ -1,24 +1,45 @@
+import classNames from 'classnames';
 import HeaderAuth from '../../components/header/header-auth';
 import Locations from '../../components/locations/locations';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
+import OffersMap from '../../components/offers-map/offers-map';
+import { CityName } from '../../types/city';
 import { Offer } from '../../types/offer';
+import { getCityOffers } from '../../utils/offer';
+import { ClassNamePrefix, DEFAULT_CITY } from '../../const';
 
 type MainPageProps = {
   offers: Offer[];
 }
 
 function MainPage({ offers }: MainPageProps): JSX.Element {
-  const isOffersEmpty: boolean = !offers.length;
+  const cityName: CityName = DEFAULT_CITY;
+  const cityOffers = getCityOffers(cityName, offers);
+  const isOffersEmpty: boolean = !cityOffers.length;
+  const mainClassName = classNames(
+    'page__main',
+    'page__main--index',
+    { 'page__main--index-empty': isOffersEmpty }
+  );
+  const divClassName = classNames(
+    'cities__places-container',
+    'container',
+    { 'cities__places-container--empty': isOffersEmpty }
+  );
+  const sectionClassName = classNames(
+    { 'cities__no-places': isOffersEmpty },
+    { 'cities__places places': !isOffersEmpty }
+  );
 
   return (
     <div className="page page--gray page--main">
       <HeaderAuth />
 
-      <main className={`page__main page__main--index ${(isOffersEmpty) ? 'page__main--index-empty' : ''}`}>
+      <main className={mainClassName}>
         <Locations />
         <div className="cities">
-          <div className={`cities__places-container container ${(isOffersEmpty) ? 'cities__places-container--empty' : ''}`}>
-            <section className={(isOffersEmpty) ? 'cities__no-places' : 'cities__places places'}>
+          <div className={divClassName}>
+            <section className={sectionClassName}>
               {
                 isOffersEmpty
                   ?
@@ -27,16 +48,24 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
                     <p className="cities__status-description">We could not find any property available at the moment in Dusseldorf</p>
                   </div>
                   :
-                  <PlaceCardList offers={offers} />
+                  <PlaceCardList cityName={cityName} offers={cityOffers} />
               }
             </section>
             <div className="cities__right-section">
-              {isOffersEmpty ? null : <section className="cities__map map"></section>}
+              {isOffersEmpty
+                ?
+                null
+                :
+                <OffersMap
+                  classNamePrefix={ClassNamePrefix.Cities}
+                  offers={cityOffers}
+                  selectedOfferId={'' /* //! временно*/}
+                />}
             </div>
           </div>
         </div>
       </main>
-    </div>
+    </div >
   );
 }
 

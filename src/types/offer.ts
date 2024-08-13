@@ -26,3 +26,5 @@ export type DetailOffer = BaseOffer & {
   images: string[];
   maxAdults: number;
 };
+
+export type CityOffers = { cityName: string; offers: Offer[] };

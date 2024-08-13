@@ -12,16 +12,16 @@ export const offers: Offer[] = [
     price: 464,
     previewImage: 'https://16.design.htmlacademy.pro/static/hotel/13.jpg',
     city: {
-      name: 'Paris',
+      name: 'Amsterdam',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
-        zoom: 13
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
+        zoom: 10
       }
     },
     location: {
-      latitude: 48.865610000000004,
-      longitude: 2.350499,
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
       zoom: 16
     },
     isFavorite: false,
@@ -35,16 +35,16 @@ export const offers: Offer[] = [
     price: 405,
     previewImage: 'https://16.design.htmlacademy.pro/static/hotel/10.jpg',
     city: {
-      name: 'Paris',
+      name: 'Amsterdam',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
-        zoom: 13
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
+        zoom: 10
       }
     },
     location: {
-      latitude: 48.846610000000005,
-      longitude: 2.374499,
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
       zoom: 16
     },
     isFavorite: true,
@@ -60,14 +60,14 @@ export const offers: Offer[] = [
     city: {
       name: 'Amsterdam',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
-        zoom: 13
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
+        zoom: 10
       }
     },
     location: {
-      latitude: 48.837610000000005,
-      longitude: 2.364499,
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
       zoom: 16
     },
     isFavorite: true,
@@ -81,16 +81,16 @@ export const offers: Offer[] = [
     price: 138,
     previewImage: 'https://16.design.htmlacademy.pro/static/hotel/2.jpg',
     city: {
-      name: 'Cologne',
+      name: 'Amsterdam',
       location: {
-        latitude: 50.938361,
-        longitude: 6.959974,
-        zoom: 13
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
+        zoom: 10
       }
     },
     location: {
-      latitude: 50.941361,
-      longitude: 6.956974,
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
       zoom: 16
     },
     isFavorite: false,
@@ -197,9 +197,9 @@ export const detailOffers: DetailOffer[] = [
     city: {
       name: 'Amsterdam',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
-        zoom: 13
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
+        zoom: 10
       }
     },
     location: {
