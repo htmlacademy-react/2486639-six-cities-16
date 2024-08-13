@@ -12,6 +12,7 @@ import OfferReviews from '../../components/offer-reviews/offer-reviews';
 import NearPlaces from '../../components/near-places/near-places';
 import Price from '../../components/price/price';
 import OfferFeatures from '../../components/offer-features/offer-features';
+import OffersMap from '../../components/offers-map/offers-map';
 import { OfferId, Offer, DetailOffer } from '../../types/offer';
 import { Review } from '../../types/review';
 import { getById } from '../../utils/util';
@@ -26,6 +27,7 @@ type OfferPageProps = {
 
 function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: OfferPageProps): JSX.Element {
   const params = useParams();
+  const offers = nearOffers.slice(0, 3); //! Может нужно только 3, то в константы? поискать в ТЗ
   const offerId: OfferId | undefined = params.id; //! тест... а как получить в App и не передавать все предложения?
 
   if (!offerId) {
@@ -80,10 +82,10 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
               <OfferReviews reviews={reviews} isShowForm={authorizationStatus === AuthorizationStatus.Auth} />
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <OffersMap classNamePrefix={classNamePrefix} offers={offers} />
         </section>
         <div className="container">
-          <NearPlaces offers={nearOffers.slice(0, 3)} /> {/*//! Может нужно только 3, то в константы? поискать в ТЗ*/}
+          <NearPlaces offers={offers} />
         </div>
       </main>
     </div>

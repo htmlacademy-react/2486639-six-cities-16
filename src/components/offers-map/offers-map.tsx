@@ -7,7 +7,7 @@ import { Icon, Marker, layerGroup } from 'leaflet';
 type OffersMapProps = {
   classNamePrefix: ClassNamePrefix;
   offers: Offer[];
-  selectedOfferId: OfferId;
+  selectedOfferId?: OfferId;
 }
 
 const defaultCustomIcon = new Icon({
@@ -22,7 +22,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [IconAnchorSize.WIDTH, IconAnchorSize.HEIGHT]
 });
 
-function OffersMap({ classNamePrefix, offers, selectedOfferId }: OffersMapProps): JSX.Element {
+function OffersMap({ classNamePrefix, offers, selectedOfferId = '' }: OffersMapProps): JSX.Element {
   const mapRef = useRef(null);
   // т.к. проверка на пустой список предложений в родительском компоненте,
   // то для координат города можно взять коодинаты из первого предложения
