@@ -67,6 +67,15 @@ const Rating = {
 };
 const REVIEW_TEXT_MIN_LENGTH = 50;
 
+const Leaflet = {
+  URL_TEMPLATE: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+  OPTIONS:
+  {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+  }
+};
+
 const UrlMarker = {
   DEFAULT: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg',
   CURRENT: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg'
@@ -101,6 +110,7 @@ export {
   REVIEWS_SHOW_COUNT,
   Rating,
   REVIEW_TEXT_MIN_LENGTH,
+  Leaflet,
   UrlMarker,
   IconMarkerSize,
   IconAnchorSize

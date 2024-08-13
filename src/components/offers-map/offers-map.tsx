@@ -36,10 +36,7 @@ function OffersMap({ classNamePrefix, offers, selectedOfferId }: OffersMapProps)
         offers.forEach((offer) => {
           const { latitude: lat, longitude: lng } = offer.location;
           const customIcon = (offer.id === selectedOfferId) ? currentCustomIcon : defaultCustomIcon;
-          const marker = new Marker({
-            lat,
-            lng
-          });
+          const marker = new Marker({ lat, lng });
 
           marker.setIcon(customIcon).addTo(markerLayer);
         });
@@ -51,43 +48,9 @@ function OffersMap({ classNamePrefix, offers, selectedOfferId }: OffersMapProps)
     },
     [map, offers, selectedOfferId]);
 
-  //return <div style={{ width: '300px', height: '100px' }} ref={mapRef}></div>;
-
-  /**/
   return (
     <section className={`${classNamePrefix}__map map`} ref={mapRef} />
   );
-  /**/
-
-  /*
-  return (
-    <div style={{ width: '400px', height: '500px' }} ref={mapRef}></div>
-  );
-  */
-
-  /*
-  return (
-    <section className="cities__map" >
-      <div  className="cities__map" style={{ width: '400px', height: '200px' }} ref={mapRef}></div>
-    </section >
-  );
-  */
-
-  /*
-  return (
-    <section className={`${classNamePrefix}__map map`} >
-      <div style={{ width: '400px', height: '200px' }} ref={mapRef}></div>
-    </section >
-  );
-  */
-
-  /*
-return (
-  <section className={`${classNamePrefix}__map map`} >
-    <div style={{ width: '400px', height: '500px' }} ref={mapRef} />
-  </section >
-);
-*/
 }
 
 export default OffersMap;
