@@ -44,6 +44,9 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
     title,
     type,
     price,
+    //!
+    //location,
+    //city,
     isFavorite,
     isPremium,
     rating,
@@ -82,7 +85,14 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
               <OfferReviews reviews={reviews} isShowForm={authorizationStatus === AuthorizationStatus.Auth} />
             </div>
           </div>
-          <OffersMap classNamePrefix={classNamePrefix} offers={offers} />
+          <OffersMap
+            classNamePrefix={classNamePrefix}
+            //! тут посмотреть ТЗ от чего рисовать от города предложения или самого предложения
+            //startLocation={location}
+            //startLocation={city.location}
+            startLocation={offers[0].city.location}
+            offers={offers}
+          />
         </section>
         <div className="container">
           <NearPlaces offers={offers} />

@@ -58,6 +58,8 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
                 :
                 <OffersMap
                   classNamePrefix={ClassNamePrefix.Cities}
+                  // для координат города можно взять коодинаты из первого предложения
+                  startLocation={offers[0].city.location}
                   offers={cityOffers}
                   selectedOfferId={'' /* //! временно*/}
                 />}
