@@ -67,6 +67,21 @@ const Rating = {
 };
 const REVIEW_TEXT_MIN_LENGTH = 50;
 
+const UrlMarker = {
+  DEFAULT: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg',
+  CURRENT: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg'
+};
+
+const IconMarkerSize = {
+  WIDTH: 40,
+  HEIGHT: 40
+};
+
+const IconAnchorSize = {
+  WIDTH: IconMarkerSize.WIDTH / 2,
+  HEIGHT: IconMarkerSize.HEIGHT
+};
+
 export {
   APP_TITLE,
   CITIES_NAMES,
@@ -85,5 +100,8 @@ export {
   DEFAULT_ACTIVE_OFFER_ID,
   REVIEWS_SHOW_COUNT,
   Rating,
-  REVIEW_TEXT_MIN_LENGTH
+  REVIEW_TEXT_MIN_LENGTH,
+  UrlMarker,
+  IconMarkerSize,
+  IconAnchorSize
 };

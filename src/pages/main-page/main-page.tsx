@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import HeaderAuth from '../../components/header/header-auth';
 import Locations from '../../components/locations/locations';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
-import PlacesMap from '../../components/places-map/places-map';
+import OffersMap from '../../components/offers-map/offers-map';
 import { CityName } from '../../types/city';
 import { Offer } from '../../types/offer';
 import { getCityOffers } from '../../utils/offer';
@@ -56,7 +56,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
                 ?
                 null
                 :
-                <PlacesMap
+                <OffersMap
                   classNamePrefix={ClassNamePrefix.Cities}
                   offers={cityOffers}
                   selectedOfferId={'' /* //! временно*/}

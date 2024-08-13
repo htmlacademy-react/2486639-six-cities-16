@@ -1,31 +1,28 @@
 import { useEffect, useRef } from 'react';
 import useMap from '../../hooks/use-map';
 import { Offer, OfferId } from '../../types/offer';
-import { ClassNamePrefix } from '../../const';
+import { ClassNamePrefix, UrlMarker, IconMarkerSize, IconAnchorSize } from '../../const';
 import { Icon, Marker, layerGroup } from 'leaflet';
 
-const URL_MARKER_DEFAULT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
-const URL_MARKER_CURRENT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
-
-type PlacesMapProps = {
+type OffersMapProps = {
   classNamePrefix: ClassNamePrefix;
   offers: Offer[];
   selectedOfferId: OfferId;
 }
 
 const defaultCustomIcon = new Icon({
-  iconUrl: URL_MARKER_DEFAULT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconUrl: UrlMarker.DEFAULT,
+  iconSize: [IconMarkerSize.WIDTH, IconMarkerSize.HEIGHT],
+  iconAnchor: [IconAnchorSize.WIDTH, IconAnchorSize.HEIGHT]
 });
 
 const currentCustomIcon = new Icon({
-  iconUrl: URL_MARKER_CURRENT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconUrl: UrlMarker.CURRENT,
+  iconSize: [IconMarkerSize.WIDTH, IconMarkerSize.HEIGHT],
+  iconAnchor: [IconAnchorSize.WIDTH, IconAnchorSize.HEIGHT]
 });
 
-function PlacesMap({ classNamePrefix, offers, selectedOfferId }: PlacesMapProps): JSX.Element {
+function OffersMap({ classNamePrefix, offers, selectedOfferId }: OffersMapProps): JSX.Element {
   const mapRef = useRef(null);
   // т.к. проверка на пустой список предложений в родительском компоненте,
   // то для координат города можно взять коодинаты из первого предложения
@@ -35,21 +32,16 @@ function PlacesMap({ classNamePrefix, offers, selectedOfferId }: PlacesMapProps)
     () => {
       if (map) {
         const markerLayer = layerGroup().addTo(map);
+
         offers.forEach((offer) => {
           const { latitude: lat, longitude: lng } = offer.location;
+          const customIcon = (offer.id === selectedOfferId) ? currentCustomIcon : defaultCustomIcon;
           const marker = new Marker({
             lat,
             lng
           });
 
-          marker
-            .setIcon(
-              offer.id === selectedOfferId
-                ? currentCustomIcon
-                : defaultCustomIcon
-            )
-            .addTo(markerLayer);
-
+          marker.setIcon(customIcon).addTo(markerLayer);
         });
 
         return () => {
@@ -98,4 +90,4 @@ return (
 */
 }
 
-export default PlacesMap;
+export default OffersMap;

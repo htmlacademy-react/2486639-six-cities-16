@@ -24,7 +24,7 @@ function useMap(
           }
         );
 
-        //! все в констаны и сравнить с ТЗ
+        //! РІСЃРµ РІ РєРѕРЅСЃС‚Р°РЅС‹ Рё СЃСЂР°РІРЅРёС‚СЊ СЃ РўР—
         const layer = new TileLayer(
           'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
           {
