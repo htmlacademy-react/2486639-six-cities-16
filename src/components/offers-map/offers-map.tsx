@@ -9,7 +9,7 @@ type OffersMapProps = {
   classNamePrefix: ClassNamePrefix;
   startLocation: Location;
   offers: Offer[];
-  selectedOfferId?: OfferId;
+  activeOfferId?: OfferId;
 }
 
 const defaultCustomIcon = new Icon({
@@ -29,7 +29,7 @@ function OffersMap(props: OffersMapProps): JSX.Element {
     classNamePrefix,
     startLocation,
     offers,
-    selectedOfferId = ''
+    activeOfferId = ''
   } = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, startLocation);
@@ -41,7 +41,7 @@ function OffersMap(props: OffersMapProps): JSX.Element {
 
         offers.forEach((offer) => {
           const { latitude: lat, longitude: lng } = offer.location;
-          const customIcon = (offer.id === selectedOfferId) ? currentCustomIcon : defaultCustomIcon;
+          const customIcon = (offer.id === activeOfferId) ? currentCustomIcon : defaultCustomIcon;
           const marker = new Marker({ lat, lng });
 
           marker.setIcon(customIcon).addTo(markerLayer);
@@ -52,7 +52,7 @@ function OffersMap(props: OffersMapProps): JSX.Element {
         };
       }
     },
-    [map, offers, selectedOfferId]);
+    [map, offers, activeOfferId]);
 
   return (
     <section className={`${classNamePrefix}__map map`} ref={mapRef} />
