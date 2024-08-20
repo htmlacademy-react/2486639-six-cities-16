@@ -28,8 +28,10 @@ root.render(
 
 Вопросы:
   {isPro ? 'Pro' : ''} или весь span не показывать?
+  classNamePrefix попробовать переделать на передачу типа или как то по другому
   <p className="offer__text"> как то разбито по частям, глянуть как в ТЗ, перенос строки или '.' или длинна
   в списках мест сделать опциональные колбеки и перенести все списки на один компонент
+   сделать отцию выводить сортировку или перенсти в родительский компонент NearPlaces /  FavoritesPage + FavoriteItem
   как типизировать enum PlacesSortingTypes[key]? сделал {Object.values(PlacesSortingTypes).map(
   константы объединенные как enum или const as const! критерий!
   параметров в app.tsx еще нет console.log('app', useParams()); получаю offerId в offer-page

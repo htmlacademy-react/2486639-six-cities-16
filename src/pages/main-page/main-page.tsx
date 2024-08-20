@@ -14,25 +14,24 @@ type MainPageProps = {
 }
 
 function MainPage({ offers }: MainPageProps): JSX.Element {
-  const [selectedCityName/*, setSelectedCityName*/] = useState<CityName>(DEFAULT_CITY);
+  const [currentCityName/*, setСurrentCityName*/] = useState<CityName>(DEFAULT_CITY);
   const [activeOfferId, setActiveOfferId] = useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID);
 
-  const currentCityName: CityName = DEFAULT_CITY;
   const cityOffers = getCityOffers(currentCityName, offers);
-  const isOffersEmpty: boolean = !cityOffers.length;
+  const isCityOffersEmpty: boolean = !cityOffers.length;
   const mainClassName = classNames(
     'page__main',
     'page__main--index',
-    { 'page__main--index-empty': isOffersEmpty }
+    { 'page__main--index-empty': isCityOffersEmpty }
   );
   const divClassName = classNames(
     'cities__places-container',
     'container',
-    { 'cities__places-container--empty': isOffersEmpty }
+    { 'cities__places-container--empty': isCityOffersEmpty }
   );
   const sectionClassName = classNames(
-    { 'cities__no-places': isOffersEmpty },
-    { 'cities__places places': !isOffersEmpty }
+    { 'cities__no-places': isCityOffersEmpty },
+    { 'cities__places places': !isCityOffersEmpty }
   );
 
   //! типизировать функции
@@ -46,8 +45,8 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
 
   /*
   const handleCityNameClick = (cityName: CityName) => {
-    if (selectedCityName !== cityName) {
-      setSelectedCityName(cityName);
+    if (currentCityName !== cityName) {
+      setСurrentCityName(cityName);
     }
   };
   */
@@ -57,12 +56,15 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
       <HeaderAuth />
 
       <main className={mainClassName}>
-        <Locations currentCityName={selectedCityName} /*onCityNameClick={handleCityNameClick} */ />
+        <Locations
+          currentCityName={currentCityName}
+        /*onCityNameClick={handleCityNameClick} */
+        />
         <div className="cities">
           <div className={divClassName}>
             <section className={sectionClassName}>
               {
-                isOffersEmpty
+                isCityOffersEmpty
                   ?
                   <div className="cities__status-wrapper tabs__content">
                     <b className="cities__status">No places to stay available</b>
@@ -78,7 +80,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
               }
             </section>
             <div className="cities__right-section">
-              {isOffersEmpty
+              {isCityOffersEmpty
                 ?
                 null
                 :
