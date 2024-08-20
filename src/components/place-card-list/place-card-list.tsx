@@ -1,18 +1,18 @@
-import { useState } from 'react';
 import PlacesSorting from '../places-sorting/places-sorting';
 import PlaceCard from '../place-card/place-card';
 import { CityName } from '../../types/city';
 import { Offer, OfferId } from '../../types/offer';
-import { DEFAULT_ACTIVE_OFFER_ID } from '../../const';
 
 type PlaceCardListProps = {
   cityName: CityName;
   offers: Offer[];
+  //! типизировать функции
+  onPlaceCardMouseEnter?: (offerId: OfferId) => void;
+  onPlaceCardMouseLeave?: () => void;
 }
 
-function PlaceCardList({ cityName, offers }: PlaceCardListProps): JSX.Element {
-  const [activeOfferId, setActiveOfferId] = useState(DEFAULT_ACTIVE_OFFER_ID);
-  document.title = activeOfferId; //! для тестирования
+function PlaceCardList(props: PlaceCardListProps): JSX.Element {
+  const { cityName, offers, onPlaceCardMouseEnter, onPlaceCardMouseLeave } = props;
 
   return (
     <>
@@ -25,13 +25,8 @@ function PlaceCardList({ cityName, offers }: PlaceCardListProps): JSX.Element {
             <PlaceCard
               key={offer.id}
               offer={offer}
-              onMouseEnter={(offerId: OfferId) => {
-                setActiveOfferId(offerId);
-              }}
-              onMouseLeave={() => {
-                //! посмотреть по ТЗ при выходе нужно очистить
-                setActiveOfferId(DEFAULT_ACTIVE_OFFER_ID);
-              }}
+              onMouseEnter={onPlaceCardMouseEnter}
+              onMouseLeave={onPlaceCardMouseLeave}
             />
           ))
         }

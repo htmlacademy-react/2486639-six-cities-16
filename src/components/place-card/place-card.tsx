@@ -3,9 +3,9 @@ import { Offer, OfferId } from '../../types/offer';
 
 type PlaceCardProps = {
   offer: Offer;
-  onMouseEnter: (offerId: OfferId) => void;
-  onMouseLeave: (offerId: OfferId) => void;
-  //! два раза (offerId: OfferId) => void; сделать тип... но как его назвать? во втором случае можно и без параметров
+  //! типизировать функции
+  onMouseEnter?: (offerId: OfferId) => void;
+  onMouseLeave?: () => void;
 }
 
 function PlaceCard({ offer, onMouseEnter, onMouseLeave }: PlaceCardProps): JSX.Element {
@@ -13,11 +13,10 @@ function PlaceCard({ offer, onMouseEnter, onMouseLeave }: PlaceCardProps): JSX.E
     <article
       className="cities__card place-card"
       onMouseEnter={() => {
-        onMouseEnter(offer.id);
+        onMouseEnter?.(offer.id);
       }}
       onMouseLeave={() => {
-        //! посмотреть по ТЗ при выходе нужно очистить
-        onMouseLeave(offer.id);
+        onMouseLeave?.();
       }}
     >
       <PlaceCardInfo

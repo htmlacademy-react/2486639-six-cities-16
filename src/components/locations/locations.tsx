@@ -1,6 +1,12 @@
-import { CITIES_NAMES, DEFAULT_CITY } from '../../const';
+import { CityName } from '../../types/city';
+import { CITIES_NAMES } from '../../const';
 
-function Locations(): JSX.Element {
+type LocationsProps = {
+  currentCityName: CityName;
+  onCityNameClick: (cityName: CityName) => void;
+}
+
+function Locations({ currentCityName, onCityNameClick }: LocationsProps): JSX.Element {
   return (
     <>
       <h1 className="visually-hidden">Cities</h1>
@@ -8,16 +14,27 @@ function Locations(): JSX.Element {
         <section className="locations container">
           <ul className="locations__list tabs__list">
             {
-              CITIES_NAMES.map((city) => {
+              CITIES_NAMES.map((cityName) => {
                 let className: string = 'locations__item-link tabs__item';
-                if (city === DEFAULT_CITY) {
+                if (cityName === currentCityName) {
                   className += ' tabs__item--active';
                 }
 
                 return (
-                  <li className="locations__item" key={city}>
-                    <a className={className} href="#">
-                      <span>{city}</span>
+                  <li className="locations__item" key={cityName} >
+                    <a
+                      className={className}
+                      //! перепровенить как в ТЗ отразить ссылку на другой город?
+                      //href="#"
+                      href={`/${cityName}`}
+                      onClick={
+                        (evt: React.MouseEvent<HTMLElement>) => {
+                          evt.preventDefault();
+                          onCityNameClick(cityName);
+                        }
+                      }
+                    >
+                      <span>{cityName}</span>
                     </a>
                   </li>
                 );

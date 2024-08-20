@@ -1,13 +1,15 @@
 import { useEffect, useRef } from 'react';
+import { Icon, Marker, layerGroup } from 'leaflet';
 import useMap from '../../hooks/use-map';
 import { Offer, OfferId } from '../../types/offer';
+import { Location } from '../../types/location';
 import { ClassNamePrefix, UrlMarker, IconMarkerSize, IconAnchorSize } from '../../const';
-import { Icon, Marker, layerGroup } from 'leaflet';
 
 type OffersMapProps = {
   classNamePrefix: ClassNamePrefix;
+  startLocation: Location;
   offers: Offer[];
-  selectedOfferId: OfferId;
+  activeOfferId?: OfferId;
 }
 
 const defaultCustomIcon = new Icon({
@@ -22,11 +24,15 @@ const currentCustomIcon = new Icon({
   iconAnchor: [IconAnchorSize.WIDTH, IconAnchorSize.HEIGHT]
 });
 
-function OffersMap({ classNamePrefix, offers, selectedOfferId }: OffersMapProps): JSX.Element {
+function OffersMap(props: OffersMapProps): JSX.Element {
+  const {
+    classNamePrefix,
+    startLocation,
+    offers,
+    activeOfferId = ''
+  } = props;
   const mapRef = useRef(null);
-  // т.к. проверка на пустой список предложений в родительском компоненте,
-  // то для координат города можно взять коодинаты из первого предложения
-  const map = useMap(mapRef, offers[0].city);
+  const map = useMap(mapRef, startLocation);
 
   useEffect(
     () => {
@@ -35,7 +41,7 @@ function OffersMap({ classNamePrefix, offers, selectedOfferId }: OffersMapProps)
 
         offers.forEach((offer) => {
           const { latitude: lat, longitude: lng } = offer.location;
-          const customIcon = (offer.id === selectedOfferId) ? currentCustomIcon : defaultCustomIcon;
+          const customIcon = (offer.id === activeOfferId) ? currentCustomIcon : defaultCustomIcon;
           const marker = new Marker({ lat, lng });
 
           marker.setIcon(customIcon).addTo(markerLayer);
@@ -46,7 +52,7 @@ function OffersMap({ classNamePrefix, offers, selectedOfferId }: OffersMapProps)
         };
       }
     },
-    [map, offers, selectedOfferId]);
+    [map, offers, activeOfferId]);
 
   return (
     <section className={`${classNamePrefix}__map map`} ref={mapRef} />

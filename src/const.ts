@@ -77,17 +77,19 @@ const Leaflet = {
 };
 
 const UrlMarker = {
-  DEFAULT: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg',
-  CURRENT: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg'
+  DEFAULT: '/img/pin.svg',
+  CURRENT: '/img/pin-active.svg'
 };
 
+//! pin.svg и pin-active.svg <svg width="27" height="39"
+//! 28 * 40 ?
 const IconMarkerSize = {
-  WIDTH: 40,
-  HEIGHT: 40
+  WIDTH: 27,
+  HEIGHT: 39
 };
 
 const IconAnchorSize = {
-  WIDTH: IconMarkerSize.WIDTH / 2,
+  WIDTH: IconMarkerSize.WIDTH / 2, //! 14?
   HEIGHT: IconMarkerSize.HEIGHT
 };
 
