@@ -34,7 +34,6 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
     { 'cities__places places': !isCityOffersEmpty }
   );
 
-  //! типизировать функции
   const handlePlaceCardMouseEnter = (offerId: OfferId) => {
     setActiveOfferId(offerId);
   };

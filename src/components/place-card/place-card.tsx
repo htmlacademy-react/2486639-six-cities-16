@@ -3,7 +3,6 @@ import { Offer, OfferId } from '../../types/offer';
 
 type PlaceCardProps = {
   offer: Offer;
-  //! типизировать функции
   onMouseEnter?: (offerId: OfferId) => void;
   onMouseLeave?: () => void;
 }

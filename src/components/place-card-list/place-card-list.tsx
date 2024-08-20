@@ -6,7 +6,6 @@ import { Offer, OfferId } from '../../types/offer';
 type PlaceCardListProps = {
   cityName: CityName;
   offers: Offer[];
-  //! типизировать функции
   onPlaceCardMouseEnter?: (offerId: OfferId) => void;
   onPlaceCardMouseLeave?: () => void;
 }

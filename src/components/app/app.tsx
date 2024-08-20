@@ -19,8 +19,8 @@ type AppProps = {
 }
 
 const authorizationStatus = AuthorizationStatus.Auth;
-//const authorizationStatus = AuthorizationStatus.NoAuth;
-//const authorizationStatus = AuthorizationStatus.Unknown;
+//const authorizationStatus = AuthorizationStatus.NoAuth; //! тест
+//const authorizationStatus = AuthorizationStatus.Unknown; //! тест
 
 function App({ offers, detailOffers, nearOffers, reviews }: AppProps): JSX.Element {
   return (

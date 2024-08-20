@@ -8,8 +8,6 @@ function OfferGallery({ images }: OfferGalleryProps): JSX.Element {
       <div className="offer__gallery">
         {images.map((image, index) => {
           const key = `img-${index}`;
-          //! когда будут реальные данные, то ключь сделать путем и проверить ошибки в консоли
-          //! с одинковым ключем у всех 6ти не корректно обновлялись при переключичении с мест не подалеку
 
           return (
             <div className="offer__image-wrapper" key={key}>

@@ -24,7 +24,6 @@ function Locations({ currentCityName, onCityNameClick }: LocationsProps): JSX.El
                   <li className="locations__item" key={cityName} >
                     <a
                       className={className}
-                      //! перепровенить как в ТЗ отразить ссылку на другой город?
                       //href="#"
                       href={`/${cityName}`}
                       onClick={

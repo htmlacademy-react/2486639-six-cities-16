@@ -58,6 +58,7 @@ const OfferTypeFeatureTemplate = {
 } as const;
 
 const IMAGES_SHOW_COUNT = 6;
+const NEAR_OFFERS_SHOW_COUNT = 3;
 const ONE_STAR_WIDTH = 20;
 const DEFAULT_ACTIVE_OFFER_ID: OfferId = '';
 const REVIEWS_SHOW_COUNT = 10;
@@ -108,6 +109,7 @@ export {
   templateNumberString,
   OfferTypeFeatureTemplate,
   IMAGES_SHOW_COUNT,
+  NEAR_OFFERS_SHOW_COUNT,
   ONE_STAR_WIDTH,
   DEFAULT_ACTIVE_OFFER_ID,
   REVIEWS_SHOW_COUNT,

@@ -7,7 +7,7 @@ type OfferHostProps = {
 
 function OfferHost({ host, description }: OfferHostProps): JSX.Element {
   const { name, isPro, avatarUrl } = host;
-  const descriptions = [description, description]; //! как то разбиваеться на абзацы
+  const descriptions = [description, description];
 
   return (
     <div className="offer__host">

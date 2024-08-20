@@ -9,9 +9,9 @@ type FavoriteItemProps = {
 function FavoriteItem({ cityName, offers }: FavoriteItemProps): JSX.Element {
   return (
     <li className="favorites__locations-items">
-      <div className="favorites__locations locations locations--current">{/*//! locations--current посмотреть макет, наведенный? */}
+      <div className="favorites__locations locations locations--current">
         <div className="locations__item">
-          <a className="locations__item-link" href="#">{/*//! ссылка на город */}
+          <a className="locations__item-link" href="#">
             <span>{cityName}</span>
           </a>
         </div>
