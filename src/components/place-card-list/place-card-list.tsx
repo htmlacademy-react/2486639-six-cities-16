@@ -7,8 +7,8 @@ type PlaceCardListProps = {
   cityName: CityName;
   offers: Offer[];
   //! типизировать функции
-  onPlaceCardMouseEnter: (offerId: OfferId) => void;
-  onPlaceCardMouseLeave: () => void;
+  onPlaceCardMouseEnter?: (offerId: OfferId) => void;
+  onPlaceCardMouseLeave?: () => void;
 }
 
 function PlaceCardList(props: PlaceCardListProps): JSX.Element {
@@ -25,12 +25,8 @@ function PlaceCardList(props: PlaceCardListProps): JSX.Element {
             <PlaceCard
               key={offer.id}
               offer={offer}
-              onMouseEnter={(offerId: OfferId) => {
-                onPlaceCardMouseEnter?.(offerId);
-              }}
-              onMouseLeave={() => {
-                onPlaceCardMouseLeave?.();
-              }}
+              onMouseEnter={onPlaceCardMouseEnter}
+              onMouseLeave={onPlaceCardMouseLeave}
             />
           ))
         }

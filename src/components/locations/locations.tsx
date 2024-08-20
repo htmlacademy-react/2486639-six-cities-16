@@ -3,10 +3,10 @@ import { CITIES_NAMES } from '../../const';
 
 type LocationsProps = {
   currentCityName: CityName;
-  //onCityNameClick: (cityName: CityName) => void;
+  onCityNameClick: (cityName: CityName) => void;
 }
 
-function Locations({ currentCityName/*, onCityNameClick*/ }: LocationsProps): JSX.Element {
+function Locations({ currentCityName, onCityNameClick }: LocationsProps): JSX.Element {
   return (
     <>
       <h1 className="visually-hidden">Cities</h1>
@@ -14,28 +14,27 @@ function Locations({ currentCityName/*, onCityNameClick*/ }: LocationsProps): JS
         <section className="locations container">
           <ul className="locations__list tabs__list">
             {
-              CITIES_NAMES.map((city) => {
+              CITIES_NAMES.map((cityName) => {
                 let className: string = 'locations__item-link tabs__item';
-                if (city === currentCityName) {
+                if (cityName === currentCityName) {
                   className += ' tabs__item--active';
                 }
 
                 return (
-                  <li
-                    className="locations__item"
-                    key={city}
-                    onClick={
-                      (/*evt: SyntheticEvent*/) => {
-
-                        //console.log(evt);
-
-                        //cityName: CityName;
-                        //onCityNameClick(cityName);
+                  <li className="locations__item" key={cityName} >
+                    <a
+                      className={className}
+                      //! перепровенить как в ТЗ отразить ссылку на другой город?
+                      //href="#"
+                      href={`/${cityName}`}
+                      onClick={
+                        (evt: React.MouseEvent<HTMLElement>) => {
+                          evt.preventDefault();
+                          onCityNameClick(cityName);
+                        }
                       }
-                    }
-                  >
-                    <a className={className} href="#">
-                      <span>{city}</span>
+                    >
+                      <span>{cityName}</span>
                     </a>
                   </li>
                 );

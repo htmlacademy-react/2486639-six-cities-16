@@ -14,7 +14,7 @@ type MainPageProps = {
 }
 
 function MainPage({ offers }: MainPageProps): JSX.Element {
-  const [currentCityName/*, setСurrentCityName*/] = useState<CityName>(DEFAULT_CITY);
+  const [currentCityName, setСurrentCityName] = useState<CityName>(DEFAULT_CITY);
   const [activeOfferId, setActiveOfferId] = useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID);
 
   const cityOffers = getCityOffers(currentCityName, offers);
@@ -43,13 +43,11 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
     setActiveOfferId(DEFAULT_ACTIVE_OFFER_ID);
   };
 
-  /*
   const handleCityNameClick = (cityName: CityName) => {
     if (currentCityName !== cityName) {
       setСurrentCityName(cityName);
     }
   };
-  */
 
   return (
     <div className="page page--gray page--main">
@@ -58,7 +56,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
       <main className={mainClassName}>
         <Locations
           currentCityName={currentCityName}
-        /*onCityNameClick={handleCityNameClick} */
+          onCityNameClick={handleCityNameClick}
         />
         <div className="cities">
           <div className={divClassName}>
