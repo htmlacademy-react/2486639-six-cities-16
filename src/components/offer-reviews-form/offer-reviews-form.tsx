@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { REVIEW_TEXT_MIN_LENGTH, Rating } from '../../const';
 
 function OfferReviewsForm(): JSX.Element {
-  const [rating, setRating] = useState(Rating.DEFAULT);
-  const [text, setText] = useState('');
+  const [rating, setRating] = useState<number>(Rating.DEFAULT);
+  const [text, setText] = useState<string>('');
 
   //! перепроверить условие включения кнопки по ТЗ, нужен ли trim?
   const isSubmitButtonDisabled = (rating === Rating.MIN) || (text.trim().length <= REVIEW_TEXT_MIN_LENGTH);
