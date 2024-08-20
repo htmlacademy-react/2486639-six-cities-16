@@ -80,43 +80,45 @@ root.render(
     когда будут реальные данные, то ключ сделать путем и проверить ошибки в консоли
     с одинковым ключем у всех 6-ти не корректно обновлялись при переключичении с мест не подалеку
 
-      Заметки:
-      aaa@aaa.aaa / a1
+Заметки:
+  aaa@aaa.aaa / a1
 
-      в App <Route path={AppRoute.Main} сделать Layout и все переместить вовнутрь или нет или только для городов
+  в App <Route path={AppRoute.Main} сделать Layout и все переместить вовнутрь или нет или только для городов
 
-        константы объединенные как enum или const as const! критерий!
-      проверить типизацию useState!
-      проверить key у компонетов, вездели ли есть и нет ли ошибок в консоли!
-      ...s = []!
+  константы объединенные как enum или const as const! критерий!
+  проверить типизацию useState!
+  проверить key у компонетов, вездели ли есть и нет ли ошибок в консоли!
+  ...s = []!
 
-      библиотеку map оставить на точках, а не привязывать к оферам, и сделать конвектор и причесать критерии
-      точки на карте сделать отдельным хуком?
-      попробовать точкам передать описание и подсвечавить при наведении
-      как типизировать
+  библиотеку map оставить на точках, а не привязывать к оферам, и сделать конвектор и причесать критерии
+  точки на карте сделать отдельным хуком?
+  попробовать точкам передать описание и подсвечавить при наведении
+  как типизировать
     format: string -> format: typeof DateFormat ...  const DateFormat = {DATE: 'YYYY-MM-DD',  MONTH_YEAR: 'MMMM YYYY'}...
       или только через enum или массив, а может сузить...
-      --
-      // может понадобится подчет рейтинга...
-      const ratingValue = reviews.reduce((ratingTotal, {rating}) => ratingTotal + rating, 0) / reviews.length;
-      --
-      //Для этого создадим компонент ScrollToTop:
-      import {useEffect} from 'react';
-      import {useLocation} from 'react-router-dom';
 
-      function ScrollToTop() {
+--
+// может понадобится подчет рейтинга...
+const ratingValue = reviews.reduce((ratingTotal, {rating}) => ratingTotal + rating, 0) / reviews.length;
+--
+
+//Для этого создадим компонент ScrollToTop:
+import {useEffect} from 'react';
+import {useLocation} from 'react-router-dom';
+
+function ScrollToTop() {
   const {pathname} = useLocation();
 
   useEffect(() => {
         window.scrollTo(0, 0);
   }, [pathname]);
 
-      return null;
+  return null;
 }
 
-      export default ScrollToTop;
-      --
-      <ScrollToTop />
-      --
+export default ScrollToTop;
+--
+<ScrollToTop />
+--
 
-      */
+*/
