@@ -1,16 +1,14 @@
 import OfferReviewItem from '../offer-review-item/offer-review-item';
 import OfferReviewsForm from '../offer-reviews-form/offer-reviews-form';
 import { Review } from '../../types/review';
-import { REVIEWS_SHOW_COUNT } from '../../const';
 
 type OfferHostProps = {
+  reviewsCount: number;
   reviews: Review[];
   isShowForm?: boolean;
 }
 
-function OfferReviews({ reviews, isShowForm = false }: OfferHostProps): JSX.Element {
-  const reviewsCount: number = reviews.length;
-
+function OfferReviews({ reviewsCount, reviews, isShowForm = false }: OfferHostProps): JSX.Element {
   return (
     <section className="offer__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsCount}</span></h2>
@@ -21,14 +19,9 @@ function OfferReviews({ reviews, isShowForm = false }: OfferHostProps): JSX.Elem
           :
           <ul className="reviews__list">
             {
-              reviews
-                .slice(0, REVIEWS_SHOW_COUNT)
-                .map((review) => (
-                  <OfferReviewItem
-                    key={review.id}
-                    review={review}
-                  />
-                ))
+              reviews.map((review) => (
+                <OfferReviewItem key={review.id} review={review} />
+              ))
             }
           </ul>
       }

@@ -16,7 +16,8 @@ import OffersMap from '../../components/offers-map/offers-map';
 import { OfferId, Offer, DetailOffer } from '../../types/offer';
 import { Review } from '../../types/review';
 import { getById } from '../../utils/util';
-import { APP_TITLE, AuthorizationStatus, ClassNamePrefix, IMAGES_SHOW_COUNT } from '../../const';
+import { compareStringDate } from '../../utils/date';
+import { APP_TITLE, AuthorizationStatus, ClassNamePrefix, IMAGES_SHOW_COUNT, REVIEWS_SHOW_COUNT } from '../../const';
 
 type OfferPageProps = {
   authorizationStatus: AuthorizationStatus;
@@ -29,6 +30,9 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
   const params = useParams();
   const offers = nearOffers.slice(0, 3); //! Может нужно только 3, то в константы? поискать в ТЗ
   const offerId: OfferId | undefined = params.id; //! тест... а как получить в App и не передавать все предложения?
+  const offerReviews = reviews
+    .sort((firstReview: Review, secondReview: Review) => compareStringDate(firstReview.date, secondReview.date))
+    .slice(0, REVIEWS_SHOW_COUNT);
 
   if (!offerId) {
     return <NotFoundPage />;
@@ -80,7 +84,11 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
               <Price classNamePrefix={classNamePrefix} price={price} />
               <OfferInside goods={goods} />
               <OfferHost host={host} description={description} />
-              <OfferReviews reviews={reviews} isShowForm={authorizationStatus === AuthorizationStatus.Auth} />
+              <OfferReviews
+                reviewsCount={offerReviews.length}
+                reviews={offerReviews}
+                isShowForm={authorizationStatus === AuthorizationStatus.Auth}
+              />
             </div>
           </div>
           <OffersMap
