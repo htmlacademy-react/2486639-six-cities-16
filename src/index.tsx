@@ -45,6 +45,8 @@ root.render(
     перепроверить условие включения кнопки по ТЗ, нужен ли trim для текста?
       const isSubmitButtonDisabled = ...
     заменить "Your review {rating} - {text}" -> "Your review"
+  10. createAction('load/Offers'); всынести строку в константы?
+  11. createAction<CityName>('changeCityName'); <CityName> обязательно объект, даже если из одного значения?
 
 Доделать:
   1. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей

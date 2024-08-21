@@ -13,7 +13,7 @@ import { AppRoute, AuthorizationStatus, APP_TITLE } from '../../const';
 
 type AppProps = {
   offers: Offer[];
-  detailOffers: DetailOffer[];
+  detailOffers: DetailOffer[]; //! тут удалить только при использовании оставить
   nearOffers: Offer[];
   reviews: Review[];
 }

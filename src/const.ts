@@ -4,7 +4,7 @@ import { OfferId } from './types/offer';
 const APP_TITLE = '6 cities';
 
 const CITIES_NAMES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
-const DEFAULT_CITY: CityName = CITIES_NAMES[0];
+const DEFAULT_CITY_NAME: CityName = CITIES_NAMES[0];
 
 const OFFER_PATH = '/offer/';
 
@@ -97,7 +97,7 @@ const IconAnchorSize = {
 export {
   APP_TITLE,
   CITIES_NAMES,
-  DEFAULT_CITY,
+  DEFAULT_CITY_NAME,
   OFFER_PATH,
   AppRoute,
   AuthorizationStatus,
