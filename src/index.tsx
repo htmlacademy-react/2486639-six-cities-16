@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import App from './components/app/app';
+import { store } from './store';
 import { offers, detailOffers } from './mocks/offers';
 import { reviews } from './mocks/reviews';
 
@@ -10,12 +12,14 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App
-      offers={offers}
-      detailOffers={detailOffers}
-      nearOffers={offers}
-      reviews={reviews}
-    />
+    <Provider store={store}>
+      <App
+        offers={offers}
+        detailOffers={detailOffers}
+        nearOffers={offers}
+        reviews={reviews}
+      />
+    </Provider>
   </React.StrictMode>
 );
 
@@ -47,6 +51,7 @@ root.render(
     заменить "Your review {rating} - {text}" -> "Your review"
   10. createAction('load/Offers'); всынести строку в константы?
   11. createAction<CityName>('changeCityName'); <CityName> обязательно объект, даже если из одного значения?
+  12. изначальные пустые предложения так сделать для store "const emptyOffers: Offer[] = [];
 
 Доделать:
   1. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
