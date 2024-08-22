@@ -21,7 +21,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
   const currentPlacesSortType = useAppSelector((state) => state.placesSoritngType);
   const dispatch = useAppDispatch();
 
-  const [activeOfferId, setActiveOfferId] = useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID); //! тоже перевести на useAppSelector?
+  const [activeOfferId, setActiveOfferId] = useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID);
 
   const cityOffers = getCityOffers(currentCityName, offers);
 
@@ -34,13 +34,11 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
 
   const isCityOffersEmpty: boolean = !cityOffers.length;
   const mainClassName = classNames(
-    'page__main',
-    'page__main--index',
+    'page__main page__main--index',
     { 'page__main--index-empty': isCityOffersEmpty }
   );
   const divClassName = classNames(
-    'cities__places-container',
-    'container',
+    'cities__places-container container',
     { 'cities__places-container--empty': isCityOffersEmpty }
   );
   const sectionClassName = classNames(
@@ -100,17 +98,19 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
               }
             </section>
             <div className="cities__right-section">
-              {isCityOffersEmpty
-                ?
-                null
-                :
-                <OffersMap
-                  classNamePrefix={ClassNamePrefix.Cities}
-                  // для координат города можно взять коодинаты из первого предложения
-                  startLocation={cityOffers[0].city.location}
-                  offers={cityOffers}
-                  activeOfferId={activeOfferId}
-                />}
+              {
+                isCityOffersEmpty
+                  ?
+                  null
+                  :
+                  <OffersMap
+                    classNamePrefix={ClassNamePrefix.Cities}
+                    // для координат города можно взять коодинаты из первого предложения
+                    startLocation={cityOffers[0].city.location}
+                    offers={cityOffers}
+                    activeOfferId={activeOfferId}
+                  />
+              }
             </div>
           </div>
         </div>
