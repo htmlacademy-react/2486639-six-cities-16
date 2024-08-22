@@ -3,13 +3,13 @@ import classNames from 'classnames';
 import { PlacesSortingTypes } from '../../const';
 
 type PlacesSortingProps = {
-  activeSortingType: PlacesSortingTypes;
+  currentPlacesSortType: PlacesSortingTypes;
   onSortingTypeChange: (sortingType: PlacesSortingTypes) => void;
 }
 
-function PlacesSorting({ activeSortingType, onSortingTypeChange }: PlacesSortingProps): JSX.Element {
+function PlacesSorting({ currentPlacesSortType, onSortingTypeChange }: PlacesSortingProps): JSX.Element {
   const [isSortingTypesShown, setIsSortingTypesShown] = useState<boolean>(false);
-  const ulClassName = classNames(
+  const listClassName = classNames(
     'places__options',
     'places__options--custom',
     { 'places__options--opened': isSortingTypesShown }
@@ -27,27 +27,28 @@ function PlacesSorting({ activeSortingType, onSortingTypeChange }: PlacesSorting
           }
         }
       >
-        {activeSortingType}
+        {currentPlacesSortType}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      <ul className={ulClassName}>
+      <ul className={listClassName}>
         {
           Object.values(PlacesSortingTypes).map(
             (sortingType: PlacesSortingTypes) => {
-              const liClassName = classNames(
+              const itemClassName = classNames(
                 'places__option',
-                { 'places__option--active': sortingType === activeSortingType }
+                { 'places__option--active': sortingType === currentPlacesSortType }
               );
 
               return (
                 <li
                   key={sortingType}
-                  className={liClassName}
+                  className={itemClassName}
                   tabIndex={0}
                   onClick={
                     () => {
+                      setIsSortingTypesShown(false);
                       onSortingTypeChange(sortingType);
                     }
                   }

@@ -6,11 +6,11 @@ import PlacesSorting from '../../components/places-sorting/places-sorting';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import OffersMap from '../../components/offers-map/offers-map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeCityName } from '../../store/action';
+import { changeCityName, changePlacesSortingType } from '../../store/action';
 import { CityName } from '../../types/city';
 import { Offer, OfferId } from '../../types/offer';
 import { getCityOffers } from '../../utils/offer';
-import { ClassNamePrefix, DEFAULT_ACTIVE_OFFER_ID, PlacesSortingTypes, DEFALUT_PALCES_SORTING_TYPE } from '../../const';
+import { ClassNamePrefix, DEFAULT_ACTIVE_OFFER_ID, PlacesSortingTypes } from '../../const';
 
 type MainPageProps = {
   offers: Offer[];
@@ -18,17 +18,20 @@ type MainPageProps = {
 
 function MainPage({ offers }: MainPageProps): JSX.Element {
   const currentCityName = useAppSelector((state) => state.cityName);
+  const currentPlacesSortType = useAppSelector((state) => state.placesSoritngType);
   const dispatch = useAppDispatch();
 
-  const [activeSortingType, setActiveSortingType] = useState<PlacesSortingTypes>(DEFALUT_PALCES_SORTING_TYPE);
-  const [activeOfferId, setActiveOfferId] = useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID);
+  const [activeOfferId, setActiveOfferId] = useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID); //! тоже перевести на useAppSelector?
 
   const cityOffers = getCityOffers(currentCityName, offers);
 
   //! тут отсортировать по activeSortingType
-  //if (activeSortingType === PlacesSortingTypes.PriceHighToLow) {
+  //if (currentPlacesSortType === PlacesSortingTypes.PriceHighToLow) {
   //  cityOffers.push(cityOffers[0]);
   //}
+  //console.log(cityOffers);
+  //
+
   const isCityOffersEmpty: boolean = !cityOffers.length;
   const mainClassName = classNames(
     'page__main',
@@ -46,8 +49,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
   );
 
   const handleSortingTypeChange = (sortingType: PlacesSortingTypes) => {
-    setActiveSortingType(sortingType);
-    //!console.log(sortingType);
+    dispatch(changePlacesSortingType(sortingType));
   };
 
   const handlePlaceCardMouseEnter = (offerId: OfferId) => {
@@ -59,9 +61,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
   };
 
   const handleCityNameClick = (cityName: CityName) => {
-    if (currentCityName !== cityName) {//! а может проверку сам redux сделет и не будет лишней перерисовки
-      dispatch(changeCityName(cityName));
-    }
+    dispatch(changeCityName(cityName));
   };
 
   return (
@@ -86,9 +86,9 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
                   :
                   <>
                     <h2 className="visually-hidden">Places</h2>
-                    <b className="places__found">{offers.length} places to stay in {currentCityName}</b>
+                    <b className="places__found">{cityOffers.length} places to stay in {currentCityName}</b>
                     <PlacesSorting
-                      activeSortingType={activeSortingType}
+                      currentPlacesSortType={currentPlacesSortType}
                       onSortingTypeChange={handleSortingTypeChange}
                     />
                     <PlaceCardList
@@ -107,7 +107,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
                 <OffersMap
                   classNamePrefix={ClassNamePrefix.Cities}
                   // для координат города можно взять коодинаты из первого предложения
-                  startLocation={offers[0].city.location}
+                  startLocation={cityOffers[0].city.location}
                   offers={cityOffers}
                   activeOfferId={activeOfferId}
                 />}

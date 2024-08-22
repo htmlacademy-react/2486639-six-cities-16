@@ -48,10 +48,15 @@ root.render(
   13. вызов действия загрузка предложений оставил в App  dispatch(loadOffers());  и получение оферов
   14. 4 places to stay in ....  а для 1 place to stay in ... нужно?
     наверное нужно сделать только справочник для отдельных слов вместо OfferTypeFeatureTemplate
+  15. Сброс сортировки можно выполнить в reduce state.placesSoritngType = DEFALUT_PALCES_SORTING_TYPE;
+    или выполнить действие в обработычике смены города dispatch(changePlacesSortingType(DEFALUT_PALCES_SORTING_TYPE)); 
+    ?
 
 Доделать:
   1. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
   2. типизировать функции и значения
+    onSortingTypeChange: (sortingType: PlacesSortingTypes) => void;
+      может <argT>  (value:argT)....
     onMouseEnter ?: (offerId: OfferId) => void;
     onMouseLeave ?: () => void;
     onPlaceCardMouseEnter ?: (offerId: OfferId) => void;
