@@ -2,7 +2,7 @@ import { CityOffers, Offer } from '../types/offer';
 import { CityName } from '../types/city';
 import { OfferTypeFeature, OfferTypeFeatureTemplate, OfferSortigTypes, templateNumberString } from '../const';
 
-function getCityOffers(cityName: CityName, offers: Offer[]): Offer[] {
+function getCityOffers(cityName: CityName, offers: Offer[]){
   return offers.filter(({ city }) => (cityName === city.name));
 }
 

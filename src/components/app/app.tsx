@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import MainPage from '../../pages/main-page/main-page';
@@ -21,7 +22,9 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
   const offers: Offer[] = useAppSelector((state) => state.offers);
 
-  dispatch(loadOffers());
+  useEffect(() => {
+    dispatch(loadOffers());
+  }, []);
 
   return (
     <HelmetProvider>
