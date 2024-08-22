@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import HeaderAuth from '../../components/header/header-auth';
 import Locations from '../../components/locations/locations';
+import PlacesSorting from '../../components/places-sorting/places-sorting';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import OffersMap from '../../components/offers-map/offers-map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -72,12 +73,16 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
                     <p className="cities__status-description">We could not find any property available at the moment in Dusseldorf</p>
                   </div>
                   :
-                  <PlaceCardList
-                    cityName={currentCityName}
-                    offers={cityOffers}
-                    onPlaceCardMouseEnter={handlePlaceCardMouseEnter}
-                    onPlaceCardMouseLeave={handlePlaceCardMouseLeave}
-                  />
+                  <>
+                    <h2 className="visually-hidden">Places</h2>
+                    <b className="places__found">{offers.length} places to stay in {currentCityName}</b>
+                    <PlacesSorting />
+                    <PlaceCardList
+                      offers={cityOffers}
+                      onPlaceCardMouseEnter={handlePlaceCardMouseEnter}
+                      onPlaceCardMouseLeave={handlePlaceCardMouseLeave}
+                    />
+                  </>
               }
             </section>
             <div className="cities__right-section">
