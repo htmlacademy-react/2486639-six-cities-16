@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import App from './components/app/app';
-import { offers, detailOffers } from './mocks/offers';
-import { reviews } from './mocks/reviews';
+import { store } from './store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -10,62 +10,101 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App
-      offers={offers}
-      detailOffers={detailOffers}
-      nearOffers={offers}
-      reviews={reviews}
-    />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
 /*
 Вопросы:
-  {isPro ? 'Pro' : ''} или весь span не показывать?
-  функциям проставить типизировать возвращаемое значение из утилит и остальных модулей
-  classNamePrefix попробовать переделать на передачу типа или как то по другому
-  <p className="offer__text"> как то разбито по частям, глянуть как в ТЗ, перенос строки или '.' или длинна
-  в списках мест сделать опциональные колбеки и перенести все списки на один компонент
-   сделать отцию выводить сортировку или перенсти в родительский компонент NearPlaces /  FavoritesPage + FavoriteItem
-  как типизировать enum PlacesSortingTypes[key]? сделал {Object.values(PlacesSortingTypes).map(
-  константы объединенные как enum или const as const! критерий!
-  параметров в app.tsx еще нет console.log('app', useParams()); получаю offerId в offer-page
-  не отрабатывает route NotFound для /1.jpg /1.html  - на лого была ссылка /main.html
-  imageWidth imageHeight iconWidth iconHeight? строками и константами нормально? или выносить в константы и делать числа?
-  classNames
-  css классы в коде у новых компонентов, нужно выносить в константы?
-  <Helmet> <title>{`${APP_TITLE}: 404`}</title>....  что то придумать для сборки заголовка
-   и добавить константы
-   может какие то страницы упустил?
-  проверить типизацию useState
-  отаются полоски над и под назвааниями городов locations__item-link tabs__item tabs__item--active
-   пока не переключишся на другую вкладку и одранто, но при наведении иногда появляются
+  1. {isPro ? 'Pro' : ''} или весь span не показывать?
+  2. какие выбрать размеры для иконок маркеров карты /img/pin.svg /img/pin-active.svg
+    в <svg width="27" height="39"
+    указать 28*40? а середину 27/2 13 14? без разницы?
+  3. в маркапах <p className="offer__text"> как то разбито по частям.... перенос строки или '.' или длинна какая-то... глянуть как в ТЗ
+    OfferHost / const descriptions = [description, description];
+  4. параметров в app.tsx еще нет console.log('app', useParams()); получаю offerId в offer-page
+    а есть вариант как получить в APP и например подготовить данные
+      const params = useParams();
+      const offerId: OfferId | undefined = params.id;
+  5. не отрабатывает route NotFound для /1.jpg /1.html  - на лого была ссылка /main.html
+  6. css классы в коде у новых компонентов, нужно выносить в константы?
+  7. отаются полоски над и под назвааниями городов locations__item-link tabs__item tabs__item--active
+    пока не переключишься на другую вкладку и обранто, но и при наведении иногда появляются
+  8. ссылка на город
+    на главной что в сделать в заголовке?, как в макете #? или имя города? посмотреть в ТЗ
+    на странице с избранным
+      где сгруппировано по городам сделать Route?
+      Оформелние 'favorites__locations locations locations--current' посмотреть макет...
+        наведенный? выбранный на главной? или просто отображение синим все города?
+  9. OfferReviewsForm
+    перепроверить условие включения кнопки по ТЗ, нужен ли trim для текста?
+      const isSubmitButtonDisabled = ...
+    заменить "Your review {rating} - {text}" -> "Your review"
+  10. createAction('load/Offers'); всынести строку в константы?
+  11. createAction<CityName>('changeCityName'); <CityName> обязательно объект, даже если из одного значения?
+  12. изначальные пустые предложения так сделать для store "const emptyOffers: Offer[] = [];
+  13. вызов действия загрузка предложений оставил в App  dispatch(loadOffers());  и получение оферов
+  14. 4 places to stay in ....  а для 1 place to stay in ... нужно?
+    наверное нужно сделать только справочник для отдельных слов вместо OfferTypeFeatureTemplate
+
+Доделать:
+  1. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
+  2. типизировать функции и значения
+    onMouseEnter ?: (offerId: OfferId) => void;
+    onMouseLeave ?: () => void;
+    onPlaceCardMouseEnter ?: (offerId: OfferId) => void;
+    onPlaceCardMouseLeave ?: () => void;
+    onCityNameClick: (cityName: CityName) => void;
+    const handlePlaceCardMouseEnter: Тип
+    const handlePlaceCardMouseLeave: Тип
+    const handleCityNameClick: Тип
+  3. classNamePrefix попробовать переделать на передачу типа или как то по другому
+    или имя сменить
+    или разбить на нужные
+    и убрать излишние константы
+      OfferTypeFeatureTemplate[OfferTypeFeature.Entire]: ['', '']
+        не могу убрать ошибку TS OfferTypeFeatureTemplate[key] хотя выше проверка - (key in OfferTypeFeatureTemplate)
+        и BookmarkButtonIconSize[ClassNamePrefix.Reviews]: { width: 0, height: 0 }, +[ClassNamePrefix.Cities]: { width: 0, height: 0 }
+  4. в списках мест сделать опциональные колбеки и перенести все списки на один компонент
+    сделать опцию выводить сортировку или перенсти в родительский компонент
+    переделать списки в NearPlaces / FavoritesPage + FavoriteItem или есть еще?
+  5. в NearPlaces нужен ScrollToTop при переходе по ссылкам, т.к.находимся внизу другого предложения
+  6. применить classNames в остальных компанентах
+  7. <Helmet> <title>{`${APP_TITLE}: 404`}</title>....  что то придумать для сборки заголовка
+    и добавить константы
+    может какие то страницы упустил ?
+  8. Переобъеденить HeaderAuth / HeaderNoAuth / HeaderLogin + class=header__logo - link--active
+    HeaderAuth - сделать разное поведение ссылки
+      <a className = "header__logo-link header__logo-link--active">
+      <a className="header__logo-link">
+  9. OfferGallery - const key = `img-${index}`;
+    когда будут реальные данные, то ключ сделать путем и проверить ошибки в консоли
+    с одинковым ключем у всех 6-ти не корректно обновлялись при переключичении с мест не подалеку
 
 Заметки:
   aaa@aaa.aaa / a1
-  какие выбрать размеры для иконок маркеров карты /img/pin.svg /img/pin-active.svg
-   в <svg width="27" height="39"
-   указать 28*40?
-  библиотеку map оставить на точках, а не привязывать к оферам, и сделать конвектор и причесать критерии
-   точки на карте сделать отдельным хуком?
-   попробовать точкам передать описание и подсвечавить при наведении
-  price.tsx и остальные, может в компонент передавать тип 'place-card' 'offer',
-   а не строку, сделать несколько вспомогательных функций is и переделать названия типов, добавить соответствие с префиксом класса
-   проработать '<Mark className'
-   проработать '<PlaceCardInfo'
-   поискать еще...
-  проверить key у компонетов, вездели ли есть и нет ли ошибок в консоли
-  на домашнем ПК заново выпонить npm install
-  в App <Route path={AppRoute.Main} сделать Layout и все переместить вовнутрь или нет или только для городов
-  clsx можно установить? несколько суловных классов использовал в src/pages/main-page/main-page.tsx
-  в городах NavLink + className ={({isActive})=>clsx({'qq','www':isActive, 'ccc'})}  to=city
-  FavoriteItem - часть функционла похожа на place-card.tsx, ссылка с картинкой, премиум, там еще есть обработчики
 
-  Переобъеденить HeaderAuth / HeaderNoAuth / HeaderLogin + class=header__logo-link--active
-  Переданному id не найден оффер - добавить страницу оффер не найден и ссылку на возврат на главную
+  в App <Route path={AppRoute.Main} сделать Layout и все переместить вовнутрь или нет или только для городов
+
+  константы объединенные как enum или const as const! критерий!
+  проверить типизацию useState!
+  проверить key у компонетов, вездели ли есть и нет ли ошибок в консоли!
+  ...s = []!
+
+  библиотеку map оставить на точках, а не привязывать к оферам, и сделать конвектор и причесать критерии
+  точки на карте сделать отдельным хуком?
+  попробовать точкам передать описание и подсвечавить при наведении
+  как типизировать
+    format: string -> format: typeof DateFormat ...  const DateFormat = {DATE: 'YYYY-MM-DD',  MONTH_YEAR: 'MMMM YYYY'}...
+      или только через enum или массив, а может сузить...
+
 --
-  const ratingValue = reviews.reduce((ratingTotal, { rating }) => ratingTotal + rating, 0) / reviews.length;
+// может понадобится подчет рейтинга...
+const ratingValue = reviews.reduce((ratingTotal, {rating}) => ratingTotal + rating, 0) / reviews.length;
 --
+
 //Для этого создадим компонент ScrollToTop:
 import {useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
@@ -74,7 +113,7 @@ function ScrollToTop() {
   const {pathname} = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
   }, [pathname]);
 
   return null;

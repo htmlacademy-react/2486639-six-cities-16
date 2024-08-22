@@ -17,32 +17,40 @@ import { OfferId, Offer, DetailOffer } from '../../types/offer';
 import { Review } from '../../types/review';
 import { getById } from '../../utils/util';
 import { compareStringDate } from '../../utils/date';
-import { APP_TITLE, AuthorizationStatus, ClassNamePrefix, IMAGES_SHOW_COUNT, REVIEWS_SHOW_COUNT } from '../../const';
+import { mockOffers, mockDetailOffers } from '../../mocks/offers';
+import { mockReviews } from '../../mocks/reviews';
+import {
+  APP_TITLE, AuthorizationStatus, ClassNamePrefix,
+  IMAGES_SHOW_COUNT, NEAR_OFFERS_SHOW_COUNT, REVIEWS_SHOW_COUNT
+} from '../../const';
 
 type OfferPageProps = {
   authorizationStatus: AuthorizationStatus;
-  detailOffers: DetailOffer[];
-  nearOffers: Offer[];
-  reviews: Review[];
 }
 
-function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: OfferPageProps): JSX.Element {
+function OfferPage({ authorizationStatus }: OfferPageProps): JSX.Element {
+  //! временные данные
+  const nearOffers: Offer[] = mockOffers;
+  const reviews = mockReviews;
+  //
+
   const params = useParams();
-  const offers = nearOffers.slice(0, 3); //! Может нужно только 3, то в константы? поискать в ТЗ
-  const offerId: OfferId | undefined = params.id; //! тест... а как получить в App и не передавать все предложения?
-  const offerReviews = reviews
-    .sort((firstReview: Review, secondReview: Review) => compareStringDate(firstReview.date, secondReview.date))
-    .slice(0, REVIEWS_SHOW_COUNT);
+  const offers = nearOffers.slice(0, NEAR_OFFERS_SHOW_COUNT);
+  const offerId: OfferId | undefined = params.id;
 
   if (!offerId) {
     return <NotFoundPage />;
   }
 
-  const detailOffer: DetailOffer | undefined = getById(detailOffers, offerId);
+  const detailOffer: DetailOffer | undefined = getById(mockDetailOffers, offerId);
 
   if (!detailOffer) {
     return (<NotFoundPage />);
   }
+
+  const offerReviews = reviews
+    .sort((firstReview: Review, secondReview: Review) => compareStringDate(firstReview.date, secondReview.date))
+    .slice(0, REVIEWS_SHOW_COUNT);
 
   const {
     title,

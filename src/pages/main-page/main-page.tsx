@@ -4,17 +4,21 @@ import HeaderAuth from '../../components/header/header-auth';
 import Locations from '../../components/locations/locations';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import OffersMap from '../../components/offers-map/offers-map';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { changeCityName } from '../../store/action';
 import { CityName } from '../../types/city';
 import { Offer, OfferId } from '../../types/offer';
 import { getCityOffers } from '../../utils/offer';
-import { ClassNamePrefix, DEFAULT_ACTIVE_OFFER_ID, DEFAULT_CITY } from '../../const';
+import { ClassNamePrefix, DEFAULT_ACTIVE_OFFER_ID } from '../../const';
 
 type MainPageProps = {
   offers: Offer[];
 }
 
 function MainPage({ offers }: MainPageProps): JSX.Element {
-  const [currentCityName, setСurrentCityName] = useState<CityName>(DEFAULT_CITY);
+  const currentCityName = useAppSelector((state) => state.cityName);
+  const dispatch = useAppDispatch();
+
   const [activeOfferId, setActiveOfferId] = useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID);
 
   const cityOffers = getCityOffers(currentCityName, offers);
@@ -34,7 +38,6 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
     { 'cities__places places': !isCityOffersEmpty }
   );
 
-  //! типизировать функции
   const handlePlaceCardMouseEnter = (offerId: OfferId) => {
     setActiveOfferId(offerId);
   };
@@ -44,8 +47,8 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
   };
 
   const handleCityNameClick = (cityName: CityName) => {
-    if (currentCityName !== cityName) {
-      setСurrentCityName(cityName);
+    if (currentCityName !== cityName) {//! а может проверку сам redux сделет и не будет лишней перерисовки
+      dispatch(changeCityName(cityName));
     }
   };
 

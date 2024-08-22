@@ -5,12 +5,11 @@ function OfferReviewsForm(): JSX.Element {
   const [rating, setRating] = useState<number>(Rating.DEFAULT);
   const [text, setText] = useState<string>('');
 
-  //! перепроверить условие включения кнопки по ТЗ, нужен ли trim?
   const isSubmitButtonDisabled = (rating === Rating.MIN) || (text.trim().length <= REVIEW_TEXT_MIN_LENGTH);
 
   return (
     <form className="reviews__form form" action="#" method="post">
-      <label className="reviews__label form__label" htmlFor="review">Your review {rating} - {text /* //! временно */}</label>
+      <label className="reviews__label form__label" htmlFor="review">Your review {rating} - {text}</label>
       <div className="reviews__rating-form form__rating">
         {
           Rating.STAR_VALUES.map((item) => {
