@@ -67,8 +67,7 @@ root.render(
       OfferTypeFeatureTemplate[OfferTypeFeature.Entire]: ['', '']
         не могу убрать ошибку TS OfferTypeFeatureTemplate[key] хотя выше проверка - (key in OfferTypeFeatureTemplate)
         и BookmarkButtonIconSize[ClassNamePrefix.Reviews]: { width: 0, height: 0 }, +[ClassNamePrefix.Cities]: { width: 0, height: 0 }
-  4. в списках мест сделать опциональные колбеки и перенести все списки на один компонент
-    сделать опцию выводить сортировку или перенсти в родительский компонент
+  4. списках мест сделать на одном компоненте
     переделать списки в NearPlaces / FavoritesPage + FavoriteItem или есть еще?
   5. в NearPlaces нужен ScrollToTop при переходе по ссылкам, т.к.находимся внизу другого предложения
   6. применить classNames в остальных компанентах
