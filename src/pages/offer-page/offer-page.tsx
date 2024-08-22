@@ -17,6 +17,8 @@ import { OfferId, Offer, DetailOffer } from '../../types/offer';
 import { Review } from '../../types/review';
 import { getById } from '../../utils/util';
 import { compareStringDate } from '../../utils/date';
+import { mockOffers, mockDetailOffers } from '../../mocks/offers';
+import { mockReviews } from '../../mocks/reviews';
 import {
   APP_TITLE, AuthorizationStatus, ClassNamePrefix,
   IMAGES_SHOW_COUNT, NEAR_OFFERS_SHOW_COUNT, REVIEWS_SHOW_COUNT
@@ -24,12 +26,14 @@ import {
 
 type OfferPageProps = {
   authorizationStatus: AuthorizationStatus;
-  detailOffers: DetailOffer[];
-  nearOffers: Offer[];
-  reviews: Review[];
 }
 
-function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: OfferPageProps): JSX.Element {
+function OfferPage({ authorizationStatus }: OfferPageProps): JSX.Element {
+  //! временные данные
+  const nearOffers: Offer[] = mockOffers;
+  const reviews = mockReviews;
+  //
+
   const params = useParams();
   const offers = nearOffers.slice(0, NEAR_OFFERS_SHOW_COUNT);
   const offerId: OfferId | undefined = params.id;
@@ -38,7 +42,7 @@ function OfferPage({ authorizationStatus, detailOffers, nearOffers, reviews }: O
     return <NotFoundPage />;
   }
 
-  const detailOffer: DetailOffer | undefined = getById(detailOffers, offerId);
+  const detailOffer: DetailOffer | undefined = getById(mockDetailOffers, offerId);
 
   if (!detailOffer) {
     return (<NotFoundPage />);

@@ -3,7 +3,7 @@ import HeaderAuth from '../../components/header/header-auth';
 import Footer from '../../components/footer/footer';
 import FavoriteItem from '../../components/favorite-item/favorite-item';
 import { Offer } from '../../types/offer';
-import { getFavoriteOffers, getOffersByCities } from '../../utils/offer';
+import { getOffersByCities } from '../../utils/offer';
 import { APP_TITLE } from '../../const';
 
 type FavoritesPageProps = {
@@ -11,8 +11,7 @@ type FavoritesPageProps = {
 }
 
 function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
-  const favoriteOffers = getFavoriteOffers(offers);
-  const isOffersEmpty: boolean = !favoriteOffers.length;
+  const isOffersEmpty: boolean = !offers.length;
 
   return (
     <div className="page">
@@ -35,7 +34,7 @@ function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
                 :
                 <ul className="favorites__list">
                   {
-                    getOffersByCities(favoriteOffers)
+                    getOffersByCities(offers)
                       .map(({ cityName, offers: cityOffers }) => (
                         <FavoriteItem
                           key={cityName}

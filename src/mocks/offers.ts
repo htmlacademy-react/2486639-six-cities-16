@@ -1,10 +1,10 @@
 import { Offer, DetailOffer } from '../types/offer';
 
-//export const offers: Offer[] = [];
-//export const detailOffers: DetailOffer[] = [];
+//export const mockOffers: Offer[] = [];
+//export const mockDetailOffers: DetailOffer[] = [];
 
 /**/
-export const offers: Offer[] = [
+export const mockOffers: Offer[] = [
   {
     id: 'e11c3fc7-e973-4446-b758-20e6e479378d',
     title: 'The house among olive ',
@@ -99,7 +99,7 @@ export const offers: Offer[] = [
   }
 ];
 
-export const detailOffers: DetailOffer[] = [
+export const mockDetailOffers: DetailOffer[] = [
   {
     id: 'e11c3fc7-e973-4446-b758-20e6e479378d',
     title: 'The house among olive ',

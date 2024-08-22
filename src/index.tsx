@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
 import { store } from './store';
-import { offers, detailOffers } from './mocks/offers';
-import { reviews } from './mocks/reviews';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,12 +11,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App
-        offers={offers}
-        detailOffers={detailOffers}
-        nearOffers={offers}
-        reviews={reviews}
-      />
+      <App />
     </Provider>
   </React.StrictMode>
 );
@@ -52,6 +45,9 @@ root.render(
   10. createAction('load/Offers'); всынести строку в константы?
   11. createAction<CityName>('changeCityName'); <CityName> обязательно объект, даже если из одного значения?
   12. изначальные пустые предложения так сделать для store "const emptyOffers: Offer[] = [];
+  13. вызов действия загрузка предложений оставил в App  dispatch(loadOffers());  и получение оферов
+  14. 4 places to stay in ....  а для 1 place to stay in ... нужно?
+    наверное нужно сделать только справочник для отдельных слов вместо OfferTypeFeatureTemplate
 
 Доделать:
   1. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
