@@ -1,23 +1,23 @@
 import { CityOffers, Offer } from '../types/offer';
 import { CityName } from '../types/city';
-import { OfferTypeFeature, OfferTypeFeatureTemplate, PlacesSortingTypes, templateNumberString } from '../const';
+import { OfferTypeFeature, OfferTypeFeatureTemplate, OfferSortigTypes, templateNumberString } from '../const';
 
 function getCityOffers(cityName: CityName, offers: Offer[]): Offer[] {
   return offers.filter(({ city }) => (cityName === city.name));
 }
 
 const compareOffers = {
-  [PlacesSortingTypes.PriceLowToHigh]: ({ price: firstPrice }: Offer, { price: secondPrice }: Offer) => (firstPrice - secondPrice),
-  [PlacesSortingTypes.PriceHighToLow]: ({ price: firstPrice }: Offer, { price: secondPrice }: Offer) => (secondPrice - firstPrice),
-  [PlacesSortingTypes.TopRatedFirst]: ({ rating: firstRating }: Offer, { rating: secondRating }: Offer) => (secondRating - firstRating)
+  [OfferSortigTypes.PriceLowToHigh]: ({ price: firstPrice }: Offer, { price: secondPrice }: Offer) => (firstPrice - secondPrice),
+  [OfferSortigTypes.PriceHighToLow]: ({ price: firstPrice }: Offer, { price: secondPrice }: Offer) => (secondPrice - firstPrice),
+  [OfferSortigTypes.TopRatedFirst]: ({ rating: firstRating }: Offer, { rating: secondRating }: Offer) => (secondRating - firstRating)
 };
 
-function sortOffers(offers: Offer[], sortingType: PlacesSortingTypes): Offer[] {
-  if (sortingType === PlacesSortingTypes.Popular) {
+function sortOffers(offers: Offer[], offerSortingType: OfferSortigTypes): Offer[] {
+  if (offerSortingType === OfferSortigTypes.Popular) {
     return offers;
   }
 
-  return [...offers].sort(compareOffers[sortingType]);
+  return [...offers].sort(compareOffers[offerSortingType]);
 }
 
 function getFavoriteOffers(offers: Offer[]): Offer[] {

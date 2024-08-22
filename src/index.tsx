@@ -48,8 +48,8 @@ root.render(
   13. вызов действия загрузка предложений оставил в App  dispatch(loadOffers());  и получение оферов
   14. 4 places to stay in ....  а для 1 place to stay in ... нужно?
     наверное нужно сделать только справочник для отдельных слов вместо OfferTypeFeatureTemplate
-  15. Сброс сортировки можно выполнить в reduce state.placesSoritngType = DEFALUT_PALCES_SORTING_TYPE;
-    или выполнить действие в обработычике смены города dispatch(changePlacesSortingType(DEFALUT_PALCES_SORTING_TYPE));
+  15. Сброс сортировки можно выполнить в reduce state.offerSoritngType = DEFALUT_OFFER_SORTING_TYPE;
+    или выполнить действие в обработычике смены города dispatch(changeOfferSortingType(DEFALUT_OFFER_SORTING_TYPE));
     ?
   16. useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID); тоже перевести на useAppSelector?
   17. при нажатии на лого должен вернуться на Париж? или оставить как есть... после нажатия остаеться наведенным
@@ -58,7 +58,7 @@ root.render(
 Доделать:
   1. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
   2. типизировать функции и значения
-    onSortingTypeChange: (sortingType: PlacesSortingTypes) => void;
+    onSortingTypeChange: (sortingType: OfferSortigTypes) => void;
       может <argT>  (value:argT)....
     onMouseEnter ?: (offerId: OfferId) => void;
     onMouseLeave ?: () => void;

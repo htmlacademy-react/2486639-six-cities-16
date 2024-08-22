@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import classNames from 'classnames';
-import { PlacesSortingTypes } from '../../const';
+import { OfferSortigTypes } from '../../const';
 
 type PlacesSortingProps = {
-  currentPlacesSortType: PlacesSortingTypes;
-  onSortingTypeChange: (sortingType: PlacesSortingTypes) => void;
+  currentOfferSortType: OfferSortigTypes;
+  onSortingTypeChange: (sortingType: OfferSortigTypes) => void;
 }
 
-function PlacesSorting({ currentPlacesSortType, onSortingTypeChange }: PlacesSortingProps): JSX.Element {
+function PlacesSorting({ currentOfferSortType, onSortingTypeChange }: PlacesSortingProps): JSX.Element {
   const [isSortingTypesShown, setIsSortingTypesShown] = useState<boolean>(false);
   const listClassName = classNames(
     'places__options',
@@ -27,18 +27,18 @@ function PlacesSorting({ currentPlacesSortType, onSortingTypeChange }: PlacesSor
           }
         }
       >
-        {currentPlacesSortType}
+        {currentOfferSortType}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
       <ul className={listClassName}>
         {
-          Object.values(PlacesSortingTypes).map(
-            (sortingType: PlacesSortingTypes) => {
+          Object.values(OfferSortigTypes).map(
+            (sortingType: OfferSortigTypes) => {
               const itemClassName = classNames(
                 'places__option',
-                { 'places__option--active': sortingType === currentPlacesSortType }
+                { 'places__option--active': sortingType === currentOfferSortType }
               );
 
               return (

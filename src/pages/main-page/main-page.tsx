@@ -6,11 +6,11 @@ import PlacesSorting from '../../components/places-sorting/places-sorting';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import OffersMap from '../../components/offers-map/offers-map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeCityName, changePlacesSortingType } from '../../store/action';
+import { changeCityName, changeOfferSortingType } from '../../store/action';
 import { CityName } from '../../types/city';
 import { Offer, OfferId } from '../../types/offer';
 import { getCityOffers, sortOffers } from '../../utils/offer';
-import { ClassNamePrefix, DEFAULT_ACTIVE_OFFER_ID, PlacesSortingTypes } from '../../const';
+import { ClassNamePrefix, DEFAULT_ACTIVE_OFFER_ID, OfferSortigTypes } from '../../const';
 
 type MainPageProps = {
   offers: Offer[];
@@ -18,12 +18,12 @@ type MainPageProps = {
 
 function MainPage({ offers }: MainPageProps): JSX.Element {
   const currentCityName = useAppSelector((state) => state.cityName);
-  const currentPlacesSortType = useAppSelector((state) => state.placesSoritngType);
+  const currentOfferSortType = useAppSelector((state) => state.offerSoritngType);
   const dispatch = useAppDispatch();
 
   const [activeOfferId, setActiveOfferId] = useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID);
 
-  const cityOffers = sortOffers(getCityOffers(currentCityName, offers), currentPlacesSortType);
+  const cityOffers = sortOffers(getCityOffers(currentCityName, offers), currentOfferSortType);
 
   const isCityOffersEmpty: boolean = !cityOffers.length;
   const mainClassName = classNames(
@@ -39,8 +39,8 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
     { 'cities__places places': !isCityOffersEmpty }
   );
 
-  const handleSortingTypeChange = (sortingType: PlacesSortingTypes) => {
-    dispatch(changePlacesSortingType(sortingType));
+  const handleSortingTypeChange = (sortingType: OfferSortigTypes) => {
+    dispatch(changeOfferSortingType(sortingType));
   };
 
   const handlePlaceCardMouseEnter = (offerId: OfferId) => {
@@ -79,7 +79,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
                     <h2 className="visually-hidden">Places</h2>
                     <b className="places__found">{cityOffers.length} places to stay in {currentCityName}</b>
                     <PlacesSorting
-                      currentPlacesSortType={currentPlacesSortType}
+                      currentOfferSortType={currentOfferSortType}
                       onSortingTypeChange={handleSortingTypeChange}
                     />
                     <PlaceCardList
