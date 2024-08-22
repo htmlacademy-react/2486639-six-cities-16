@@ -1,9 +1,23 @@
 import { CityOffers, Offer } from '../types/offer';
 import { CityName } from '../types/city';
-import { OfferTypeFeature, OfferTypeFeatureTemplate, templateNumberString } from '../const';
+import { OfferTypeFeature, OfferTypeFeatureTemplate, OfferSortigTypes, templateNumberString } from '../const';
 
 function getCityOffers(cityName: CityName, offers: Offer[]): Offer[] {
   return offers.filter(({ city }) => (cityName === city.name));
+}
+
+const compareOffers = {
+  [OfferSortigTypes.PriceLowToHigh]: ({ price: firstPrice }: Offer, { price: secondPrice }: Offer) => (firstPrice - secondPrice),
+  [OfferSortigTypes.PriceHighToLow]: ({ price: firstPrice }: Offer, { price: secondPrice }: Offer) => (secondPrice - firstPrice),
+  [OfferSortigTypes.TopRatedFirst]: ({ rating: firstRating }: Offer, { rating: secondRating }: Offer) => (secondRating - firstRating)
+};
+
+function sortOffers(offers: Offer[], offerSortingType: OfferSortigTypes): Offer[] {
+  if (offerSortingType === OfferSortigTypes.Popular) {
+    return offers;
+  }
+
+  return [...offers].sort(compareOffers[offerSortingType]);
 }
 
 function getFavoriteOffers(offers: Offer[]): Offer[] {
@@ -45,4 +59,4 @@ function getFeatureText(key: OfferTypeFeature, value: number): string {
   return template.replace(templateNumberString, value.toString());
 }
 
-export { getCityOffers, getFavoriteOffers, getOffersByCities, getFeatureText };
+export { getCityOffers, sortOffers, getFavoriteOffers, getOffersByCities, getFeatureText };

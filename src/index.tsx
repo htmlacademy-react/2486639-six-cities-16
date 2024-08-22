@@ -45,13 +45,22 @@ root.render(
   10. createAction('load/Offers'); всынести строку в константы?
   11. createAction<CityName>('changeCityName'); <CityName> обязательно объект, даже если из одного значения?
   12. изначальные пустые предложения так сделать для store "const emptyOffers: Offer[] = [];
-  13. вызов действия загрузка предложений оставил в App  dispatch(loadOffers());  и получение оферов
+  13. вызов действия загрузка предложений оставил в App dispatch(loadOffers());  и получение оферов
+    из разбора ДЗ-6 useEffect(() => { dispatch(loadOffers()); }, []); но App и так один раз вызывается, можно выставить console.log(new Date())
   14. 4 places to stay in ....  а для 1 place to stay in ... нужно?
     наверное нужно сделать только справочник для отдельных слов вместо OfferTypeFeatureTemplate
+  15. Сброс сортировки можно выполнить в reduce state.offerSoritngType = DEFALUT_OFFER_SORTING_TYPE;
+    или выполнить действие в обработычике смены города dispatch(changeOfferSortingType(DEFALUT_OFFER_SORTING_TYPE));
+    ?
+  16. useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID); тоже перевести на useAppSelector? и избавиться от проброса обработчиков через два компонента... сделал на ДЗ 5
+  17. при нажатии на лого должен вернуться на Париж? или оставить как есть... после нажатия остаеться наведенным
+    наверное ссылки из избранного тоже меняют город и направляют на главную! так?
 
 Доделать:
   1. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
   2. типизировать функции и значения
+    onSortingTypeChange: (sortingType: OfferSortigTypes) => void;
+      может <argT>  (value:argT)....
     onMouseEnter ?: (offerId: OfferId) => void;
     onMouseLeave ?: () => void;
     onPlaceCardMouseEnter ?: (offerId: OfferId) => void;
@@ -67,8 +76,7 @@ root.render(
       OfferTypeFeatureTemplate[OfferTypeFeature.Entire]: ['', '']
         не могу убрать ошибку TS OfferTypeFeatureTemplate[key] хотя выше проверка - (key in OfferTypeFeatureTemplate)
         и BookmarkButtonIconSize[ClassNamePrefix.Reviews]: { width: 0, height: 0 }, +[ClassNamePrefix.Cities]: { width: 0, height: 0 }
-  4. в списках мест сделать опциональные колбеки и перенести все списки на один компонент
-    сделать опцию выводить сортировку или перенсти в родительский компонент
+  4. списках мест сделать на одном компоненте
     переделать списки в NearPlaces / FavoritesPage + FavoriteItem или есть еще?
   5. в NearPlaces нужен ScrollToTop при переходе по ссылкам, т.к.находимся внизу другого предложения
   6. применить classNames в остальных компанентах

@@ -1,29 +1,62 @@
-import { PlacesSortingTypes, DEFALUT_PALCES_SORTING_TYPE } from '../../const';
+import { useState } from 'react';
+import classNames from 'classnames';
+import { OfferSortigTypes } from '../../const';
 
-function PlacesSorting(): JSX.Element {
-  const activeSortingType = DEFALUT_PALCES_SORTING_TYPE;
+type PlacesSortingProps = {
+  currentOfferSortType: OfferSortigTypes;
+  onSortingTypeChange: (sortingType: OfferSortigTypes) => void;
+}
+
+function PlacesSorting({ currentOfferSortType, onSortingTypeChange }: PlacesSortingProps): JSX.Element {
+  const [isSortingTypesShown, setIsSortingTypesShown] = useState<boolean>(false);
+  const listClassName = classNames(
+    'places__options',
+    'places__options--custom',
+    { 'places__options--opened': isSortingTypesShown }
+  );
 
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
-      <span className="places__sorting-type" tabIndex={0}>
-        Popular
+      <span
+        className="places__sorting-type"
+        tabIndex={0}
+        onClick={
+          () => {
+            setIsSortingTypesShown(!isSortingTypesShown);
+          }
+        }
+      >
+        {currentOfferSortType}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      <ul className="places__options places__options--custom places__options--opened">
+      <ul className={listClassName}>
         {
-          Object.values(PlacesSortingTypes).map(
-            (sortingType: PlacesSortingTypes) => (
-              <li
-                key={sortingType}
-                className={`places__option ${(sortingType === activeSortingType) ? 'places__option--active' : null}`}
-                tabIndex={0}
-              >
-                {sortingType}
-              </li>
-            )
+          Object.values(OfferSortigTypes).map(
+            (sortingType: OfferSortigTypes) => {
+              const itemClassName = classNames(
+                'places__option',
+                { 'places__option--active': sortingType === currentOfferSortType }
+              );
+
+              return (
+                <li
+                  key={sortingType}
+                  className={itemClassName}
+                  tabIndex={0}
+                  onClick={
+                    () => {
+                      setIsSortingTypesShown(false);
+                      onSortingTypeChange(sortingType);
+                    }
+                  }
+                >
+                  {sortingType}
+                </li>
+              );
+            }
           )
         }
       </ul>

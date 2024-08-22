@@ -21,14 +21,14 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
-enum PlacesSortingTypes {
+enum OfferSortigTypes {
   Popular = 'Popular',
   PriceLowToHigh = 'Price: low to high',
   PriceHighToLow = 'Price: high to low',
   TopRatedFirst = 'Top rated first'
 }
 
-const DEFALUT_PALCES_SORTING_TYPE = PlacesSortingTypes.PriceLowToHigh;
+const DEFALUT_OFFER_SORTING_TYPE = OfferSortigTypes.Popular;
 
 enum ClassNamePrefix {
   PlaceCard = 'place-card',
@@ -101,8 +101,8 @@ export {
   OFFER_PATH,
   AppRoute,
   AuthorizationStatus,
-  PlacesSortingTypes,
-  DEFALUT_PALCES_SORTING_TYPE,
+  OfferSortigTypes,
+  DEFALUT_OFFER_SORTING_TYPE,
   ClassNamePrefix,
   BookmarkButtonIconSize,
   OfferTypeFeature,
