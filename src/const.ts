@@ -28,7 +28,7 @@ enum PlacesSortingTypes {
   TopRatedFirst = 'Top rated first'
 }
 
-const DEFALUT_PALCES_SORTING_TYPE = PlacesSortingTypes.PriceLowToHigh;
+const DEFALUT_PALCES_SORTING_TYPE = PlacesSortingTypes.Popular;
 
 enum ClassNamePrefix {
   PlaceCard = 'place-card',

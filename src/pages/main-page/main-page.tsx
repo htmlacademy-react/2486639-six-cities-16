@@ -10,7 +10,7 @@ import { changeCityName } from '../../store/action';
 import { CityName } from '../../types/city';
 import { Offer, OfferId } from '../../types/offer';
 import { getCityOffers } from '../../utils/offer';
-import { ClassNamePrefix, DEFAULT_ACTIVE_OFFER_ID } from '../../const';
+import { ClassNamePrefix, DEFAULT_ACTIVE_OFFER_ID, PlacesSortingTypes, DEFALUT_PALCES_SORTING_TYPE } from '../../const';
 
 type MainPageProps = {
   offers: Offer[];
@@ -20,9 +20,11 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
   const currentCityName = useAppSelector((state) => state.cityName);
   const dispatch = useAppDispatch();
 
+  const [activeSortingType, setActiveSortingType] = useState<PlacesSortingTypes>(DEFALUT_PALCES_SORTING_TYPE);
   const [activeOfferId, setActiveOfferId] = useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID);
 
   const cityOffers = getCityOffers(currentCityName, offers);
+  //! тут отсортировать по activeSortingType
   const isCityOffersEmpty: boolean = !cityOffers.length;
   const mainClassName = classNames(
     'page__main',
@@ -38,6 +40,11 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
     { 'cities__no-places': isCityOffersEmpty },
     { 'cities__places places': !isCityOffersEmpty }
   );
+
+  const handleSortingTypeChange = (sortingType: PlacesSortingTypes) => {
+    setActiveSortingType(sortingType);
+    console.log(sortingType);
+  };
 
   const handlePlaceCardMouseEnter = (offerId: OfferId) => {
     setActiveOfferId(offerId);
@@ -76,7 +83,10 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
                   <>
                     <h2 className="visually-hidden">Places</h2>
                     <b className="places__found">{offers.length} places to stay in {currentCityName}</b>
-                    <PlacesSorting />
+                    <PlacesSorting
+                      activeSortingType={activeSortingType}
+                      onSortingTypeChange={handleSortingTypeChange}
+                    />
                     <PlaceCardList
                       offers={cityOffers}
                       onPlaceCardMouseEnter={handlePlaceCardMouseEnter}

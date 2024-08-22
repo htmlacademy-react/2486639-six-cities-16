@@ -1,29 +1,52 @@
-import { PlacesSortingTypes, DEFALUT_PALCES_SORTING_TYPE } from '../../const';
+import { useState } from 'react';
+import classNames from 'classnames';
+import { PlacesSortingTypes } from '../../const';
 
-function PlacesSorting(): JSX.Element {
-  const activeSortingType = DEFALUT_PALCES_SORTING_TYPE;
+type PlacesSortingProps = {
+  activeSortingType: PlacesSortingTypes;
+  onSortingTypeChange: (sortingType: PlacesSortingTypes) => void;
+}
+
+function PlacesSorting({ activeSortingType, onSortingTypeChange }: PlacesSortingProps): JSX.Element {
+  const [isSortingTypesShown, setIsSortingTypesShown] = useState<boolean>(false);
+  const ulClassName = classNames(
+    'places__options',
+    'places__options--custom',
+    { 'places__options--opened': isSortingTypesShown }
+  );
 
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
-      <span className="places__sorting-type" tabIndex={0}>
-        Popular
+      <span
+        className="places__sorting-type"
+        tabIndex={0}
+        onClick={
+          () => {
+            setIsSortingTypesShown(!isSortingTypesShown);
+          }
+        }
+      >
+        {activeSortingType}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      <ul className="places__options places__options--custom places__options--opened">
+      <ul className={ulClassName}>
         {
           Object.values(PlacesSortingTypes).map(
-            (sortingType: PlacesSortingTypes) => (
-              <li
-                key={sortingType}
-                className={`places__option ${(sortingType === activeSortingType) ? 'places__option--active' : null}`}
-                tabIndex={0}
-              >
-                {sortingType}
-              </li>
-            )
+            (sortingType: PlacesSortingTypes) => {
+              const liClassName = classNames(
+                'places__option',
+                { 'places__option--active': sortingType === activeSortingType }
+              );
+
+              return (
+                <li key={sortingType} className={liClassName} tabIndex={0} >
+                  {sortingType}
+                </li>
+              );
+            }
           )
         }
       </ul>
