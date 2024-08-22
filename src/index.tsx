@@ -45,13 +45,14 @@ root.render(
   10. createAction('load/Offers'); всынести строку в константы?
   11. createAction<CityName>('changeCityName'); <CityName> обязательно объект, даже если из одного значения?
   12. изначальные пустые предложения так сделать для store "const emptyOffers: Offer[] = [];
-  13. вызов действия загрузка предложений оставил в App  dispatch(loadOffers());  и получение оферов
+  13. вызов действия загрузка предложений оставил в App dispatch(loadOffers());  и получение оферов
+    из разбора ДЗ-6 useEffect(() => { dispatch(loadOffers()); }, []); но App и так один раз вызывается, можно выставить console.log(new Date())
   14. 4 places to stay in ....  а для 1 place to stay in ... нужно?
     наверное нужно сделать только справочник для отдельных слов вместо OfferTypeFeatureTemplate
   15. Сброс сортировки можно выполнить в reduce state.offerSoritngType = DEFALUT_OFFER_SORTING_TYPE;
     или выполнить действие в обработычике смены города dispatch(changeOfferSortingType(DEFALUT_OFFER_SORTING_TYPE));
     ?
-  16. useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID); тоже перевести на useAppSelector?
+  16. useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID); тоже перевести на useAppSelector? и избавиться от проброса обработчиков через два компонента... сделал на ДЗ 5
   17. при нажатии на лого должен вернуться на Париж? или оставить как есть... после нажатия остаеться наведенным
     наверное ссылки из избранного тоже меняют город и направляют на главную! так?
 
