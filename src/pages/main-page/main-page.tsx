@@ -24,7 +24,11 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
   const [activeOfferId, setActiveOfferId] = useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID);
 
   const cityOffers = getCityOffers(currentCityName, offers);
+
   //! тут отсортировать по activeSortingType
+  //if (activeSortingType === PlacesSortingTypes.PriceHighToLow) {
+  //  cityOffers.push(cityOffers[0]);
+  //}
   const isCityOffersEmpty: boolean = !cityOffers.length;
   const mainClassName = classNames(
     'page__main',
@@ -43,7 +47,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
 
   const handleSortingTypeChange = (sortingType: PlacesSortingTypes) => {
     setActiveSortingType(sortingType);
-    console.log(sortingType);
+    //!console.log(sortingType);
   };
 
   const handlePlaceCardMouseEnter = (offerId: OfferId) => {

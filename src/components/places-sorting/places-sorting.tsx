@@ -42,7 +42,16 @@ function PlacesSorting({ activeSortingType, onSortingTypeChange }: PlacesSorting
               );
 
               return (
-                <li key={sortingType} className={liClassName} tabIndex={0} >
+                <li
+                  key={sortingType}
+                  className={liClassName}
+                  tabIndex={0}
+                  onClick={
+                    () => {
+                      onSortingTypeChange(sortingType);
+                    }
+                  }
+                >
                   {sortingType}
                 </li>
               );
