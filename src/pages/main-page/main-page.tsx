@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeCityName, changePlacesSortingType } from '../../store/action';
 import { CityName } from '../../types/city';
 import { Offer, OfferId } from '../../types/offer';
-import { getCityOffers } from '../../utils/offer';
+import { getCityOffers, sortOffers } from '../../utils/offer';
 import { ClassNamePrefix, DEFAULT_ACTIVE_OFFER_ID, PlacesSortingTypes } from '../../const';
 
 type MainPageProps = {
@@ -23,14 +23,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
 
   const [activeOfferId, setActiveOfferId] = useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID);
 
-  const cityOffers = getCityOffers(currentCityName, offers);
-
-  //! тут отсортировать по activeSortingType
-  //if (currentPlacesSortType === PlacesSortingTypes.PriceHighToLow) {
-  //  cityOffers.push(cityOffers[0]);
-  //}
-  //console.log(cityOffers);
-  //
+  const cityOffers = sortOffers(getCityOffers(currentCityName, offers), currentPlacesSortType);
 
   const isCityOffersEmpty: boolean = !cityOffers.length;
   const mainClassName = classNames(

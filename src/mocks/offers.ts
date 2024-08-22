@@ -78,7 +78,7 @@ export const mockOffers: Offer[] = [
     id: '993b5f0a-3e91-4007-aab0-1107fe23467a',
     title: 'Waterfront with extraordinary view',
     type: 'apartment',
-    price: 138,
+    price: 1380,
     previewImage: 'https://16.design.htmlacademy.pro/static/hotel/2.jpg',
     city: {
       name: 'Amsterdam',
