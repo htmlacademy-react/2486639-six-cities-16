@@ -5,7 +5,6 @@ import FavoriteItem from '../../components/favorite-item/favorite-item';
 import { Offer } from '../../types/offer';
 import { getOffersByCities } from '../../utils/offer';
 import { APP_TITLE } from '../../const';
-import { CityName } from '../../types/city';
 
 type FavoritesPageProps = {
   offers: Offer[];
@@ -39,7 +38,7 @@ function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
                       .map(({ cityName, offers: cityOffers }) => (
                         <FavoriteItem
                           key={cityName}
-                          cityName={cityName as CityName}
+                          cityName={cityName}
                           offers={cityOffers}
                         />
                       ))

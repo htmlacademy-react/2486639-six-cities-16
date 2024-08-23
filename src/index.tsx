@@ -22,11 +22,9 @@ root.render(
 Доделать:
   0. сортировку переделать на store
   0. константы сгруппировать по предложению
-  0. убрать onCityNameClick: (cityName: CityName) => void;  сразу сделать dispath
   0. перенести в утилиты STAR_VALUES: Array.from({ length: REVIEW_RATING_STARS_COUNT }, (_, index) => (REVIEW_RATING_STARS_COUNT - index)),
   0. const CITIES_NAMES = ['Paris'  сделать на enum
     в офере типизировать
-    убрать cityName={cityName as CityName}
   0. добавить тип для initialState
   1. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
 только, то что TS не может подсказать

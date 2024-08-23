@@ -1,4 +1,4 @@
-import { City } from './city';
+import { City, CityName } from './city';
 import { Location } from './location';
 import { User } from './user';
 
@@ -27,4 +27,4 @@ export type DetailOffer = BaseOffer & {
   maxAdults: number;
 };
 
-export type CityOffers = { cityName: string; offers: Offer[] };
+export type CityOffers = { cityName: CityName; offers: Offer[] };
