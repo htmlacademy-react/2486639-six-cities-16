@@ -4,13 +4,11 @@ import { Offer } from '../types/offer';
 import { mockOffers } from '../mocks/offers';
 import { DEFALUT_OFFER_SORTING_TYPE, DEFAULT_CITY_NAME } from '../const';
 
-const emptyOffers: Offer[] = [];
-
 const initialState = {
   //!authorizationStatus  можно суда перенести, наверное при выполении ДЗ с авторизацией
   cityName: DEFAULT_CITY_NAME,
   offerSoritngType: DEFALUT_OFFER_SORTING_TYPE,
-  offers: emptyOffers
+  offers: [] as Offer[]
 };
 
 const reducer = createReducer(initialState, (builder) => {

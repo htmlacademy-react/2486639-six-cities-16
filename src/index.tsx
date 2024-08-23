@@ -18,20 +18,6 @@ root.render(
 
 /*
 Вопросы:
-  +1. {isPro ? 'Pro' : ''} или весь span не показывать?
-  +2. какие выбрать размеры для иконок маркеров карты /img/pin.svg /img/pin-active.svg
-    в <svg width="27" height="39"
-    указать 28*40? а середину 27/2 13 14? без разницы?
-  -3. в маркапах <p className="offer__text"> как то разбито по частям.... перенос строки или '.' или длинна какая-то... глянуть как в ТЗ
-    OfferHost / const descriptions = [description, description];
-  -4. параметров в app.tsx еще нет console.log('app', useParams()); получаю offerId в offer-page
-    а есть вариант как получить в APP и например подготовить данные
-      const params = useParams();
-      const offerId: OfferId | undefined = params.id;
-  vit+5. не отрабатывает route NotFound для /1.jpg /1.html  - на лого была ссылка /main.html
-  +6. css классы в коде у новых компонентов, нужно выносить в константы?
-  +7. отаются полоски над и под назвааниями городов locations__item-link tabs__item tabs__item--active
-    пока не переключишься на другую вкладку и обранто, но и при наведении иногда появляются
   +8. ссылка на город
     на главной что в сделать в заголовке?, как в макете #? или имя города? посмотреть в ТЗ
     на странице с избранным
@@ -42,13 +28,6 @@ root.render(
     перепроверить условие включения кнопки по ТЗ, нужен ли trim для текста?
       const isSubmitButtonDisabled = ...
     заменить "Your review {rating} - {text}" -> "Your review"
-  +10. createAction('load/Offers'); всынести строку в константы?
-  +11. createAction<CityName>('changeCityName'); <CityName> обязательно объект, даже если из одного значения?
-  +12. изначальные пустые предложения так сделать для store "const emptyOffers: Offer[] = [];
-    сделать тип для State укзать offers: []
-    offers: [] as Offer[]
-  +13. вызов действия загрузка предложений оставил в App dispatch(loadOffers());  и получение оферов
-    из разбора ДЗ-6 useEffect(() => { dispatch(loadOffers()); }, []); но App и так один раз вызывается, можно выставить console.log(new Date())
   +14. 4 places to stay in ....  а для 1 place to stay in ... нужно?
     наверное нужно сделать только справочник для отдельных слов вместо OfferTypeFeatureTemplate
   +15. Сброс сортировки можно выполнить в reduce state.offerSoritngType = DEFALUT_OFFER_SORTING_TYPE;
@@ -60,7 +39,7 @@ root.render(
 
 Доделать:
   1. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
-только, то что не может подсказать 
+только, то что TS не может подсказать
 function getCityOffers(cityName: CityName, offers: Offer[]): Offer[] {
 function getCityOffers(cityName: CityName, offers: Offer[]){
   2. типизировать функции и значения
@@ -95,6 +74,13 @@ function getCityOffers(cityName: CityName, offers: Offer[]){
   9. OfferGallery - const key = `img-${index}`;
     когда будут реальные данные, то ключ сделать путем и проверить ошибки в консоли
     с одинковым ключем у всех 6-ти не корректно обновлялись при переключичении с мест не подалеку
+  10. проверить однотипность function и ()=> есть критерий?
+  11. createAction('load/Offers'); всынести строку в константы, если не сделаем по имени действия
+
+
+Для авто тестов - если будут ошибки
+  1. прячу весь span {isPro ? <span className="offer__user-status">Pro</span> : null}
+  2. маркеры на карте 27*39 середина 27/2, если что указать 28*40 и 14
 
 Заметки:
   aaa@aaa.aaa / a1
@@ -112,6 +98,9 @@ function getCityOffers(cityName: CityName, offers: Offer[]){
   как типизировать
     format: string -> format: typeof DateFormat ...  const DateFormat = {DATE: 'YYYY-MM-DD',  MONTH_YEAR: 'MMMM YYYY'}...
       или только через enum или массив, а может сузить...
+
+  отаются полоски над и под назвааниями городов locations__item-link tabs__item tabs__item--active
+    пока не переключишься на другую вкладку и обранто, но и при наведении иногда появляются
 
 --
 // может понадобится подчет рейтинга...
