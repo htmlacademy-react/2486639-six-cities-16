@@ -6,8 +6,7 @@ import PlacesSorting from '../../components/places-sorting/places-sorting';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import OffersMap from '../../components/offers-map/offers-map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeCityName, changeOfferSortingType } from '../../store/action';
-import { CityName } from '../../types/city';
+import { changeOfferSortingType } from '../../store/action';
 import { Offer, OfferId } from '../../types/offer';
 import { getCityOffers, sortOffers } from '../../utils/offer';
 import { ClassNamePrefix, OfferSortigTypes } from '../../const';
@@ -51,19 +50,12 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
     setActiveOfferId(null);
   };
 
-  const handleCityNameClick = (cityName: CityName) => {
-    dispatch(changeCityName(cityName));
-  };
-
   return (
     <div className="page page--gray page--main">
       <HeaderAuth />
 
       <main className={mainClassName}>
-        <Locations
-          currentCityName={currentCityName}
-          onCityNameClick={handleCityNameClick}
-        />
+        <Locations currentCityName={currentCityName} />
         <div className="cities">
           <div className={divClassName}>
             <section className={sectionClassName}>

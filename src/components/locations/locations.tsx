@@ -1,12 +1,15 @@
+import { useAppDispatch } from '../../hooks';
+import { changeCityName } from '../../store/action';
 import { CityName } from '../../types/city';
 import { CITIES_NAMES } from '../../const';
 
 type LocationsProps = {
   currentCityName: CityName;
-  onCityNameClick: (cityName: CityName) => void;
 }
 
-function Locations({ currentCityName, onCityNameClick }: LocationsProps): JSX.Element {
+function Locations({ currentCityName }: LocationsProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
   return (
     <>
       <h1 className="visually-hidden">Cities</h1>
@@ -28,7 +31,7 @@ function Locations({ currentCityName, onCityNameClick }: LocationsProps): JSX.El
                       onClick={
                         (evt: React.MouseEvent<HTMLElement>) => {
                           evt.preventDefault();
-                          onCityNameClick(cityName);
+                          dispatch(changeCityName(cityName));
                         }
                       }
                     >
