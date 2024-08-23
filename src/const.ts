@@ -1,5 +1,4 @@
 import { CityName } from './types/city';
-import { OfferId } from './types/offer';
 
 const APP_TITLE = '6 cities';
 
