@@ -33,11 +33,11 @@ root.render(
   +15. Сброс сортировки можно выполнить в reduce state.offerSoritngType = DEFALUT_OFFER_SORTING_TYPE;
     или выполнить действие в обработычике смены города dispatch(changeOfferSortingType(DEFALUT_OFFER_SORTING_TYPE));
     ?
-  +16. useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID); тоже перевести на useAppSelector? и избавиться от проброса обработчиков через два компонента... сделал на ДЗ 5
   +17. при нажатии на лого должен вернуться на Париж? или оставить как есть... после нажатия остаеться наведенным
     наверное ссылки из избранного тоже меняют город и направляют на главную! так?
 
 Доделать:
+  0. добавить тип для initialState
   1. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
 только, то что TS не может подсказать
 function getCityOffers(cityName: CityName, offers: Offer[]): Offer[] {
