@@ -2,7 +2,7 @@ import { City } from './city';
 import { Location } from './location';
 import { User } from './user';
 
-export type OfferId = string;
+export type OfferId = string | null;
 
 export type BaseOffer = {
   id: OfferId;

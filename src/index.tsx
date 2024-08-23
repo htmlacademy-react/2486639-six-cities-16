@@ -22,7 +22,6 @@ root.render(
 Доделать:
   0. сортировку переделать на store
   0. константы сгруппировать по предложению
-    убрать const DEFAULT_ACTIVE_OFFER_ID: OfferId = ''; поменять на null
   0. убрать onCityNameClick: (cityName: CityName) => void;  сразу сделать dispath
   0. перенести в утилиты STAR_VALUES: Array.from({ length: REVIEW_RATING_STARS_COUNT }, (_, index) => (REVIEW_RATING_STARS_COUNT - index)),
   0. const CITIES_NAMES = ['Paris'  сделать на enum

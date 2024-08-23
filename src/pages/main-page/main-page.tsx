@@ -10,7 +10,7 @@ import { changeCityName, changeOfferSortingType } from '../../store/action';
 import { CityName } from '../../types/city';
 import { Offer, OfferId } from '../../types/offer';
 import { getCityOffers, sortOffers } from '../../utils/offer';
-import { ClassNamePrefix, DEFAULT_ACTIVE_OFFER_ID, OfferSortigTypes } from '../../const';
+import { ClassNamePrefix, OfferSortigTypes } from '../../const';
 
 type MainPageProps = {
   offers: Offer[];
@@ -21,7 +21,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
   const currentOfferSortType = useAppSelector((state) => state.offerSoritngType);
   const dispatch = useAppDispatch();
 
-  const [activeOfferId, setActiveOfferId] = useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID);
+  const [activeOfferId, setActiveOfferId] = useState<OfferId>(null);
 
   const cityOffers = sortOffers(getCityOffers(currentCityName, offers), currentOfferSortType);
 
@@ -48,7 +48,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
   };
 
   const handlePlaceCardMouseLeave = () => {
-    setActiveOfferId(DEFAULT_ACTIVE_OFFER_ID);
+    setActiveOfferId(null);
   };
 
   const handleCityNameClick = (cityName: CityName) => {
