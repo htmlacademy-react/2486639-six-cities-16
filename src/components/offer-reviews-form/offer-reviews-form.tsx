@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createArithmeticSequence } from '../../utils/util';
 import { ReviewTextLength, ReviewRating } from '../../const';
 
 function OfferReviewsForm(): JSX.Element {
@@ -13,31 +14,32 @@ function OfferReviewsForm(): JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">Your review {rating} - {text}</label>
       <div className="reviews__rating-form form__rating">
         {
-          ReviewRating.STAR_VALUES.map((item) => {
-            const key: string = `${item}-stars`;
+          createArithmeticSequence(ReviewRating.STARS_COUNT).reverse()
+            .map((item) => {
+              const key: string = `${item}-stars`;
 
-            return (
-              <React.Fragment key={key} >
-                <input
-                  className="form__rating-input visually-hidden"
-                  name="rating"
-                  value={item}
-                  id={key}
-                  type="radio"
-                  onChange={
-                    (evt) => {
-                      setRating(Number(evt.target.value));
+              return (
+                <React.Fragment key={key} >
+                  <input
+                    className="form__rating-input visually-hidden"
+                    name="rating"
+                    value={item}
+                    id={key}
+                    type="radio"
+                    onChange={
+                      (evt) => {
+                        setRating(Number(evt.target.value));
+                      }
                     }
-                  }
-                />
-                <label htmlFor={key} className="reviews__rating-label form__rating-label" title="perfect">
-                  <svg className="form__star-image" width="37" height="33">
-                    <use xlinkHref="#icon-star"></use>
-                  </svg>
-                </label>
-              </React.Fragment>
-            );
-          })
+                  />
+                  <label htmlFor={key} className="reviews__rating-label form__rating-label" title="perfect">
+                    <svg className="form__star-image" width="37" height="33">
+                      <use xlinkHref="#icon-star"></use>
+                    </svg>
+                  </label>
+                </React.Fragment>
+              );
+            })
         }
       </div>
       <textarea

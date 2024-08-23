@@ -61,9 +61,8 @@ const IMAGES_SHOW_COUNT = 6;
 const NEAR_OFFERS_SHOW_COUNT = 3;
 const ONE_STAR_WIDTH = 20;
 const REVIEWS_SHOW_COUNT = 10;
-const REVIEW_RATING_STARS_COUNT = 5;
 const ReviewRating = {
-  STAR_VALUES: Array.from({ length: REVIEW_RATING_STARS_COUNT }, (_, index) => (REVIEW_RATING_STARS_COUNT - index)),
+  STARS_COUNT: 5,
   DEFAULT: 0,
   MIN: 1
 } as const;

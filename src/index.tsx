@@ -22,7 +22,6 @@ root.render(
 Доделать:
   0. сортировку переделать на store
   0. константы сгруппировать по предложению
-  0. перенести в утилиты STAR_VALUES: Array.from({ length: REVIEW_RATING_STARS_COUNT }, (_, index) => (REVIEW_RATING_STARS_COUNT - index)),
   0. const CITIES_NAMES = ['Paris'  сделать на enum
     в офере типизировать
   0. добавить тип для initialState
