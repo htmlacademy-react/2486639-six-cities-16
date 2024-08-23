@@ -17,7 +17,6 @@ const reducer = createReducer(initialState, (builder) => {
       state.offers = mockOffers;
     })
     .addCase(changeCityName, (state, action) => {
-      state.offerSoritngType = DEFALUT_OFFER_SORTING_TYPE;
       state.cityName = action.payload;
     })
     .addCase(changeOfferSortingType, (state, action) => {

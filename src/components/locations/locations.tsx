@@ -24,8 +24,7 @@ function Locations({ currentCityName, onCityNameClick }: LocationsProps): JSX.El
                   <li className="locations__item" key={cityName} >
                     <a
                       className={className}
-                      //href="#"
-                      href={`/${cityName}`}
+                      href="#"
                       onClick={
                         (evt: React.MouseEvent<HTMLElement>) => {
                           evt.preventDefault();

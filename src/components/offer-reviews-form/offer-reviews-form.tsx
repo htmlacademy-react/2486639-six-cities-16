@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import { REVIEW_TEXT_MIN_LENGTH, Rating } from '../../const';
+import { ReviewTextLength, ReviewRating } from '../../const';
 
 function OfferReviewsForm(): JSX.Element {
-  const [rating, setRating] = useState<number>(Rating.DEFAULT);
+  const [rating, setRating] = useState<number>(ReviewRating.DEFAULT);
   const [text, setText] = useState<string>('');
 
-  const isSubmitButtonDisabled = (rating === Rating.MIN) || (text.trim().length <= REVIEW_TEXT_MIN_LENGTH);
+  const textLength = text.length;
+  const isSubmitButtonEnabled = (rating >= ReviewRating.MIN) && (textLength >= ReviewTextLength.MIN) && (textLength <= ReviewTextLength.MAX);
 
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review {rating} - {text}</label>
       <div className="reviews__rating-form form__rating">
         {
-          Rating.STAR_VALUES.map((item) => {
+          ReviewRating.STAR_VALUES.map((item) => {
             const key: string = `${item}-stars`;
 
             return (
@@ -54,7 +55,7 @@ function OfferReviewsForm(): JSX.Element {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={isSubmitButtonDisabled}>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={!isSubmitButtonEnabled}>Submit</button>
       </div>
     </form>
   );

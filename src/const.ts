@@ -57,18 +57,22 @@ const OfferTypeFeatureTemplate = {
   [OfferTypeFeature.Adults]: [`Max ${templateNumberString} adult`, `Max ${templateNumberString} adults`]
 } as const;
 
+//! константы сгруппировать
 const IMAGES_SHOW_COUNT = 6;
 const NEAR_OFFERS_SHOW_COUNT = 3;
 const ONE_STAR_WIDTH = 20;
-const DEFAULT_ACTIVE_OFFER_ID: OfferId = '';
+const DEFAULT_ACTIVE_OFFER_ID: OfferId = ''; //!
 const REVIEWS_SHOW_COUNT = 10;
 const REVIEW_RATING_STARS_COUNT = 5;
-const Rating = {
+const ReviewRating = {
   STAR_VALUES: Array.from({ length: REVIEW_RATING_STARS_COUNT }, (_, index) => (REVIEW_RATING_STARS_COUNT - index)),
   DEFAULT: 0,
-  MIN: 0
+  MIN: 1
 } as const;
-const REVIEW_TEXT_MIN_LENGTH = 50;
+const ReviewTextLength = {
+  MIN: 50,
+  MAX: 300
+} as const;
 
 const Leaflet = {
   URL_TEMPLATE: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
@@ -113,8 +117,8 @@ export {
   ONE_STAR_WIDTH,
   DEFAULT_ACTIVE_OFFER_ID,
   REVIEWS_SHOW_COUNT,
-  Rating,
-  REVIEW_TEXT_MIN_LENGTH,
+  ReviewRating,
+  ReviewTextLength,
   Leaflet,
   UrlMarker,
   IconMarkerSize,

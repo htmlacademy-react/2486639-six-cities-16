@@ -18,25 +18,16 @@ root.render(
 
 /*
 Вопросы:
-  +8. ссылка на город
-    на главной что в сделать в заголовке?, как в макете #? или имя города? посмотреть в ТЗ
-    на странице с избранным
-      где сгруппировано по городам сделать Route?
-      Оформелние 'favorites__locations locations locations--current' посмотреть макет...
-        наведенный? выбранный на главной? или просто отображение синим все города?
-  +9. OfferReviewsForm
-    перепроверить условие включения кнопки по ТЗ, нужен ли trim для текста?
-      const isSubmitButtonDisabled = ...
-    заменить "Your review {rating} - {text}" -> "Your review"
-  +14. 4 places to stay in ....  а для 1 place to stay in ... нужно?
-    наверное нужно сделать только справочник для отдельных слов вместо OfferTypeFeatureTemplate
-  +15. Сброс сортировки можно выполнить в reduce state.offerSoritngType = DEFALUT_OFFER_SORTING_TYPE;
-    или выполнить действие в обработычике смены города dispatch(changeOfferSortingType(DEFALUT_OFFER_SORTING_TYPE));
-    ?
-  +17. при нажатии на лого должен вернуться на Париж? или оставить как есть... после нажатия остаеться наведенным
-    наверное ссылки из избранного тоже меняют город и направляют на главную! так?
 
 Доделать:
+  0. сортировку переделать на store
+  0. константы сгруппировать по предложению
+    убрать const DEFAULT_ACTIVE_OFFER_ID: OfferId = ''; поменять на null
+  0. убрать onCityNameClick: (cityName: CityName) => void;  сразу сделать dispath
+  0. перенести в утилиты STAR_VALUES: Array.from({ length: REVIEW_RATING_STARS_COUNT }, (_, index) => (REVIEW_RATING_STARS_COUNT - index)),
+  0. const CITIES_NAMES = ['Paris'  сделать на enum
+    в офере типизировать
+    убрать cityName={cityName as CityName}
   0. добавить тип для initialState
   1. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
 только, то что TS не может подсказать
@@ -76,7 +67,11 @@ function getCityOffers(cityName: CityName, offers: Offer[]){
     с одинковым ключем у всех 6-ти не корректно обновлялись при переключичении с мест не подалеку
   10. проверить однотипность function и ()=> есть критерий?
   11. createAction('load/Offers'); всынести строку в константы, если не сделаем по имени действия
-
+  12. в демо feath вызван вне App
+  13. заменить в OfferReviewsForm "Your review {rating} - {text}" -> "Your review", как будет готов API
+  14. 4 places to stay in ....  а для 1 place to stay in ...
+    наверное нужно сделать только справочник для отдельных слов вместо OfferTypeFeatureTemplate
+    либо просто функцию котора допишет 's' всему чему нужно
 
 Для авто тестов - если будут ошибки
   1. прячу весь span {isPro ? <span className="offer__user-status">Pro</span> : null}
@@ -101,6 +96,9 @@ function getCityOffers(cityName: CityName, offers: Offer[]){
 
   отаются полоски над и под назвааниями городов locations__item-link tabs__item tabs__item--active
     пока не переключишься на другую вкладку и обранто, но и при наведении иногда появляются
+
+  ссылка на лого на главной, при клике остаеться наведенной навигация не происходит т.к. уже на главной...
+    может если на главной, то отключить ссылку на логотипе?
 
 --
 // может понадобится подчет рейтинга...
