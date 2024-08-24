@@ -16,13 +16,16 @@ export type BaseOffer = {
 
 export type Offer = BaseOffer & { previewImage: string };
 
-export type DetailOffer = BaseOffer & {
-  description: string;
-  bedrooms: number;
-  goods: string[];
-  host: User;
-  images: string[];
-  maxAdults: number;
-};
+export type DetailOffer =
+  BaseOffer
+  & {
+    description: string;
+    bedrooms: number;
+    goods: string[];
+    host: User;
+    images: string[];
+    maxAdults: number;
+  }
+  | null;
 
 export type CityOffers = { cityName: CityName; offers: Offer[] };

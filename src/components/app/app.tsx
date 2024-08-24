@@ -9,14 +9,11 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import Spinner from '../spinner/spinner';
 import { useAppSelector } from '../../hooks';
-import { getFavoriteOffers } from '../../utils/offer';
-import { Offer } from '../../types/offer';
 import { AppRoute, APP_TITLE, AuthorizationStatus } from '../../const';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-  const offers: Offer[] = useAppSelector((state) => state.offers);
 
   if ((authorizationStatus === AuthorizationStatus.Unknown) || isOffersDataLoading) {
     return (
@@ -33,7 +30,7 @@ function App(): JSX.Element {
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage offers={offers} />}
+            element={<MainPage />}
           />
           <Route
             path={AppRoute.Login}
@@ -47,7 +44,7 @@ function App(): JSX.Element {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute>
-                <FavoritesPage offers={getFavoriteOffers(offers)} />
+                <FavoritesPage />
               </PrivateRoute>
             }
           />

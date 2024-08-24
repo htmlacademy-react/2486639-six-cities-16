@@ -20,10 +20,6 @@ function sortOffers(offers: Offer[], offerSortingType: OfferSortigType): Offer[]
   return [...offers].sort(compareOffers[offerSortingType]);
 }
 
-function getFavoriteOffers(offers: Offer[]): Offer[] {
-  return offers.filter(({ isFavorite }) => isFavorite);
-}
-
 function sortByCityName(citiesOffers: CityOffers[]): CityOffers[] {
   return citiesOffers.sort(({ cityName: firstCityName }, { cityName: secondCityName }) => (firstCityName.localeCompare(secondCityName)));
 }
@@ -44,4 +40,4 @@ function getOffersByCities(offers: Offer[]): CityOffers[] {
   return sortByCityName(offersByCities);
 }
 
-export { getCityOffers, sortOffers, getFavoriteOffers, getOffersByCities };
+export { getCityOffers, sortOffers, getOffersByCities };

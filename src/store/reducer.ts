@@ -12,7 +12,8 @@ type InitialState = {
   offerSoritngType: OfferSortigType;
   activeOfferId: OfferId;
   offers: Offer[];
-  detailOffer: DetailOffer | null;
+  favoriteOffers: Offer[];
+  detailOffer: DetailOffer;
   isOffersDataLoading: boolean;
   authorizationStatus: AuthorizationStatus;
   userName: string;
@@ -23,6 +24,7 @@ const initialState: InitialState = {
   offerSoritngType: DEFALUT_OFFER_SORTING_TYPE,
   activeOfferId: null,
   offers: [],
+  favoriteOffers: [],
   detailOffer: null,
   isOffersDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,

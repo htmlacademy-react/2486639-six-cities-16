@@ -6,16 +6,12 @@ import PlaceCardList from '../../components/place-card-list/place-card-list';
 import OffersMap from '../../components/offers-map/offers-map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeOfferSortingType } from '../../store/action';
-import { Offer } from '../../types/offer';
 import { addPluralEnding } from '../../utils/util';
 import { getCityOffers, sortOffers } from '../../utils/offer';
 import { ClassNamePrefix, OfferSortigType } from '../../const';
 
-type MainPageProps = {
-  offers: Offer[];
-}
-
-function MainPage({ offers }: MainPageProps): JSX.Element {
+function MainPage(): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
   const currentCityName = useAppSelector((state) => state.cityName);
   const currentOfferSortType = useAppSelector((state) => state.offerSoritngType);
   const activeOfferId = useAppSelector((state) => state.activeOfferId);

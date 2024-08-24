@@ -2,16 +2,14 @@ import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import FavoriteItem from '../../components/favorite-item/favorite-item';
-import { Offer } from '../../types/offer';
+import { useAppSelector } from '../../hooks';
 import { getOffersByCities } from '../../utils/offer';
 import { APP_TITLE } from '../../const';
 
-type FavoritesPageProps = {
-  offers: Offer[];
-}
+function FavoritesPage(): JSX.Element {
+  const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
 
-function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
-  const isOffersEmpty: boolean = !offers.length;
+  const isOffersEmpty: boolean = !favoriteOffers.length;
 
   return (
     <div className="page">
@@ -34,7 +32,7 @@ function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
                 :
                 <ul className="favorites__list">
                   {
-                    getOffersByCities(offers)
+                    getOffersByCities(favoriteOffers)
                       .map(({ cityName, offers: cityOffers }) => (
                         <FavoriteItem
                           key={cityName}
