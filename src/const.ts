@@ -41,18 +41,11 @@ const BookmarkButtonIconSize = {
   BIG: { width: 31, height: 33 },
 } as const;
 
-enum OfferTypeFeature {
+enum OfferFeatureType {
   Entire = 'entire',
   Bedrooms = 'bedrooms',
   Adults = 'adults'
 }
-const templateNumberString = ':n';
-
-const OfferTypeFeatureTemplate = {
-  [OfferTypeFeature.Entire]: ['', ''],
-  [OfferTypeFeature.Bedrooms]: [`${templateNumberString} Bedroom`, `${templateNumberString} Bedrooms`],
-  [OfferTypeFeature.Adults]: [`Max ${templateNumberString} adult`, `Max ${templateNumberString} adults`]
-} as const;
 
 const RATING_STAR_WIDTH = 20;
 
@@ -114,9 +107,7 @@ export {
   DEFALUT_OFFER_SORTING_TYPE,
   ClassNamePrefix,
   BookmarkButtonIconSize,
-  OfferTypeFeature,
-  templateNumberString,
-  OfferTypeFeatureTemplate,
+  OfferFeatureType,
   RATING_STAR_WIDTH,
   OfferComponentsCount,
   ReviewRating,

@@ -27,32 +27,26 @@ root.render(
   2. типизировать функции и значения
     onSortingTypeChange: (sortingType: OfferSortigType) => void;
       может <argT>  (value:argT)....
-  3. classNamePrefix попробовать переделать на передачу типа или как то по другому
-    или имя сменить
-    или разбить на нужные
-    и убрать излишние константы
-      OfferTypeFeatureTemplate[OfferTypeFeature.Entire]: ['', '']
-        не могу убрать ошибку TS OfferTypeFeatureTemplate[key] хотя выше проверка - (key in OfferTypeFeatureTemplate)
-  4. списках мест сделать на одном компоненте
+  3. списках мест сделать на одном компоненте
     переделать списки в NearPlaces / FavoritesPage + FavoriteItem или есть еще?
-  5. в NearPlaces нужен ScrollToTop при переходе по ссылкам, т.к.находимся внизу другого предложения
-  6. применить classNames в остальных компанентах
-  7. <Helmet> <title>{`${APP_TITLE}: 404`}</title>....  что то придумать для сборки заголовка
+  4. в NearPlaces нужен ScrollToTop при переходе по ссылкам, т.к.находимся внизу другого предложения
+  5. применить classNames в остальных компанентах
+  6. <Helmet> <title>{`${APP_TITLE}: 404`}</title>....  что то придумать для сборки заголовка
     и добавить константы
     может какие то страницы упустил ?
-  8. Переобъеденить HeaderAuth / HeaderNoAuth / HeaderLogin + class=header__logo - link--active
+  7. Переобъеденить HeaderAuth / HeaderNoAuth / HeaderLogin + class=header__logo - link--active
     HeaderAuth - сделать разное поведение ссылки
       <a className = "header__logo-link header__logo-link--active">
       <a className="header__logo-link">
-  9. OfferGallery - const key = `img-${index}`;
+  8. OfferGallery - const key = `img-${index}`;
     когда будут реальные данные, то ключ сделать путем и проверить ошибки в консоли
     с одинковым ключем у всех 6-ти не корректно обновлялись при переключичении с мест не подалеку
-  10. проверить однотипность function и ()=> есть критерий?
-  11. createAction('load/Offers'); всынести строку в константы, если не сделаем по имени действия
-  12. в демо feath вызван вне App
-  13. заменить в OfferReviewsForm "Your review {rating} - {text}" -> "Your review", как будет готов API
-  14. 4 places to stay in ....  а для 1 place to stay in ...
-    наверное нужно сделать только справочник для отдельных слов вместо OfferTypeFeatureTemplate
+  9. проверить однотипность function и ()=> есть критерий?
+  10. createAction('load/Offers'); всынести строку в константы, если не сделаем по имени действия
+  11. в демо feath вызван вне App
+  12. заменить в OfferReviewsForm "Your review {rating} - {text}" -> "Your review", как будет готов API
+  13. 4 places to stay in ....  а для 1 place to stay in ...
+    наверное нужно сделать только справочник для отдельных слов вместо OfferFeatureTypeTemplate
     либо просто функцию котора допишет 's' всему чему нужно
 
 Для авто тестов - если будут ошибки

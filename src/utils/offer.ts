@@ -1,6 +1,6 @@
 import { CityOffers, Offer } from '../types/offer';
 import { CityName } from '../types/city';
-import { OfferTypeFeature, OfferTypeFeatureTemplate, OfferSortigType, templateNumberString } from '../const';
+import { OfferSortigType } from '../const';
 
 function getCityOffers(cityName: CityName, offers: Offer[]) {
   return offers.filter(({ city }) => (cityName === city.name));
@@ -44,19 +44,4 @@ function getOffersByCities(offers: Offer[]): CityOffers[] {
   return sortByCityName(offersByCities);
 }
 
-function getFeatureText(key: OfferTypeFeature, value: number): string {
-  if (value < 1) {
-    return '';
-  }
-
-  if (!(key in OfferTypeFeatureTemplate)) {
-    return '';
-  }
-
-  const [templateOne, templateMany] = OfferTypeFeatureTemplate[key];
-  const template = (value === 1) ? templateOne : templateMany;
-
-  return template.replace(templateNumberString, value.toString());
-}
-
-export { getCityOffers, sortOffers, getFavoriteOffers, getOffersByCities, getFeatureText };
+export { getCityOffers, sortOffers, getFavoriteOffers, getOffersByCities };
