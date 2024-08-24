@@ -1,9 +1,11 @@
 import { createAction } from '@reduxjs/toolkit';
 import { CityName } from '../types';
-import { Offer, OfferId } from '../types/offer';
+import { DetailOffer, Offer, OfferId } from '../types/offer';
 import { ActionName, AuthorizationStatus, OfferSortigType } from '../const';
 
 export const loadOffers = createAction<Offer[]>(ActionName.LoadOffers);
+
+export const loadDetailOffer = createAction<DetailOffer | null>(ActionName.LoadDetailOffer);
 
 export const setOffersDataLoadingStatus = createAction<boolean>(ActionName.SetOffersDataLoadingStatus);
 

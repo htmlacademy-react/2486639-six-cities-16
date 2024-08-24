@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import NotFoundPage from '../not-found-page/not-found-page';
@@ -13,27 +14,37 @@ import NearPlaces from '../../components/near-places/near-places';
 import Price from '../../components/price/price';
 import OfferFeatures from '../../components/offer-features/offer-features';
 import OffersMap from '../../components/offers-map/offers-map';
-import { OfferId, Offer, DetailOffer } from '../../types/offer';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { loadDetailOffer } from '../../store/action';
+import { fetchOfferAction } from '../../store/api-actions';
+import { OfferId, Offer } from '../../types/offer';
 import { Review } from '../../types/review';
-import { getById } from '../../utils/util';
 import { compareStringDate } from '../../utils/date';
 import { APP_TITLE, ClassNamePrefix, OfferComponentsCount } from '../../const';
 
 function OfferPage(): JSX.Element {
+  const params = useParams();
+  const offerId: OfferId = params.id;
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(loadDetailOffer(null));
+    dispatch(fetchOfferAction(offerId));
+  }, [dispatch, offerId]);
+
+  const detailOffer = useAppSelector((state) => state.detailOffer);
+
   //! временные данные
   const nearOffers: Offer[] = [];//![mockOffers];
   const reviews: Review[] = [];//mockReviews;
   //
 
-  const params = useParams();
   const offers = nearOffers.slice(0, OfferComponentsCount.NEAR_OFFERS);
-  const offerId: OfferId | undefined = params.id;
 
   if (!offerId) {
     return <NotFoundPage />;
   }
-
-  const detailOffer: DetailOffer | undefined = getById([] as DetailOffer[]/*//! mockDetailOffers*/, offerId);
 
   if (!detailOffer) {
     return (<NotFoundPage />);

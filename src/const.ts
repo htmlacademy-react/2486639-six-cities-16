@@ -108,7 +108,9 @@ const IconAnchorSize = {
 
 enum ActionName {
   LoadOffers = 'data/loadOffers',
+  LoadDetailOffer = 'data/loadDetailOffers',
   FetchOffers = 'data/fetchOffers',
+  FetchDetailOffer = 'data/fetchDetailOffer',
   Login = 'user/login',
   CheckAuth = 'user/checkAuth',
   SetOffersDataLoadingStatus = 'main/setOffersDataLoadingStatus',

@@ -1,6 +1,6 @@
 import { City, CityName, Location, User } from '.';
 
-export type OfferId = string | null;
+export type OfferId = string | null | undefined;
 
 export type BaseOffer = {
   id: OfferId;
