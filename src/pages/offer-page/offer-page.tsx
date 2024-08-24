@@ -15,9 +15,9 @@ import Price from '../../components/price/price';
 import OfferFeatures from '../../components/offer-features/offer-features';
 import OffersMap from '../../components/offers-map/offers-map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { loadDetailOffer } from '../../store/action';
+import { loadDetailOffer, loadOfferNearOffers, loadOfferReviews } from '../../store/action';
 import { fetchOfferAction } from '../../store/api-actions';
-import { OfferId, Offer } from '../../types/offer';
+import { OfferId } from '../../types/offer';
 import { Review } from '../../types/review';
 import { compareStringDate } from '../../utils/date';
 import { APP_TITLE, ClassNamePrefix, OfferComponentsCount } from '../../const';
@@ -30,15 +30,14 @@ function OfferPage(): JSX.Element {
 
   useEffect(() => {
     dispatch(loadDetailOffer(null));
+    dispatch(loadOfferNearOffers([]));
+    dispatch(loadOfferReviews([]));
     dispatch(fetchOfferAction(offerId));
   }, [dispatch, offerId]);
 
   const detailOffer = useAppSelector((state) => state.detailOffer);
-
-  //! временные данные
-  const nearOffers: Offer[] = [];//![mockOffers];
-  const reviews: Review[] = [];//mockReviews;
-  //
+  const nearOffers = useAppSelector((state) => state.offerNearOffers);
+  const reviews = useAppSelector((state) => state.offerReviews);
 
   const offers = nearOffers.slice(0, OfferComponentsCount.NEAR_OFFERS);
 

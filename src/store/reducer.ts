@@ -1,11 +1,13 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeActiveOfferId, changeCityName, changeOfferSortingType, loadDetailOffer, loadOffers, requireAuthorization, setOffersDataLoadingStatus, setUserName } from './action';
+import {
+  changeActiveOfferId, changeCityName, changeOfferSortingType, loadDetailOffer,
+  loadFavoriteOffers, loadOfferNearOffers, loadOfferReviews, loadOffers, requireAuthorization,
+  setOffersDataLoadingStatus, setUserName
+} from './action';
 import { CityName } from '../types';
 import { DetailOffer, Offer, OfferId } from '../types/offer';
-import {
-  AuthorizationStatus, DEFALUT_OFFER_SORTING_TYPE,
-  DEFAULT_CITY_NAME, OfferSortigType
-} from '../const';
+import { Review } from '../types/review';
+import { AuthorizationStatus, DEFALUT_OFFER_SORTING_TYPE, DEFAULT_CITY_NAME, OfferSortigType } from '../const';
 
 type InitialState = {
   cityName: CityName;
@@ -14,6 +16,8 @@ type InitialState = {
   offers: Offer[];
   favoriteOffers: Offer[];
   detailOffer: DetailOffer;
+  offerNearOffers: Offer[];
+  offerReviews: Review[];
   isOffersDataLoading: boolean;
   authorizationStatus: AuthorizationStatus;
   userName: string;
@@ -26,6 +30,8 @@ const initialState: InitialState = {
   offers: [],
   favoriteOffers: [],
   detailOffer: null,
+  offerNearOffers: [],
+  offerReviews: [],
   isOffersDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
   userName: ''
@@ -36,8 +42,17 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
     })
+    .addCase(loadFavoriteOffers, (state, action) => {
+      state.favoriteOffers = action.payload;
+    })
     .addCase(loadDetailOffer, (state, action) => {
       state.detailOffer = action.payload;
+    })
+    .addCase(loadOfferNearOffers, (state, action) => {
+      state.offerNearOffers = action.payload;
+    })
+    .addCase(loadOfferReviews, (state, action) => {
+      state.offerReviews = action.payload;
     })
     .addCase(setOffersDataLoadingStatus, (state, action) => {
       state.isOffersDataLoading = action.payload;
