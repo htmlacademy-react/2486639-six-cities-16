@@ -56,11 +56,14 @@ const OfferTypeFeatureTemplate = {
   [OfferTypeFeature.Adults]: [`Max ${templateNumberString} adult`, `Max ${templateNumberString} adults`]
 } as const;
 
+const RATING_STAR_WIDTH = 20;
+
 //! константы сгруппировать
+//const FeatureOffer sShowCount = {};
 const IMAGES_SHOW_COUNT = 6;
 const NEAR_OFFERS_SHOW_COUNT = 3;
-const ONE_STAR_WIDTH = 20;
 const REVIEWS_SHOW_COUNT = 10;
+
 const ReviewRating = {
   STARS_COUNT: 5,
   DEFAULT: 0,
@@ -109,9 +112,9 @@ export {
   OfferTypeFeature,
   templateNumberString,
   OfferTypeFeatureTemplate,
+  RATING_STAR_WIDTH,
   IMAGES_SHOW_COUNT,
   NEAR_OFFERS_SHOW_COUNT,
-  ONE_STAR_WIDTH,
   REVIEWS_SHOW_COUNT,
   ReviewRating,
   ReviewTextLength,

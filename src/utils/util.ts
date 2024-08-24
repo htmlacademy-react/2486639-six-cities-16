@@ -8,8 +8,8 @@ function upFirstLetter(text: string): string {
   return text[0].toUpperCase() + text.slice(1);
 }
 
-function createArithmeticSequence(count: number, start: number = 0, step: number = 1): number[] {
-  return Array.from({ length: count }, (_, index) => (start + (index + 1) * step));
+function getPositiveNumbers(count: number, start: number = 1): number[] {
+  return Array.from({ length: count }, (_, index) => (start + (index + 1)));
 }
 
-export { getById, upFirstLetter, createArithmeticSequence };
+export { getById, upFirstLetter, getPositiveNumbers };

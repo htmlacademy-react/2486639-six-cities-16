@@ -1,4 +1,4 @@
-import { ClassNamePrefix, ONE_STAR_WIDTH } from '../../const';
+import { ClassNamePrefix, RATING_STAR_WIDTH } from '../../const';
 
 type RatingProps = {
   classNamePrefix: ClassNamePrefix;
@@ -12,7 +12,7 @@ function Rating({ classNamePrefix, rating }: RatingProps): JSX.Element {
   return (
     <div className={ratingClassName}>
       <div className={starsClassName}>
-        <span style={{ width: `${Math.round(rating) * ONE_STAR_WIDTH}%` }}></span>
+        <span style={{ width: `${Math.round(rating) * RATING_STAR_WIDTH}%` }}></span>
         <span className="visually-hidden">Rating</span>
       </div>
       {(classNamePrefix === ClassNamePrefix.Offer) ? <span className="offer__rating-value rating__value">{rating}</span> : null}

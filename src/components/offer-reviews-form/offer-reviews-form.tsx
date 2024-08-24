@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createArithmeticSequence } from '../../utils/util';
+import { getPositiveNumbers } from '../../utils/util';
 import { ReviewTextLength, ReviewRating } from '../../const';
 
 function OfferReviewsForm(): JSX.Element {
@@ -14,7 +14,8 @@ function OfferReviewsForm(): JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">Your review {rating} - {text}</label>
       <div className="reviews__rating-form form__rating">
         {
-          createArithmeticSequence(ReviewRating.STARS_COUNT).reverse()
+          getPositiveNumbers(ReviewRating.STARS_COUNT)
+            .reverse()
             .map((item) => {
               const key: string = `${item}-stars`;
 
