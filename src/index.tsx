@@ -45,9 +45,6 @@ root.render(
   10. createAction('load/Offers'); всынести строку в константы, если не сделаем по имени действия
   11. в демо feath вызван вне App
   12. заменить в OfferReviewsForm "Your review {rating} - {text}" -> "Your review", как будет готов API
-  13. 4 places to stay in ....  а для 1 place to stay in ...
-    наверное нужно сделать только справочник для отдельных слов вместо OfferFeatureTypeTemplate
-    либо просто функцию котора допишет 's' всему чему нужно
 
 Для авто тестов - если будут ошибки
   1. прячу весь span {isPro ? <span className="offer__user-status">Pro</span> : null}

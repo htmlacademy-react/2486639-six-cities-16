@@ -7,6 +7,7 @@ import OffersMap from '../../components/offers-map/offers-map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeOfferSortingType } from '../../store/action';
 import { Offer } from '../../types/offer';
+import { addPluralEnding } from '../../utils/util';
 import { getCityOffers, sortOffers } from '../../utils/offer';
 import { ClassNamePrefix, OfferSortigType } from '../../const';
 
@@ -22,7 +23,8 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
 
   const cityOffers = sortOffers(getCityOffers(currentCityName, offers), currentOfferSortType);
 
-  const isCityOffersEmpty: boolean = !cityOffers.length;
+  const cityOffersCount = cityOffers.length;
+  const isCityOffersEmpty: boolean = !cityOffersCount;
   const mainClassName = classNames(
     'page__main page__main--index',
     { 'page__main--index-empty': isCityOffersEmpty }
@@ -59,7 +61,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
                   :
                   <>
                     <h2 className="visually-hidden">Places</h2>
-                    <b className="places__found">{cityOffers.length} places to stay in {currentCityName}</b>
+                    <b className="places__found">{cityOffersCount} {addPluralEnding('place', cityOffersCount)} to stay in {currentCityName}</b>
                     <PlacesSorting
                       currentOfferSortType={currentOfferSortType}
                       onSortingTypeChange={handleSortingTypeChange}
