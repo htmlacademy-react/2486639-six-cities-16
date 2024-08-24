@@ -14,3 +14,5 @@ export const changeOfferSortingType = createAction<OfferSortigType>(ActionName.C
 export const changeActiveOfferId = createAction<OfferId>(ActionName.ChangeActiveOfferId);
 
 export const requireAuthorization = createAction<AuthorizationStatus>(ActionName.RequireAuthorization);
+
+export const setUserName = createAction<string>(ActionName.SetUserName);

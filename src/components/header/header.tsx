@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
-import { AppRoute, AuthorizationStatus } from '../../const';
 import classNames from 'classnames';
+import { getFavoriteOffers } from '../../utils/offer';
+import { Offer } from '../../types/offer';
+import { AppRoute, AuthorizationStatus } from '../../const';
 
 type HeaderProps = {
   isHiddenUserInfo?: boolean;
@@ -9,8 +11,10 @@ type HeaderProps = {
 
 function Header({ isHiddenUserInfo }: HeaderProps): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isAuthUser = authorizationStatus === AuthorizationStatus.Auth;
+  const userName = useAppSelector((state) => state.userName);
+  const offers: Offer[] = useAppSelector((state) => state.offers);
 
+  const isAuthUser = authorizationStatus === AuthorizationStatus.Auth;
   const logoLinkClassName = classNames('header__logo-link', { 'header__logo-link--active': !isHiddenUserInfo });
 
   return (
@@ -36,8 +40,8 @@ function Header({ isHiddenUserInfo }: HeaderProps): JSX.Element {
                         <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
                           <div className="header__avatar-wrapper user__avatar-wrapper">
                           </div>
-                          <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                          <span className="header__favorite-count">0</span>
+                          <span className="header__user-name user__name">{userName}</span>
+                          <span className="header__favorite-count">{getFavoriteOffers(offers).length}</span>
                         </Link>
                         :
                         <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Login}>

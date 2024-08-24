@@ -115,7 +115,8 @@ enum ActionName {
   ChangeCityName = 'main/changeCityName',
   ChangeOfferSortingType = 'main/changeOfferSortingType',
   ChangeActiveOfferId = 'main/changeActiveOfferId',
-  RequireAuthorization = 'user/requireAuthorization'
+  RequireAuthorization = 'user/requireAuthorization',
+  SetUserName = 'user/setUserName'
 }
 
 export {
