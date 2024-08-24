@@ -13,26 +13,23 @@ function useMap(
 
   useEffect(
     () => {
+      const { latitude: lat, longitude: lng, zoom } = startLocation;
+      const center = { lat, lng };
+
       if (mapRef.current && !isRenderedRef.current) {
         const { URL_TEMPLATE, OPTIONS } = Leaflet;
-        const { latitude: lat, longitude: lng, zoom } = startLocation;
-        const mapOptions = {
-          center: {
-            lat,
-            lng
-          },
-          zoom
-        };
 
-        const instance = new Map(mapRef.current, mapOptions);
+        const instance = new Map(mapRef.current, { center, zoom });
         const layer = new TileLayer(URL_TEMPLATE, OPTIONS);
 
         instance.addLayer(layer);
         setMap(instance);
         isRenderedRef.current = true;
+      } else {
+        map?.setView(center, zoom);
       }
     },
-    [mapRef, startLocation]
+    [map, mapRef, startLocation]
   );
 
   return map;

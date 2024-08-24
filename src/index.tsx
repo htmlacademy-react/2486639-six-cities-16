@@ -20,6 +20,7 @@ root.render(
 Вопросы:
 
 Доделать:
+  0. пришлось добавить map?.setView(center, zoom); а может, что то не то?
   1. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
     только, то что TS не может подсказать
     function getCityOffers(cityName: CityName, offers: Offer[]): Offer[] {
