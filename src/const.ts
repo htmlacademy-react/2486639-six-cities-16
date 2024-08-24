@@ -1,4 +1,5 @@
 import { CityName } from './types';
+import { DetailOffer } from './types/offer';
 
 const APP_TITLE = '6 cities';
 
@@ -65,6 +66,39 @@ enum OfferFeatureType {
 }
 
 const RATING_STAR_WIDTH = 20;
+
+const EMPTY_DETAIL_OFFER: DetailOffer = {
+  id: null,
+  title: '',
+  type: 'room',
+  price: 0,
+  city: {
+    name: DEFAULT_CITY_NAME,
+    location: {
+      latitude: 0,
+      longitude: 0,
+      zoom: 0
+    }
+  },
+  location: {
+    latitude: 0,
+    longitude: 0,
+    zoom: 0
+  },
+  isFavorite: false,
+  isPremium: false,
+  rating: 0,
+  description: '',
+  bedrooms: 0,
+  goods: [],
+  host: {
+    name: '',
+    avatarUrl: '',
+    isPro: false,
+  },
+  images: [],
+  maxAdults: 0
+} as const;
 
 const OfferComponentsCount = {
   IMAGES: 6,
@@ -144,6 +178,7 @@ export {
   BookmarkButtonIconSize,
   OfferFeatureType,
   RATING_STAR_WIDTH,
+  EMPTY_DETAIL_OFFER,
   OfferComponentsCount,
   ReviewRating,
   ReviewTextLength,

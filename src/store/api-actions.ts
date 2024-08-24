@@ -9,7 +9,7 @@ import { AuthData, UserData } from '../types';
 import { AppDispatch, State } from '../types/state';
 import { DetailOffer, Offer, OfferId } from '../types/offer';
 import { Review } from '../types/review';
-import { APIRoute, ActionName, AuthorizationStatus } from '../const';
+import { APIRoute, ActionName, AuthorizationStatus, EMPTY_DETAIL_OFFER } from '../const';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -77,8 +77,12 @@ export const fetchDetailOfferAction = createAsyncThunk<void, OfferId, {
   ActionName.FetchDetailOffer,
   async (offerId, { dispatch, extra: api }) => {
     const route = `${APIRoute.Offers}/${offerId}`;
-    const { data } = await api.get<DetailOffer>(route);
-    dispatch(loadDetailOffer(data));
+    try {
+      const { data } = await api.get<DetailOffer>(route);
+      dispatch(loadDetailOffer(data));
+    } catch {
+      dispatch(loadDetailOffer(EMPTY_DETAIL_OFFER));
+    }
   }
 );
 

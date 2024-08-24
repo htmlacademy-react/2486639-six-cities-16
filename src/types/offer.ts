@@ -25,7 +25,6 @@ export type DetailOffer =
     host: User;
     images: string[];
     maxAdults: number;
-  }
-  | null;
+  };
 
 export type CityOffers = { cityName: CityName; offers: Offer[] };

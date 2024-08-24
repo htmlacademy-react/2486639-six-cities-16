@@ -7,7 +7,10 @@ import {
 import { CityName } from '../types';
 import { DetailOffer, Offer, OfferId } from '../types/offer';
 import { Review } from '../types/review';
-import { AuthorizationStatus, DEFALUT_OFFER_SORTING_TYPE, DEFAULT_CITY_NAME, OfferSortigType } from '../const';
+import {
+  AuthorizationStatus, DEFALUT_OFFER_SORTING_TYPE, DEFAULT_CITY_NAME,
+  EMPTY_DETAIL_OFFER, OfferSortigType
+} from '../const';
 
 type InitialState = {
   cityName: CityName;
@@ -29,7 +32,7 @@ const initialState: InitialState = {
   activeOfferId: null,
   offers: [],
   favoriteOffers: [],
-  detailOffer: null,
+  detailOffer: EMPTY_DETAIL_OFFER,
   offerNearOffers: [],
   offerReviews: [],
   isOffersDataLoading: false,

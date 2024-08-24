@@ -54,8 +54,19 @@ root.render(
     параметр только название города
   17. OfferPage при загрузке данных отрисовывает не надолго 404
     нужен либо таймаю либо текс с информацией о загрузки данных
+    const detailOffer = useAppSelector((state) => state.detailOffer);
+    if (!detailOffer) {...
+
+    !!!
+    пока сделал EMPTY_DETAIL_OFFER, но при сбое запроса выполняю
+    dispatch(loadDetailOffer( EMPTY_DETAIL_OFFER ));
+    так на странице предложения выполнил
+    dispatch(loadDetailOffer({ ...EMPTY_DETAIL_OFFER, id: offerId }));
+
   18. const offerReviews = [...reviews] // ... т.к. при ассинхронном действии успевает затираться
     может что то будет для 17
+  19. при отладке иногда пропадают все предложения и на главной пишет что для города ничего нет...
+    особбенно, если зашел по ссылке на оффер, то сначала авторизация, потом оферы, потом детальная информация
 
 Для авто тестов - если будут ошибки
   1. прячу весь span {isPro ? <span className="offer__user-status">Pro</span> : null}
