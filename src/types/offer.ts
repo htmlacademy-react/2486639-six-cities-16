@@ -1,6 +1,4 @@
-import { City, CityName } from './city';
-import { Location } from './location';
-import { User } from './user';
+import { City, CityName, Location, User } from '.';
 
 export type OfferId = string | null;
 

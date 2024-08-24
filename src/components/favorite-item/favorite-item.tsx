@@ -3,7 +3,7 @@ import PlaceCardInfo from '../place-card-info/place-card-info';
 import { useAppDispatch } from '../../hooks';
 import { changeCityName } from '../../store/action';
 import { Offer } from '../../types/offer';
-import { CityName } from '../../types/city';
+import { CityName } from '../../types';
 import { AppRoute } from '../../const';
 
 type FavoriteItemProps = {

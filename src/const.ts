@@ -1,6 +1,13 @@
-import { CityName } from './types/city';
+import { CityName } from './types';
 
 const APP_TITLE = '6 cities';
+
+const APIService = {
+  URL: 'https://16.design.htmlacademy.pro/six-cities',
+  TIMEOUT: 5000
+} as const;
+
+const AUTH_TOKEN_KEY_NAME = 'six-cities-token';
 
 const CITIES_NAMES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
 const DEFAULT_CITY_NAME: CityName = CITIES_NAMES[0];
@@ -98,6 +105,8 @@ enum ActionName {
 
 export {
   APP_TITLE,
+  APIService,
+  AUTH_TOKEN_KEY_NAME,
   CITIES_NAMES,
   DEFAULT_CITY_NAME,
   OFFER_PATH,

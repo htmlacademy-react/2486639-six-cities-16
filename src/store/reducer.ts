@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { changeActiveOfferId, changeCityName, changeOfferSortingType, loadOffers } from './action';
-import { CityName } from '../types/city';
+import { CityName } from '../types';
 import { Offer, OfferId } from '../types/offer';
 import { mockOffers } from '../mocks/offers';
 import { DEFALUT_OFFER_SORTING_TYPE, DEFAULT_CITY_NAME, OfferSortigType } from '../const';

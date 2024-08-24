@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { AppRouteProps } from '../../types/app-route-props';
+import { AppRouteProps } from '../../types';
 import { AuthorizationStatus } from '../../const';
 
 type AccessRouteProps = AppRouteProps & { checkAuthorizationStatus: AuthorizationStatus; route: string }

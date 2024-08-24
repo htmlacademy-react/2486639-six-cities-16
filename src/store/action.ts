@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { CityName } from '../types/city';
+import { CityName } from '../types';
 import { OfferId } from '../types/offer';
 import { ActionName, OfferSortigType } from '../const';
 

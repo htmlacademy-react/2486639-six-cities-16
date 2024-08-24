@@ -1,7 +1,7 @@
 import { useEffect, useState, MutableRefObject, useRef } from 'react';
 import { Map, TileLayer } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { Location } from '../types/location';
+import { Location } from '../types';
 import { Leaflet } from '../const';
 
 function useMap(

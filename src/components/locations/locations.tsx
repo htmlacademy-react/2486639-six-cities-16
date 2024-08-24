@@ -1,6 +1,6 @@
 import { useAppDispatch } from '../../hooks';
 import { changeCityName } from '../../store/action';
-import { CityName } from '../../types/city';
+import { CityName } from '../../types';
 import { CITIES_NAMES } from '../../const';
 
 type LocationsProps = {

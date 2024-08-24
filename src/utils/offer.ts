@@ -1,5 +1,5 @@
 import { CityOffers, Offer } from '../types/offer';
-import { CityName } from '../types/city';
+import { CityName } from '../types';
 import { OfferSortigType } from '../const';
 
 function getCityOffers(cityName: CityName, offers: Offer[]) {
