@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import { useState } from 'react';
 import HeaderAuth from '../../components/header/header-auth';
 import Locations from '../../components/locations/locations';
 import PlacesSorting from '../../components/places-sorting/places-sorting';
@@ -7,7 +6,7 @@ import PlaceCardList from '../../components/place-card-list/place-card-list';
 import OffersMap from '../../components/offers-map/offers-map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeOfferSortingType } from '../../store/action';
-import { Offer, OfferId } from '../../types/offer';
+import { Offer } from '../../types/offer';
 import { getCityOffers, sortOffers } from '../../utils/offer';
 import { ClassNamePrefix, OfferSortigType } from '../../const';
 
@@ -18,9 +17,8 @@ type MainPageProps = {
 function MainPage({ offers }: MainPageProps): JSX.Element {
   const currentCityName = useAppSelector((state) => state.cityName);
   const currentOfferSortType = useAppSelector((state) => state.offerSoritngType);
+  const activeOfferId = useAppSelector((state) => state.activeOfferId);
   const dispatch = useAppDispatch();
-
-  const [activeOfferId, setActiveOfferId] = useState<OfferId>(null);
 
   const cityOffers = sortOffers(getCityOffers(currentCityName, offers), currentOfferSortType);
 
@@ -40,14 +38,6 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
 
   const handleSortingTypeChange = (sortingType: OfferSortigType) => {
     dispatch(changeOfferSortingType(sortingType));
-  };
-
-  const handlePlaceCardMouseEnter = (offerId: OfferId) => {
-    setActiveOfferId(offerId);
-  };
-
-  const handlePlaceCardMouseLeave = () => {
-    setActiveOfferId(null);
   };
 
   return (
@@ -74,11 +64,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
                       currentOfferSortType={currentOfferSortType}
                       onSortingTypeChange={handleSortingTypeChange}
                     />
-                    <PlaceCardList
-                      offers={cityOffers}
-                      onPlaceCardMouseEnter={handlePlaceCardMouseEnter}
-                      onPlaceCardMouseLeave={handlePlaceCardMouseLeave}
-                    />
+                    <PlaceCardList offers={cityOffers} />
                   </>
               }
             </section>

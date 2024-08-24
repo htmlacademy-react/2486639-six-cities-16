@@ -1,14 +1,12 @@
 import PlaceCard from '../place-card/place-card';
-import { Offer, OfferId } from '../../types/offer';
+import { Offer } from '../../types/offer';
 
 type PlaceCardListProps = {
   offers: Offer[];
-  onPlaceCardMouseEnter?: (offerId: OfferId) => void;
-  onPlaceCardMouseLeave?: () => void;
 }
 
 function PlaceCardList(props: PlaceCardListProps): JSX.Element {
-  const { offers, onPlaceCardMouseEnter, onPlaceCardMouseLeave } = props;
+  const { offers } = props;
 
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -17,8 +15,6 @@ function PlaceCardList(props: PlaceCardListProps): JSX.Element {
           <PlaceCard
             key={offer.id}
             offer={offer}
-            onMouseEnter={onPlaceCardMouseEnter}
-            onMouseLeave={onPlaceCardMouseLeave}
           />
         ))
       }

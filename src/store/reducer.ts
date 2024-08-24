@@ -1,14 +1,23 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCityName, changeOfferSortingType, loadOffers } from './action';
-import { Offer } from '../types/offer';
+import { changeActiveOfferId, changeCityName, changeOfferSortingType, loadOffers } from './action';
+import { CityName } from '../types/city';
+import { Offer, OfferId } from '../types/offer';
 import { mockOffers } from '../mocks/offers';
-import { DEFALUT_OFFER_SORTING_TYPE, DEFAULT_CITY_NAME } from '../const';
+import { DEFALUT_OFFER_SORTING_TYPE, DEFAULT_CITY_NAME, OfferSortigType } from '../const';
 
-const initialState = {
+type InitialState = {
+  cityName: CityName;
+  offerSoritngType: OfferSortigType;
+  activeOfferId: OfferId;
+  offers: Offer[];
+}
+
+const initialState: InitialState = {
   //!authorizationStatus  можно суда перенести, наверное при выполении ДЗ с авторизацией
   cityName: DEFAULT_CITY_NAME,
   offerSoritngType: DEFALUT_OFFER_SORTING_TYPE,
-  offers: [] as Offer[]
+  activeOfferId: null,
+  offers: []
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -21,6 +30,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(changeOfferSortingType, (state, action) => {
       state.offerSoritngType = action.payload;
+    })
+    .addCase(changeActiveOfferId, (state, action) => {
+      state.activeOfferId = action.payload;
     });
 });
 

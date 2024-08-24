@@ -20,8 +20,6 @@ root.render(
 Вопросы:
 
 Доделать:
-  0. сортировку переделать на store
-  0. добавить тип для initialState
   1. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
 только, то что TS не может подсказать
 function getCityOffers(cityName: CityName, offers: Offer[]): Offer[] {

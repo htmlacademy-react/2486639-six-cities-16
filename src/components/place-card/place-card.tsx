@@ -1,21 +1,23 @@
 import PlaceCardInfo from '../place-card-info/place-card-info';
-import { Offer, OfferId } from '../../types/offer';
+import { useAppDispatch } from '../../hooks';
+import { changeActiveOfferId } from '../../store/action';
+import { Offer } from '../../types/offer';
 
 type PlaceCardProps = {
   offer: Offer;
-  onMouseEnter?: (offerId: OfferId) => void;
-  onMouseLeave?: () => void;
 }
 
-function PlaceCard({ offer, onMouseEnter, onMouseLeave }: PlaceCardProps): JSX.Element {
+function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
   return (
     <article
       className="cities__card place-card"
       onMouseEnter={() => {
-        onMouseEnter?.(offer.id);
+        dispatch(changeActiveOfferId(offer.id));
       }}
       onMouseLeave={() => {
-        onMouseLeave?.();
+        dispatch(changeActiveOfferId(null));
       }}
     >
       <PlaceCardInfo
