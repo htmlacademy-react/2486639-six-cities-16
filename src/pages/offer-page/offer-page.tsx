@@ -17,13 +17,9 @@ import { OfferId, Offer, DetailOffer } from '../../types/offer';
 import { Review } from '../../types/review';
 import { getById } from '../../utils/util';
 import { compareStringDate } from '../../utils/date';
-import { APP_TITLE, AuthorizationStatus, ClassNamePrefix, OfferComponentsCount } from '../../const';
+import { APP_TITLE, ClassNamePrefix, OfferComponentsCount } from '../../const';
 
-type OfferPageProps = {
-  authorizationStatus: AuthorizationStatus;
-}
-
-function OfferPage({ authorizationStatus }: OfferPageProps): JSX.Element {
+function OfferPage(): JSX.Element {
   //! временные данные
   const nearOffers: Offer[] = [];//![mockOffers];
   const reviews: Review[] = [];//mockReviews;
@@ -87,11 +83,7 @@ function OfferPage({ authorizationStatus }: OfferPageProps): JSX.Element {
               <Price classNamePrefix={classNamePrefix} price={price} />
               <OfferInside goods={goods} />
               <OfferHost host={host} description={description} />
-              <OfferReviews
-                reviewsCount={offerReviews.length}
-                reviews={offerReviews}
-                isShowForm={authorizationStatus === AuthorizationStatus.Auth}
-              />
+              <OfferReviews reviewsCount={offerReviews.length} reviews={offerReviews} />
             </div>
           </div>
           <OffersMap

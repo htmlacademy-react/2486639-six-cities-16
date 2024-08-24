@@ -1,14 +1,17 @@
 import OfferReviewItem from '../offer-review-item/offer-review-item';
 import OfferReviewsForm from '../offer-reviews-form/offer-reviews-form';
+import { useAppSelector } from '../../hooks';
 import { Review } from '../../types/review';
+import { AuthorizationStatus } from '../../const';
 
 type OfferHostProps = {
   reviewsCount: number;
   reviews: Review[];
-  isShowForm?: boolean;
 }
 
-function OfferReviews({ reviewsCount, reviews, isShowForm = false }: OfferHostProps): JSX.Element {
+function OfferReviews({ reviewsCount, reviews }: OfferHostProps): JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
   return (
     <section className="offer__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsCount}</span></h2>
@@ -25,7 +28,7 @@ function OfferReviews({ reviewsCount, reviews, isShowForm = false }: OfferHostPr
             }
           </ul>
       }
-      {isShowForm ? <OfferReviewsForm /> : null}
+      {(authorizationStatus === AuthorizationStatus.Auth) ? <OfferReviewsForm /> : null}
     </section>
   );
 }

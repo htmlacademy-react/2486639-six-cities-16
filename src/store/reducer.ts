@@ -1,8 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeActiveOfferId, changeCityName, changeOfferSortingType, loadOffers, setOffersDataLoadingStatus } from './action';
+import { changeActiveOfferId, changeCityName, changeOfferSortingType, loadOffers, requireAuthorization, setOffersDataLoadingStatus } from './action';
 import { CityName } from '../types';
 import { Offer, OfferId } from '../types/offer';
-import { DEFALUT_OFFER_SORTING_TYPE, DEFAULT_CITY_NAME, OfferSortigType } from '../const';
+import {
+  AuthorizationStatus, DEFALUT_OFFER_SORTING_TYPE,
+  DEFAULT_CITY_NAME, OfferSortigType
+} from '../const';
 
 type InitialState = {
   cityName: CityName;
@@ -10,15 +13,16 @@ type InitialState = {
   activeOfferId: OfferId;
   offers: Offer[];
   isOffersDataLoading: boolean;
+  authorizationStatus: AuthorizationStatus;
 }
 
 const initialState: InitialState = {
-  //!authorizationStatus  можно суда перенести, наверное при выполении ДЗ с авторизацией
   cityName: DEFAULT_CITY_NAME,
   offerSoritngType: DEFALUT_OFFER_SORTING_TYPE,
   activeOfferId: null,
   offers: [],
-  isOffersDataLoading: false
+  isOffersDataLoading: false,
+  authorizationStatus: AuthorizationStatus.Unknown
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -37,6 +41,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(changeActiveOfferId, (state, action) => {
       state.activeOfferId = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
 

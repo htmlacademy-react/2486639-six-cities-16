@@ -107,10 +107,14 @@ const IconAnchorSize = {
 
 enum ActionName {
   LoadOffers = 'data/loadOffers',
-  SetOffersDataLoadingStatus = 'data/setOffersDataLoadingStatus',
+  FetchOffers = 'data/fetchOffers',
+  Login = 'user/login',
+  CheckAuth = 'user/checkAuth',
+  SetOffersDataLoadingStatus = 'main/setOffersDataLoadingStatus',
   ChangeCityName = 'main/changeCityName',
   ChangeOfferSortingType = 'main/changeOfferSortingType',
-  ChangeActiveOfferId = 'main/changeActiveOfferId'
+  ChangeActiveOfferId = 'main/changeActiveOfferId',
+  RequireAuthorization = 'user/requireAuthorization'
 }
 
 export {

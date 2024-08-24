@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
 import { store } from './store';
-import { fetchOffersAction } from './store/api-actions';
+import { fetchOffersAction, checkAuthAction } from './store/api-actions';
 
+store.dispatch(checkAuthAction());
 store.dispatch(fetchOffersAction());
 
 const root = ReactDOM.createRoot(
@@ -50,6 +51,7 @@ root.render(
   11. в демо feath вызван вне App
   12. заменить в OfferReviewsForm "Your review {rating} - {text}" -> "Your review", как будет готов API
   13. когда будет отдельный компонент Лого, то его добавить в Spinner
+  14. 7-2-3 Для обработки статуса 401 можно воспользоваться механизмом перехватчиков в axios.
 
 Для авто тестов - если будут ошибки
   1. прячу весь span {isPro ? <span className="offer__user-status">Pro</span> : null}
