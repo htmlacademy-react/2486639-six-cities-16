@@ -1,9 +1,8 @@
-import { AuthorizationStatus, CITIES_NAMES } from '../const';
+import { CITIES_NAMES } from '../const';
 
 export type Token = string;
 
 export type AppRouteProps = {
-  authorizationStatus: AuthorizationStatus;
   children: JSX.Element;
 }
 
@@ -24,4 +23,15 @@ export type User = {
   name: string;
   avatarUrl: string;
   isPro: boolean;
+};
+
+export type AuthData = {
+  login: string;
+  password: string;
+};
+
+export type UserData = {
+  id: number;
+  email: string;
+  token: string;
 };

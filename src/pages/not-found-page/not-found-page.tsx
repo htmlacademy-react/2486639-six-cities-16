@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { AppRoute, APP_TITLE } from '../../const';
-import HeaderAuth from '../../components/header/header-auth';
+import Header from '../../components/header/header';
 
 function NotFoundPage(): JSX.Element {
   return (
@@ -9,7 +9,7 @@ function NotFoundPage(): JSX.Element {
       <Helmet>
         <title>{`${APP_TITLE}: 404`}</title>
       </Helmet>
-      <HeaderAuth />
+      <Header />
 
       <main className="page__main">
         <div className="cities">

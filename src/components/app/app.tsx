@@ -11,17 +11,14 @@ import Spinner from '../spinner/spinner';
 import { useAppSelector } from '../../hooks';
 import { getFavoriteOffers } from '../../utils/offer';
 import { Offer } from '../../types/offer';
-import { AppRoute, AuthorizationStatus, APP_TITLE } from '../../const';
-
-const authorizationStatus = AuthorizationStatus.Auth;
-//const authorizationStatus = AuthorizationStatus.NoAuth; //! тест
-//const authorizationStatus = AuthorizationStatus.Unknown; //! тест
+import { AppRoute, APP_TITLE, AuthorizationStatus } from '../../const';
 
 function App(): JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   const offers: Offer[] = useAppSelector((state) => state.offers);
 
-  if (isOffersDataLoading) {
+  if ((authorizationStatus === AuthorizationStatus.Unknown) || isOffersDataLoading) {
     return (
       <Spinner />
     );
@@ -41,7 +38,7 @@ function App(): JSX.Element {
           <Route
             path={AppRoute.Login}
             element={
-              <PublicRoute authorizationStatus={authorizationStatus}>
+              <PublicRoute>
                 <LoginPage />
               </PublicRoute>
             }
@@ -49,7 +46,7 @@ function App(): JSX.Element {
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={authorizationStatus}>
+              <PrivateRoute>
                 <FavoritesPage offers={getFavoriteOffers(offers)} />
               </PrivateRoute>
             }
@@ -57,7 +54,7 @@ function App(): JSX.Element {
           <Route
             path={AppRoute.Offer}
             element={
-              <OfferPage authorizationStatus={authorizationStatus} />
+              <OfferPage />
             }
           />
           <Route

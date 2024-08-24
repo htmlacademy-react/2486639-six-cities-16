@@ -1,13 +1,14 @@
 import { Navigate } from 'react-router-dom';
 import { AppRouteProps } from '../../types';
 import { AuthorizationStatus } from '../../const';
+import { useAppSelector } from '../../hooks';
 
 type AccessRouteProps = AppRouteProps & { checkAuthorizationStatus: AuthorizationStatus; route: string }
 
-function AccessRoute({ authorizationStatus, checkAuthorizationStatus, children, route }: AccessRouteProps): JSX.Element {
+function AccessRoute({ checkAuthorizationStatus, children, route }: AccessRouteProps): JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
   switch (authorizationStatus) {
-    case AuthorizationStatus.Unknown:
-      return <p>Loading...</p>;
     case checkAuthorizationStatus:
       return children;
   }

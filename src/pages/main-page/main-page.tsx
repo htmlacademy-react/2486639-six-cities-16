@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import HeaderAuth from '../../components/header/header-auth';
+import Header from '../../components/header/header';
 import Locations from '../../components/locations/locations';
 import PlacesSorting from '../../components/places-sorting/places-sorting';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
@@ -44,7 +44,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
 
   return (
     <div className="page page--gray page--main">
-      <HeaderAuth />
+      <Header />
 
       <main className={mainClassName}>
         <Locations currentCityName={currentCityName} />
