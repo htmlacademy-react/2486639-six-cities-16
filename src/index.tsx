@@ -50,6 +50,7 @@ root.render(
   14. 7-2-3 Для обработки статуса 401 можно воспользоваться механизмом перехватчиков в axios.
   15. обработать 'Sign out' пока поставил <Link className="header__nav-link" to={AppRoute.Main}>, возможно нужно дейсвие и выход на главную
   16. одинаковый код FavoriteItem и LoginPage обработка клика на название города
+    параметр только название города
 
 Для авто тестов - если будут ошибки
   1. прячу весь span {isPro ? <span className="offer__user-status">Pro</span> : null}

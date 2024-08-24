@@ -44,8 +44,6 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
-      state.authorizationStatus = AuthorizationStatus.NoAuth; //! тест
-      //state.authorizationStatus = AuthorizationStatus.Auth; //! тест
     });
 });
 
