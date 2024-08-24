@@ -17,8 +17,6 @@ import { OfferId, Offer, DetailOffer } from '../../types/offer';
 import { Review } from '../../types/review';
 import { getById } from '../../utils/util';
 import { compareStringDate } from '../../utils/date';
-import { mockOffers, mockDetailOffers } from '../../mocks/offers';
-import { mockReviews } from '../../mocks/reviews';
 import { APP_TITLE, AuthorizationStatus, ClassNamePrefix, OfferComponentsCount } from '../../const';
 
 type OfferPageProps = {
@@ -27,8 +25,8 @@ type OfferPageProps = {
 
 function OfferPage({ authorizationStatus }: OfferPageProps): JSX.Element {
   //! временные данные
-  const nearOffers: Offer[] = mockOffers;
-  const reviews = mockReviews;
+  const nearOffers: Offer[] = [];//![mockOffers];
+  const reviews: Review[] = [];//mockReviews;
   //
 
   const params = useParams();
@@ -39,7 +37,7 @@ function OfferPage({ authorizationStatus }: OfferPageProps): JSX.Element {
     return <NotFoundPage />;
   }
 
-  const detailOffer: DetailOffer | undefined = getById(mockDetailOffers, offerId);
+  const detailOffer: DetailOffer | undefined = getById([] as DetailOffer[]/*//! mockDetailOffers*/, offerId);
 
   if (!detailOffer) {
     return (<NotFoundPage />);
