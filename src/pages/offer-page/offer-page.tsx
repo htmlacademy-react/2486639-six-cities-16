@@ -82,7 +82,7 @@ function OfferPage({ authorizationStatus }: OfferPageProps): JSX.Element {
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <BookmarkButton classNamePrefix={classNamePrefix} isActive={isFavorite} />
+                <BookmarkButton classNamePrefix={classNamePrefix} isActive={isFavorite} isBigButton />
               </div>
               <Rating classNamePrefix={classNamePrefix} rating={rating} />
               <OfferFeatures offerType={type} bedrooms={bedrooms} maxAdults={maxAdults} />

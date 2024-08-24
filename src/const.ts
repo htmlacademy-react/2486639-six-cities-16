@@ -30,17 +30,15 @@ enum OfferSortigType {
 const DEFALUT_OFFER_SORTING_TYPE = OfferSortigType.Popular;
 
 enum ClassNamePrefix {
-  PlaceCard = 'place-card',
   Offer = 'offer',
+  PlaceCard = 'place-card',
   Reviews = 'reviews',
   Cities = 'cities'
 }
 
 const BookmarkButtonIconSize = {
-  [ClassNamePrefix.PlaceCard]: { width: 18, height: 19 },
-  [ClassNamePrefix.Offer]: { width: 31, height: 33 },
-  [ClassNamePrefix.Reviews]: { width: 0, height: 0 },
-  [ClassNamePrefix.Cities]: { width: 0, height: 0 }
+  SMALL: { width: 18, height: 19 },
+  BIG: { width: 31, height: 33 },
 } as const;
 
 enum OfferTypeFeature {

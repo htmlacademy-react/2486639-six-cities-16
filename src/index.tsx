@@ -21,27 +21,18 @@ root.render(
 
 Доделать:
   1. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
-только, то что TS не может подсказать
-function getCityOffers(cityName: CityName, offers: Offer[]): Offer[] {
-function getCityOffers(cityName: CityName, offers: Offer[]){
+    только, то что TS не может подсказать
+    function getCityOffers(cityName: CityName, offers: Offer[]): Offer[] {
+    function getCityOffers(cityName: CityName, offers: Offer[]){
   2. типизировать функции и значения
     onSortingTypeChange: (sortingType: OfferSortigType) => void;
       может <argT>  (value:argT)....
-    onMouseEnter ?: (offerId: OfferId) => void;
-    onMouseLeave ?: () => void;
-    onPlaceCardMouseEnter ?: (offerId: OfferId) => void;
-    onPlaceCardMouseLeave ?: () => void;
-    onCityNameClick: (cityName: CityName) => void;
-    const handlePlaceCardMouseEnter: Тип
-    const handlePlaceCardMouseLeave: Тип
-    const handleCityNameClick: Тип
   3. classNamePrefix попробовать переделать на передачу типа или как то по другому
     или имя сменить
     или разбить на нужные
     и убрать излишние константы
       OfferTypeFeatureTemplate[OfferTypeFeature.Entire]: ['', '']
         не могу убрать ошибку TS OfferTypeFeatureTemplate[key] хотя выше проверка - (key in OfferTypeFeatureTemplate)
-        и BookmarkButtonIconSize[ClassNamePrefix.Reviews]: { width: 0, height: 0 }, +[ClassNamePrefix.Cities]: { width: 0, height: 0 }
   4. списках мест сделать на одном компоненте
     переделать списки в NearPlaces / FavoritesPage + FavoriteItem или есть еще?
   5. в NearPlaces нужен ScrollToTop при переходе по ссылкам, т.к.находимся внизу другого предложения
