@@ -101,7 +101,7 @@ function OfferPage(): JSX.Element {
             classNamePrefix={classNamePrefix}
             startLocation={city.location}
             offers={offers}
-            activeOfferId={offerId}
+            activeDetailOffer={detailOffer}
           />
         </section>
         <div className="container">

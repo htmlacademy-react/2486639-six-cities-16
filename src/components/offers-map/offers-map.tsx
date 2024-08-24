@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Icon, Marker, layerGroup } from 'leaflet';
 import useMap from '../../hooks/use-map';
-import { Offer, OfferId } from '../../types/offer';
+import { DetailOffer, Offer, OfferId } from '../../types/offer';
 import { Location } from '../../types';
 import { ClassNamePrefix, UrlMarker, IconMarkerSize, IconAnchorSize } from '../../const';
 
@@ -10,6 +10,7 @@ type OffersMapProps = {
   startLocation: Location;
   offers: Offer[];
   activeOfferId?: OfferId;
+  activeDetailOffer?: DetailOffer;
 }
 
 const defaultCustomIcon = new Icon({
@@ -29,7 +30,8 @@ function OffersMap(props: OffersMapProps): JSX.Element {
     classNamePrefix,
     startLocation,
     offers,
-    activeOfferId = ''
+    activeOfferId = null,
+    activeDetailOffer = null
   } = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, startLocation);
@@ -47,12 +49,19 @@ function OffersMap(props: OffersMapProps): JSX.Element {
           marker.setIcon(customIcon).addTo(markerLayer);
         });
 
+        if (activeDetailOffer) {
+          const { latitude: lat, longitude: lng } = activeDetailOffer.location;
+          const marker = new Marker({ lat, lng });
+
+          marker.setIcon(currentCustomIcon).addTo(markerLayer);
+        }
+
         return () => {
           map.removeLayer(markerLayer);
         };
       }
     },
-    [map, offers, activeOfferId]);
+    [map, offers, activeOfferId, activeDetailOffer]);
 
   return (
     <section className={`${classNamePrefix}__map map`} ref={mapRef} />
