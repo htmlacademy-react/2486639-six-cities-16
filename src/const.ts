@@ -20,14 +20,14 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
-enum OfferSortigTypes {
+enum OfferSortigType {
   Popular = 'Popular',
   PriceLowToHigh = 'Price: low to high',
   PriceHighToLow = 'Price: high to low',
   TopRatedFirst = 'Top rated first'
 }
 
-const DEFALUT_OFFER_SORTING_TYPE = OfferSortigTypes.Popular;
+const DEFALUT_OFFER_SORTING_TYPE = OfferSortigType.Popular;
 
 enum ClassNamePrefix {
   PlaceCard = 'place-card',
@@ -98,6 +98,13 @@ const IconAnchorSize = {
   HEIGHT: IconMarkerSize.HEIGHT
 } as const;
 
+enum ActionName {
+  LoadOffers = 'load/Offers',
+  ChangeCityName = 'main/changeCityName',
+  ChangeOfferSortingType = 'main/changeOfferSortingType',
+  ChangeActiveOfferId = 'main/changeActiveOfferId'
+}
+
 export {
   APP_TITLE,
   CITIES_NAMES,
@@ -105,7 +112,7 @@ export {
   OFFER_PATH,
   AppRoute,
   AuthorizationStatus,
-  OfferSortigTypes,
+  OfferSortigType,
   DEFALUT_OFFER_SORTING_TYPE,
   ClassNamePrefix,
   BookmarkButtonIconSize,
@@ -119,5 +126,6 @@ export {
   Leaflet,
   UrlMarker,
   IconMarkerSize,
-  IconAnchorSize
+  IconAnchorSize,
+  ActionName
 };

@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeOfferSortingType } from '../../store/action';
 import { Offer, OfferId } from '../../types/offer';
 import { getCityOffers, sortOffers } from '../../utils/offer';
-import { ClassNamePrefix, OfferSortigTypes } from '../../const';
+import { ClassNamePrefix, OfferSortigType } from '../../const';
 
 type MainPageProps = {
   offers: Offer[];
@@ -38,7 +38,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
     { 'cities__places places': !isCityOffersEmpty }
   );
 
-  const handleSortingTypeChange = (sortingType: OfferSortigTypes) => {
+  const handleSortingTypeChange = (sortingType: OfferSortigType) => {
     dispatch(changeOfferSortingType(sortingType));
   };
 

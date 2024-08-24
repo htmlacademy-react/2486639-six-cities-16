@@ -21,15 +21,13 @@ root.render(
 
 Доделать:
   0. сортировку переделать на store
-  0. const CITIES_NAMES = ['Paris'  сделать на enum
-    в офере типизировать
   0. добавить тип для initialState
   1. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
 только, то что TS не может подсказать
 function getCityOffers(cityName: CityName, offers: Offer[]): Offer[] {
 function getCityOffers(cityName: CityName, offers: Offer[]){
   2. типизировать функции и значения
-    onSortingTypeChange: (sortingType: OfferSortigTypes) => void;
+    onSortingTypeChange: (sortingType: OfferSortigType) => void;
       может <argT>  (value:argT)....
     onMouseEnter ?: (offerId: OfferId) => void;
     onMouseLeave ?: () => void;
