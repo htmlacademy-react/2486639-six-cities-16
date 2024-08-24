@@ -16,7 +16,7 @@ import OfferFeatures from '../../components/offer-features/offer-features';
 import OffersMap from '../../components/offers-map/offers-map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loadDetailOffer, loadOfferNearOffers, loadOfferReviews } from '../../store/action';
-import { fetchOfferAction } from '../../store/api-actions';
+import { fetchDetailOfferAction, fetchOfferNearOffersAction, fetchOfferReviewsAction } from '../../store/api-actions';
 import { OfferId } from '../../types/offer';
 import { Review } from '../../types/review';
 import { compareStringDate } from '../../utils/date';
@@ -32,7 +32,10 @@ function OfferPage(): JSX.Element {
     dispatch(loadDetailOffer(null));
     dispatch(loadOfferNearOffers([]));
     dispatch(loadOfferReviews([]));
-    dispatch(fetchOfferAction(offerId));
+
+    dispatch(fetchDetailOfferAction(offerId));
+    dispatch(fetchOfferNearOffersAction(offerId));
+    dispatch(fetchOfferReviewsAction(offerId));
   }, [dispatch, offerId]);
 
   const detailOffer = useAppSelector((state) => state.detailOffer);
@@ -49,7 +52,7 @@ function OfferPage(): JSX.Element {
     return (<NotFoundPage />);
   }
 
-  const offerReviews = reviews
+  const offerReviews = [...reviews]
     .sort((firstReview: Review, secondReview: Review) => compareStringDate(firstReview.date, secondReview.date))
     .slice(0, OfferComponentsCount.REVIEWS);
 

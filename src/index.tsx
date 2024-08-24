@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
 import { store } from './store';
-import { fetchOffersAction, checkAuthAction } from './store/api-actions';
+import { fetchOffersAction, checkAuthAction, fetchFavoriteOffers } from './store/api-actions';
 
 store.dispatch(checkAuthAction());
 store.dispatch(fetchOffersAction());
+store.dispatch(fetchFavoriteOffers());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -53,6 +54,8 @@ root.render(
     параметр только название города
   17. OfferPage при загрузке данных отрисовывает не надолго 404
     нужен либо таймаю либо текс с информацией о загрузки данных
+  18. const offerReviews = [...reviews] // ... т.к. при ассинхронном действии успевает затираться
+    может что то будет для 17
 
 Для авто тестов - если будут ошибки
   1. прячу весь span {isPro ? <span className="offer__user-status">Pro</span> : null}
