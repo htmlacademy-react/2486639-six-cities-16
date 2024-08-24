@@ -9,7 +9,7 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { loadOffers } from '../../store/action';
+import { fetchOffersAction } from '../../store/api-actions';
 import { getFavoriteOffers } from '../../utils/offer';
 import { Offer } from '../../types/offer';
 import { AppRoute, AuthorizationStatus, APP_TITLE } from '../../const';
@@ -23,7 +23,7 @@ function App(): JSX.Element {
   const offers: Offer[] = useAppSelector((state) => state.offers);
 
   useEffect(() => {
-    dispatch(loadOffers());
+    dispatch(fetchOffersAction());
   }, []);
 
   return (

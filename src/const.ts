@@ -7,18 +7,27 @@ const APIService = {
   TIMEOUT: 5000
 } as const;
 
+enum APIRoute {
+  Offers = '/offers',
+  Nearby = '/nearby',
+  Favorite = '/favorite',
+  Comments = '/comments',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 const AUTH_TOKEN_KEY_NAME = 'six-cities-token';
 
 const CITIES_NAMES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
 const DEFAULT_CITY_NAME: CityName = CITIES_NAMES[0];
 
-const OFFER_PATH = '/offer/';
+const OFFER_BASE_ROUTE = '/offer/';
 
 enum AppRoute {
   Main = '/',
   Login = '/login',
   Favorites = '/favorites',
-  Offer = `${OFFER_PATH}:id`
+  Offer = `${OFFER_BASE_ROUTE}:id`
 }
 
 enum AuthorizationStatus {
@@ -106,10 +115,11 @@ enum ActionName {
 export {
   APP_TITLE,
   APIService,
+  APIRoute,
   AUTH_TOKEN_KEY_NAME,
   CITIES_NAMES,
   DEFAULT_CITY_NAME,
-  OFFER_PATH,
+  OFFER_BASE_ROUTE,
   AppRoute,
   AuthorizationStatus,
   OfferSortigType,

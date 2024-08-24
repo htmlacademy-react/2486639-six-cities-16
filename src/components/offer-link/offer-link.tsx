@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { OfferId } from '../../types/offer';
-import { OFFER_PATH } from '../../const';
+import { OFFER_BASE_ROUTE } from '../../const';
 
 type OfferLinkProps = {
   offerId: OfferId;
@@ -9,7 +9,7 @@ type OfferLinkProps = {
 
 function OfferLink({ offerId, children }: OfferLinkProps): JSX.Element {
   return (
-    <Link to={`${OFFER_PATH}${offerId}`}>
+    <Link to={`${OFFER_BASE_ROUTE}${offerId}`}>
       {children}
     </Link>
   );
