@@ -1,14 +1,20 @@
+import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import HeaderLogin from '../../components/header/header-login';
-import { APP_TITLE } from '../../const';
+import Header from '../../components/header/header';
+import { useAppDispatch } from '../../hooks';
+import { changeCityName } from '../../store/action';
+import { APP_TITLE, AppRoute, CITY_NAME_IN_LOGIN_PAGE } from '../../const';
 
 function LoginPage(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   return (
     <div className="page page--gray page--login">
       <Helmet>
         <title>{`${APP_TITLE}: authorization`}</title>
       </Helmet>
-      <HeaderLogin />
+      <Header isHiddenUserInfo />
 
       <main className="page__main page__main--login">
         <div className="page__login-container container">
@@ -28,9 +34,19 @@ function LoginPage(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <Link
+                className="locations__item-link"
+                to={AppRoute.Main}
+                onClick={
+                  (evt: React.MouseEvent<HTMLElement>) => {
+                    evt.preventDefault();
+                    dispatch(changeCityName(CITY_NAME_IN_LOGIN_PAGE));
+                    navigate(AppRoute.Main);
+                  }
+                }
+              >
                 <span>Amsterdam</span>
-              </a>
+              </Link>
             </div>
           </section>
         </div>

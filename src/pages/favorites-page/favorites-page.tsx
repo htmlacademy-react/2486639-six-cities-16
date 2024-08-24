@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import HeaderAuth from '../../components/header/header-auth';
+import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import FavoriteItem from '../../components/favorite-item/favorite-item';
 import { Offer } from '../../types/offer';
@@ -18,7 +18,7 @@ function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
       <Helmet>
         <title>{`${APP_TITLE}: favorites${isOffersEmpty ? ' empty' : ''}`}</title>
       </Helmet>
-      <HeaderAuth />
+      <Header />
 
       <main className={`page__main page__main--favorites ${isOffersEmpty ? 'page__main--favorites-empty' : ''}`}>
         <div className="page__favorites-container container">

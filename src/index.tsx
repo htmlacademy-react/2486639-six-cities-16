@@ -24,25 +24,21 @@ root.render(
 Вопросы:
 
 Доделать:
-  0. пришлось добавить map?.setView(center, zoom); а может, что то не то?
-  1. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
+  1. пришлось добавить map?.setView(center, zoom); а может, что то не то?
+  2. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
     только, то что TS не может подсказать
     function getCityOffers(cityName: CityName, offers: Offer[]): Offer[] {
     function getCityOffers(cityName: CityName, offers: Offer[]){
-  2. типизировать функции и значения
+  3. типизировать функции и значения
     onSortingTypeChange: (sortingType: OfferSortigType) => void;
       может <argT>  (value:argT)....
-  3. списках мест сделать на одном компоненте
+  4. списках мест сделать на одном компоненте
     переделать списки в NearPlaces / FavoritesPage + FavoriteItem или есть еще?
-  4. в NearPlaces нужен ScrollToTop при переходе по ссылкам, т.к.находимся внизу другого предложения
-  5. применить classNames в остальных компанентах
-  6. <Helmet> <title>{`${APP_TITLE}: 404`}</title>....  что то придумать для сборки заголовка
+  5. в NearPlaces нужен ScrollToTop при переходе по ссылкам, т.к.находимся внизу другого предложения
+  6. применить classNames в остальных компанентах
+  7. <Helmet> <title>{`${APP_TITLE}: 404`}</title>....  что то придумать для сборки заголовка
     и добавить константы
     может какие то страницы упустил ?
-  7. Переобъеденить HeaderAuth / HeaderNoAuth / HeaderLogin + class=header__logo - link--active
-    HeaderAuth - сделать разное поведение ссылки
-      <a className = "header__logo-link header__logo-link--active">
-      <a className="header__logo-link">
   8. OfferGallery - const key = `img-${index}`;
     когда будут реальные данные, то ключ сделать путем и проверить ошибки в консоли
     с одинковым ключем у всех 6-ти не корректно обновлялись при переключичении с мест не подалеку
@@ -52,6 +48,8 @@ root.render(
   12. заменить в OfferReviewsForm "Your review {rating} - {text}" -> "Your review", как будет готов API
   13. когда будет отдельный компонент Лого, то его добавить в Spinner
   14. 7-2-3 Для обработки статуса 401 можно воспользоваться механизмом перехватчиков в axios.
+  15. обработать 'Sign out' пока поставил <Link className="header__nav-link" to={AppRoute.Main}>, возможно нужно дейсвие и выход на главную
+  16. одинаковый код FavoriteItem и LoginPage обработка клика на название города
 
 Для авто тестов - если будут ошибки
   1. прячу весь span {isPro ? <span className="offer__user-status">Pro</span> : null}

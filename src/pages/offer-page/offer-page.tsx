@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import NotFoundPage from '../not-found-page/not-found-page';
-import HeaderAuth from '../../components/header/header-auth';
+import Header from '../../components/header/header';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferInside from '../../components/offer-inside/offer-inside';
 import Mark from '../../components/mark/mark';
@@ -65,7 +65,7 @@ function OfferPage(): JSX.Element {
       <Helmet>
         <title>{`${APP_TITLE}: offer`}</title>
       </Helmet>
-      <HeaderAuth />
+      <Header />
       <main className="page__main page__main--offer">
         <section className="offer">
           <OfferGallery images={images.slice(0, OfferComponentsCount.IMAGES)} />

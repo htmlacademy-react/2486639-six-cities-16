@@ -22,11 +22,13 @@ function FavoriteItem({ cityName, offers }: FavoriteItemProps): JSX.Element {
           <a
             className="locations__item-link"
             href="#"
-            onClick={(evt: React.MouseEvent<HTMLElement>) => {
-              evt.preventDefault();
-              dispatch(changeCityName(cityName));
-              navigate(AppRoute.Main);
-            }}
+            onClick={
+              (evt: React.MouseEvent<HTMLElement>) => {
+                evt.preventDefault();
+                dispatch(changeCityName(cityName));
+                navigate(AppRoute.Main);
+              }
+            }
           >
             <span>{cityName}</span>
           </a>
