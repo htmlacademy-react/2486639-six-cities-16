@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
 import { store } from './store';
+import { fetchOffersAction } from './store/api-actions';
+
+store.dispatch(fetchOffersAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,78 +21,39 @@ root.render(
 
 /*
 Вопросы:
-  1. {isPro ? 'Pro' : ''} или весь span не показывать?
-  2. какие выбрать размеры для иконок маркеров карты /img/pin.svg /img/pin-active.svg
-    в <svg width="27" height="39"
-    указать 28*40? а середину 27/2 13 14? без разницы?
-  3. в маркапах <p className="offer__text"> как то разбито по частям.... перенос строки или '.' или длинна какая-то... глянуть как в ТЗ
-    OfferHost / const descriptions = [description, description];
-  4. параметров в app.tsx еще нет console.log('app', useParams()); получаю offerId в offer-page
-    а есть вариант как получить в APP и например подготовить данные
-      const params = useParams();
-      const offerId: OfferId | undefined = params.id;
-  5. не отрабатывает route NotFound для /1.jpg /1.html  - на лого была ссылка /main.html
-  6. css классы в коде у новых компонентов, нужно выносить в константы?
-  7. отаются полоски над и под назвааниями городов locations__item-link tabs__item tabs__item--active
-    пока не переключишься на другую вкладку и обранто, но и при наведении иногда появляются
-  8. ссылка на город
-    на главной что в сделать в заголовке?, как в макете #? или имя города? посмотреть в ТЗ
-    на странице с избранным
-      где сгруппировано по городам сделать Route?
-      Оформелние 'favorites__locations locations locations--current' посмотреть макет...
-        наведенный? выбранный на главной? или просто отображение синим все города?
-  9. OfferReviewsForm
-    перепроверить условие включения кнопки по ТЗ, нужен ли trim для текста?
-      const isSubmitButtonDisabled = ...
-    заменить "Your review {rating} - {text}" -> "Your review"
-  10. createAction('load/Offers'); всынести строку в константы?
-  11. createAction<CityName>('changeCityName'); <CityName> обязательно объект, даже если из одного значения?
-  12. изначальные пустые предложения так сделать для store "const emptyOffers: Offer[] = [];
-  13. вызов действия загрузка предложений оставил в App dispatch(loadOffers());  и получение оферов
-    из разбора ДЗ-6 useEffect(() => { dispatch(loadOffers()); }, []); но App и так один раз вызывается, можно выставить console.log(new Date())
-  14. 4 places to stay in ....  а для 1 place to stay in ... нужно?
-    наверное нужно сделать только справочник для отдельных слов вместо OfferTypeFeatureTemplate
-  15. Сброс сортировки можно выполнить в reduce state.offerSoritngType = DEFALUT_OFFER_SORTING_TYPE;
-    или выполнить действие в обработычике смены города dispatch(changeOfferSortingType(DEFALUT_OFFER_SORTING_TYPE));
-    ?
-  16. useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID); тоже перевести на useAppSelector? и избавиться от проброса обработчиков через два компонента... сделал на ДЗ 5
-  17. при нажатии на лого должен вернуться на Париж? или оставить как есть... после нажатия остаеться наведенным
-    наверное ссылки из избранного тоже меняют город и направляют на главную! так?
 
 Доделать:
+  0. пришлось добавить map?.setView(center, zoom); а может, что то не то?
   1. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
+    только, то что TS не может подсказать
+    function getCityOffers(cityName: CityName, offers: Offer[]): Offer[] {
+    function getCityOffers(cityName: CityName, offers: Offer[]){
   2. типизировать функции и значения
-    onSortingTypeChange: (sortingType: OfferSortigTypes) => void;
+    onSortingTypeChange: (sortingType: OfferSortigType) => void;
       может <argT>  (value:argT)....
-    onMouseEnter ?: (offerId: OfferId) => void;
-    onMouseLeave ?: () => void;
-    onPlaceCardMouseEnter ?: (offerId: OfferId) => void;
-    onPlaceCardMouseLeave ?: () => void;
-    onCityNameClick: (cityName: CityName) => void;
-    const handlePlaceCardMouseEnter: Тип
-    const handlePlaceCardMouseLeave: Тип
-    const handleCityNameClick: Тип
-  3. classNamePrefix попробовать переделать на передачу типа или как то по другому
-    или имя сменить
-    или разбить на нужные
-    и убрать излишние константы
-      OfferTypeFeatureTemplate[OfferTypeFeature.Entire]: ['', '']
-        не могу убрать ошибку TS OfferTypeFeatureTemplate[key] хотя выше проверка - (key in OfferTypeFeatureTemplate)
-        и BookmarkButtonIconSize[ClassNamePrefix.Reviews]: { width: 0, height: 0 }, +[ClassNamePrefix.Cities]: { width: 0, height: 0 }
-  4. списках мест сделать на одном компоненте
+  3. списках мест сделать на одном компоненте
     переделать списки в NearPlaces / FavoritesPage + FavoriteItem или есть еще?
-  5. в NearPlaces нужен ScrollToTop при переходе по ссылкам, т.к.находимся внизу другого предложения
-  6. применить classNames в остальных компанентах
-  7. <Helmet> <title>{`${APP_TITLE}: 404`}</title>....  что то придумать для сборки заголовка
+  4. в NearPlaces нужен ScrollToTop при переходе по ссылкам, т.к.находимся внизу другого предложения
+  5. применить classNames в остальных компанентах
+  6. <Helmet> <title>{`${APP_TITLE}: 404`}</title>....  что то придумать для сборки заголовка
     и добавить константы
     может какие то страницы упустил ?
-  8. Переобъеденить HeaderAuth / HeaderNoAuth / HeaderLogin + class=header__logo - link--active
+  7. Переобъеденить HeaderAuth / HeaderNoAuth / HeaderLogin + class=header__logo - link--active
     HeaderAuth - сделать разное поведение ссылки
       <a className = "header__logo-link header__logo-link--active">
       <a className="header__logo-link">
-  9. OfferGallery - const key = `img-${index}`;
+  8. OfferGallery - const key = `img-${index}`;
     когда будут реальные данные, то ключ сделать путем и проверить ошибки в консоли
     с одинковым ключем у всех 6-ти не корректно обновлялись при переключичении с мест не подалеку
+  9. проверить однотипность function и ()=> есть критерий?
+  10. createAction('load/Offers'); всынести строку в константы, если не сделаем по имени действия
+  11. в демо feath вызван вне App
+  12. заменить в OfferReviewsForm "Your review {rating} - {text}" -> "Your review", как будет готов API
+  13. когда будет отдельный компонент Лого, то его добавить в Spinner
+
+Для авто тестов - если будут ошибки
+  1. прячу весь span {isPro ? <span className="offer__user-status">Pro</span> : null}
+  2. маркеры на карте 27*39 середина 27/2, если что указать 28*40 и 14
 
 Заметки:
   aaa@aaa.aaa / a1
@@ -107,6 +71,12 @@ root.render(
   как типизировать
     format: string -> format: typeof DateFormat ...  const DateFormat = {DATE: 'YYYY-MM-DD',  MONTH_YEAR: 'MMMM YYYY'}...
       или только через enum или массив, а может сузить...
+
+  отаются полоски над и под назвааниями городов locations__item-link tabs__item tabs__item--active
+    пока не переключишься на другую вкладку и обранто, но и при наведении иногда появляются
+
+  ссылка на лого на главной, при клике остаеться наведенной навигация не происходит т.к. уже на главной...
+    может если на главной, то отключить ссылку на логотипе?
 
 --
 // может понадобится подчет рейтинга...

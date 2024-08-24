@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Icon, Marker, layerGroup } from 'leaflet';
 import useMap from '../../hooks/use-map';
 import { Offer, OfferId } from '../../types/offer';
-import { Location } from '../../types/location';
+import { Location } from '../../types';
 import { ClassNamePrefix, UrlMarker, IconMarkerSize, IconAnchorSize } from '../../const';
 
 type OffersMapProps = {

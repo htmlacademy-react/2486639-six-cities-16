@@ -2,15 +2,16 @@ import { BookmarkButtonIconSize, ClassNamePrefix } from '../../const';
 
 type BookmarkButtonProps = {
   classNamePrefix: ClassNamePrefix;
+  isBigButton?: boolean;
   isActive: boolean;
 }
 
-function BookmarkButton({ classNamePrefix, isActive }: BookmarkButtonProps): JSX.Element {
+function BookmarkButton({ classNamePrefix, isBigButton = false, isActive }: BookmarkButtonProps): JSX.Element {
   const className = `${classNamePrefix}__bookmark`;
   const buttonClassName = `${className}-button`;
   const iconClassName = `${className}-icon`;
   const activeButtonClassName = `${buttonClassName}--active`;
-  const { width, height } = BookmarkButtonIconSize[classNamePrefix];
+  const { width, height } = (isBigButton) ? BookmarkButtonIconSize.BIG : BookmarkButtonIconSize.SMALL;
 
   return (
     <button

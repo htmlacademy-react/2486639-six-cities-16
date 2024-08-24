@@ -1,16 +1,15 @@
 import classNames from 'classnames';
-import { useState } from 'react';
 import HeaderAuth from '../../components/header/header-auth';
 import Locations from '../../components/locations/locations';
 import PlacesSorting from '../../components/places-sorting/places-sorting';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import OffersMap from '../../components/offers-map/offers-map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeCityName, changeOfferSortingType } from '../../store/action';
-import { CityName } from '../../types/city';
-import { Offer, OfferId } from '../../types/offer';
+import { changeOfferSortingType } from '../../store/action';
+import { Offer } from '../../types/offer';
+import { addPluralEnding } from '../../utils/util';
 import { getCityOffers, sortOffers } from '../../utils/offer';
-import { ClassNamePrefix, DEFAULT_ACTIVE_OFFER_ID, OfferSortigTypes } from '../../const';
+import { ClassNamePrefix, OfferSortigType } from '../../const';
 
 type MainPageProps = {
   offers: Offer[];
@@ -19,13 +18,13 @@ type MainPageProps = {
 function MainPage({ offers }: MainPageProps): JSX.Element {
   const currentCityName = useAppSelector((state) => state.cityName);
   const currentOfferSortType = useAppSelector((state) => state.offerSoritngType);
+  const activeOfferId = useAppSelector((state) => state.activeOfferId);
   const dispatch = useAppDispatch();
-
-  const [activeOfferId, setActiveOfferId] = useState<OfferId>(DEFAULT_ACTIVE_OFFER_ID);
 
   const cityOffers = sortOffers(getCityOffers(currentCityName, offers), currentOfferSortType);
 
-  const isCityOffersEmpty: boolean = !cityOffers.length;
+  const cityOffersCount = cityOffers.length;
+  const isCityOffersEmpty: boolean = !cityOffersCount;
   const mainClassName = classNames(
     'page__main page__main--index',
     { 'page__main--index-empty': isCityOffersEmpty }
@@ -39,20 +38,8 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
     { 'cities__places places': !isCityOffersEmpty }
   );
 
-  const handleSortingTypeChange = (sortingType: OfferSortigTypes) => {
+  const handleSortingTypeChange = (sortingType: OfferSortigType) => {
     dispatch(changeOfferSortingType(sortingType));
-  };
-
-  const handlePlaceCardMouseEnter = (offerId: OfferId) => {
-    setActiveOfferId(offerId);
-  };
-
-  const handlePlaceCardMouseLeave = () => {
-    setActiveOfferId(DEFAULT_ACTIVE_OFFER_ID);
-  };
-
-  const handleCityNameClick = (cityName: CityName) => {
-    dispatch(changeCityName(cityName));
   };
 
   return (
@@ -60,10 +47,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
       <HeaderAuth />
 
       <main className={mainClassName}>
-        <Locations
-          currentCityName={currentCityName}
-          onCityNameClick={handleCityNameClick}
-        />
+        <Locations currentCityName={currentCityName} />
         <div className="cities">
           <div className={divClassName}>
             <section className={sectionClassName}>
@@ -77,16 +61,12 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
                   :
                   <>
                     <h2 className="visually-hidden">Places</h2>
-                    <b className="places__found">{cityOffers.length} places to stay in {currentCityName}</b>
+                    <b className="places__found">{cityOffersCount} {addPluralEnding('place', cityOffersCount)} to stay in {currentCityName}</b>
                     <PlacesSorting
                       currentOfferSortType={currentOfferSortType}
                       onSortingTypeChange={handleSortingTypeChange}
                     />
-                    <PlaceCardList
-                      offers={cityOffers}
-                      onPlaceCardMouseEnter={handlePlaceCardMouseEnter}
-                      onPlaceCardMouseLeave={handlePlaceCardMouseLeave}
-                    />
+                    <PlaceCardList offers={cityOffers} />
                   </>
               }
             </section>

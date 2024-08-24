@@ -1,19 +1,19 @@
 import { CityOffers, Offer } from '../types/offer';
-import { CityName } from '../types/city';
-import { OfferTypeFeature, OfferTypeFeatureTemplate, OfferSortigTypes, templateNumberString } from '../const';
+import { CityName } from '../types';
+import { OfferSortigType } from '../const';
 
-function getCityOffers(cityName: CityName, offers: Offer[]): Offer[] {
+function getCityOffers(cityName: CityName, offers: Offer[]) {
   return offers.filter(({ city }) => (cityName === city.name));
 }
 
 const compareOffers = {
-  [OfferSortigTypes.PriceLowToHigh]: ({ price: firstPrice }: Offer, { price: secondPrice }: Offer) => (firstPrice - secondPrice),
-  [OfferSortigTypes.PriceHighToLow]: ({ price: firstPrice }: Offer, { price: secondPrice }: Offer) => (secondPrice - firstPrice),
-  [OfferSortigTypes.TopRatedFirst]: ({ rating: firstRating }: Offer, { rating: secondRating }: Offer) => (secondRating - firstRating)
+  [OfferSortigType.PriceLowToHigh]: ({ price: firstPrice }: Offer, { price: secondPrice }: Offer) => (firstPrice - secondPrice),
+  [OfferSortigType.PriceHighToLow]: ({ price: firstPrice }: Offer, { price: secondPrice }: Offer) => (secondPrice - firstPrice),
+  [OfferSortigType.TopRatedFirst]: ({ rating: firstRating }: Offer, { rating: secondRating }: Offer) => (secondRating - firstRating)
 };
 
-function sortOffers(offers: Offer[], offerSortingType: OfferSortigTypes): Offer[] {
-  if (offerSortingType === OfferSortigTypes.Popular) {
+function sortOffers(offers: Offer[], offerSortingType: OfferSortigType): Offer[] {
+  if (offerSortingType === OfferSortigType.Popular) {
     return offers;
   }
 
@@ -44,19 +44,4 @@ function getOffersByCities(offers: Offer[]): CityOffers[] {
   return sortByCityName(offersByCities);
 }
 
-function getFeatureText(key: OfferTypeFeature, value: number): string {
-  if (value < 1) {
-    return '';
-  }
-
-  if (!(key in OfferTypeFeatureTemplate)) {
-    return '';
-  }
-
-  const [templateOne, templateMany] = OfferTypeFeatureTemplate[key];
-  const template = (value === 1) ? templateOne : templateMany;
-
-  return template.replace(templateNumberString, value.toString());
-}
-
-export { getCityOffers, sortOffers, getFavoriteOffers, getOffersByCities, getFeatureText };
+export { getCityOffers, sortOffers, getFavoriteOffers, getOffersByCities };

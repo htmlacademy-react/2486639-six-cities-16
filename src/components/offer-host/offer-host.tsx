@@ -1,4 +1,4 @@
-import { User } from '../../types/user';
+import { User } from '../../types';
 
 type OfferHostProps = {
   host: User;
@@ -7,7 +7,6 @@ type OfferHostProps = {
 
 function OfferHost({ host, description }: OfferHostProps): JSX.Element {
   const { name, isPro, avatarUrl } = host;
-  const descriptions = [description, description];
 
   return (
     <div className="offer__host">
@@ -19,22 +18,12 @@ function OfferHost({ host, description }: OfferHostProps): JSX.Element {
         <span className="offer__user-name">
           {name}
         </span>
-        <span className="offer__user-status">
-          {isPro ? 'Pro' : ''}
-        </span>
+        {isPro ? <span className="offer__user-status">Pro</span> : null}
       </div>
       <div className="offer__description">
-        {
-          descriptions.map((text, index) => {
-            const key = `text-${index}`;
-
-            return (
-              <p key={key} className="offer__text">
-                {text}
-              </p>
-            );
-          })
-        }
+        <p className="offer__text">
+          {description}
+        </p>
       </div>
     </div>
   );

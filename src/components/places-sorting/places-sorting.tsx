@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import classNames from 'classnames';
-import { OfferSortigTypes } from '../../const';
+import { OfferSortigType } from '../../const';
 
 type PlacesSortingProps = {
-  currentOfferSortType: OfferSortigTypes;
-  onSortingTypeChange: (sortingType: OfferSortigTypes) => void;
+  currentOfferSortType: OfferSortigType;
+  onSortingTypeChange: (sortingType: OfferSortigType) => void;
 }
 
 function PlacesSorting({ currentOfferSortType, onSortingTypeChange }: PlacesSortingProps): JSX.Element {
@@ -34,8 +34,8 @@ function PlacesSorting({ currentOfferSortType, onSortingTypeChange }: PlacesSort
       </span>
       <ul className={listClassName}>
         {
-          Object.values(OfferSortigTypes).map(
-            (sortingType: OfferSortigTypes) => {
+          Object.values(OfferSortigType).map(
+            (sortingType: OfferSortigType) => {
               const itemClassName = classNames(
                 'places__option',
                 { 'places__option--active': sortingType === currentOfferSortType }

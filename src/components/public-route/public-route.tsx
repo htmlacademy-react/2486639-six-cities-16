@@ -1,5 +1,5 @@
 import AccessRoute from '../access-route/access-route';
-import { AppRouteProps } from '../../types/app-route-props';
+import { AppRouteProps } from '../../types';
 import { AppRoute, AuthorizationStatus } from '../../const';
 
 function PublicRoute({ authorizationStatus, children }: AppRouteProps): JSX.Element {

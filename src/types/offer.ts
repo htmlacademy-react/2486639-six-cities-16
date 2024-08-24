@@ -1,8 +1,6 @@
-import { City } from './city';
-import { Location } from './location';
-import { User } from './user';
+import { City, CityName, Location, User } from '.';
 
-export type OfferId = string;
+export type OfferId = string | null;
 
 export type BaseOffer = {
   id: OfferId;
@@ -27,4 +25,4 @@ export type DetailOffer = BaseOffer & {
   maxAdults: number;
 };
 
-export type CityOffers = { cityName: string; offers: Offer[] };
+export type CityOffers = { cityName: CityName; offers: Offer[] };

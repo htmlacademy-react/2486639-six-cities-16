@@ -1,18 +1,33 @@
-import { CityName } from './types/city';
-import { OfferId } from './types/offer';
+import { CityName } from './types';
 
 const APP_TITLE = '6 cities';
+
+const APIService = {
+  URL: 'https://16.design.htmlacademy.pro/six-cities',
+  TIMEOUT: 5000
+} as const;
+
+enum APIRoute {
+  Offers = '/offers',
+  Nearby = '/nearby',
+  Favorite = '/favorite',
+  Comments = '/comments',
+  Login = '/login',
+  Logout = '/logout',
+}
+
+const AUTH_TOKEN_KEY_NAME = 'six-cities-token';
 
 const CITIES_NAMES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
 const DEFAULT_CITY_NAME: CityName = CITIES_NAMES[0];
 
-const OFFER_PATH = '/offer/';
+const OFFER_BASE_ROUTE = '/offer/';
 
 enum AppRoute {
   Main = '/',
   Login = '/login',
   Favorites = '/favorites',
-  Offer = `${OFFER_PATH}:id`
+  Offer = `${OFFER_BASE_ROUTE}:id`
 }
 
 enum AuthorizationStatus {
@@ -21,54 +36,50 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
-enum OfferSortigTypes {
+enum OfferSortigType {
   Popular = 'Popular',
   PriceLowToHigh = 'Price: low to high',
   PriceHighToLow = 'Price: high to low',
   TopRatedFirst = 'Top rated first'
 }
 
-const DEFALUT_OFFER_SORTING_TYPE = OfferSortigTypes.Popular;
+const DEFALUT_OFFER_SORTING_TYPE = OfferSortigType.Popular;
 
 enum ClassNamePrefix {
-  PlaceCard = 'place-card',
   Offer = 'offer',
+  PlaceCard = 'place-card',
   Reviews = 'reviews',
   Cities = 'cities'
 }
 
 const BookmarkButtonIconSize = {
-  [ClassNamePrefix.PlaceCard]: { width: 18, height: 19 },
-  [ClassNamePrefix.Offer]: { width: 31, height: 33 },
-  [ClassNamePrefix.Reviews]: { width: 0, height: 0 },
-  [ClassNamePrefix.Cities]: { width: 0, height: 0 }
+  SMALL: { width: 18, height: 19 },
+  BIG: { width: 31, height: 33 },
 } as const;
 
-enum OfferTypeFeature {
+enum OfferFeatureType {
   Entire = 'entire',
   Bedrooms = 'bedrooms',
   Adults = 'adults'
 }
-const templateNumberString = ':n';
 
-const OfferTypeFeatureTemplate = {
-  [OfferTypeFeature.Entire]: ['', ''],
-  [OfferTypeFeature.Bedrooms]: [`${templateNumberString} Bedroom`, `${templateNumberString} Bedrooms`],
-  [OfferTypeFeature.Adults]: [`Max ${templateNumberString} adult`, `Max ${templateNumberString} adults`]
-} as const;
+const RATING_STAR_WIDTH = 20;
 
-const IMAGES_SHOW_COUNT = 6;
-const NEAR_OFFERS_SHOW_COUNT = 3;
-const ONE_STAR_WIDTH = 20;
-const DEFAULT_ACTIVE_OFFER_ID: OfferId = '';
-const REVIEWS_SHOW_COUNT = 10;
-const REVIEW_RATING_STARS_COUNT = 5;
-const Rating = {
-  STAR_VALUES: Array.from({ length: REVIEW_RATING_STARS_COUNT }, (_, index) => (REVIEW_RATING_STARS_COUNT - index)),
+const OfferComponentsCount = {
+  IMAGES: 6,
+  NEAR_OFFERS: 3,
+  REVIEWS: 10
+};
+
+const ReviewRating = {
+  STARS_COUNT: 5,
   DEFAULT: 0,
-  MIN: 0
+  MIN: 1
 } as const;
-const REVIEW_TEXT_MIN_LENGTH = 50;
+const ReviewTextLength = {
+  MIN: 50,
+  MAX: 300
+} as const;
 
 const Leaflet = {
   URL_TEMPLATE: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
@@ -94,29 +105,36 @@ const IconAnchorSize = {
   HEIGHT: IconMarkerSize.HEIGHT
 } as const;
 
+enum ActionName {
+  LoadOffers = 'data/loadOffers',
+  SetOffersDataLoadingStatus = 'data/setOffersDataLoadingStatus',
+  ChangeCityName = 'main/changeCityName',
+  ChangeOfferSortingType = 'main/changeOfferSortingType',
+  ChangeActiveOfferId = 'main/changeActiveOfferId'
+}
+
 export {
   APP_TITLE,
+  APIService,
+  APIRoute,
+  AUTH_TOKEN_KEY_NAME,
   CITIES_NAMES,
   DEFAULT_CITY_NAME,
-  OFFER_PATH,
+  OFFER_BASE_ROUTE,
   AppRoute,
   AuthorizationStatus,
-  OfferSortigTypes,
+  OfferSortigType,
   DEFALUT_OFFER_SORTING_TYPE,
   ClassNamePrefix,
   BookmarkButtonIconSize,
-  OfferTypeFeature,
-  templateNumberString,
-  OfferTypeFeatureTemplate,
-  IMAGES_SHOW_COUNT,
-  NEAR_OFFERS_SHOW_COUNT,
-  ONE_STAR_WIDTH,
-  DEFAULT_ACTIVE_OFFER_ID,
-  REVIEWS_SHOW_COUNT,
-  Rating,
-  REVIEW_TEXT_MIN_LENGTH,
+  OfferFeatureType,
+  RATING_STAR_WIDTH,
+  OfferComponentsCount,
+  ReviewRating,
+  ReviewTextLength,
   Leaflet,
   UrlMarker,
   IconMarkerSize,
-  IconAnchorSize
+  IconAnchorSize,
+  ActionName
 };

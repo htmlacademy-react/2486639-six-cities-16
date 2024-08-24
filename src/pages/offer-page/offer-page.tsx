@@ -17,12 +17,7 @@ import { OfferId, Offer, DetailOffer } from '../../types/offer';
 import { Review } from '../../types/review';
 import { getById } from '../../utils/util';
 import { compareStringDate } from '../../utils/date';
-import { mockOffers, mockDetailOffers } from '../../mocks/offers';
-import { mockReviews } from '../../mocks/reviews';
-import {
-  APP_TITLE, AuthorizationStatus, ClassNamePrefix,
-  IMAGES_SHOW_COUNT, NEAR_OFFERS_SHOW_COUNT, REVIEWS_SHOW_COUNT
-} from '../../const';
+import { APP_TITLE, AuthorizationStatus, ClassNamePrefix, OfferComponentsCount } from '../../const';
 
 type OfferPageProps = {
   authorizationStatus: AuthorizationStatus;
@@ -30,19 +25,19 @@ type OfferPageProps = {
 
 function OfferPage({ authorizationStatus }: OfferPageProps): JSX.Element {
   //! временные данные
-  const nearOffers: Offer[] = mockOffers;
-  const reviews = mockReviews;
+  const nearOffers: Offer[] = [];//![mockOffers];
+  const reviews: Review[] = [];//mockReviews;
   //
 
   const params = useParams();
-  const offers = nearOffers.slice(0, NEAR_OFFERS_SHOW_COUNT);
+  const offers = nearOffers.slice(0, OfferComponentsCount.NEAR_OFFERS);
   const offerId: OfferId | undefined = params.id;
 
   if (!offerId) {
     return <NotFoundPage />;
   }
 
-  const detailOffer: DetailOffer | undefined = getById(mockDetailOffers, offerId);
+  const detailOffer: DetailOffer | undefined = getById([] as DetailOffer[]/*//! mockDetailOffers*/, offerId);
 
   if (!detailOffer) {
     return (<NotFoundPage />);
@@ -50,7 +45,7 @@ function OfferPage({ authorizationStatus }: OfferPageProps): JSX.Element {
 
   const offerReviews = reviews
     .sort((firstReview: Review, secondReview: Review) => compareStringDate(firstReview.date, secondReview.date))
-    .slice(0, REVIEWS_SHOW_COUNT);
+    .slice(0, OfferComponentsCount.REVIEWS);
 
   const {
     title,
@@ -77,7 +72,7 @@ function OfferPage({ authorizationStatus }: OfferPageProps): JSX.Element {
       <HeaderAuth />
       <main className="page__main page__main--offer">
         <section className="offer">
-          <OfferGallery images={images.slice(0, IMAGES_SHOW_COUNT)} />
+          <OfferGallery images={images.slice(0, OfferComponentsCount.IMAGES)} />
           <div className="offer__container container">
             <div className="offer__wrapper">
               {isPremium ? <Mark className="offer__mark" /> : null}
@@ -85,7 +80,7 @@ function OfferPage({ authorizationStatus }: OfferPageProps): JSX.Element {
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <BookmarkButton classNamePrefix={classNamePrefix} isActive={isFavorite} />
+                <BookmarkButton classNamePrefix={classNamePrefix} isActive={isFavorite} isBigButton />
               </div>
               <Rating classNamePrefix={classNamePrefix} rating={rating} />
               <OfferFeatures offerType={type} bedrooms={bedrooms} maxAdults={maxAdults} />

@@ -1,6 +1,5 @@
-import { upFirstLetter } from '../../utils/util';
-import { getFeatureText } from '../../utils/offer';
-import { OfferTypeFeature } from '../../const';
+import { addPluralEnding, upFirstLetter } from '../../utils/util';
+import { OfferFeatureType } from '../../const';
 
 type OfferFeaturesProps = {
   offerType: string;
@@ -10,9 +9,9 @@ type OfferFeaturesProps = {
 
 function OfferFeatures({ offerType, bedrooms, maxAdults }: OfferFeaturesProps): JSX.Element {
   const features = [
-    { type: OfferTypeFeature.Entire, text: upFirstLetter(offerType) },
-    { type: OfferTypeFeature.Bedrooms, text: getFeatureText(OfferTypeFeature.Bedrooms, bedrooms) },
-    { type: OfferTypeFeature.Adults, text: getFeatureText(OfferTypeFeature.Adults, maxAdults) }
+    { type: OfferFeatureType.Entire, text: upFirstLetter(offerType) },
+    { type: OfferFeatureType.Bedrooms, text: `${bedrooms} ${addPluralEnding('Bedroom', bedrooms)}` },
+    { type: OfferFeatureType.Adults, text: `Max ${maxAdults} ${addPluralEnding('adult', maxAdults)}` }
   ];
 
   return (
