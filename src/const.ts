@@ -58,11 +58,11 @@ const OfferTypeFeatureTemplate = {
 
 const RATING_STAR_WIDTH = 20;
 
-//! константы сгруппировать
-//const FeatureOffer sShowCount = {};
-const IMAGES_SHOW_COUNT = 6;
-const NEAR_OFFERS_SHOW_COUNT = 3;
-const REVIEWS_SHOW_COUNT = 10;
+const OfferComponentsCount = {
+  IMAGES: 6,
+  NEAR_OFFERS: 3,
+  REVIEWS: 10
+};
 
 const ReviewRating = {
   STARS_COUNT: 5,
@@ -113,9 +113,7 @@ export {
   templateNumberString,
   OfferTypeFeatureTemplate,
   RATING_STAR_WIDTH,
-  IMAGES_SHOW_COUNT,
-  NEAR_OFFERS_SHOW_COUNT,
-  REVIEWS_SHOW_COUNT,
+  OfferComponentsCount,
   ReviewRating,
   ReviewTextLength,
   Leaflet,

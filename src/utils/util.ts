@@ -9,7 +9,7 @@ function upFirstLetter(text: string): string {
 }
 
 function getPositiveNumbers(count: number, start: number = 1): number[] {
-  return Array.from({ length: count }, (_, index) => (start + (index + 1)));
+  return Array.from({ length: count }, (_, index) => (start + index));
 }
 
 export { getById, upFirstLetter, getPositiveNumbers };
