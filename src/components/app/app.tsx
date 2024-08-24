@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import MainPage from '../../pages/main-page/main-page';
@@ -8,8 +7,8 @@ import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fetchOffersAction } from '../../store/api-actions';
+import Spinner from '../spinner/spinner';
+import { useAppSelector } from '../../hooks';
 import { getFavoriteOffers } from '../../utils/offer';
 import { Offer } from '../../types/offer';
 import { AppRoute, AuthorizationStatus, APP_TITLE } from '../../const';
@@ -19,12 +18,14 @@ const authorizationStatus = AuthorizationStatus.Auth;
 //const authorizationStatus = AuthorizationStatus.Unknown; //! тест
 
 function App(): JSX.Element {
-  const dispatch = useAppDispatch();
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   const offers: Offer[] = useAppSelector((state) => state.offers);
 
-  useEffect(() => {
-    dispatch(fetchOffersAction());
-  }, []);
+  if (isOffersDataLoading) {
+    return (
+      <Spinner />
+    );
+  }
 
   return (
     <HelmetProvider>

@@ -106,7 +106,8 @@ const IconAnchorSize = {
 } as const;
 
 enum ActionName {
-  LoadOffers = 'load/Offers',
+  LoadOffers = 'data/loadOffers',
+  SetOffersDataLoadingStatus = 'data/setOffersDataLoadingStatus',
   ChangeCityName = 'main/changeCityName',
   ChangeOfferSortingType = 'main/changeOfferSortingType',
   ChangeActiveOfferId = 'main/changeActiveOfferId'

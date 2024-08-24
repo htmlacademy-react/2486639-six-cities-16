@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
 import { store } from './store';
+import { fetchOffersAction } from './store/api-actions';
+
+store.dispatch(fetchOffersAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -46,6 +49,7 @@ root.render(
   10. createAction('load/Offers'); всынести строку в константы, если не сделаем по имени действия
   11. в демо feath вызван вне App
   12. заменить в OfferReviewsForm "Your review {rating} - {text}" -> "Your review", как будет готов API
+  13. когда будет отдельный компонент Лого, то его добавить в Spinner
 
 Для авто тестов - если будут ошибки
   1. прячу весь span {isPro ? <span className="offer__user-status">Pro</span> : null}
