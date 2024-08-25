@@ -90,13 +90,13 @@ const EMPTY_DETAIL_OFFER: DetailOffer = {
   rating: 0,
   description: '',
   bedrooms: 0,
-  goods: [],
+  goods: [] as string[],
   host: {
     name: '',
     avatarUrl: '',
     isPro: false,
   },
-  images: [],
+  images: [] as string[],
   maxAdults: 0
 } as const;
 
