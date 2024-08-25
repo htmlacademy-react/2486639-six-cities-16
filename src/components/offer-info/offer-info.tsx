@@ -67,7 +67,7 @@ function OfferInfo(): JSX.Element {
             <Price classNamePrefix={classNamePrefix} price={price} />
             <OfferInside goods={goods} />
             <OfferHost host={host} description={description} />
-            <OfferReviews reviewsCount={offerReviews.length} reviews={offerReviews} />
+            <OfferReviews reviewsCount={reviews.length} reviews={offerReviews} />
           </div>
         </div>
         <OffersMap
