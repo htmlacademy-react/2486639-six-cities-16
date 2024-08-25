@@ -59,7 +59,7 @@ function Header({ isHiddenUserInfo }: HeaderProps): JSX.Element {
                     (isAuthUser)
                       ?
                       <li className="header__nav-item">
-                        <Link className="header__nav-link" to={AppRoute.Main} onClick={handleSignOutClick}>
+                        <Link className="header__nav-link" to="" onClick={handleSignOutClick}>
                           <span className="header__signout">Sign out</span>
                         </Link>
                       </li>

@@ -5,7 +5,7 @@ import App from './components/app/app';
 import { store } from './store';
 import { fetchOffersAction, checkAuthAction, fetchFavoriteOffersAction } from './store/api-actions';
 
-store.dispatch(checkAuthAction());
+await store.dispatch(checkAuthAction());
 store.dispatch(fetchOffersAction());
 store.dispatch(fetchFavoriteOffersAction());
 
