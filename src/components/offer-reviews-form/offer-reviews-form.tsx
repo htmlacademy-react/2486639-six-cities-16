@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { postOfferReview } from '../../store/api-actions';
+import { postOfferReviewAction } from '../../store/api-actions';
 import { getPositiveNumbers } from '../../utils/util';
 import { ReviewTextLength, ReviewRating } from '../../const';
 
@@ -17,7 +17,7 @@ function OfferReviewsForm(): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    dispatch(postOfferReview({ offerId, comment, rating }));
+    dispatch(postOfferReviewAction({ offerId, comment, rating }));
   };
 
   return (

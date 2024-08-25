@@ -7,7 +7,7 @@ import {
 import { saveToken } from '../services/token';
 import { AuthData, UserData } from '../types';
 import { AppDispatch, State } from '../types/state';
-import { DetailOffer, Offer, OfferId } from '../types/offer';
+import { DetailOffer, Offer, OfferFavorite, OfferId } from '../types/offer';
 import { OfferBaseReview, Review } from '../types/review';
 import { APIRoute, ActionName, AuthorizationStatus, EMPTY_DETAIL_OFFER } from '../const';
 
@@ -25,7 +25,7 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
   }
 );
 
-export const fetchFavoriteOffers = createAsyncThunk<void, undefined, {
+export const fetchFavoriteOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -67,6 +67,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     saveToken(data.token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
     dispatch(setUserName(data.email));
+    dispatch(fetchFavoriteOffersAction());
   }
 );
 
@@ -76,8 +77,8 @@ export const fetchDetailOfferAction = createAsyncThunk<void, OfferId, {
   extra: AxiosInstance;
 }>(
   ActionName.FetchDetailOffer,
-  async (offerId, { dispatch, extra: api }) => {
-    const route = `${APIRoute.Offers}/${offerId}`;
+  async (id, { dispatch, extra: api }) => {
+    const route = `${APIRoute.Offers}/${id}`;
     try {
       const { data } = await api.get<DetailOffer>(route);
       dispatch(loadDetailOffer(data));
@@ -93,8 +94,8 @@ export const fetchOfferNearOffersAction = createAsyncThunk<void, OfferId, {
   extra: AxiosInstance;
 }>(
   ActionName.FetchOfferNearOffers,
-  async (offerId, { dispatch, extra: api }) => {
-    const route = `${APIRoute.Offers}/${offerId}${APIRoute.Nearby}`;
+  async (id, { dispatch, extra: api }) => {
+    const route = `${APIRoute.Offers}/${id}${APIRoute.Nearby}`;
     const { data } = await api.get<Offer[]>(route);
 
     dispatch(loadOfferNearOffers(data));
@@ -107,15 +108,15 @@ export const fetchOfferReviewsAction = createAsyncThunk<void, OfferId, {
   extra: AxiosInstance;
 }>(
   ActionName.FetchOfferReviews,
-  async (offerId, { dispatch, extra: api }) => {
-    const route = `${APIRoute.Comments}/${offerId}`;
+  async (id, { dispatch, extra: api }) => {
+    const route = `${APIRoute.Comments}/${id}`;
     const { data } = await api.get<Review[]>(route);
 
     dispatch(loadOfferReviews(data));
   }
 );
 
-export const postOfferReview = createAsyncThunk<void, OfferBaseReview, {
+export const postOfferReviewAction = createAsyncThunk<void, OfferBaseReview, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -127,14 +128,15 @@ export const postOfferReview = createAsyncThunk<void, OfferBaseReview, {
   }
 );
 
-export const postOfferFavorite = createAsyncThunk<void, OfferBaseReview, {
+export const postOfferFavoriteAction = createAsyncThunk<void, OfferFavorite, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   ActionName.Login,
-  async ({ offerId, comment, rating }, { dispatch, extra: api }) => {
-    await api.post<Review>(`${APIRoute.Comments}/${offerId}`, { comment, rating });
-    dispatch(fetchOfferReviewsAction(offerId));
+  async ({ id, status }, { dispatch, extra: api }) => {
+    await api.post<Review>(`${APIRoute.Favorite}/${id}/${Number(status)}`);
+    dispatch(fetchOffersAction());
+    dispatch(fetchFavoriteOffersAction());
   }
 );

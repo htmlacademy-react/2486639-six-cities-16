@@ -28,3 +28,5 @@ export type DetailOffer =
   };
 
 export type CityOffers = { cityName: CityName; offers: Offer[] };
+
+export type OfferFavorite = { id: OfferId; status: boolean };
