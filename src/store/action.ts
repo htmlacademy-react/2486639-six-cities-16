@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 import { CityName } from '../types';
 import { DetailOffer, Offers, OfferId } from '../types/offer';
-import { Reviews } from '../types/review';
+import { Review, Reviews } from '../types/review';
 import { ActionName, AuthorizationStatus, OfferSortigType } from '../const';
 
 export const loadOffers = createAction<Offers>(ActionName.LoadOffers);
@@ -13,6 +13,8 @@ export const loadDetailOffer = createAction<DetailOffer>(ActionName.LoadDetailOf
 export const loadOfferNearOffers = createAction<Offers>(ActionName.LoadOfferNearOffers);
 
 export const loadOfferReviews = createAction<Reviews>(ActionName.LoadOfferReviews);
+
+export const loadOfferReview = createAction<Review>(ActionName.LoadOfferReview);
 
 export const setOffersDataLoadingStatus = createAction<boolean>(ActionName.SetOffersDataLoadingStatus);
 

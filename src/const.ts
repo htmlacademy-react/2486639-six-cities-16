@@ -107,7 +107,7 @@ const OfferComponentsCount = {
 };
 
 const ReviewRating = {
-  STARS_COUNT: 5,
+  HINTS: ['perfect', 'good', 'not bad', 'badly', 'terribly'],
   DEFAULT: 0,
   MIN: 1
 } as const;
@@ -146,6 +146,7 @@ enum ActionName {
   LoadDetailOffer = 'data/loadDetailOffer',
   LoadOfferNearOffers = 'data/loadOfferNearOffers',
   LoadOfferReviews = 'data/loadOfferReviews',
+  LoadOfferReview = 'data/loadOfferReview',
   FetchOffers = 'data/fetchOffers',
   FetchFavoriteOffers = 'data/loadfetchOffers',
   FetchDetailOffer = 'data/fetchDetailOffer',

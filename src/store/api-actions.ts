@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import {
-  loadDetailOffer, loadFavoriteOffers, loadOfferNearOffers, loadOfferReviews,
+  loadDetailOffer, loadFavoriteOffers, loadOfferNearOffers, loadOfferReview, loadOfferReviews,
   loadOffers, requireAuthorization, setOffersDataLoadingStatus, setUserName
 } from './action';
 import { dropToken, saveToken } from '../services/token';
@@ -137,8 +137,8 @@ export const postOfferReviewAction = createAsyncThunk<void, OfferBaseReview, {
 }>(
   ActionName.Login,
   async ({ offerId, comment, rating }, { dispatch, extra: api }) => {
-    await api.post<Review>(`${APIRoute.Comments}/${offerId}`, { comment, rating });
-    dispatch(fetchOfferReviewsAction(offerId));
+    const response = await api.post<Review>(`${APIRoute.Comments}/${offerId}`, { comment, rating });
+    dispatch(loadOfferReview(response.data));
   }
 );
 

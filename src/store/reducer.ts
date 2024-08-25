@@ -1,8 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit';
 import {
   changeActiveOfferId, changeCityName, changeOfferSortingType, loadDetailOffer,
-  loadFavoriteOffers, loadOfferNearOffers, loadOfferReviews, loadOffers, requireAuthorization,
-  setOffersDataLoadingStatus, setUserName
+  loadFavoriteOffers, loadOfferNearOffers, loadOfferReview, loadOfferReviews,
+  loadOffers, requireAuthorization, setOffersDataLoadingStatus, setUserName
 } from './action';
 import { CityName } from '../types';
 import { DetailOffer, Offers, OfferId } from '../types/offer';
@@ -56,6 +56,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOfferReviews, (state, action) => {
       state.offerReviews = action.payload;
+    })
+    .addCase(loadOfferReview, (state, action) => {
+      state.offerReviews.push(action.payload);
     })
     .addCase(setOffersDataLoadingStatus, (state, action) => {
       state.isOffersDataLoading = action.payload;
