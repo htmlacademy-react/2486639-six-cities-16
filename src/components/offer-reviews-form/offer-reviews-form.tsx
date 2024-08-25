@@ -19,9 +19,10 @@ function OfferReviewsForm(): JSX.Element {
 
     dispatch(postOfferReviewAction({ offerId, comment, rating }));
 
-    //!! очиска формы evt.target.reset
     setRating(ReviewRating.DEFAULT);
     setComment('');
+
+    evt.currentTarget.reset();
   };
 
   return (
