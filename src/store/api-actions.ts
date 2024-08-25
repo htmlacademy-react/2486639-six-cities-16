@@ -19,9 +19,9 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
   ActionName.FetchOffers,
   async (_arg, { dispatch, extra: api }) => {
     dispatch(setOffersDataLoadingStatus(true));
-    const { data } = await api.get<Offers>(APIRoute.Offers);
+    const response = await api.get<Offers>(APIRoute.Offers);
     dispatch(setOffersDataLoadingStatus(false));
-    dispatch(loadOffers(data));
+    dispatch(loadOffers(response.data));
   }
 );
 
@@ -35,8 +35,8 @@ export const fetchFavoriteOffersAction = createAsyncThunk<void, undefined, {
     const state = getState();
 
     if (state.authorizationStatus === AuthorizationStatus.Auth) {
-      const { data } = await api.get<Offers>(APIRoute.Favorite);
-      dispatch(loadFavoriteOffers(data));
+      const response = await api.get<Offers>(APIRoute.Favorite);
+      dispatch(loadFavoriteOffers(response.data));
     }
   }
 );
@@ -49,9 +49,9 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   ActionName.CheckAuth,
   async (_arg, { dispatch, extra: api }) => {
     try {
-      const { data } = await api.get<UserData>(APIRoute.Login);
+      const response = await api.get<UserData>(APIRoute.Login);
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
-      dispatch(setUserName(data.email));
+      dispatch(setUserName(response.data.email));
     } catch {
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }
@@ -65,10 +65,10 @@ export const loginAction = createAsyncThunk<void, AuthData, {
 }>(
   ActionName.Login,
   async ({ login: email, password }, { dispatch, extra: api }) => {
-    const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
-    saveToken(data.token);
+    const response = await api.post<UserData>(APIRoute.Login, { email, password });
+    saveToken(response.data.token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
-    dispatch(setUserName(data.email));
+    dispatch(setUserName(response.data.email));
     dispatch(fetchFavoriteOffersAction());
   }
 );
@@ -95,8 +95,8 @@ export const fetchDetailOfferAction = createAsyncThunk<void, OfferId, {
   async (id, { dispatch, extra: api }) => {
     const route = `${APIRoute.Offers}/${id}`;
     try {
-      const { data } = await api.get<DetailOffer>(route);
-      dispatch(loadDetailOffer(data));
+      const response = await api.get<DetailOffer>(route);
+      dispatch(loadDetailOffer(response.data));
     } catch {
       dispatch(loadDetailOffer(EMPTY_DETAIL_OFFER));
     }
@@ -111,9 +111,8 @@ export const fetchOfferNearOffersAction = createAsyncThunk<void, OfferId, {
   ActionName.FetchOfferNearOffers,
   async (id, { dispatch, extra: api }) => {
     const route = `${APIRoute.Offers}/${id}${APIRoute.Nearby}`;
-    const { data } = await api.get<Offers>(route);
-
-    dispatch(loadOfferNearOffers(data));
+    const response = await api.get<Offers>(route);
+    dispatch(loadOfferNearOffers(response.data));
   }
 );
 
@@ -125,9 +124,9 @@ export const fetchOfferReviewsAction = createAsyncThunk<void, OfferId, {
   ActionName.FetchOfferReviews,
   async (id, { dispatch, extra: api }) => {
     const route = `${APIRoute.Comments}/${id}`;
-    const { data } = await api.get<Reviews>(route);
+    const response = await api.get<Reviews>(route);
 
-    dispatch(loadOfferReviews(data));
+    dispatch(loadOfferReviews(response.data));
   }
 );
 
