@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { postOfferReview } from '../../store/api-actions';
 import { getPositiveNumbers } from '../../utils/util';
 import { ReviewTextLength, ReviewRating } from '../../const';
 
 function OfferReviewsForm(): JSX.Element {
-  const [rating, setRating] = useState<number>(ReviewRating.DEFAULT);
-  const [text, setText] = useState<string>('');
+  const offerId = useAppSelector((state) => state.detailOffer.id);
+  const dispatch = useAppDispatch();
 
-  const textLength = text.length;
-  const isSubmitButtonEnabled = (rating >= ReviewRating.MIN) && (textLength >= ReviewTextLength.MIN) && (textLength <= ReviewTextLength.MAX);
+  const [rating, setRating] = useState<number>(ReviewRating.DEFAULT);
+  const [comment, setComment] = useState<string>('');
+
+  const commentLength = comment.length;
+  const isSubmitButtonEnabled = (rating >= ReviewRating.MIN) && (commentLength >= ReviewTextLength.MIN) && (commentLength <= ReviewTextLength.MAX);
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    dispatch(postOfferReview({ offerId, comment, rating }));
+  };
 
   return (
-    <form className="reviews__form form" action="#" method="post">
-      <label className="reviews__label form__label" htmlFor="review">Your review {rating} - {text}</label>
+    <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
+      <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {
           getPositiveNumbers(ReviewRating.STARS_COUNT)
@@ -50,7 +61,7 @@ function OfferReviewsForm(): JSX.Element {
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={
           (evt) => {
-            setText(evt.target.value);
+            setComment(evt.target.value);
           }
         }
       />

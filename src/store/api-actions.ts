@@ -8,7 +8,7 @@ import { saveToken } from '../services/token';
 import { AuthData, UserData } from '../types';
 import { AppDispatch, State } from '../types/state';
 import { DetailOffer, Offer, OfferId } from '../types/offer';
-import { Review } from '../types/review';
+import { OfferBaseReview, Review } from '../types/review';
 import { APIRoute, ActionName, AuthorizationStatus, EMPTY_DETAIL_OFFER } from '../const';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
@@ -66,6 +66,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
     saveToken(data.token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    dispatch(setUserName(data.email));
   }
 );
 
@@ -113,3 +114,21 @@ export const fetchOfferReviewsAction = createAsyncThunk<void, OfferId, {
     dispatch(loadOfferReviews(data));
   }
 );
+
+export const postOfferReview = createAsyncThunk<void, OfferBaseReview, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  ActionName.Login,
+  async ({ offerId, comment, rating }, { dispatch, extra: api }) => {
+    await api.post<Review>(`${APIRoute.Comments}/${offerId}`, { comment, rating });
+    dispatch(fetchOfferReviewsAction(offerId));
+  }
+);
+
+/*
+
+export const PostOfferFavorite = createAction<Review[]>(ActionName.PostOfferFavorite);
+
+ */

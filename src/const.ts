@@ -151,6 +151,8 @@ enum ActionName {
   FetchDetailOffer = 'data/fetchDetailOffer',
   FetchOfferNearOffers = 'data/fetchOfferNearOffers',
   FetchOfferReviews = 'data/fetchOfferReviews',
+  PostOfferReview = 'data/postOfferReview',
+  PostOfferFavorite = 'data/postOfferFavorite',
   Login = 'user/login',
   CheckAuth = 'user/checkAuth',
   SetOffersDataLoadingStatus = 'main/setOffersDataLoadingStatus',
