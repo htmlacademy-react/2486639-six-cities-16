@@ -4,7 +4,7 @@ import {
   loadDetailOffer, loadFavoriteOffers, loadOfferNearOffers, loadOfferReviews,
   loadOffers, requireAuthorization, setOffersDataLoadingStatus, setUserName
 } from './action';
-import { saveToken } from '../services/token';
+import { dropToken, saveToken } from '../services/token';
 import { AuthData, UserData } from '../types';
 import { AppDispatch, State } from '../types/state';
 import { DetailOffer, Offer, OfferFavorite, OfferId } from '../types/offer';
@@ -31,11 +31,15 @@ export const fetchFavoriteOffersAction = createAsyncThunk<void, undefined, {
   extra: AxiosInstance;
 }>(
   ActionName.FetchFavoriteOffers,
-  async (_arg, { dispatch, extra: api }) => {
-    dispatch(setOffersDataLoadingStatus(true));
-    const { data } = await api.get<Offer[]>(APIRoute.Favorite);
-    dispatch(setOffersDataLoadingStatus(false));
-    dispatch(loadFavoriteOffers(data));
+  async (_arg, { dispatch, getState, extra: api }) => {
+    const state = getState();
+    console.log(state);
+
+    //! test
+    if (state.authorizationStatus === AuthorizationStatus.Auth) {
+      const { data } = await api.get<Offer[]>(APIRoute.Favorite);
+      dispatch(loadFavoriteOffers(data));
+    }
   }
 );
 
@@ -69,6 +73,19 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     dispatch(setUserName(data.email));
     dispatch(fetchFavoriteOffersAction());
   }
+);
+
+export const logoutAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  ActionName.Logout,
+  async (_arg, { dispatch, extra: api }) => {
+    await api.delete(APIRoute.Logout);
+    dropToken();
+    dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+  },
 );
 
 export const fetchDetailOfferAction = createAsyncThunk<void, OfferId, {

@@ -22,7 +22,7 @@ function BookmarkButton({ offerId, classNamePrefix, isBigButton = false, isActiv
   const activeButtonClassName = `${buttonClassName}--active`;
   const { width, height } = (isBigButton) ? BookmarkButtonIconSize.BIG : BookmarkButtonIconSize.SMALL;
 
-  const handleClick = (evt: React.MouseEvent<HTMLElement>) => {
+  const handleButtonClick = (evt: React.MouseEvent<HTMLElement>) => {
     evt.preventDefault();
 
     if (authorizationStatus !== AuthorizationStatus.Auth) {
@@ -39,7 +39,7 @@ function BookmarkButton({ offerId, classNamePrefix, isBigButton = false, isActiv
     <button
       className={`${buttonClassName} button ${isActive ? activeButtonClassName : ''}`}
       type="button"
-      onClick={handleClick}
+      onClick={handleButtonClick}
     >
       <svg className={iconClassName} width={width} height={height}>
         <use xlinkHref="#icon-bookmark"></use>

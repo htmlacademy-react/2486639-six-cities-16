@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../hooks';
 import classNames from 'classnames';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { logoutAction } from '../../store/api-actions';
 import { AppRoute, AuthorizationStatus } from '../../const';
 
 type HeaderProps = {
@@ -11,9 +12,14 @@ function Header({ isHiddenUserInfo }: HeaderProps): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const userName = useAppSelector((state) => state.userName);
   const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
+  const dispatch = useAppDispatch();
 
   const isAuthUser = authorizationStatus === AuthorizationStatus.Auth;
   const logoLinkClassName = classNames('header__logo-link', { 'header__logo-link--active': !isHiddenUserInfo });
+
+  const handleSignOutClick = () => {
+    dispatch(logoutAction());
+  };
 
   return (
     <header className="header">
@@ -53,7 +59,7 @@ function Header({ isHiddenUserInfo }: HeaderProps): JSX.Element {
                     (isAuthUser)
                       ?
                       <li className="header__nav-item">
-                        <Link className="header__nav-link" to={AppRoute.Main}>
+                        <Link className="header__nav-link" to={AppRoute.Main} onClick={handleSignOutClick}>
                           <span className="header__signout">Sign out</span>
                         </Link>
                       </li>

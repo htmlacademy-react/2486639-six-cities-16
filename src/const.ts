@@ -154,6 +154,7 @@ enum ActionName {
   PostOfferReview = 'data/postOfferReview',
   PostOfferFavorite = 'data/postOfferFavorite',
   Login = 'user/login',
+  Logout = 'user/logout',
   CheckAuth = 'user/checkAuth',
   SetOffersDataLoadingStatus = 'main/setOffersDataLoadingStatus',
   ChangeCityName = 'main/changeCityName',
