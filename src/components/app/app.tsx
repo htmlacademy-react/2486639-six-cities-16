@@ -17,9 +17,12 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(checkAuthAction()); //! нужен await для теста с избранным, перепроверить
-    dispatch(fetchOffersAction());
-    dispatch(fetchFavoriteOffersAction());
+    async function fetchData() {
+      await dispatch(checkAuthAction());
+      dispatch(fetchOffersAction());
+      dispatch(fetchFavoriteOffersAction());
+    }
+    fetchData();
   }, [dispatch]);
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
