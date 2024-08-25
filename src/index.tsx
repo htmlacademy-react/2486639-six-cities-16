@@ -26,8 +26,8 @@ root.render(
   1. пришлось добавить map?.setView(center, zoom); а может, что то не то?
   2. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
     только, то что TS не может подсказать
-    function getCityOffers(cityName: CityName, offers: Offer[]): Offer[] {
-    function getCityOffers(cityName: CityName, offers: Offer[]){
+    function getCityOffers(cityName: CityName, offers: Offers): Offers {
+    function getCityOffers(cityName: CityName, offers: Offers){
   3. типизировать функции и значения
     onSortingTypeChange: (sortingType: OfferSortigType) => void;
       может <argT>  (value:argT)....

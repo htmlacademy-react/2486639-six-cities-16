@@ -7,8 +7,8 @@ import {
 import { dropToken, saveToken } from '../services/token';
 import { AuthData, UserData } from '../types';
 import { AppDispatch, State } from '../types/state';
-import { DetailOffer, Offer, OfferFavorite, OfferId } from '../types/offer';
-import { OfferBaseReview, Review } from '../types/review';
+import { DetailOffer, Offers, OfferFavorite, OfferId } from '../types/offer';
+import { OfferBaseReview, Review, Reviews } from '../types/review';
 import { APIRoute, ActionName, AuthorizationStatus, EMPTY_DETAIL_OFFER } from '../const';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
@@ -19,7 +19,7 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
   ActionName.FetchOffers,
   async (_arg, { dispatch, extra: api }) => {
     dispatch(setOffersDataLoadingStatus(true));
-    const { data } = await api.get<Offer[]>(APIRoute.Offers);
+    const { data } = await api.get<Offers>(APIRoute.Offers);
     dispatch(setOffersDataLoadingStatus(false));
     dispatch(loadOffers(data));
   }
@@ -35,7 +35,7 @@ export const fetchFavoriteOffersAction = createAsyncThunk<void, undefined, {
     const state = getState();
 
     if (state.authorizationStatus === AuthorizationStatus.Auth) {
-      const { data } = await api.get<Offer[]>(APIRoute.Favorite);
+      const { data } = await api.get<Offers>(APIRoute.Favorite);
       dispatch(loadFavoriteOffers(data));
     }
   }
@@ -111,7 +111,7 @@ export const fetchOfferNearOffersAction = createAsyncThunk<void, OfferId, {
   ActionName.FetchOfferNearOffers,
   async (id, { dispatch, extra: api }) => {
     const route = `${APIRoute.Offers}/${id}${APIRoute.Nearby}`;
-    const { data } = await api.get<Offer[]>(route);
+    const { data } = await api.get<Offers>(route);
 
     dispatch(loadOfferNearOffers(data));
   }
@@ -125,7 +125,7 @@ export const fetchOfferReviewsAction = createAsyncThunk<void, OfferId, {
   ActionName.FetchOfferReviews,
   async (id, { dispatch, extra: api }) => {
     const route = `${APIRoute.Comments}/${id}`;
-    const { data } = await api.get<Review[]>(route);
+    const { data } = await api.get<Reviews>(route);
 
     dispatch(loadOfferReviews(data));
   }

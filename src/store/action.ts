@@ -1,18 +1,18 @@
 import { createAction } from '@reduxjs/toolkit';
 import { CityName } from '../types';
-import { DetailOffer, Offer, OfferId } from '../types/offer';
-import { Review } from '../types/review';
+import { DetailOffer, Offers, OfferId } from '../types/offer';
+import { Reviews } from '../types/review';
 import { ActionName, AuthorizationStatus, OfferSortigType } from '../const';
 
-export const loadOffers = createAction<Offer[]>(ActionName.LoadOffers);
+export const loadOffers = createAction<Offers>(ActionName.LoadOffers);
 
-export const loadFavoriteOffers = createAction<Offer[]>(ActionName.LoadFavoriteOffers);
+export const loadFavoriteOffers = createAction<Offers>(ActionName.LoadFavoriteOffers);
 
 export const loadDetailOffer = createAction<DetailOffer>(ActionName.LoadDetailOffer);
 
-export const loadOfferNearOffers = createAction<Offer[]>(ActionName.LoadOfferNearOffers);
+export const loadOfferNearOffers = createAction<Offers>(ActionName.LoadOfferNearOffers);
 
-export const loadOfferReviews = createAction<Review[]>(ActionName.LoadOfferReviews);
+export const loadOfferReviews = createAction<Reviews>(ActionName.LoadOfferReviews);
 
 export const setOffersDataLoadingStatus = createAction<boolean>(ActionName.SetOffersDataLoadingStatus);
 

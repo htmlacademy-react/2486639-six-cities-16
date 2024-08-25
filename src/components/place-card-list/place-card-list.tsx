@@ -1,8 +1,8 @@
 import PlaceCard from '../place-card/place-card';
-import { Offer } from '../../types/offer';
+import { Offers } from '../../types/offer';
 
 type PlaceCardListProps = {
-  offers: Offer[];
+  offers: Offers;
 }
 
 function PlaceCardList(props: PlaceCardListProps): JSX.Element {

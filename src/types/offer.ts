@@ -16,6 +16,8 @@ export type BaseOffer = {
 
 export type Offer = BaseOffer & { previewImage: string };
 
+export type Offers = Offer[];
+
 export type DetailOffer =
   BaseOffer
   & {
@@ -27,6 +29,6 @@ export type DetailOffer =
     maxAdults: number;
   };
 
-export type CityOffers = { cityName: CityName; offers: Offer[] };
+export type CityOffers = { cityName: CityName; offers: Offers };
 
 export type OfferFavorite = { id: OfferId; status: boolean };

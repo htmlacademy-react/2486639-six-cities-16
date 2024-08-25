@@ -15,3 +15,5 @@ export type Review =
     user: User;
   }
   & BaseReview;
+
+export type Reviews = Review[];

@@ -2,13 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import PlaceCardInfo from '../place-card-info/place-card-info';
 import { useAppDispatch } from '../../hooks';
 import { changeCityName } from '../../store/action';
-import { Offer } from '../../types/offer';
+import { Offers } from '../../types/offer';
 import { CityName } from '../../types';
 import { AppRoute } from '../../const';
 
 type FavoriteItemProps = {
   cityName: CityName;
-  offers: Offer[];
+  offers: Offers;
 }
 
 function FavoriteItem({ cityName, offers }: FavoriteItemProps): JSX.Element {

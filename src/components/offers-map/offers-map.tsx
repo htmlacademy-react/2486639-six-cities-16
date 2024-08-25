@@ -1,14 +1,14 @@
 import { useEffect, useRef } from 'react';
 import { Icon, Marker, layerGroup } from 'leaflet';
 import useMap from '../../hooks/use-map';
-import { DetailOffer, Offer, OfferId } from '../../types/offer';
+import { DetailOffer, Offers, OfferId } from '../../types/offer';
 import { Location } from '../../types';
 import { ClassNamePrefix, UrlMarker, IconMarkerSize, IconAnchorSize } from '../../const';
 
 type OffersMapProps = {
   classNamePrefix: ClassNamePrefix;
   startLocation: Location;
-  offers: Offer[];
+  offers: Offers;
   activeOfferId?: OfferId;
   activeDetailOffer?: DetailOffer;
 }

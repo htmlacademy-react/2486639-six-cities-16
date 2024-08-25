@@ -1,8 +1,8 @@
-import { CityOffers, Offer } from '../types/offer';
+import { CityOffers, Offer, Offers } from '../types/offer';
 import { CityName } from '../types';
 import { OfferSortigType } from '../const';
 
-function getCityOffers(cityName: CityName, offers: Offer[]) {
+function getCityOffers(cityName: CityName, offers: Offers) {
   return offers.filter(({ city }) => (cityName === city.name));
 }
 
@@ -12,7 +12,7 @@ const compareOffers = {
   [OfferSortigType.TopRatedFirst]: ({ rating: firstRating }: Offer, { rating: secondRating }: Offer) => (secondRating - firstRating)
 };
 
-function sortOffers(offers: Offer[], offerSortingType: OfferSortigType): Offer[] {
+function sortOffers(offers: Offers, offerSortingType: OfferSortigType): Offers {
   if (offerSortingType === OfferSortigType.Popular) {
     return offers;
   }
@@ -24,7 +24,7 @@ function sortByCityName(citiesOffers: CityOffers[]): CityOffers[] {
   return citiesOffers.sort(({ cityName: firstCityName }, { cityName: secondCityName }) => (firstCityName.localeCompare(secondCityName)));
 }
 
-function getOffersByCities(offers: Offer[]): CityOffers[] {
+function getOffersByCities(offers: Offers): CityOffers[] {
   const offersByCities: CityOffers[] = [];
 
   offers.forEach((offer) => {

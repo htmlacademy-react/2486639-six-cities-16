@@ -5,8 +5,8 @@ import {
   setOffersDataLoadingStatus, setUserName
 } from './action';
 import { CityName } from '../types';
-import { DetailOffer, Offer, OfferId } from '../types/offer';
-import { Review } from '../types/review';
+import { DetailOffer, Offers, OfferId } from '../types/offer';
+import { Reviews } from '../types/review';
 import {
   AuthorizationStatus, DEFALUT_OFFER_SORTING_TYPE, DEFAULT_CITY_NAME,
   EMPTY_DETAIL_OFFER, OfferSortigType
@@ -16,11 +16,11 @@ type InitialState = {
   cityName: CityName;
   offerSoritngType: OfferSortigType;
   activeOfferId: OfferId;
-  offers: Offer[];
-  favoriteOffers: Offer[];
+  offers: Offers;
+  favoriteOffers: Offers;
   detailOffer: DetailOffer;
-  offerNearOffers: Offer[];
-  offerReviews: Review[];
+  offerNearOffers: Offers;
+  offerReviews: Reviews;
   isOffersDataLoading: boolean;
   authorizationStatus: AuthorizationStatus;
   userName: string;
