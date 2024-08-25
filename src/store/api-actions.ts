@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import {
-  loadDetailOffer, loadOfferNearOffers, loadOfferReviews, loadOffers,
-  requireAuthorization, setOffersDataLoadingStatus, setUserName
+  loadDetailOffer, loadFavoriteOffers, loadOfferNearOffers, loadOfferReviews,
+  loadOffers, requireAuthorization, setOffersDataLoadingStatus, setUserName
 } from './action';
 import { saveToken } from '../services/token';
 import { AuthData, UserData } from '../types';
@@ -35,7 +35,7 @@ export const fetchFavoriteOffers = createAsyncThunk<void, undefined, {
     dispatch(setOffersDataLoadingStatus(true));
     const { data } = await api.get<Offer[]>(APIRoute.Favorite);
     dispatch(setOffersDataLoadingStatus(false));
-    dispatch(loadOffers(data));
+    dispatch(loadFavoriteOffers(data));
   }
 );
 
@@ -127,8 +127,14 @@ export const postOfferReview = createAsyncThunk<void, OfferBaseReview, {
   }
 );
 
-/*
-
-export const PostOfferFavorite = createAction<Review[]>(ActionName.PostOfferFavorite);
-
- */
+export const postOfferFavorite = createAsyncThunk<void, OfferBaseReview, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  ActionName.Login,
+  async ({ offerId, comment, rating }, { dispatch, extra: api }) => {
+    await api.post<Review>(`${APIRoute.Comments}/${offerId}`, { comment, rating });
+    dispatch(fetchOfferReviewsAction(offerId));
+  }
+);
