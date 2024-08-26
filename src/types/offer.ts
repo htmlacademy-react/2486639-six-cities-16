@@ -29,6 +29,6 @@ export type DetailOffer =
     maxAdults: number;
   };
 
-export type OffersByCity = { cityName: CityName; offers: Offers };
+export type OffersByCityName = { cityName: CityName; offers: Offers };
 
 export type OfferFavorite = { id: OfferId; status: boolean };

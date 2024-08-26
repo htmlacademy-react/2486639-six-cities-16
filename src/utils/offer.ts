@@ -1,5 +1,5 @@
 import { CityName } from '../types';
-import { OffersByCity, Offer, Offers, DetailOffer, BaseOffer } from '../types/offer';
+import { OffersByCityName, Offer, Offers, DetailOffer, BaseOffer } from '../types/offer';
 import { OfferSortigType } from '../const';
 
 function getCityOffers(cityName: CityName, offers: Offers) {
@@ -20,20 +20,20 @@ function sortOffers(offers: Offers, offerSortingType: OfferSortigType): Offers {
   return [...offers].sort(compareOffers[offerSortingType]);
 }
 
-function sortByCityName(citiesOffers: OffersByCity[]): OffersByCity[] {
+function sortByCityName(citiesOffers: OffersByCityName[]): OffersByCityName[] {
   return citiesOffers.sort(({ cityName: firstCityName }, { cityName: secondCityName }) => (firstCityName.localeCompare(secondCityName)));
 }
 
-function getOffersByCities(offers: Offers): OffersByCity[] {
-  const offersByCities: OffersByCity[] = [];
+function getOffersByCities(offers: Offers): OffersByCityName[] {
+  const offersByCities: OffersByCityName[] = [];
 
   offers.forEach((offer) => {
-    const offersByCity = offersByCities.find(({ cityName }) => (cityName === offer.city.name));
+    const offersByCityName = offersByCities.find(({ cityName }) => (cityName === offer.city.name));
 
-    if (!offersByCity) {
+    if (!offersByCityName) {
       offersByCities.push({ cityName: offer.city.name, offers: [offer] });
     } else {
-      offersByCity.offers.push(offer);
+      offersByCityName.offers.push(offer);
     }
   });
 
