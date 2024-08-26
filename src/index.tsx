@@ -17,10 +17,9 @@ root.render(
 );
 
 /*
-Вопросы:
+Доделать сначала и перепроверить, что автотесты не ломаются:
 
-Доделать сначала:
-  1. в NearPlaces нужен ScrollToTop при переходе по ссылкам, т.к.находимся внизу другого предложения
+  +1. в NearPlaces нужен ScrollToTop при переходе по ссылкам, т.к.находимся внизу другого предложения
     после сети и отображения заглушки само прокручиваеться, но может что поменяется
     не работает показалось сделать ScrollToTop !
   2. Проверить Спинеры на разных страницах
@@ -77,7 +76,7 @@ root.render(
 Заметки:
   aaa@aaa.aaa / a1
 
-  в App <Route path={AppRoute.Main} сделать Layout и все переместить вовнутрь или нет или только для городов
+  в App <Route path={AppRoute.Main} сделать Layout и все переместить во внутрь или нет...
 
   константы объединенные как enum или const as const! критерий!
   проверить типизацию useState!
@@ -99,26 +98,6 @@ root.render(
     а вошли на логин и неавторизован, то не успевает в корректной последовательности выполниться запросы авторизации и проврки авторизации
     и список оферов пустой
     можно сделать в хранилище backRouteAfterLogin  и заполнять в нужных местах и/или передавать через пропы Header
-    есть useLocation, добавить пропс from?  как в разботе ДЗ ProtectRoute
-
-
-//Для этого создадим компонент ScrollToTop:
-import {useEffect} from 'react';
-import {useLocation} from 'react-router-dom';
-
-function ScrollToTop() {
-  const {pathname} = useLocation();
-
-  useEffect(() => {
-        window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-}
-
-export default ScrollToTop;
---
-<ScrollToTop />
---
+    есть useLocation, добавить пропс from? как в разботе ДЗ ProtectRoute
 
 */
