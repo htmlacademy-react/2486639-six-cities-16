@@ -18,13 +18,13 @@ root.render(
 
 /*
 Доделать сначала и перепроверить, что автотесты не ломаются:
-
-  +1. в NearPlaces нужен ScrollToTop при переходе по ссылкам, т.к.находимся внизу другого предложения
+  +1. применить classNames в остальных компанентах
+  +2. в NearPlaces нужен ScrollToTop при переходе по ссылкам, т.к.находимся внизу другого предложения
     после сети и отображения заглушки само прокручиваеться, но может что поменяется
     не работает показалось сделать ScrollToTop !
-  2. Проверить Спинеры на разных страницах
+  3. Проверить Спинеры на разных страницах
     если смотриться не очеть то сделать еще Loading... для компонетов где уже есть внешнее оформление
-  3. Предупреждение React на navigate(AppRoute.Main); после if (loginCheckRequestStatus === RequestStatus.Success) {
+  4. Предупреждение React на navigate(AppRoute.Main); после if (loginCheckRequestStatus === RequestStatus.Success) {
     login-form.tsx:15 - You should call navigate() in a React.useEffect(), not when your component is first rendered.
     если сделать useEffect, то не работает автотест 1.1.3 Страница Login - При переключении страниц форма очищается
 
@@ -40,14 +40,13 @@ root.render(
   4. списках мест сделать на одном компоненте
     переделать списки в NearPlaces / FavoritesPage + FavoriteItem или есть еще?
     передать пропс isHoverChange для обработки
-  5. применить classNames в остальных компанентах
-  6. <Helmet> <title>{`${APP_TITLE}: 404`}</title>....  что то придумать для сборки заголовка
+  5. <Helmet> <title>{`${APP_TITLE}: 404`}</title>....  что то придумать для сборки заголовка
     и добавить константы
     может какие то страницы упустил ?
-  7. проверить однотипность function и ()=> есть критерий?
-  8. одинаковый код FavoriteItem и LoginPage обработка клика на название города
+  6. проверить однотипность function и ()=> есть критерий?
+  7. одинаковый код FavoriteItem и LoginPage обработка клика на название города
     параметр только название города
-  9. OfferPage при загрузке данных отрисовывает не надолго 404
+  8. OfferPage при загрузке данных отрисовывает не надолго 404
     нужен либо таймаю либо текс с информацией о загрузки данных
     const detailOffer = useAppSelector((state) => state.detailOffer);
     if (!detailOffer) {...
@@ -58,7 +57,7 @@ root.render(
     так на странице предложения выполнил
     dispatch(loadDetailOffer({ ...EMPTY_DETAIL_OFFER, id: offerId }));
 
-  10. При логине/логауте обновлять списка предложений, т.к. там появляються и исчезают отметки избранное
+  9. При логине/логауте обновлять списка предложений, т.к. там появляються и исчезают отметки избранное
     сделал
         if (isChangeAuthorizationStatus) {
           dispatch(fetchOffersAction());
