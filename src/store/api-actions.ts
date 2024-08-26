@@ -154,8 +154,6 @@ export const postOfferReviewAction = createAsyncThunk<void, OfferBaseReview, {
   ActionName.Login,
   async ({ offerId, comment, rating }, { dispatch, extra: api }) => {
     try {
-      console.log('postOfferReviewAction');
-
       dispatch(setReviewPostingRequestStatus(RequestStatus.Loading));
       const response = await api.post<Review>(`${APIRoute.Comments}/${offerId}`, { comment, rating });
       dispatch(loadOfferReview(response.data));
