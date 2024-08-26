@@ -20,24 +20,20 @@ function sortOffers(offers: Offers, offerSortingType: OfferSortigType): Offers {
   return [...offers].sort(compareOffers[offerSortingType]);
 }
 
-function sortByCityName(citiesOffers: OffersByCityName[]): OffersByCityName[] {
-  return citiesOffers.sort(({ cityName: firstCityName }, { cityName: secondCityName }) => (firstCityName.localeCompare(secondCityName)));
-}
-
-function getOffersByCities(offers: Offers): OffersByCityName[] {
-  const offersByCities: OffersByCityName[] = [];
+function getOffersByCityName(offers: Offers): OffersByCityName[] {
+  const offersByCityNames: OffersByCityName[] = [];
 
   offers.forEach((offer) => {
-    const offersByCityName = offersByCities.find(({ cityName }) => (cityName === offer.city.name));
+    const offersByCityName = offersByCityNames.find(({ cityName }) => (cityName === offer.city.name));
 
     if (!offersByCityName) {
-      offersByCities.push({ cityName: offer.city.name, offers: [offer] });
+      offersByCityNames.push({ cityName: offer.city.name, offers: [offer] });
     } else {
       offersByCityName.offers.push(offer);
     }
   });
 
-  return sortByCityName(offersByCities);
+  return offersByCityNames;
 }
 
 function getFavoriteOffersCount(offers: Offer[]): number {
@@ -60,4 +56,4 @@ function upadteOffer(detailOffer: DetailOffer, offers: Offer[]): void {
   }
 }
 
-export { getCityOffers, sortOffers, getOffersByCities, getFavoriteOffersCount, upadteOffer };
+export { getCityOffers, sortOffers, getOffersByCityName, getFavoriteOffersCount, upadteOffer };
