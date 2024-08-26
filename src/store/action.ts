@@ -4,8 +4,6 @@ import { DetailOffer, Offers, OfferId } from '../types/offer';
 import { Review, Reviews } from '../types/review';
 import { ActionName, AuthorizationStatus, OfferSortigType } from '../const';
 
-export const changeAuthorizationStatus = createAction<boolean>(ActionName.ChangeAuthorizationStatus);
-
 export const loadOffers = createAction<Offers>(ActionName.LoadOffers);
 
 export const changeDetailOffer = createAction<DetailOffer>(ActionName.ChangeDetailOffer);

@@ -3,7 +3,7 @@ import { AxiosInstance } from 'axios';
 import {
   changeDetailOffer, loadDetailOffer, loadFavoriteOffers, loadOfferNearOffers,
   loadOfferReview, loadOfferReviews, loadOffers, requireAuthorization,
-  setOffersDataLoadingStatus, setUserName, changeAuthorizationStatus
+  setOffersDataLoadingStatus, setUserName
 } from './action';
 import { dropToken, saveToken } from '../services/token';
 import { AuthData, UserData } from '../types';
@@ -56,7 +56,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
     } catch {
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }
-    dispatch(changeAuthorizationStatus(true));
+    dispatch(fetchOffersAction());
   },
 );
 
@@ -71,7 +71,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     saveToken(response.data.token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
     dispatch(setUserName(response.data.email));
-    dispatch(changeAuthorizationStatus(true));
+    dispatch(fetchOffersAction());
   }
 );
 
@@ -85,7 +85,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     await api.delete(APIRoute.Logout);
     dropToken();
     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
-    dispatch(changeAuthorizationStatus(true));
+    dispatch(fetchOffersAction());
   },
 );
 
