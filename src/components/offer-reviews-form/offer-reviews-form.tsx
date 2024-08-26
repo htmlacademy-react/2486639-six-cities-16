@@ -1,12 +1,15 @@
-import { FormEvent, Fragment, useState } from 'react';
+import { FormEvent, Fragment, useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import { setReviewPostingRequestStatus } from '../../store/action';
 import { postOfferReviewAction } from '../../store/api-actions';
-import { ReviewTextLength, ReviewRating } from '../../const';
+import { ReviewTextLength, ReviewRating, RequestStatus } from '../../const';
 
 function OfferReviewsForm(): JSX.Element {
+  const reviewPostingRequestStatus = useAppSelector((state) => state.reviewPostingRequestStatus);
   const offerId = useAppSelector((state) => state.detailOffer.id);
   const dispatch = useAppDispatch();
 
+  const fromRef = useRef<HTMLFormElement | null>(null);
   const [rating, setRating] = useState<number>(ReviewRating.DEFAULT);
   const [comment, setComment] = useState<string>('');
   const [formInputsDisable, setFormInputsDisable] = useState<boolean>(false);
@@ -14,22 +17,36 @@ function OfferReviewsForm(): JSX.Element {
   const commentLength = comment.length;
   const isSubmitButtonEnabled = (rating >= ReviewRating.MIN) && (commentLength >= ReviewTextLength.MIN) && (commentLength <= ReviewTextLength.MAX);
 
+  console.log('reviewPostingRequestStatus', reviewPostingRequestStatus);
+  console.log('formInputsDisable', formInputsDisable);
+  console.log('rating', rating);
+  console.log('commentLength', commentLength);
+
+  useEffect(() => {
+    setFormInputsDisable(reviewPostingRequestStatus === RequestStatus.Loading);
+
+    if (reviewPostingRequestStatus === RequestStatus.Success) {
+      dispatch(setReviewPostingRequestStatus(RequestStatus.Idle));
+
+      if (fromRef.current !== null) {
+        fromRef.current.reset();
+      }
+    }
+  }, [reviewPostingRequestStatus, dispatch]);
+
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    setFormInputsDisable(true);
-
     dispatch(postOfferReviewAction({ offerId, comment, rating }));
+  };
 
+  const handleFormReset = () => {
     setRating(ReviewRating.DEFAULT);
     setComment('');
-    setFormInputsDisable(false);
-
-    evt.currentTarget.reset();
   };
 
   return (
-    <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
+    <form ref={fromRef} className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit} onReset={handleFormReset}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {
@@ -79,7 +96,7 @@ function OfferReviewsForm(): JSX.Element {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={!isSubmitButtonEnabled}>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={!isSubmitButtonEnabled || formInputsDisable}>Submit</button>
       </div>
     </form>
   );
