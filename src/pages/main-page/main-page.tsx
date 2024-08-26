@@ -8,7 +8,7 @@ import OffersMap from '../../components/offers-map/offers-map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeOfferSortingType } from '../../store/action';
 import { addPluralEnding } from '../../utils/common';
-import { getCityOffers, getFavoriteOffersCount, sortOffers } from '../../utils/offer';
+import { getCityOffers, sortOffers } from '../../utils/offer';
 import { ClassNamePrefix, OfferSortigType, RequestStatus } from '../../const';
 
 function MainPage(): JSX.Element {
@@ -48,7 +48,7 @@ function MainPage(): JSX.Element {
 
   return (
     <div className="page page--gray page--main">
-      <Header favoriteOfferCount={getFavoriteOffersCount(offers)} />
+      <Header />
 
       <main className={mainClassName}>
         <Locations currentCityName={currentCityName} />
