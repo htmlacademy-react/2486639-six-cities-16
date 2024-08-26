@@ -10,7 +10,7 @@ import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import Spinner from '../spinner/spinner';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AppRoute, APP_TITLE, AuthorizationStatus } from '../../const';
-import { checkAuthAction, fetchFavoriteOffersAction, fetchOffersAction } from '../../store/api-actions';
+import { checkAuthAction, fetchOffersAction } from '../../store/api-actions';
 import { useEffect } from 'react';
 
 function App(): JSX.Element {
@@ -20,7 +20,6 @@ function App(): JSX.Element {
     async function fetchData() {
       await dispatch(checkAuthAction());
       dispatch(fetchOffersAction());
-      dispatch(fetchFavoriteOffersAction());
     }
     fetchData();
   }, [dispatch]);

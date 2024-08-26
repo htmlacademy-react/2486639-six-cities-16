@@ -1,13 +1,20 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import FavoriteItem from '../../components/favorite-item/favorite-item';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { fetchFavoriteOffersAction } from '../../store/api-actions';
 import { getOffersByCities } from '../../utils/offer';
 import { APP_TITLE } from '../../const';
 
 function FavoritesPage(): JSX.Element {
   const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFavoriteOffersAction());
+  }, [dispatch]);
 
   const isOffersEmpty: boolean = !favoriteOffers.length;
 

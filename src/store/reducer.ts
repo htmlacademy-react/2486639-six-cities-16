@@ -48,9 +48,13 @@ const reducer = createReducer(initialState, (builder) => {
       state.offers = action.payload;
     })
     .addCase(changeDetailOffer, (state, action) => {
-      state.detailOffer = action.payload;
-      upadteOffer(action.payload, state.offers);
-      upadteOffer(action.payload, state.favoriteOffers);
+      const detailOffer = action.payload;
+
+      state.detailOffer = detailOffer;
+      upadteOffer(detailOffer, state.offers);
+      if (!detailOffer.isFavorite) {
+        state.favoriteOffers = state.favoriteOffers.filter(({ id }) => (id !== detailOffer.id));
+      }
     })
     .addCase(loadFavoriteOffers, (state, action) => {
       state.favoriteOffers = action.payload;
