@@ -9,25 +9,16 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import Spinner from '../spinner/spinner';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import { checkAuthAction } from '../../store/api-actions';
 import { AppRoute, APP_TITLE, AuthorizationStatus } from '../../const';
-import { checkAuthAction, fetchOffersAction } from '../../store/api-actions';
-import { useEffect } from 'react';
 
 function App(): JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    async function fetchData() {
-      await dispatch(checkAuthAction());
-      dispatch(fetchOffersAction());
-    }
-    fetchData();
-  }, [dispatch]);
+  dispatch(checkAuthAction());
 
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-
-  if ((authorizationStatus === AuthorizationStatus.Unknown) || isOffersDataLoading) {
+  if ((authorizationStatus === AuthorizationStatus.Unknown)) {
     return (
       <Spinner />
     );

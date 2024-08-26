@@ -4,7 +4,7 @@ import BookmarkButton from '../bookmark-button/bookmark-button';
 import Price from '../price/price';
 import Rating from '../rating/rating';
 import { Offer } from '../../types/offer';
-import { upFirstLetter } from '../../utils/util';
+import { upFirstLetter } from '../../utils/common';
 import { ClassNamePrefix } from '../../const';
 
 type PlaceCardInfoProps = {

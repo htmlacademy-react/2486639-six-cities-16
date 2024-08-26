@@ -21,7 +21,6 @@ const AUTH_TOKEN_KEY_NAME = 'six-cities-token';
 
 const CITIES_NAMES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
 const DEFAULT_CITY_NAME: CityName = CITIES_NAMES[0];
-const CITY_NAME_IN_LOGIN_PAGE: CityName = CITIES_NAMES[3];
 
 const OFFER_BASE_ROUTE = '/offer/';
 
@@ -173,7 +172,6 @@ export {
   AUTH_TOKEN_KEY_NAME,
   CITIES_NAMES,
   DEFAULT_CITY_NAME,
-  CITY_NAME_IN_LOGIN_PAGE,
   OFFER_BASE_ROUTE,
   AppRoute,
   AuthorizationStatus,

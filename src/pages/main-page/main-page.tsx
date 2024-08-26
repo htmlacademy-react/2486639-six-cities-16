@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import classNames from 'classnames';
+import Spinner from '../../components/spinner/spinner';
 import Header from '../../components/header/header';
 import Locations from '../../components/locations/locations';
 import PlacesSorting from '../../components/places-sorting/places-sorting';
@@ -6,16 +8,29 @@ import PlaceCardList from '../../components/place-card-list/place-card-list';
 import OffersMap from '../../components/offers-map/offers-map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeOfferSortingType } from '../../store/action';
-import { addPluralEnding } from '../../utils/util';
+import { fetchOffersAction } from '../../store/api-actions';
+import { addPluralEnding } from '../../utils/common';
 import { getCityOffers, sortOffers } from '../../utils/offer';
 import { ClassNamePrefix, OfferSortigType } from '../../const';
 
 function MainPage(): JSX.Element {
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   const offers = useAppSelector((state) => state.offers);
   const currentCityName = useAppSelector((state) => state.cityName);
   const currentOfferSortType = useAppSelector((state) => state.offerSoritngType);
   const activeOfferId = useAppSelector((state) => state.activeOfferId);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchOffersAction());
+  }, [dispatch]);
+
+
+  if (isOffersDataLoading) {
+    return (
+      <Spinner />
+    );
+  }
 
   const cityOffers = sortOffers(getCityOffers(currentCityName, offers), currentOfferSortType);
 
