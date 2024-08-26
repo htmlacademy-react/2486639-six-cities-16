@@ -110,13 +110,14 @@ const OfferComponentsCount = {
   IMAGES: 6,
   NEAR_OFFERS: 3,
   REVIEWS: 10
-};
+} as const;
 
 const ReviewRating = {
   HINTS: ['perfect', 'good', 'not bad', 'badly', 'terribly'],
   DEFAULT: 0,
   MIN: 1
 } as const;
+
 const ReviewTextLength = {
   MIN: 50,
   MAX: 300

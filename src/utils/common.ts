@@ -6,6 +6,6 @@ function addPluralEnding(word: string, count: number): string {
   return `${word}${(count === 1) ? '' : 's'}`;
 }
 
-const getRandomArrayElement = <T>(items: T[]) => items[Math.floor(Math.random() * items.length)];
+const getRandomArrayElement = <T>(items: T[]): T => items[Math.floor(Math.random() * items.length)];
 
 export { upFirstLetter, addPluralEnding, getRandomArrayElement };

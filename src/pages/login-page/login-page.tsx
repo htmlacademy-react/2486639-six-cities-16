@@ -35,7 +35,7 @@ function LoginPage(): JSX.Element {
                 onClick={
                   (evt: MouseEvent<HTMLElement>) => {
                     evt.preventDefault();
-                    dispatch(changeCityName(randomCityName as CityName));
+                    dispatch(changeCityName(randomCityName));
                     navigate(AppRoute.Main);
                   }
                 }
