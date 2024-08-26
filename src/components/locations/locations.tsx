@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { changeCityName } from '../../store/action';
 import { CityName } from '../../types';
@@ -29,7 +30,7 @@ function Locations({ currentCityName }: LocationsProps): JSX.Element {
                       className={className}
                       href="#"
                       onClick={
-                        (evt: React.MouseEvent<HTMLElement>) => {
+                        (evt: MouseEvent<HTMLElement>) => {
                           evt.preventDefault();
                           dispatch(changeCityName(cityName));
                         }

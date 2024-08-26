@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import { FormEvent, Fragment, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { postOfferReviewAction } from '../../store/api-actions';
 import { ReviewTextLength, ReviewRating } from '../../const';
@@ -39,7 +39,7 @@ function OfferReviewsForm(): JSX.Element {
               const key: string = `${keyIndex}-stars`;
 
               return (
-                <React.Fragment key={key} >
+                <Fragment key={key} >
                   <input
                     className="form__rating-input visually-hidden"
                     name="rating"
@@ -58,7 +58,7 @@ function OfferReviewsForm(): JSX.Element {
                       <use xlinkHref="#icon-star"></use>
                     </svg>
                   </label>
-                </React.Fragment>
+                </Fragment>
               );
             })
         }

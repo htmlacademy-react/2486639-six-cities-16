@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { postOfferFavoriteAction } from '../../store/api-actions';
@@ -22,7 +23,7 @@ function BookmarkButton({ offerId, classNamePrefix, isBigButton = false, isActiv
   const activeButtonClassName = `${buttonClassName}--active`;
   const { width, height } = (isBigButton) ? BookmarkButtonIconSize.BIG : BookmarkButtonIconSize.SMALL;
 
-  const handleButtonClick = (evt: React.MouseEvent<HTMLElement>) => {
+  const handleButtonClick = (evt: MouseEvent<HTMLElement>) => {
     evt.preventDefault();
 
     if (authorizationStatus !== AuthorizationStatus.Auth) {
