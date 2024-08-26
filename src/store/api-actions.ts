@@ -68,14 +68,6 @@ export const loginAction = createAsyncThunk<void, AuthData, {
   ActionName.Login,
   async ({ login: email, password }, { dispatch, extra: api }) => {
     try {
-      //! автотест: login-page.feature / 1.1.3 Страница Login / Валидация логина и пароля
-      // подменяет ответ на запрос с паролем 'i' на 200 с тестовым e-mail: test-user@htmlacademy.ru
-      // а должен вернуть 401 и проверить, что форма не очистилась
-      // а далее ввести 'i1' и проверить, что авторизация успешна и информация о пользователе появилась
-      if (password === 'i') {
-        dispatch(setLoginCheckRequestStatus(RequestStatus.Failed));
-        return;
-      }
       dispatch(setLoginCheckRequestStatus(RequestStatus.Loading));
       const response = await api.post<UserData>(APIRoute.Login, { email, password });
       saveToken(response.data.token);
