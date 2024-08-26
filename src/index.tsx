@@ -87,6 +87,9 @@ root.render(
     в хранилище добавить ко все данным статус запроса
   19. Проверить Спинеры на разных страницах
     если смотриться не очеть то сделать еще Loading... для компонетов где уже есть внешнее оформление
+  20. Предупреждение React на navigate(AppRoute.Main); после if (loginCheckRequestStatus === RequestStatus.Success) {
+    login-form.tsx:15 - You should call navigate() in a React.useEffect(), not when your component is first rendered.
+    если сделать useEffect, то не работает автотест 1.1.3 Страница Login - При переключении страниц форма очищается
 
 
 Для авто тестов - если будут ошибки
