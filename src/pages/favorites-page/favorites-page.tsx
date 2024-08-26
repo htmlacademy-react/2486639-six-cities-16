@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import classNames from 'classnames';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import FavoriteItem from '../../components/favorite-item/favorite-item';
@@ -17,17 +18,20 @@ function FavoritesPage(): JSX.Element {
   }, [dispatch]);
 
   const isOffersEmpty: boolean = !favoriteOffers.length;
+  const divPageClassName = classNames('page', { 'page--favorites-empty': isOffersEmpty });
+  const mainClassName = classNames('page__main page__main--favorites', { 'page__main--favorites-empty': isOffersEmpty });
+  const sectionClassName = classNames('favorites', { 'favorites--empty': isOffersEmpty });
 
   return (
-    <div className="page">
+    <div className={divPageClassName} >
       <Helmet>
         <title>{`${APP_TITLE}: favorites${isOffersEmpty ? ' empty' : ''}`}</title>
       </Helmet>
-      <Header />
+      <Header favoriteOfferCount={favoriteOffers.length} />
 
-      <main className={`page__main page__main--favorites ${isOffersEmpty ? 'page__main--favorites-empty' : ''}`}>
+      <main className={mainClassName}>
         <div className="page__favorites-container container">
-          <section className={`favorites ${isOffersEmpty ? 'favorites--empty' : ''}`}>
+          <section className={sectionClassName}>
             <h1 className="visually-hidden">{isOffersEmpty ? 'Favorites (empty)' : 'Saved listing'} </h1>
             {
               isOffersEmpty

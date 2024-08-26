@@ -21,8 +21,8 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
   async (_arg, { dispatch, extra: api }) => {
     dispatch(setOffersDataLoadingStatus(true));
     const response = await api.get<Offers>(APIRoute.Offers);
-    dispatch(setOffersDataLoadingStatus(false));
     dispatch(loadOffers(response.data));
+    dispatch(setOffersDataLoadingStatus(false));
   }
 );
 
