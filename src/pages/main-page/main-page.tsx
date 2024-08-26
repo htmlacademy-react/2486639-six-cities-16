@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import classNames from 'classnames';
 import Spinner from '../../components/spinner/spinner';
 import Header from '../../components/header/header';
@@ -7,7 +6,7 @@ import PlacesSorting from '../../components/places-sorting/places-sorting';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import OffersMap from '../../components/offers-map/offers-map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeOfferSortingType } from '../../store/action';
+import { changeAuthorizationStatus, changeOfferSortingType } from '../../store/action';
 import { fetchOffersAction } from '../../store/api-actions';
 import { addPluralEnding } from '../../utils/common';
 import { getCityOffers, getFavoriteOffersCount, sortOffers } from '../../utils/offer';
@@ -15,16 +14,17 @@ import { ClassNamePrefix, OfferSortigType } from '../../const';
 
 function MainPage(): JSX.Element {
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const isChangeAuthorizationStatus = useAppSelector((state) => state.isChangeAuthorizationStatus);
   const offers = useAppSelector((state) => state.offers);
   const currentCityName = useAppSelector((state) => state.cityName);
   const currentOfferSortType = useAppSelector((state) => state.offerSoritngType);
   const activeOfferId = useAppSelector((state) => state.activeOfferId);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
+  if (isChangeAuthorizationStatus) {
     dispatch(fetchOffersAction());
-  }, [dispatch]);
-
+    dispatch(changeAuthorizationStatus(false));
+  }
 
   if (isOffersDataLoading) {
     return (

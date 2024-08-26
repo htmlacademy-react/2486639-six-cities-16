@@ -140,6 +140,7 @@ const IconAnchorSize = {
 } as const;
 
 enum ActionName {
+  ChangeAuthorizationStatus = 'user/changeAuthorizationStatus',
   LoadOffers = 'data/loadOffers',
   ChangeDetailOffer = 'data/changeDetailOffer',
   LoadFavoriteOffers = 'data/loadFavoriteOffers',

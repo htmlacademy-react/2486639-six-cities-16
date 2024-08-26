@@ -79,6 +79,18 @@ root.render(
     в избранном, один раз грузим избранное
   21. блокировка формы отправки коментария
   22. При логине/логауте обновлять списка предложений, т.к. там появляються и исчезают отметки избранное
+    сделал
+        if (isChangeAuthorizationStatus) {
+          dispatch(fetchOffersAction());
+          dispatch(changeAuthorizationStatus(false));
+          // если наоборот то астотест сортировки ломаеться
+        }
+    загрузка оферов была один раз
+        useEffect(() => {
+          dispatch(fetchOffersAction());
+        }, [dispatch]);
+    можно закрыть dispatch(changeAuthorizationStatus(false)); перенести в fetchOffersAction
+    вызов dispatch(fetchOffersAction()); после входа/выхода не срабатывал
 
 
 Для авто тестов - если будут ошибки
