@@ -1,4 +1,5 @@
 import { CityName } from './types';
+import { DetailOffer } from './types/offer';
 
 const APP_TITLE = '6 cities';
 
@@ -20,7 +21,6 @@ const AUTH_TOKEN_KEY_NAME = 'six-cities-token';
 
 const CITIES_NAMES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
 const DEFAULT_CITY_NAME: CityName = CITIES_NAMES[0];
-const CITY_NAME_IN_LOGIN_PAGE: CityName = CITIES_NAMES[3];
 
 const OFFER_BASE_ROUTE = '/offer/';
 
@@ -66,6 +66,39 @@ enum OfferFeatureType {
 
 const RATING_STAR_WIDTH = 20;
 
+const EMPTY_DETAIL_OFFER: DetailOffer = {
+  id: null,
+  title: '',
+  type: 'room',
+  price: 0,
+  city: {
+    name: DEFAULT_CITY_NAME,
+    location: {
+      latitude: 0,
+      longitude: 0,
+      zoom: 0
+    }
+  },
+  location: {
+    latitude: 0,
+    longitude: 0,
+    zoom: 0
+  },
+  isFavorite: false,
+  isPremium: false,
+  rating: 0,
+  description: '',
+  bedrooms: 0,
+  goods: [] as string[],
+  host: {
+    name: '',
+    avatarUrl: '',
+    isPro: false,
+  },
+  images: [] as string[],
+  maxAdults: 0
+} as const;
+
 const OfferComponentsCount = {
   IMAGES: 6,
   NEAR_OFFERS: 3,
@@ -73,7 +106,7 @@ const OfferComponentsCount = {
 };
 
 const ReviewRating = {
-  STARS_COUNT: 5,
+  HINTS: ['perfect', 'good', 'not bad', 'badly', 'terribly'],
   DEFAULT: 0,
   MIN: 1
 } as const;
@@ -107,15 +140,30 @@ const IconAnchorSize = {
 } as const;
 
 enum ActionName {
+  ChangeAuthorizationStatus = 'user/changeAuthorizationStatus',
   LoadOffers = 'data/loadOffers',
+  ChangeDetailOffer = 'data/changeDetailOffer',
+  LoadFavoriteOffers = 'data/loadFavoriteOffers',
+  LoadDetailOffer = 'data/loadDetailOffer',
+  LoadOfferNearOffers = 'data/loadOfferNearOffers',
+  LoadOfferReviews = 'data/loadOfferReviews',
+  LoadOfferReview = 'data/loadOfferReview',
   FetchOffers = 'data/fetchOffers',
+  FetchFavoriteOffers = 'data/loadfetchOffers',
+  FetchDetailOffer = 'data/fetchDetailOffer',
+  FetchOfferNearOffers = 'data/fetchOfferNearOffers',
+  FetchOfferReviews = 'data/fetchOfferReviews',
+  PostOfferReview = 'data/postOfferReview',
+  PostOfferFavorite = 'data/postOfferFavorite',
   Login = 'user/login',
+  Logout = 'user/logout',
   CheckAuth = 'user/checkAuth',
   SetOffersDataLoadingStatus = 'main/setOffersDataLoadingStatus',
   ChangeCityName = 'main/changeCityName',
   ChangeOfferSortingType = 'main/changeOfferSortingType',
   ChangeActiveOfferId = 'main/changeActiveOfferId',
-  RequireAuthorization = 'user/requireAuthorization'
+  RequireAuthorization = 'user/requireAuthorization',
+  SetUserName = 'user/setUserName'
 }
 
 export {
@@ -125,7 +173,6 @@ export {
   AUTH_TOKEN_KEY_NAME,
   CITIES_NAMES,
   DEFAULT_CITY_NAME,
-  CITY_NAME_IN_LOGIN_PAGE,
   OFFER_BASE_ROUTE,
   AppRoute,
   AuthorizationStatus,
@@ -135,6 +182,7 @@ export {
   BookmarkButtonIconSize,
   OfferFeatureType,
   RATING_STAR_WIDTH,
+  EMPTY_DETAIL_OFFER,
   OfferComponentsCount,
   ReviewRating,
   ReviewTextLength,

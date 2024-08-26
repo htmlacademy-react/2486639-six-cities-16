@@ -1,4 +1,4 @@
-import { addPluralEnding, upFirstLetter } from '../../utils/util';
+import { addPluralEnding, upFirstLetter } from '../../utils/common';
 import { OfferFeatureType } from '../../const';
 
 type OfferFeaturesProps = {

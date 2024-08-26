@@ -1,28 +1,37 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import classNames from 'classnames';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import FavoriteItem from '../../components/favorite-item/favorite-item';
-import { Offer } from '../../types/offer';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { fetchFavoriteOffersAction } from '../../store/api-actions';
 import { getOffersByCities } from '../../utils/offer';
 import { APP_TITLE } from '../../const';
 
-type FavoritesPageProps = {
-  offers: Offer[];
-}
+function FavoritesPage(): JSX.Element {
+  const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
+  const dispatch = useAppDispatch();
 
-function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
-  const isOffersEmpty: boolean = !offers.length;
+  useEffect(() => {
+    dispatch(fetchFavoriteOffersAction());
+  }, [dispatch]);
+
+  const isOffersEmpty: boolean = !favoriteOffers.length;
+  const divPageClassName = classNames('page', { 'page--favorites-empty': isOffersEmpty });
+  const mainClassName = classNames('page__main page__main--favorites', { 'page__main--favorites-empty': isOffersEmpty });
+  const sectionClassName = classNames('favorites', { 'favorites--empty': isOffersEmpty });
 
   return (
-    <div className="page">
+    <div className={divPageClassName} >
       <Helmet>
         <title>{`${APP_TITLE}: favorites${isOffersEmpty ? ' empty' : ''}`}</title>
       </Helmet>
-      <Header />
+      <Header favoriteOfferCount={favoriteOffers.length} />
 
-      <main className={`page__main page__main--favorites ${isOffersEmpty ? 'page__main--favorites-empty' : ''}`}>
+      <main className={mainClassName}>
         <div className="page__favorites-container container">
-          <section className={`favorites ${isOffersEmpty ? 'favorites--empty' : ''}`}>
+          <section className={sectionClassName}>
             <h1 className="visually-hidden">{isOffersEmpty ? 'Favorites (empty)' : 'Saved listing'} </h1>
             {
               isOffersEmpty
@@ -34,7 +43,7 @@ function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
                 :
                 <ul className="favorites__list">
                   {
-                    getOffersByCities(offers)
+                    getOffersByCities(favoriteOffers)
                       .map(({ cityName, offers: cityOffers }) => (
                         <FavoriteItem
                           key={cityName}

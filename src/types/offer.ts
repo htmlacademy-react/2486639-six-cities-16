@@ -1,6 +1,6 @@
 import { City, CityName, Location, User } from '.';
 
-export type OfferId = string | null;
+export type OfferId = string | null | undefined;
 
 export type BaseOffer = {
   id: OfferId;
@@ -16,13 +16,19 @@ export type BaseOffer = {
 
 export type Offer = BaseOffer & { previewImage: string };
 
-export type DetailOffer = BaseOffer & {
-  description: string;
-  bedrooms: number;
-  goods: string[];
-  host: User;
-  images: string[];
-  maxAdults: number;
-};
+export type Offers = Offer[];
 
-export type CityOffers = { cityName: CityName; offers: Offer[] };
+export type DetailOffer =
+  BaseOffer
+  & {
+    description: string;
+    bedrooms: number;
+    goods: string[];
+    host: User;
+    images: string[];
+    maxAdults: number;
+  };
+
+export type OffersByCity = { cityName: CityName; offers: Offers };
+
+export type OfferFavorite = { id: OfferId; status: boolean };

@@ -1,8 +1,8 @@
-import { CityOffers, Offer } from '../types/offer';
 import { CityName } from '../types';
+import { OffersByCity, Offer, Offers, DetailOffer, BaseOffer } from '../types/offer';
 import { OfferSortigType } from '../const';
 
-function getCityOffers(cityName: CityName, offers: Offer[]) {
+function getCityOffers(cityName: CityName, offers: Offers) {
   return offers.filter(({ city }) => (cityName === city.name));
 }
 
@@ -12,7 +12,7 @@ const compareOffers = {
   [OfferSortigType.TopRatedFirst]: ({ rating: firstRating }: Offer, { rating: secondRating }: Offer) => (secondRating - firstRating)
 };
 
-function sortOffers(offers: Offer[], offerSortingType: OfferSortigType): Offer[] {
+function sortOffers(offers: Offers, offerSortingType: OfferSortigType): Offers {
   if (offerSortingType === OfferSortigType.Popular) {
     return offers;
   }
@@ -20,16 +20,12 @@ function sortOffers(offers: Offer[], offerSortingType: OfferSortigType): Offer[]
   return [...offers].sort(compareOffers[offerSortingType]);
 }
 
-function getFavoriteOffers(offers: Offer[]): Offer[] {
-  return offers.filter(({ isFavorite }) => isFavorite);
-}
-
-function sortByCityName(citiesOffers: CityOffers[]): CityOffers[] {
+function sortByCityName(citiesOffers: OffersByCity[]): OffersByCity[] {
   return citiesOffers.sort(({ cityName: firstCityName }, { cityName: secondCityName }) => (firstCityName.localeCompare(secondCityName)));
 }
 
-function getOffersByCities(offers: Offer[]): CityOffers[] {
-  const offersByCities: CityOffers[] = [];
+function getOffersByCities(offers: Offers): OffersByCity[] {
+  const offersByCities: OffersByCity[] = [];
 
   offers.forEach((offer) => {
     const offersByCity = offersByCities.find(({ cityName }) => (cityName === offer.city.name));
@@ -44,4 +40,24 @@ function getOffersByCities(offers: Offer[]): CityOffers[] {
   return sortByCityName(offersByCities);
 }
 
-export { getCityOffers, sortOffers, getFavoriteOffers, getOffersByCities };
+function getFavoriteOffersCount(offers: Offer[]): number {
+  return offers.filter(({ isFavorite }) => isFavorite).length;
+}
+
+function convertDetailOfferToOffer(offer: Offer, detailOffer: DetailOffer): Offer {
+  const { previewImage } = offer;
+  const newBaseOffer: BaseOffer = detailOffer;
+  const newOffer: Offer = { ...newBaseOffer, previewImage };
+
+  return newOffer;
+}
+
+function upadteOffer(detailOffer: DetailOffer, offers: Offer[]): void {
+  const offerIndex = offers.findIndex(({ id }) => (id === detailOffer.id));
+  if (offerIndex > -1) {
+    const offer = offers[offerIndex];
+    offers[offerIndex] = convertDetailOfferToOffer(offer, detailOffer);
+  }
+}
+
+export { getCityOffers, sortOffers, getOffersByCities, getFavoriteOffersCount, upadteOffer };

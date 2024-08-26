@@ -3,10 +3,6 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
 import { store } from './store';
-import { fetchOffersAction, checkAuthAction } from './store/api-actions';
-
-store.dispatch(checkAuthAction());
-store.dispatch(fetchOffersAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -21,40 +17,91 @@ root.render(
 );
 
 /*
+Сделать отправить комментарий и обновить все 100%, избранное убрать/добавить в ответе детальный, его обновить из ответа, а остальное обновить сразу избранные и обычные
+  для счетчика можно сделать +-1 в зависимости от действия или от ответа с детализацией и тогда её вынести отдельно и запускать, только на странице с избранным
+
 Вопросы:
 
 Доделать:
+  0. в хранилище добавить ко все данным статус запроса
   1. пришлось добавить map?.setView(center, zoom); а может, что то не то?
   2. функциям проставить типизацию возвращаемого значение из утилит и остальных модулей
     только, то что TS не может подсказать
-    function getCityOffers(cityName: CityName, offers: Offer[]): Offer[] {
-    function getCityOffers(cityName: CityName, offers: Offer[]){
+    function getCityOffers(cityName: CityName, offers: Offers): Offers {
+    function getCityOffers(cityName: CityName, offers: Offers){
   3. типизировать функции и значения
     onSortingTypeChange: (sortingType: OfferSortigType) => void;
       может <argT>  (value:argT)....
   4. списках мест сделать на одном компоненте
     переделать списки в NearPlaces / FavoritesPage + FavoriteItem или есть еще?
+    передать пропс isHoverChange для обработки
   5. в NearPlaces нужен ScrollToTop при переходе по ссылкам, т.к.находимся внизу другого предложения
+    после сети и отображения заглушки само прокручиваеться, но может что поменяется
   6. применить classNames в остальных компанентах
   7. <Helmet> <title>{`${APP_TITLE}: 404`}</title>....  что то придумать для сборки заголовка
     и добавить константы
     может какие то страницы упустил ?
-  8. OfferGallery - const key = `img-${index}`;
+  8. OfferGallery - const key =pumg-${index}`;
     когда будут реальные данные, то ключ сделать путем и проверить ошибки в консоли
     с одинковым ключем у всех 6-ти не корректно обновлялись при переключичении с мест не подалеку
   9. проверить однотипность function и ()=> есть критерий?
-  10. createAction('load/Offers'); всынести строку в константы, если не сделаем по имени действия
-  11. в демо feath вызван вне App
-  12. заменить в OfferReviewsForm "Your review {rating} - {text}" -> "Your review", как будет готов API
-  13. когда будет отдельный компонент Лого, то его добавить в Spinner
-  14. 7-2-3 Для обработки статуса 401 можно воспользоваться механизмом перехватчиков в axios.
-  15. обработать 'Sign out' пока поставил <Link className="header__nav-link" to={AppRoute.Main}>, возможно нужно дейсвие и выход на главную
-  16. одинаковый код FavoriteItem и LoginPage обработка клика на название города
+  10. в демо feath вызван вне App
+  11. когда будет отдельный компонент Лого, то его добавить в Spinner
+  12. 7-2-3 Для обработки статуса 401 можно воспользоваться механизмом перехватчиков в axios.
+  13. обработать 'Sign out' пока поставил <Link className="header__nav-link" to={AppRoute.Main}>, возможно нужно дейсвие и выход на главную
+  14. одинаковый код FavoriteItem и LoginPage обработка клика на название города
     параметр только название города
+  15. OfferPage при загрузке данных отрисовывает не надолго 404
+    нужен либо таймаю либо текс с информацией о загрузки данных
+    const detailOffer = useAppSelector((state) => state.detailOffer);
+    if (!detailOffer) {...
+
+    !!!
+    пока сделал EMPTY_DETAIL_OFFER, но при сбое запроса выполняю
+    dispatch(loadDetailOffer( EMPTY_DETAIL_OFFER ));
+    так на странице предложения выполнил
+    dispatch(loadDetailOffer({ ...EMPTY_DETAIL_OFFER, id: offerId }));
+
+  16. const offerReviews = [...reviews] // ... т.к. при ассинхронном действии успевает затираться
+    может что то будет для 17
+  17. при отладке иногда пропадают все предложения и на главной пишет что для города ничего нет...
+    особбенно, если зашел по ссылке на оффер, то сначала авторизация, потом оферы, потом детальная информация
+    вроде поправил после входа стояло не правильно загрузка избранного, но обычные оферы
+  18. //!! очиска формы evt.target.reset
+  19. перенести из App - const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+    в main
+    водумать что еще использовать по правильному
+  20. избранное
+    число в заголовке это количество в обычных оферах избранных
+    при клике
+      меянем в избранных оферах - добавлении/удалениие push/filter
+      меняем в обычных заменой isFavorite или всей карточки
+    в избранном, один раз грузим избранное
+  21. блокировка формы отправки коментария
+  22. При логине/логауте обновлять списка предложений, т.к. там появляються и исчезают отметки избранное
+    сделал
+        if (isChangeAuthorizationStatus) {
+          dispatch(fetchOffersAction());
+          dispatch(changeAuthorizationStatus(false));
+          // если наоборот то астотест сортировки ломаеться
+        }
+    загрузка оферов была один раз
+        useEffect(() => {
+          dispatch(fetchOffersAction());
+        }, [dispatch]);
+    можно закрыть dispatch(changeAuthorizationStatus(false)); перенести в fetchOffersAction
+    вызов dispatch(fetchOffersAction()); после входа/выхода не срабатывал
+
 
 Для авто тестов - если будут ошибки
   1. прячу весь span {isPro ? <span className="offer__user-status">Pro</span> : null}
   2. маркеры на карте 27*39 середина 27/2, если что указать 28*40 и 14
+  3. после входа направляю откуда пришли navigate(AppRoute.Main);
+    т.к. если сразу navigate(-1)
+    а вошли на логин и неавторизован, то не успевает в корректной последовательности выполниться запросы авторизации и проврки авторизации
+    и список оферов пустой
+    можно сделать в хранилище backRouteAfterLogin  и заполнять в нужных местах и/или передавать через пропы Header
+    есть useLocation, добавить пропс from?  как в разботе ДЗ ProtectRoute
 
 Заметки:
   aaa@aaa.aaa / a1
@@ -78,11 +125,6 @@ root.render(
 
   ссылка на лого на главной, при клике остаеться наведенной навигация не происходит т.к. уже на главной...
     может если на главной, то отключить ссылку на логотипе?
-
---
-// может понадобится подчет рейтинга...
-const ratingValue = reviews.reduce((ratingTotal, {rating}) => ratingTotal + rating, 0) / reviews.length;
---
 
 //Для этого создадим компонент ScrollToTop:
 import {useEffect} from 'react';

@@ -1,12 +1,12 @@
 import OfferReviewItem from '../offer-review-item/offer-review-item';
 import OfferReviewsForm from '../offer-reviews-form/offer-reviews-form';
 import { useAppSelector } from '../../hooks';
-import { Review } from '../../types/review';
+import { Reviews } from '../../types/review';
 import { AuthorizationStatus } from '../../const';
 
 type OfferHostProps = {
   reviewsCount: number;
-  reviews: Review[];
+  reviews: Reviews;
 }
 
 function OfferReviews({ reviewsCount, reviews }: OfferHostProps): JSX.Element {

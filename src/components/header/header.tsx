@@ -1,17 +1,25 @@
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../hooks';
-import { AppRoute, AuthorizationStatus } from '../../const';
 import classNames from 'classnames';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { logoutAction } from '../../store/api-actions';
+import { AppRoute, AuthorizationStatus } from '../../const';
 
 type HeaderProps = {
+  favoriteOfferCount?: number;
   isHiddenUserInfo?: boolean;
 }
 
-function Header({ isHiddenUserInfo }: HeaderProps): JSX.Element {
+function Header({ favoriteOfferCount, isHiddenUserInfo }: HeaderProps): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isAuthUser = authorizationStatus === AuthorizationStatus.Auth;
+  const userName = useAppSelector((state) => state.userName);
+  const dispatch = useAppDispatch();
 
+  const isAuthUser = authorizationStatus === AuthorizationStatus.Auth;
   const logoLinkClassName = classNames('header__logo-link', { 'header__logo-link--active': !isHiddenUserInfo });
+
+  const handleSignOutClick = () => {
+    dispatch(logoutAction());
+  };
 
   return (
     <header className="header">
@@ -36,8 +44,8 @@ function Header({ isHiddenUserInfo }: HeaderProps): JSX.Element {
                         <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
                           <div className="header__avatar-wrapper user__avatar-wrapper">
                           </div>
-                          <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                          <span className="header__favorite-count">0</span>
+                          <span className="header__user-name user__name">{userName}</span>
+                          <span className="header__favorite-count">{favoriteOfferCount}</span>
                         </Link>
                         :
                         <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Login}>
@@ -51,7 +59,7 @@ function Header({ isHiddenUserInfo }: HeaderProps): JSX.Element {
                     (isAuthUser)
                       ?
                       <li className="header__nav-item">
-                        <Link className="header__nav-link" to={AppRoute.Main}>
+                        <Link className="header__nav-link" to="" onClick={handleSignOutClick}>
                           <span className="header__signout">Sign out</span>
                         </Link>
                       </li>

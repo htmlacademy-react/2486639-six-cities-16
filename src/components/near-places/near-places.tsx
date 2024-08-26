@@ -1,8 +1,8 @@
 import PlaceCardInfo from '../place-card-info/place-card-info';
-import { Offer } from '../../types/offer';
+import { Offers } from '../../types/offer';
 
 type NearPlacesProps = {
-  offers: Offer[];
+  offers: Offers;
 }
 
 function NearPlaces({ offers }: NearPlacesProps): JSX.Element {

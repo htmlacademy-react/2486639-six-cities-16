@@ -4,11 +4,14 @@ import Header from '../../components/header/header';
 import LoginFrom from '../../components/login-form/login-form';
 import { useAppDispatch } from '../../hooks';
 import { changeCityName } from '../../store/action';
-import { APP_TITLE, AppRoute, CITY_NAME_IN_LOGIN_PAGE } from '../../const';
+import { CityName } from '../../types';
+import { getRandomArrayElement } from '../../utils/common';
+import { APP_TITLE, AppRoute, CITIES_NAMES } from '../../const';
 
 function LoginPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const randomCityName = getRandomArrayElement<CityName>([...CITIES_NAMES]);
 
   return (
     <div className="page page--gray page--login">
@@ -31,12 +34,12 @@ function LoginPage(): JSX.Element {
                 onClick={
                   (evt: React.MouseEvent<HTMLElement>) => {
                     evt.preventDefault();
-                    dispatch(changeCityName(CITY_NAME_IN_LOGIN_PAGE));
+                    dispatch(changeCityName(randomCityName as CityName));
                     navigate(AppRoute.Main);
                   }
                 }
               >
-                <span>Amsterdam</span>
+                <span>{randomCityName}</span>
               </Link>
             </div>
           </section>

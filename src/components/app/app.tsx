@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import MainPage from '../../pages/main-page/main-page';
@@ -8,17 +9,19 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import Spinner from '../spinner/spinner';
-import { useAppSelector } from '../../hooks';
-import { getFavoriteOffers } from '../../utils/offer';
-import { Offer } from '../../types/offer';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { checkAuthAction } from '../../store/api-actions';
 import { AppRoute, APP_TITLE, AuthorizationStatus } from '../../const';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-  const offers: Offer[] = useAppSelector((state) => state.offers);
+  const dispatch = useAppDispatch();
 
-  if ((authorizationStatus === AuthorizationStatus.Unknown) || isOffersDataLoading) {
+  useEffect(() => {
+    dispatch(checkAuthAction());
+  }, [dispatch]);
+
+  if ((authorizationStatus === AuthorizationStatus.Unknown)) {
     return (
       <Spinner />
     );
@@ -33,7 +36,7 @@ function App(): JSX.Element {
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage offers={offers} />}
+            element={<MainPage />}
           />
           <Route
             path={AppRoute.Login}
@@ -47,7 +50,7 @@ function App(): JSX.Element {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute>
-                <FavoritesPage offers={getFavoriteOffers(offers)} />
+                <FavoritesPage />
               </PrivateRoute>
             }
           />

@@ -11,20 +11,20 @@ function LoginFrom(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     if (loginRef.current !== null && passwordRef.current !== null) {
-      dispatch(loginAction({
-        login: loginRef.current.value,
-        password: passwordRef.current.value
-      }));
+      const login = loginRef.current.value;
+      const password = passwordRef.current.value;
+
+      dispatch(loginAction({ login, password }));
       navigate(AppRoute.Main);
     }
   };
 
   return (
-    <form className="login__form form" action="#" method="post" onSubmit={handleSubmit}>
+    <form className="login__form form" action="#" method="post" onSubmit={handleFormSubmit}>
       <div className="login__input-wrapper form__input-wrapper">
         <label className="visually-hidden">E-mail</label>
         <input ref={loginRef} className="login__input form__input" type="email" name="email" placeholder="Email" required />
