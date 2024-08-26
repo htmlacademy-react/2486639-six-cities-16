@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import {
-  changeDetailOffer,  loadDetailOffer, loadFavoriteOffers, loadOfferNearOffers,
+  changeDetailOffer, loadDetailOffer, loadFavoriteOffers, loadOfferNearOffers,
   loadOfferReview, loadOfferReviews, loadOffers, requireAuthorization,
   setOffersDataLoadingStatus, setUserName
 } from './action';

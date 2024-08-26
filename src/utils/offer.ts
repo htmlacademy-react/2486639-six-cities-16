@@ -40,4 +40,8 @@ function getOffersByCities(offers: Offers): OffersByCity[] {
   return sortByCityName(offersByCities);
 }
 
-export { getCityOffers, sortOffers, getOffersByCities };
+function getFavoriteOffersCount(offers: Offer[]): number {
+  return offers.filter(({ isFavorite }) => isFavorite).length;
+}
+
+export { getCityOffers, sortOffers, getOffersByCities, getFavoriteOffersCount };
