@@ -70,7 +70,6 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     saveToken(response.data.token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
     dispatch(setUserName(response.data.email));
-    dispatch(fetchFavoriteOffersAction());
   }
 );
 
