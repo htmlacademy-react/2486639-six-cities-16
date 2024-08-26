@@ -2,16 +2,16 @@ import { createReducer } from '@reduxjs/toolkit';
 import {
   changeActiveOfferId, changeCityName, changeDetailOffer, changeOfferSortingType,
   loadDetailOffer, loadFavoriteOffers, loadOfferNearOffers, loadOfferReview,
-  loadOfferReviews, loadOffers, requireAuthorization, setOffersDataLoadingStatus,
-  setUserName
+  loadOfferReviews, loadOffers, requireAuthorization, setLoginCheckRequestStatus,
+  setOffersLoadingRequestStatus, setReviewPostingRequestStatus, setUserName
 } from './action';
 import { CityName } from '../types';
 import { DetailOffer, Offers, OfferId } from '../types/offer';
 import { Reviews } from '../types/review';
 import { upadteOffer } from '../utils/offer';
 import {
-  AuthorizationStatus, DEFALUT_OFFER_SORTING_TYPE, DEFAULT_CITY_NAME,
-  EMPTY_DETAIL_OFFER, OfferSortigType
+  AuthorizationStatus, DEFALUT_OFFER_SORTING_TYPE, DEFAULT_CITY_NAME, EMPTY_DETAIL_OFFER,
+  OfferSortigType, RequestStatus
 } from '../const';
 
 type InitialState = {
@@ -23,7 +23,9 @@ type InitialState = {
   detailOffer: DetailOffer;
   offerNearOffers: Offers;
   offerReviews: Reviews;
-  isOffersDataLoading: boolean;
+  loginCheckRequestStatus: RequestStatus;
+  offersLoadingRequestStatus: RequestStatus;
+  reviewPostingRequestStatus: RequestStatus;
   authorizationStatus: AuthorizationStatus;
   userName: string;
 }
@@ -37,7 +39,9 @@ const initialState: InitialState = {
   detailOffer: EMPTY_DETAIL_OFFER,
   offerNearOffers: [],
   offerReviews: [],
-  isOffersDataLoading: false,
+  loginCheckRequestStatus: RequestStatus.Idle,
+  offersLoadingRequestStatus: RequestStatus.Idle,
+  reviewPostingRequestStatus: RequestStatus.Idle,
   authorizationStatus: AuthorizationStatus.Unknown,
   userName: ''
 };
@@ -71,8 +75,14 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(loadOfferReview, (state, action) => {
       state.offerReviews.push(action.payload);
     })
-    .addCase(setOffersDataLoadingStatus, (state, action) => {
-      state.isOffersDataLoading = action.payload;
+    .addCase(setLoginCheckRequestStatus, (state, action) => {
+      state.loginCheckRequestStatus = action.payload;
+    })
+    .addCase(setOffersLoadingRequestStatus, (state, action) => {
+      state.offersLoadingRequestStatus = action.payload;
+    })
+    .addCase(setReviewPostingRequestStatus, (state, action) => {
+      state.reviewPostingRequestStatus = action.payload;
     })
     .addCase(changeCityName, (state, action) => {
       state.cityName = action.payload;

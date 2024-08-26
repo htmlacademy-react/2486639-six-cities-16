@@ -37,6 +37,13 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
+enum RequestStatus {
+  Idle = 'Idle',
+  Loading = 'Loading',
+  Success = 'Success',
+  Failed = 'Failed'
+}
+
 enum OfferSortigType {
   Popular = 'Popular',
   PriceLowToHigh = 'Price: low to high',
@@ -157,7 +164,9 @@ enum ActionName {
   Login = 'user/login',
   Logout = 'user/logout',
   CheckAuth = 'user/checkAuth',
-  SetOffersDataLoadingStatus = 'main/setOffersDataLoadingStatus',
+  SetLoginCheckRequestStatus = 'user/setLoginCheckRequestStatus',
+  SetOffersLoadingRequestStatus = 'main/SetOffersLoadingRequestStatus',
+  SetReviewPostingRequestStatus = 'main/SetReviewPostingRequestStatus',
   ChangeCityName = 'main/changeCityName',
   ChangeOfferSortingType = 'main/changeOfferSortingType',
   ChangeActiveOfferId = 'main/changeActiveOfferId',
@@ -175,6 +184,7 @@ export {
   OFFER_BASE_ROUTE,
   AppRoute,
   AuthorizationStatus,
+  RequestStatus,
   OfferSortigType,
   DEFALUT_OFFER_SORTING_TYPE,
   ClassNamePrefix,

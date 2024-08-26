@@ -3,14 +3,14 @@ import { AxiosInstance } from 'axios';
 import {
   changeDetailOffer, loadDetailOffer, loadFavoriteOffers, loadOfferNearOffers,
   loadOfferReview, loadOfferReviews, loadOffers, requireAuthorization,
-  setOffersDataLoadingStatus, setUserName
+  setLoginCheckRequestStatus, setOffersLoadingRequestStatus, setReviewPostingRequestStatus, setUserName
 } from './action';
 import { dropToken, saveToken } from '../services/token';
 import { AuthData, UserData } from '../types';
 import { AppDispatch, State } from '../types/state';
 import { DetailOffer, Offers, OfferFavorite, OfferId } from '../types/offer';
 import { OfferBaseReview, Review, Reviews } from '../types/review';
-import { APIRoute, ActionName, AuthorizationStatus, EMPTY_DETAIL_OFFER } from '../const';
+import { APIRoute, ActionName, AuthorizationStatus, EMPTY_DETAIL_OFFER, RequestStatus } from '../const';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -19,10 +19,10 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
 }>(
   ActionName.FetchOffers,
   async (_arg, { dispatch, extra: api }) => {
-    dispatch(setOffersDataLoadingStatus(true));
+    dispatch(setOffersLoadingRequestStatus(RequestStatus.Loading));
     const response = await api.get<Offers>(APIRoute.Offers);
     dispatch(loadOffers(response.data));
-    dispatch(setOffersDataLoadingStatus(false));
+    dispatch(setOffersLoadingRequestStatus(RequestStatus.Success));
   }
 );
 
@@ -67,11 +67,17 @@ export const loginAction = createAsyncThunk<void, AuthData, {
 }>(
   ActionName.Login,
   async ({ login: email, password }, { dispatch, extra: api }) => {
-    const response = await api.post<UserData>(APIRoute.Login, { email, password });
-    saveToken(response.data.token);
-    dispatch(requireAuthorization(AuthorizationStatus.Auth));
-    dispatch(setUserName(response.data.email));
-    dispatch(fetchOffersAction());
+    try {
+      dispatch(setLoginCheckRequestStatus(RequestStatus.Loading));
+      const response = await api.post<UserData>(APIRoute.Login, { email, password });
+      saveToken(response.data.token);
+      dispatch(setLoginCheckRequestStatus(RequestStatus.Success));
+      dispatch(requireAuthorization(AuthorizationStatus.Auth));
+      dispatch(setUserName(response.data.email));
+      dispatch(fetchOffersAction());
+    } catch {
+      dispatch(setLoginCheckRequestStatus(RequestStatus.Failed));
+    }
   }
 );
 
@@ -139,8 +145,14 @@ export const postOfferReviewAction = createAsyncThunk<void, OfferBaseReview, {
 }>(
   ActionName.Login,
   async ({ offerId, comment, rating }, { dispatch, extra: api }) => {
-    const response = await api.post<Review>(`${APIRoute.Comments}/${offerId}`, { comment, rating });
-    dispatch(loadOfferReview(response.data));
+    try {
+      dispatch(setReviewPostingRequestStatus(RequestStatus.Loading));
+      const response = await api.post<Review>(`${APIRoute.Comments}/${offerId}`, { comment, rating });
+      dispatch(loadOfferReview(response.data));
+      dispatch(setReviewPostingRequestStatus(RequestStatus.Success));
+    } catch {
+      dispatch(setReviewPostingRequestStatus(RequestStatus.Failed));
+    }
   }
 );
 

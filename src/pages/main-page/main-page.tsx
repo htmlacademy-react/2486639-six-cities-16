@@ -9,17 +9,17 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeOfferSortingType } from '../../store/action';
 import { addPluralEnding } from '../../utils/common';
 import { getCityOffers, getFavoriteOffersCount, sortOffers } from '../../utils/offer';
-import { ClassNamePrefix, OfferSortigType } from '../../const';
+import { ClassNamePrefix, OfferSortigType, RequestStatus } from '../../const';
 
 function MainPage(): JSX.Element {
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const offersLoadingRequestStatus = useAppSelector((state) => state.offersLoadingRequestStatus);
   const offers = useAppSelector((state) => state.offers);
   const currentCityName = useAppSelector((state) => state.cityName);
   const currentOfferSortType = useAppSelector((state) => state.offerSoritngType);
   const activeOfferId = useAppSelector((state) => state.activeOfferId);
   const dispatch = useAppDispatch();
 
-  if (isOffersDataLoading) {
+  if (offersLoadingRequestStatus === RequestStatus.Loading) {
     return (
       <Spinner />
     );
