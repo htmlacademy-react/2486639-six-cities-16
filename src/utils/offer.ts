@@ -1,5 +1,5 @@
-import { OffersByCity, Offer, Offers } from '../types/offer';
 import { CityName } from '../types';
+import { OffersByCity, Offer, Offers, DetailOffer, BaseOffer } from '../types/offer';
 import { OfferSortigType } from '../const';
 
 function getCityOffers(cityName: CityName, offers: Offers) {
@@ -44,4 +44,20 @@ function getFavoriteOffersCount(offers: Offer[]): number {
   return offers.filter(({ isFavorite }) => isFavorite).length;
 }
 
-export { getCityOffers, sortOffers, getOffersByCities, getFavoriteOffersCount };
+function convertDetailOfferToOffer(offer: Offer, detailOffer: DetailOffer): Offer {
+  const { previewImage } = offer;
+  const newBaseOffer: BaseOffer = detailOffer;
+  const newOffer: Offer = { ...newBaseOffer, previewImage };
+
+  return newOffer;
+}
+
+function upadteOffer(detailOffer: DetailOffer, offers: Offer[]): void {
+  const offerIndex = offers.findIndex(({ id }) => (id === detailOffer.id));
+  if (offerIndex > -1) {
+    const offer = offers[offerIndex];
+    offers[offerIndex] = convertDetailOfferToOffer(offer, detailOffer);
+  }
+}
+
+export { getCityOffers, sortOffers, getOffersByCities, getFavoriteOffersCount, upadteOffer };

@@ -8,6 +8,7 @@ import {
 import { CityName } from '../types';
 import { DetailOffer, Offers, OfferId } from '../types/offer';
 import { Reviews } from '../types/review';
+import { upadteOffer } from '../utils/offer';
 import {
   AuthorizationStatus, DEFALUT_OFFER_SORTING_TYPE, DEFAULT_CITY_NAME,
   EMPTY_DETAIL_OFFER, OfferSortigType
@@ -48,7 +49,8 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(changeDetailOffer, (state, action) => {
       state.detailOffer = action.payload;
-      //state.offers = action.payload;
+      upadteOffer(action.payload, state.offers);
+      upadteOffer(action.payload, state.favoriteOffers);
     })
     .addCase(loadFavoriteOffers, (state, action) => {
       state.favoriteOffers = action.payload;
