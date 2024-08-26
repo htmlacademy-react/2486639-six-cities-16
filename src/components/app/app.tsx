@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import MainPage from '../../pages/main-page/main-page';
@@ -9,16 +10,23 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import Spinner from '../spinner/spinner';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { checkAuthAction } from '../../store/api-actions';
+import { checkAuthAction, fetchOffersAction } from '../../store/api-actions';
 import { AppRoute, APP_TITLE, AuthorizationStatus } from '../../const';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   const dispatch = useAppDispatch();
 
-  dispatch(checkAuthAction());
+  useEffect(() => {
+    async function fetchData() {
+      await dispatch(checkAuthAction());
+      dispatch(fetchOffersAction());
+    }
+    fetchData();
+  }, [dispatch]);
 
-  if ((authorizationStatus === AuthorizationStatus.Unknown)) {
+  if ((authorizationStatus === AuthorizationStatus.Unknown) || isOffersDataLoading) {
     return (
       <Spinner />
     );
