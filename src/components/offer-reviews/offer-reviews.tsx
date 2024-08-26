@@ -4,12 +4,12 @@ import { useAppSelector } from '../../hooks';
 import { Reviews } from '../../types/review';
 import { AuthorizationStatus } from '../../const';
 
-type OfferHostProps = {
+type OfferReviewsProps = {
   reviewsCount: number;
   reviews: Reviews;
 }
 
-function OfferReviews({ reviewsCount, reviews }: OfferHostProps): JSX.Element {
+function OfferReviews({ reviewsCount, reviews }: OfferReviewsProps): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   return (
