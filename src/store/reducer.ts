@@ -1,8 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
 import {
-  changeActiveOfferId, changeCityName, changeOfferSortingType, loadDetailOffer,
-  loadFavoriteOffers, loadOfferNearOffers, loadOfferReview, loadOfferReviews,
-  loadOffers, requireAuthorization, setOffersDataLoadingStatus, setUserName
+  changeActiveOfferId, changeCityName, changeDetailOffer, changeOfferSortingType,
+  loadDetailOffer, loadFavoriteOffers, loadOfferNearOffers, loadOfferReview,
+  loadOfferReviews, loadOffers, requireAuthorization, setOffersDataLoadingStatus,
+  setUserName
 } from './action';
 import { CityName } from '../types';
 import { DetailOffer, Offers, OfferId } from '../types/offer';
@@ -44,6 +45,10 @@ const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
+    })
+    .addCase(changeDetailOffer, (state, action) => {
+      state.detailOffer = action.payload;
+      //state.offers = action.payload;
     })
     .addCase(loadFavoriteOffers, (state, action) => {
       state.favoriteOffers = action.payload;

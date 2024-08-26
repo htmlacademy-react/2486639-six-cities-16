@@ -6,6 +6,8 @@ import { ActionName, AuthorizationStatus, OfferSortigType } from '../const';
 
 export const loadOffers = createAction<Offers>(ActionName.LoadOffers);
 
+export const changeDetailOffer = createAction<DetailOffer>(ActionName.ChangeDetailOffer);
+
 export const loadFavoriteOffers = createAction<Offers>(ActionName.LoadFavoriteOffers);
 
 export const loadDetailOffer = createAction<DetailOffer>(ActionName.LoadDetailOffer);

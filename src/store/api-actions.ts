@@ -1,8 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import {
-  loadDetailOffer, loadFavoriteOffers, loadOfferNearOffers, loadOfferReview, loadOfferReviews,
-  loadOffers, requireAuthorization, setOffersDataLoadingStatus, setUserName
+  changeDetailOffer,  loadDetailOffer, loadFavoriteOffers, loadOfferNearOffers,
+  loadOfferReview, loadOfferReviews, loadOffers, requireAuthorization,
+  setOffersDataLoadingStatus, setUserName
 } from './action';
 import { dropToken, saveToken } from '../services/token';
 import { AuthData, UserData } from '../types';
@@ -125,7 +126,6 @@ export const fetchOfferReviewsAction = createAsyncThunk<void, OfferId, {
   async (id, { dispatch, extra: api }) => {
     const route = `${APIRoute.Comments}/${id}`;
     const response = await api.get<Reviews>(route);
-
     dispatch(loadOfferReviews(response.data));
   }
 );
@@ -149,8 +149,7 @@ export const postOfferFavoriteAction = createAsyncThunk<void, OfferFavorite, {
 }>(
   ActionName.Login,
   async ({ id, status }, { dispatch, extra: api }) => {
-    await api.post<Review>(`${APIRoute.Favorite}/${id}/${Number(status)}`);
-    dispatch(fetchOffersAction());
-    dispatch(fetchFavoriteOffersAction());
+    const response = await api.post<DetailOffer>(`${APIRoute.Favorite}/${id}/${Number(status)}`);
+    dispatch(changeDetailOffer(response.data));
   }
 );

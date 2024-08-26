@@ -142,6 +142,7 @@ const IconAnchorSize = {
 
 enum ActionName {
   LoadOffers = 'data/loadOffers',
+  ChangeDetailOffer = 'data/changeDetailOffer',
   LoadFavoriteOffers = 'data/loadFavoriteOffers',
   LoadDetailOffer = 'data/loadDetailOffer',
   LoadOfferNearOffers = 'data/loadOfferNearOffers',
