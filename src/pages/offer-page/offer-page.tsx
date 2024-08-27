@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import NotFoundPage from '../not-found-page/not-found-page';
+import useScrollToTop from '../../hooks/use-scroll-to-top';
 import Header from '../../components/header/header';
 import OfferInfo from '../../components/offer-info/offer-info';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -9,13 +10,13 @@ import { loadDetailOffer, loadOfferNearOffers, loadOfferReviews } from '../../st
 import { fetchDetailOfferAction, fetchOfferNearOffersAction, fetchOfferReviewsAction } from '../../store/api-actions';
 import { OfferId } from '../../types/offer';
 import { PageTitle, EMPTY_DETAIL_OFFER } from '../../const';
-import useScrollToTop from '../../hooks/use-scroll-to-top';
 
 function OfferPage(): JSX.Element {
   const params = useParams();
-  const offerId: OfferId = params.id;
-
   const dispatch = useAppDispatch();
+  const scrollToTop = useScrollToTop();
+
+  const offerId: OfferId = params.id;
 
   useEffect(() => {
     dispatch(loadDetailOffer({ ...EMPTY_DETAIL_OFFER, id: offerId }));
@@ -25,7 +26,7 @@ function OfferPage(): JSX.Element {
     dispatch(fetchDetailOfferAction(offerId));
     dispatch(fetchOfferNearOffersAction(offerId));
     dispatch(fetchOfferReviewsAction(offerId));
-  }, [dispatch, offerId]);
+  }, [dispatch, offerId, scrollToTop]);
 
   const detailOffer = useAppSelector((state) => state.detailOffer);
 
@@ -35,7 +36,6 @@ function OfferPage(): JSX.Element {
 
   return (
     <div className="page">
-      <useScrollToTop />
       <Helmet>
         <title>{PageTitle.Offer}</title>
       </Helmet>
