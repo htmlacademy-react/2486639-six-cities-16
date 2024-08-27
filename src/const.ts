@@ -8,6 +8,8 @@ const APIService = {
   TIMEOUT: 5000
 } as const;
 
+const PASSWORD_REGEXP = /[a-zA-Zа-яА-Я]\d|\d[a-zA-Zа-яА-Я]/;
+
 enum APIRoute {
   Offers = '/offers',
   Nearby = '/nearby',
@@ -178,6 +180,7 @@ enum ActionName {
 export {
   APP_TITLE,
   APIService,
+  PASSWORD_REGEXP,
   APIRoute,
   AUTH_TOKEN_KEY_NAME,
   CITIES_NAMES,

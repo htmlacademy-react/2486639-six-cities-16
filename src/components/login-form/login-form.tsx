@@ -2,7 +2,7 @@ import { FormEvent, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
-import { AppRoute, RequestStatus } from '../../const';
+import { AppRoute, PASSWORD_REGEXP, RequestStatus } from '../../const';
 
 function LoginFrom(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -21,8 +21,9 @@ function LoginFrom(): JSX.Element {
     if (loginRef.current !== null && passwordRef.current !== null) {
       const login = loginRef.current.value;
       const password = passwordRef.current.value;
-
-      dispatch(loginAction({ login, password }));
+      if (PASSWORD_REGEXP.test(password)) {
+        dispatch(loginAction({ login, password }));
+      }
     }
   };
 
