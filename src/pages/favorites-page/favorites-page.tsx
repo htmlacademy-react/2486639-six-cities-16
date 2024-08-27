@@ -7,7 +7,7 @@ import FavoriteItem from '../../components/favorite-item/favorite-item';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchFavoriteOffersAction } from '../../store/api-actions';
 import { getOffersByCityName } from '../../utils/offer';
-import { APP_TITLE } from '../../const';
+import { PageTitle } from '../../const';
 
 function FavoritesPage(): JSX.Element {
   const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
@@ -25,7 +25,7 @@ function FavoritesPage(): JSX.Element {
   return (
     <div className={divPageClassName} >
       <Helmet>
-        <title>{`${APP_TITLE}: favorites${isOffersEmpty ? ' empty' : ''}`}</title>
+        <title>{isOffersEmpty ? PageTitle.EmptyFavorites : PageTitle.Favorites}</title>
       </Helmet>
       <Header favoriteOfferCount={favoriteOffers.length} />
 

@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loadDetailOffer, loadOfferNearOffers, loadOfferReviews } from '../../store/action';
 import { fetchDetailOfferAction, fetchOfferNearOffersAction, fetchOfferReviewsAction } from '../../store/api-actions';
 import { OfferId } from '../../types/offer';
-import { APP_TITLE, EMPTY_DETAIL_OFFER } from '../../const';
+import { PageTitle, EMPTY_DETAIL_OFFER } from '../../const';
 import ScrollToTop from '../../hooks/scroll-to-top';
 
 function OfferPage(): JSX.Element {
@@ -37,7 +37,7 @@ function OfferPage(): JSX.Element {
     <div className="page">
       <ScrollToTop />
       <Helmet>
-        <title>{`${APP_TITLE}: offer`}</title>
+        <title>{PageTitle.Offer}</title>
       </Helmet>
       <Header />
       <OfferInfo />

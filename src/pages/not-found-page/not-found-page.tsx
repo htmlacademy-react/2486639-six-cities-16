@@ -1,13 +1,13 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { AppRoute, APP_TITLE } from '../../const';
+import { AppRoute, PageTitle } from '../../const';
 import Header from '../../components/header/header';
 
 function NotFoundPage(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
-        <title>{`${APP_TITLE}: 404`}</title>
+        <title>{PageTitle.NotFound}</title>
       </Helmet>
       <Header />
 

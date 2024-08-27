@@ -11,7 +11,7 @@ import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import Spinner from '../spinner/spinner';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { checkAuthAction } from '../../store/api-actions';
-import { AppRoute, APP_TITLE, AuthorizationStatus } from '../../const';
+import { AppRoute, PageTitle, AuthorizationStatus } from '../../const';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -30,7 +30,7 @@ function App(): JSX.Element {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>{APP_TITLE}</title>
+        <title>{PageTitle.Root}</title>
       </Helmet>
       <BrowserRouter>
         <Routes>
