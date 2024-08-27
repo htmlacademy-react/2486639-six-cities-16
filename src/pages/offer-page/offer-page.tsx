@@ -9,7 +9,7 @@ import { loadDetailOffer, loadOfferNearOffers, loadOfferReviews } from '../../st
 import { fetchDetailOfferAction, fetchOfferNearOffersAction, fetchOfferReviewsAction } from '../../store/api-actions';
 import { OfferId } from '../../types/offer';
 import { PageTitle, EMPTY_DETAIL_OFFER } from '../../const';
-import ScrollToTop from '../../hooks/scroll-to-top';
+import useScrollToTop from '../../hooks/use-scroll-to-top';
 
 function OfferPage(): JSX.Element {
   const params = useParams();
@@ -35,7 +35,7 @@ function OfferPage(): JSX.Element {
 
   return (
     <div className="page">
-      <ScrollToTop />
+      <useScrollToTop />
       <Helmet>
         <title>{PageTitle.Offer}</title>
       </Helmet>
