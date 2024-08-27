@@ -8,6 +8,8 @@ const APIService = {
   TIMEOUT: 5000
 } as const;
 
+const PASSWORD_REGEXP = /[a-zA-Zа-яА-Я]\d|\d[a-zA-Zа-яА-Я]/;
+
 enum APIRoute {
   Offers = '/offers',
   Nearby = '/nearby',
@@ -35,6 +37,13 @@ enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN'
+}
+
+enum RequestStatus {
+  Idle = 'Idle',
+  Loading = 'Loading',
+  Success = 'Success',
+  Failed = 'Failed'
 }
 
 enum OfferSortigType {
@@ -103,13 +112,14 @@ const OfferComponentsCount = {
   IMAGES: 6,
   NEAR_OFFERS: 3,
   REVIEWS: 10
-};
+} as const;
 
 const ReviewRating = {
   HINTS: ['perfect', 'good', 'not bad', 'badly', 'terribly'],
   DEFAULT: 0,
   MIN: 1
 } as const;
+
 const ReviewTextLength = {
   MIN: 50,
   MAX: 300
@@ -140,7 +150,6 @@ const IconAnchorSize = {
 } as const;
 
 enum ActionName {
-  ChangeAuthorizationStatus = 'user/changeAuthorizationStatus',
   LoadOffers = 'data/loadOffers',
   ChangeDetailOffer = 'data/changeDetailOffer',
   LoadFavoriteOffers = 'data/loadFavoriteOffers',
@@ -158,7 +167,9 @@ enum ActionName {
   Login = 'user/login',
   Logout = 'user/logout',
   CheckAuth = 'user/checkAuth',
-  SetOffersDataLoadingStatus = 'main/setOffersDataLoadingStatus',
+  SetLoginCheckRequestStatus = 'user/setLoginCheckRequestStatus',
+  SetOffersLoadingRequestStatus = 'main/SetOffersLoadingRequestStatus',
+  SetReviewPostingRequestStatus = 'main/SetReviewPostingRequestStatus',
   ChangeCityName = 'main/changeCityName',
   ChangeOfferSortingType = 'main/changeOfferSortingType',
   ChangeActiveOfferId = 'main/changeActiveOfferId',
@@ -169,6 +180,7 @@ enum ActionName {
 export {
   APP_TITLE,
   APIService,
+  PASSWORD_REGEXP,
   APIRoute,
   AUTH_TOKEN_KEY_NAME,
   CITIES_NAMES,
@@ -176,6 +188,7 @@ export {
   OFFER_BASE_ROUTE,
   AppRoute,
   AuthorizationStatus,
+  RequestStatus,
   OfferSortigType,
   DEFALUT_OFFER_SORTING_TYPE,
   ClassNamePrefix,

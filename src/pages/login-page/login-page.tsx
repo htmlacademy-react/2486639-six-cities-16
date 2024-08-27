@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
@@ -32,9 +33,9 @@ function LoginPage(): JSX.Element {
                 className="locations__item-link"
                 to={AppRoute.Main}
                 onClick={
-                  (evt: React.MouseEvent<HTMLElement>) => {
+                  (evt: MouseEvent<HTMLElement>) => {
                     evt.preventDefault();
-                    dispatch(changeCityName(randomCityName as CityName));
+                    dispatch(changeCityName(randomCityName));
                     navigate(AppRoute.Main);
                   }
                 }

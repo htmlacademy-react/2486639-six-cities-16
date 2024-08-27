@@ -2,9 +2,7 @@ import { createAction } from '@reduxjs/toolkit';
 import { CityName } from '../types';
 import { DetailOffer, Offers, OfferId } from '../types/offer';
 import { Review, Reviews } from '../types/review';
-import { ActionName, AuthorizationStatus, OfferSortigType } from '../const';
-
-export const changeAuthorizationStatus = createAction<boolean>(ActionName.ChangeAuthorizationStatus);
+import { ActionName, AuthorizationStatus, OfferSortigType, RequestStatus } from '../const';
 
 export const loadOffers = createAction<Offers>(ActionName.LoadOffers);
 
@@ -20,7 +18,11 @@ export const loadOfferReviews = createAction<Reviews>(ActionName.LoadOfferReview
 
 export const loadOfferReview = createAction<Review>(ActionName.LoadOfferReview);
 
-export const setOffersDataLoadingStatus = createAction<boolean>(ActionName.SetOffersDataLoadingStatus);
+export const setLoginCheckRequestStatus = createAction<RequestStatus>(ActionName.SetLoginCheckRequestStatus);
+
+export const setOffersLoadingRequestStatus = createAction<RequestStatus>(ActionName.SetOffersLoadingRequestStatus);
+
+export const setReviewPostingRequestStatus = createAction<RequestStatus>(ActionName.SetReviewPostingRequestStatus);
 
 export const changeCityName = createAction<CityName>(ActionName.ChangeCityName);
 

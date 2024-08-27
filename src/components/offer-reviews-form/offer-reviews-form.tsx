@@ -1,9 +1,10 @@
-import React, { FormEvent, useState } from 'react';
+import { FormEvent, Fragment, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { postOfferReviewAction } from '../../store/api-actions';
-import { ReviewTextLength, ReviewRating } from '../../const';
+import { ReviewTextLength, ReviewRating, RequestStatus } from '../../const';
 
 function OfferReviewsForm(): JSX.Element {
+  const reviewPostingRequestStatus = useAppSelector((state) => state.reviewPostingRequestStatus);
   const offerId = useAppSelector((state) => state.detailOffer.id);
   const dispatch = useAppDispatch();
 
@@ -14,18 +15,19 @@ function OfferReviewsForm(): JSX.Element {
   const commentLength = comment.length;
   const isSubmitButtonEnabled = (rating >= ReviewRating.MIN) && (commentLength >= ReviewTextLength.MIN) && (commentLength <= ReviewTextLength.MAX);
 
+  useEffect(() => {
+    setFormInputsDisable(reviewPostingRequestStatus === RequestStatus.Loading);
+
+    if (reviewPostingRequestStatus === RequestStatus.Success) {
+      setRating(ReviewRating.DEFAULT);
+      setComment('');
+    }
+  }, [reviewPostingRequestStatus, dispatch]);
+
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    setFormInputsDisable(true);
-
     dispatch(postOfferReviewAction({ offerId, comment, rating }));
-
-    setRating(ReviewRating.DEFAULT);
-    setComment('');
-    setFormInputsDisable(false);
-
-    evt.currentTarget.reset();
   };
 
   return (
@@ -39,7 +41,7 @@ function OfferReviewsForm(): JSX.Element {
               const key: string = `${keyIndex}-stars`;
 
               return (
-                <React.Fragment key={key} >
+                <Fragment key={key} >
                   <input
                     className="form__rating-input visually-hidden"
                     name="rating"
@@ -47,6 +49,7 @@ function OfferReviewsForm(): JSX.Element {
                     id={key}
                     type="radio"
                     disabled={formInputsDisable}
+                    checked={(rating === keyIndex)}
                     onChange={
                       (evt) => {
                         setRating(Number(evt.target.value));
@@ -58,7 +61,7 @@ function OfferReviewsForm(): JSX.Element {
                       <use xlinkHref="#icon-star"></use>
                     </svg>
                   </label>
-                </React.Fragment>
+                </Fragment>
               );
             })
         }
@@ -69,6 +72,7 @@ function OfferReviewsForm(): JSX.Element {
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         disabled={formInputsDisable}
+        value={comment}
         onChange={
           (evt) => {
             setComment(evt.target.value);
@@ -79,7 +83,7 @@ function OfferReviewsForm(): JSX.Element {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={!isSubmitButtonEnabled}>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={!isSubmitButtonEnabled || formInputsDisable}>Submit</button>
       </div>
     </form>
   );

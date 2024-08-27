@@ -6,7 +6,7 @@ import Footer from '../../components/footer/footer';
 import FavoriteItem from '../../components/favorite-item/favorite-item';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchFavoriteOffersAction } from '../../store/api-actions';
-import { getOffersByCities } from '../../utils/offer';
+import { getOffersByCityName } from '../../utils/offer';
 import { APP_TITLE } from '../../const';
 
 function FavoritesPage(): JSX.Element {
@@ -43,7 +43,7 @@ function FavoritesPage(): JSX.Element {
                 :
                 <ul className="favorites__list">
                   {
-                    getOffersByCities(favoriteOffers)
+                    getOffersByCityName(favoriteOffers)
                       .map(({ cityName, offers: cityOffers }) => (
                         <FavoriteItem
                           key={cityName}

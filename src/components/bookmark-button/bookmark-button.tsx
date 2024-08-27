@@ -1,4 +1,6 @@
+import { MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { postOfferFavoriteAction } from '../../store/api-actions';
 import { OfferId } from '../../types/offer';
@@ -17,12 +19,17 @@ function BookmarkButton({ offerId, classNamePrefix, isBigButton = false, isActiv
   const navigate = useNavigate();
 
   const className = `${classNamePrefix}__bookmark`;
-  const buttonClassName = `${className}-button`;
+  const buttonMainClassName = `${className}-button`;
   const iconClassName = `${className}-icon`;
-  const activeButtonClassName = `${buttonClassName}--active`;
+  const activeButtonClassName = `${buttonMainClassName}--active`;
+  const buttonClassName = classNames(
+    'button',
+    buttonMainClassName,
+    { [activeButtonClassName]: isActive }
+  );
   const { width, height } = (isBigButton) ? BookmarkButtonIconSize.BIG : BookmarkButtonIconSize.SMALL;
 
-  const handleButtonClick = (evt: React.MouseEvent<HTMLElement>) => {
+  const handleButtonClick = (evt: MouseEvent<HTMLElement>) => {
     evt.preventDefault();
 
     if (authorizationStatus !== AuthorizationStatus.Auth) {
@@ -37,7 +44,7 @@ function BookmarkButton({ offerId, classNamePrefix, isBigButton = false, isActiv
 
   return (
     <button
-      className={`${buttonClassName} button ${isActive ? activeButtonClassName : ''}`}
+      className={buttonClassName}
       type="button"
       onClick={handleButtonClick}
     >

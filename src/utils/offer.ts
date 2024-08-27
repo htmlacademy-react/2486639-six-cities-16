@@ -1,5 +1,5 @@
 import { CityName } from '../types';
-import { OffersByCity, Offer, Offers, DetailOffer, BaseOffer } from '../types/offer';
+import { OffersByCityName, Offer, Offers, DetailOffer, BaseOffer } from '../types/offer';
 import { OfferSortigType } from '../const';
 
 function getCityOffers(cityName: CityName, offers: Offers) {
@@ -20,24 +20,20 @@ function sortOffers(offers: Offers, offerSortingType: OfferSortigType): Offers {
   return [...offers].sort(compareOffers[offerSortingType]);
 }
 
-function sortByCityName(citiesOffers: OffersByCity[]): OffersByCity[] {
-  return citiesOffers.sort(({ cityName: firstCityName }, { cityName: secondCityName }) => (firstCityName.localeCompare(secondCityName)));
-}
-
-function getOffersByCities(offers: Offers): OffersByCity[] {
-  const offersByCities: OffersByCity[] = [];
+function getOffersByCityName(offers: Offers): OffersByCityName[] {
+  const offersByCityNames: OffersByCityName[] = [];
 
   offers.forEach((offer) => {
-    const offersByCity = offersByCities.find(({ cityName }) => (cityName === offer.city.name));
+    const offersByCityName = offersByCityNames.find(({ cityName }) => (cityName === offer.city.name));
 
-    if (!offersByCity) {
-      offersByCities.push({ cityName: offer.city.name, offers: [offer] });
+    if (!offersByCityName) {
+      offersByCityNames.push({ cityName: offer.city.name, offers: [offer] });
     } else {
-      offersByCity.offers.push(offer);
+      offersByCityName.offers.push(offer);
     }
   });
 
-  return sortByCityName(offersByCities);
+  return offersByCityNames;
 }
 
 function getFavoriteOffersCount(offers: Offer[]): number {
@@ -60,4 +56,4 @@ function upadteOffer(detailOffer: DetailOffer, offers: Offer[]): void {
   }
 }
 
-export { getCityOffers, sortOffers, getOffersByCities, getFavoriteOffersCount, upadteOffer };
+export { getCityOffers, sortOffers, getOffersByCityName, getFavoriteOffersCount, upadteOffer };

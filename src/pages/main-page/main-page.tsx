@@ -6,27 +6,20 @@ import PlacesSorting from '../../components/places-sorting/places-sorting';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import OffersMap from '../../components/offers-map/offers-map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeAuthorizationStatus, changeOfferSortingType } from '../../store/action';
-import { fetchOffersAction } from '../../store/api-actions';
+import { changeOfferSortingType } from '../../store/action';
 import { addPluralEnding } from '../../utils/common';
-import { getCityOffers, getFavoriteOffersCount, sortOffers } from '../../utils/offer';
-import { ClassNamePrefix, OfferSortigType } from '../../const';
+import { getCityOffers, sortOffers } from '../../utils/offer';
+import { ClassNamePrefix, OfferSortigType, RequestStatus } from '../../const';
 
 function MainPage(): JSX.Element {
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-  const isChangeAuthorizationStatus = useAppSelector((state) => state.isChangeAuthorizationStatus);
+  const offersLoadingRequestStatus = useAppSelector((state) => state.offersLoadingRequestStatus);
   const offers = useAppSelector((state) => state.offers);
   const currentCityName = useAppSelector((state) => state.cityName);
   const currentOfferSortType = useAppSelector((state) => state.offerSoritngType);
   const activeOfferId = useAppSelector((state) => state.activeOfferId);
   const dispatch = useAppDispatch();
 
-  if (isChangeAuthorizationStatus) {
-    dispatch(fetchOffersAction());
-    dispatch(changeAuthorizationStatus(false));
-  }
-
-  if (isOffersDataLoading) {
+  if (offersLoadingRequestStatus === RequestStatus.Loading) {
     return (
       <Spinner />
     );
@@ -55,7 +48,7 @@ function MainPage(): JSX.Element {
 
   return (
     <div className="page page--gray page--main">
-      <Header favoriteOfferCount={getFavoriteOffersCount(offers)} />
+      <Header />
 
       <main className={mainClassName}>
         <Locations currentCityName={currentCityName} />
