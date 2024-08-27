@@ -7,7 +7,7 @@ import { useAppDispatch } from '../../hooks';
 import { changeCityName } from '../../store/action';
 import { CityName } from '../../types';
 import { getRandomArrayElement } from '../../utils/common';
-import { APP_TITLE, AppRoute, CITIES_NAMES } from '../../const';
+import { AppRoute, CITIES_NAMES, PageTitle } from '../../const';
 
 function LoginPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -17,7 +17,7 @@ function LoginPage(): JSX.Element {
   return (
     <div className="page page--gray page--login">
       <Helmet>
-        <title>{`${APP_TITLE}: authorization`}</title>
+        <title>{PageTitle.Login}</title>
       </Helmet>
       <Header isHiddenUserInfo />
 

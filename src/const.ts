@@ -1,7 +1,14 @@
 import { CityName } from './types';
 import { DetailOffer } from './types/offer';
 
-const APP_TITLE = '6 cities';
+enum PageTitle {
+  Root = '6 cities',
+  Favorites = `${Root}: favorites`,
+  EmptyFavorites = `${Favorites} empty`,
+  Login = `${Root}: authorization`,
+  NotFound = `${Root}: 404`,
+  Offer = `${Root}: offer`
+}
 
 const APIService = {
   URL: 'https://16.design.htmlacademy.pro/six-cities',
@@ -180,7 +187,7 @@ enum ActionName {
 }
 
 export {
-  APP_TITLE,
+  PageTitle,
   APIService,
   Password,
   APIRoute,
