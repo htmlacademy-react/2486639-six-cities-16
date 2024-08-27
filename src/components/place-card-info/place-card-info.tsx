@@ -20,7 +20,7 @@ function PlaceCardInfo(prop: PlaceCardInfoProps): JSX.Element {
     additionalImageClassName,
     imageWidth,
     imageHeight,
-    additionalInfoClassName,
+    additionalInfoClassName = '',
     offer
   } = prop;
   const {
