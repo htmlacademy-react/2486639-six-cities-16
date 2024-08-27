@@ -2,8 +2,8 @@ import { createReducer } from '@reduxjs/toolkit';
 import {
   changeActiveOfferId, changeCityName, changeDetailOffer, changeOfferSortingType,
   loadDetailOffer, loadFavoriteOffers, loadOfferNearOffers, loadOfferReview,
-  loadOfferReviews, loadOffers, requireAuthorization, setLoginCheckRequestStatus,
-  setOffersLoadingRequestStatus, setReviewPostingRequestStatus, setUserName
+  loadOfferReviews, loadOffers, requireAuthorization, setOffersLoadingRequestStatus,
+  setReviewPostingRequestStatus, setUserName
 } from './action';
 import { CityName } from '../types';
 import { DetailOffer, Offers, OfferId } from '../types/offer';
@@ -23,7 +23,6 @@ type InitialState = {
   detailOffer: DetailOffer;
   offerNearOffers: Offers;
   offerReviews: Reviews;
-  loginCheckRequestStatus: RequestStatus;
   offersLoadingRequestStatus: RequestStatus;
   reviewPostingRequestStatus: RequestStatus;
   authorizationStatus: AuthorizationStatus;
@@ -39,7 +38,6 @@ const initialState: InitialState = {
   detailOffer: EMPTY_DETAIL_OFFER,
   offerNearOffers: [],
   offerReviews: [],
-  loginCheckRequestStatus: RequestStatus.Idle,
   offersLoadingRequestStatus: RequestStatus.Idle,
   reviewPostingRequestStatus: RequestStatus.Idle,
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -74,9 +72,6 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOfferReview, (state, action) => {
       state.offerReviews.push(action.payload);
-    })
-    .addCase(setLoginCheckRequestStatus, (state, action) => {
-      state.loginCheckRequestStatus = action.payload;
     })
     .addCase(setOffersLoadingRequestStatus, (state, action) => {
       state.offersLoadingRequestStatus = action.payload;

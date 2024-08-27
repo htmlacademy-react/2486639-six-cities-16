@@ -1,20 +1,13 @@
 import { FormEvent, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
-import { AppRoute, Password, RequestStatus } from '../../const';
+import { Password } from '../../const';
 
 function LoginFrom(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-  const loginCheckRequestStatus = useAppSelector((state) => state.loginCheckRequestStatus);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  if (loginCheckRequestStatus === RequestStatus.Success) {
-    navigate(AppRoute.Main);
-  }
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
