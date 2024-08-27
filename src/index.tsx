@@ -1,8 +1,11 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 import App from './components/app/app';
 import { store } from './store';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,6 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <Provider store={store}>
+      <ToastContainer />
       <App />
     </Provider>
   </StrictMode>
@@ -18,7 +22,6 @@ root.render(
 
 /*
 Доделать сначала и перепроверить, что автотесты не ломаются:
-  0. Сообщения при ошибках
   1. Проверить Спинеры на разных страницах
     если смотриться не очеть то сделать еще Loading... для компонетов где уже есть внешнее оформление
   2. Предупреждение React на navigate(AppRoute.Main); после if (loginCheckRequestStatus === RequestStatus.Success) {

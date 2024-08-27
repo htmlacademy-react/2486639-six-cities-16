@@ -8,7 +8,10 @@ const APIService = {
   TIMEOUT: 5000
 } as const;
 
-const PASSWORD_REGEXP = /[a-zA-Zа-яА-Я]\d|\d[a-zA-Zа-яА-Я]/;
+const Password = {
+  CHECK_REGEXP: /[a-zA-Zа-яА-Я]\d|\d[a-zA-Zа-яА-Я]/,
+  WARNING_MESSGAGE: 'The password must consist of at least one letter and one number!'
+} as const;
 
 enum APIRoute {
   Offers = '/offers',
@@ -180,7 +183,7 @@ enum ActionName {
 export {
   APP_TITLE,
   APIService,
-  PASSWORD_REGEXP,
+  Password,
   APIRoute,
   AUTH_TOKEN_KEY_NAME,
   CITIES_NAMES,
