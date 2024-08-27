@@ -18,8 +18,6 @@ export const loadOfferReviews = createAction<Reviews>(ActionName.LoadOfferReview
 
 export const loadOfferReview = createAction<Review>(ActionName.LoadOfferReview);
 
-export const setLoginCheckRequestStatus = createAction<RequestStatus>(ActionName.SetLoginCheckRequestStatus);
-
 export const setOffersLoadingRequestStatus = createAction<RequestStatus>(ActionName.SetOffersLoadingRequestStatus);
 
 export const setReviewPostingRequestStatus = createAction<RequestStatus>(ActionName.SetReviewPostingRequestStatus);

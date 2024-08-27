@@ -170,7 +170,6 @@ enum ActionName {
   Login = 'user/login',
   Logout = 'user/logout',
   CheckAuth = 'user/checkAuth',
-  SetLoginCheckRequestStatus = 'user/setLoginCheckRequestStatus',
   SetOffersLoadingRequestStatus = 'main/SetOffersLoadingRequestStatus',
   SetReviewPostingRequestStatus = 'main/SetReviewPostingRequestStatus',
   ChangeCityName = 'main/changeCityName',

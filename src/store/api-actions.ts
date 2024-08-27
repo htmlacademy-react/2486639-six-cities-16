@@ -3,7 +3,7 @@ import { AxiosInstance } from 'axios';
 import {
   changeDetailOffer, loadDetailOffer, loadFavoriteOffers, loadOfferNearOffers,
   loadOfferReview, loadOfferReviews, loadOffers, requireAuthorization,
-  setLoginCheckRequestStatus, setOffersLoadingRequestStatus, setReviewPostingRequestStatus, setUserName
+  setOffersLoadingRequestStatus, setReviewPostingRequestStatus, setUserName
 } from './action';
 import { dropToken, saveToken } from '../services/token';
 import { AuthData, UserData } from '../types';
@@ -67,17 +67,11 @@ export const loginAction = createAsyncThunk<void, AuthData, {
 }>(
   ActionName.Login,
   async ({ login: email, password }, { dispatch, extra: api }) => {
-    try {
-      dispatch(setLoginCheckRequestStatus(RequestStatus.Loading));
-      const response = await api.post<UserData>(APIRoute.Login, { email, password });
-      saveToken(response.data.token);
-      dispatch(setUserName(response.data.email));
-      dispatch(requireAuthorization(AuthorizationStatus.Auth));
-      dispatch(setLoginCheckRequestStatus(RequestStatus.Success));
-      dispatch(fetchOffersAction());
-    } catch {
-      dispatch(setLoginCheckRequestStatus(RequestStatus.Failed));
-    }
+    const response = await api.post<UserData>(APIRoute.Login, { email, password });
+    saveToken(response.data.token);
+    dispatch(setUserName(response.data.email));
+    dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    dispatch(fetchOffersAction());
   }
 );
 
