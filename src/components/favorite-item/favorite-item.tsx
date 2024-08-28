@@ -1,5 +1,4 @@
-import { MouseEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PlaceCardInfo from '../place-card-info/place-card-info';
 import { useAppDispatch } from '../../hooks';
 import { changeCityName } from '../../store/action';
@@ -14,25 +13,22 @@ type FavoriteItemProps = {
 
 function FavoriteItem({ cityName, offers }: FavoriteItemProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
         <div className="locations__item">
-          <a
+          <Link
+            to={AppRoute.Main}
             className="locations__item-link"
-            href="#"
             onClick={
-              (evt: MouseEvent<HTMLElement>) => {
-                evt.preventDefault();
+              () => {
                 dispatch(changeCityName(cityName));
-                navigate(AppRoute.Main);
               }
             }
           >
             <span>{cityName}</span>
-          </a>
+          </Link>
         </div>
       </div>
       <div className="favorites__places">

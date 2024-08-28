@@ -1,8 +1,8 @@
-import { MouseEvent } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { changeCityName } from '../../store/action';
 import { CityName } from '../../types';
-import { CITIES_NAMES } from '../../const';
+import { AppRoute, CITIES_NAMES } from '../../const';
+import { Link } from 'react-router-dom';
 
 type LocationsProps = {
   currentCityName: CityName;
@@ -26,18 +26,17 @@ function Locations({ currentCityName }: LocationsProps): JSX.Element {
 
                 return (
                   <li className="locations__item" key={cityName} >
-                    <a
+                    <Link
+                      to={AppRoute.Main}
                       className={className}
-                      href="#"
                       onClick={
-                        (evt: MouseEvent<HTMLElement>) => {
-                          evt.preventDefault();
+                        () => {
                           dispatch(changeCityName(cityName));
                         }
                       }
                     >
                       <span>{cityName}</span>
-                    </a>
+                    </Link>
                   </li>
                 );
               })
