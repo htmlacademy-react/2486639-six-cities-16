@@ -1,17 +1,12 @@
-import { MouseEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import LoginFrom from '../../components/login-form/login-form';
-import { useAppDispatch } from '../../hooks';
-import { changeCityName } from '../../store/action';
 import { CityName } from '../../types';
 import { getRandomArrayElement } from '../../utils/common';
-import { AppRoute, CITIES_NAMES, PageTitle } from '../../const';
+import { CITIES_NAMES, PageTitle } from '../../const';
+import CityLink from '../../components/city-link/city-link';
 
 function LoginPage(): JSX.Element {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const randomCityName = getRandomArrayElement<CityName>([...CITIES_NAMES]);
 
   return (
@@ -29,19 +24,7 @@ function LoginPage(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <Link
-                className="locations__item-link"
-                to={AppRoute.Main}
-                onClick={
-                  (evt: MouseEvent<HTMLElement>) => {
-                    evt.preventDefault();
-                    dispatch(changeCityName(randomCityName));
-                    navigate(AppRoute.Main);
-                  }
-                }
-              >
-                <span>{randomCityName}</span>
-              </Link>
+              <CityLink cityName={randomCityName} />
             </div>
           </section>
         </div>

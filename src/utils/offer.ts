@@ -48,7 +48,7 @@ function convertDetailOfferToOffer(offer: Offer, detailOffer: DetailOffer): Offe
   return newOffer;
 }
 
-function upadteOffer(detailOffer: DetailOffer, offers: Offer[]): void {
+function updateOffers(offers: Offer[], detailOffer: DetailOffer): void {
   const offerIndex = offers.findIndex(({ id }) => (id === detailOffer.id));
   if (offerIndex > -1) {
     const offer = offers[offerIndex];
@@ -56,4 +56,4 @@ function upadteOffer(detailOffer: DetailOffer, offers: Offer[]): void {
   }
 }
 
-export { getCityOffers, sortOffers, getOffersByCityName, getFavoriteOffersCount, upadteOffer };
+export { getCityOffers, sortOffers, getOffersByCityName, getFavoriteOffersCount, updateOffers };

@@ -8,7 +8,7 @@ import {
 import { CityName } from '../types';
 import { DetailOffer, Offers, OfferId } from '../types/offer';
 import { Reviews } from '../types/review';
-import { upadteOffer } from '../utils/offer';
+import { updateOffers } from '../utils/offer';
 import {
   AuthorizationStatus, DEFALUT_OFFER_SORTING_TYPE, DEFAULT_CITY_NAME, EMPTY_DETAIL_OFFER,
   OfferSortigType, RequestStatus
@@ -53,7 +53,7 @@ const reducer = createReducer(initialState, (builder) => {
       const detailOffer = action.payload;
 
       state.detailOffer = detailOffer;
-      upadteOffer(detailOffer, state.offers);
+      updateOffers(state.offers, detailOffer);
       if (!detailOffer.isFavorite) {
         state.favoriteOffers = state.favoriteOffers.filter(({ id }) => (id !== detailOffer.id));
       }

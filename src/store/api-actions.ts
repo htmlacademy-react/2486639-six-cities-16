@@ -137,7 +137,7 @@ export const postOfferReviewAction = createAsyncThunk<void, OfferBaseReview, {
   state: State;
   extra: AxiosInstance;
 }>(
-  ActionName.Login,
+  ActionName.PostOfferReview,
   async ({ offerId, comment, rating }, { dispatch, extra: api }) => {
     try {
       dispatch(setReviewPostingRequestStatus(RequestStatus.Loading));
@@ -155,7 +155,7 @@ export const postOfferFavoriteAction = createAsyncThunk<void, OfferFavorite, {
   state: State;
   extra: AxiosInstance;
 }>(
-  ActionName.Login,
+  ActionName.PostOfferFavorite,
   async ({ id, status }, { dispatch, extra: api }) => {
     const response = await api.post<DetailOffer>(`${APIRoute.Favorite}/${id}/${Number(status)}`);
     dispatch(changeDetailOffer(response.data));
