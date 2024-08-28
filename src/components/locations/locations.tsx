@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import { useAppDispatch } from '../../hooks';
 import { changeCityName } from '../../store/action';
 import { CityName } from '../../types';
 import { AppRoute, CITIES_NAMES } from '../../const';
-import { Link } from 'react-router-dom';
 
 type LocationsProps = {
   currentCityName: CityName;
@@ -19,10 +20,7 @@ function Locations({ currentCityName }: LocationsProps): JSX.Element {
           <ul className="locations__list tabs__list">
             {
               CITIES_NAMES.map((cityName) => {
-                let className: string = 'locations__item-link tabs__item';
-                if (cityName === currentCityName) {
-                  className += ' tabs__item--active';
-                }
+                const className = classNames('locations__item-link tabs__item', { 'tabs__item--active': cityName === currentCityName });
 
                 return (
                   <li className="locations__item" key={cityName} >

@@ -1,5 +1,4 @@
-import { MouseEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import LoginFrom from '../../components/login-form/login-form';
@@ -11,7 +10,6 @@ import { AppRoute, CITIES_NAMES, PageTitle } from '../../const';
 
 function LoginPage(): JSX.Element {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const randomCityName = getRandomArrayElement<CityName>([...CITIES_NAMES]);
 
   return (
@@ -33,10 +31,8 @@ function LoginPage(): JSX.Element {
                 className="locations__item-link"
                 to={AppRoute.Main}
                 onClick={
-                  (evt: MouseEvent<HTMLElement>) => {
-                    evt.preventDefault();
+                  () => {
                     dispatch(changeCityName(randomCityName));
-                    navigate(AppRoute.Main);
                   }
                 }
               >
