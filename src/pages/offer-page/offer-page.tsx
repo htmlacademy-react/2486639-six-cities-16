@@ -14,7 +14,7 @@ import { PageTitle, EMPTY_DETAIL_OFFER } from '../../const';
 function OfferPage(): JSX.Element {
   const params = useParams();
   const dispatch = useAppDispatch();
-  const scrollToTop = useScrollToTop();
+  useScrollToTop();
 
   const offerId: OfferId = params.id;
 
@@ -26,7 +26,7 @@ function OfferPage(): JSX.Element {
     dispatch(fetchDetailOfferAction(offerId));
     dispatch(fetchOfferNearOffersAction(offerId));
     dispatch(fetchOfferReviewsAction(offerId));
-  }, [dispatch, offerId, scrollToTop]);
+  }, [dispatch, offerId]);
 
   const detailOffer = useAppSelector((state) => state.detailOffer);
 
