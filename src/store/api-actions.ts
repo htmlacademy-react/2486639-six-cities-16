@@ -3,7 +3,7 @@ import { AxiosInstance } from 'axios';
 import {
   changeDetailOffer, loadDetailOffer, loadFavoriteOffers, loadOfferNearOffers,
   loadOfferReview, loadOfferReviews, loadOffers, requireAuthorization,
-  setOffersLoadingRequestStatus, setReviewPostingRequestStatus, setUserName
+  setOffersLoadingRequestStatus, setReviewPostingRequestStatus, setUser
 } from './action';
 import { dropToken, saveToken } from '../services/token';
 import { AuthData, UserData } from '../types';
@@ -51,8 +51,8 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   async (_arg, { dispatch, extra: api }) => {
     try {
       const response = await api.get<UserData>(APIRoute.Login);
+      dispatch(setUser(response.data));
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
-      dispatch(setUserName(response.data.email));
     } catch {
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }
@@ -69,7 +69,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
   async ({ login: email, password }, { dispatch, extra: api }) => {
     const response = await api.post<UserData>(APIRoute.Login, { email, password });
     saveToken(response.data.token);
-    dispatch(setUserName(response.data.email));
+    dispatch(setUser(response.data));
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
     dispatch(fetchOffersAction());
   }

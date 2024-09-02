@@ -85,6 +85,14 @@ enum OfferFeatureType {
 
 const RATING_STAR_WIDTH = 20;
 
+const EMPTY_USER = {
+  avatarUrl: '',
+  email: '',
+  isPro: false,
+  name: '',
+  token: ''
+} as const;
+
 const EMPTY_DETAIL_OFFER: DetailOffer = {
   id: null,
   title: '',
@@ -183,7 +191,7 @@ enum ActionName {
   ChangeOfferSortingType = 'main/changeOfferSortingType',
   ChangeActiveOfferId = 'main/changeActiveOfferId',
   RequireAuthorization = 'user/requireAuthorization',
-  SetUserName = 'user/setUserName'
+  SetUser = 'user/setUser'
 }
 
 export {
@@ -204,6 +212,7 @@ export {
   BookmarkButtonIconSize,
   OfferFeatureType,
   RATING_STAR_WIDTH,
+  EMPTY_USER,
   EMPTY_DETAIL_OFFER,
   OfferComponentsCount,
   ReviewRating,

@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { CityName } from '../types';
+import { CityName, UserData } from '../types';
 import { DetailOffer, Offers, OfferId } from '../types/offer';
 import { Review, Reviews } from '../types/review';
 import { ActionName, AuthorizationStatus, OfferSortigType, RequestStatus } from '../const';
@@ -30,4 +30,4 @@ export const changeActiveOfferId = createAction<OfferId>(ActionName.ChangeActive
 
 export const requireAuthorization = createAction<AuthorizationStatus>(ActionName.RequireAuthorization);
 
-export const setUserName = createAction<string>(ActionName.SetUserName);
+export const setUser = createAction<UserData>(ActionName.SetUser);
