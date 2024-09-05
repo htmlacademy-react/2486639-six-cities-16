@@ -13,7 +13,7 @@ type HeaderProps = {
 function Header({ favoriteOfferCount, isHiddenUserInfo }: HeaderProps): JSX.Element {
   const offers = useAppSelector((state) => state.offers);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const userName = useAppSelector((state) => state.userName);
+  const user = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
   const isAuthUser = authorizationStatus === AuthorizationStatus.Auth;
@@ -44,9 +44,9 @@ function Header({ favoriteOfferCount, isHiddenUserInfo }: HeaderProps): JSX.Elem
                       (isAuthUser)
                         ?
                         <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
-                          <div className="header__avatar-wrapper user__avatar-wrapper">
+                          <div className="header__avatar-wrapper user__avatar-wrapper" style={{ backgroundImage: `url(${user.avatarUrl})` }}>
                           </div>
-                          <span className="header__user-name user__name">{userName}</span>
+                          <span className="header__user-name user__name">{user.email}</span>
                           <span className="header__favorite-count">{favoriteOfferCount || getFavoriteOffersCount(offers)}</span>
                         </Link>
                         :

@@ -1,15 +1,15 @@
 import { useEffect, useRef } from 'react';
 import { Icon, Marker, layerGroup } from 'leaflet';
 import useMap from '../../hooks/use-map';
-import { DetailOffer, Offers, OfferId } from '../../types/offer';
+import { DetailOffer, Offers } from '../../types/offer';
 import { Location } from '../../types';
 import { ClassNamePrefix, UrlMarker, IconMarkerSize, IconAnchorSize } from '../../const';
+import { useAppSelector } from '../../hooks';
 
 type OffersMapProps = {
   classNamePrefix: ClassNamePrefix;
   startLocation: Location;
   offers: Offers;
-  activeOfferId?: OfferId;
   activeDetailOffer?: DetailOffer;
 }
 
@@ -30,11 +30,12 @@ function OffersMap(props: OffersMapProps): JSX.Element {
     classNamePrefix,
     startLocation,
     offers,
-    activeOfferId = null,
+    //activeOfferId = null,
     activeDetailOffer = null
   } = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, startLocation);
+  const activeOfferId = useAppSelector((state) => state.activeOfferId);
 
   useEffect(
     () => {

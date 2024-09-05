@@ -16,7 +16,6 @@ function MainPage(): JSX.Element {
   const offers = useAppSelector((state) => state.offers);
   const currentCityName = useAppSelector((state) => state.cityName);
   const currentOfferSortType = useAppSelector((state) => state.offerSoritngType);
-  const activeOfferId = useAppSelector((state) => state.activeOfferId);
   const dispatch = useAppDispatch();
 
   if (offersLoadingRequestStatus === RequestStatus.Loading) {
@@ -85,7 +84,7 @@ function MainPage(): JSX.Element {
                     // для координат города можно взять коодинаты из первого предложения
                     startLocation={cityOffers[0].city.location}
                     offers={cityOffers}
-                    activeOfferId={activeOfferId}
+
                   />
               }
             </div>

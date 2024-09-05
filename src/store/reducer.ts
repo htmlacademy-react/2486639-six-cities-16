@@ -3,15 +3,15 @@ import {
   changeActiveOfferId, changeCityName, changeDetailOffer, changeOfferSortingType,
   loadDetailOffer, loadFavoriteOffers, loadOfferNearOffers, loadOfferReview,
   loadOfferReviews, loadOffers, requireAuthorization, setOffersLoadingRequestStatus,
-  setReviewPostingRequestStatus, setUserName
+  setReviewPostingRequestStatus, setUser
 } from './action';
-import { CityName } from '../types';
+import { CityName, UserData } from '../types';
 import { DetailOffer, Offers, OfferId } from '../types/offer';
 import { Reviews } from '../types/review';
 import { updateOffers } from '../utils/offer';
 import {
   AuthorizationStatus, DEFALUT_OFFER_SORTING_TYPE, DEFAULT_CITY_NAME, EMPTY_DETAIL_OFFER,
-  OfferSortigType, RequestStatus
+  OfferSortigType, RequestStatus, EMPTY_USER
 } from '../const';
 
 type InitialState = {
@@ -26,7 +26,7 @@ type InitialState = {
   offersLoadingRequestStatus: RequestStatus;
   reviewPostingRequestStatus: RequestStatus;
   authorizationStatus: AuthorizationStatus;
-  userName: string;
+  user: UserData;
 }
 
 const initialState: InitialState = {
@@ -41,7 +41,7 @@ const initialState: InitialState = {
   offersLoadingRequestStatus: RequestStatus.Idle,
   reviewPostingRequestStatus: RequestStatus.Idle,
   authorizationStatus: AuthorizationStatus.Unknown,
-  userName: ''
+  user: EMPTY_USER
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -91,8 +91,8 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
     })
-    .addCase(setUserName, (state, action) => {
-      state.userName = action.payload;
+    .addCase(setUser, (state, action) => {
+      state.user = action.payload;
     });
 });
 
